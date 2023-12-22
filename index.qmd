@@ -1,0 +1,8 @@
+---
+title: "ETC3550/5550 Applied forecasting"
+---
+
+## Teachers
+
+* [**Rob J Hyndman**](https://robjhyndman.com). Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
+* [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.O'Hara-Wild@monash.edu](mailto:Mitch.O'Hara-Wild@monash.edu)

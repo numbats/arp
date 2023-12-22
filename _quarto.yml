@@ -1,0 +1,41 @@
+project:
+  type: website
+  render:
+  - "*.qmd"
+  - "*.md"
+  - "!/slides/"
+
+website:
+  title: "ETC4500/ETC5450 Advanced R Programming"
+  site-url: "https://arp.numbat.space"
+  navbar:
+    background: "#006dae"
+    left:
+      - href: index.qmd
+        text: Home
+        icon: house-fill
+      - text: Discussion
+        icon: chat-fill
+        href: "https://learning.monash.edu/mod/forum/view.php?id=2034181"
+      - text: Moodle
+        icon: mortarboard-fill
+        href: "https://learning.monash.edu/course/view.php?id=12724&section=1"
+    right:
+      - icon: github
+        href: https://github.com/numbats/arp
+
+date-format: "D MMMM YYYY"
+
+format:
+  html:
+    theme: [cosmo, numbat.scss]
+    highlight: textmate
+    css: styles.css
+    toc: true
+    mainfont: "Fira Sans"
+    html-math-method: katex
+
+execute:
+  echo: false
+  warning: false
+  message: false
