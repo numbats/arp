@@ -1,5 +1,5 @@
 ---
-title: "ETC4500/4550 Advanced R Programming"
+title: "ETC4500/5450 Advanced R Programming"
 ---
 
 ## Teachers
