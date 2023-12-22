@@ -1,5 +1,5 @@
 ---
-title: "ETC3550/5550 Applied forecasting"
+title: "ETC4500/4550 Advanced R Programming"
 ---
 
 ## Teachers
