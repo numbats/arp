@@ -6,3 +6,10 @@ title: "ETC4500/5450 Advanced R Programming"
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
 * [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.O'Hara-Wild@monash.edu](mailto:Mitch.O'Hara-Wild@monash.edu)
+
+## References
+
+* [R for Data Science, 2e](https://r4ds.hadley.nz) by Hadley Wickham, Mine Cetinkaya-Rundel & Garrett Grolemund.
+* [R packages, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
+* [Advanced R, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
+* [Statistical Computing using R and Python](https://srvanderplas.github.io/stat-computing-r-python/) by Susan Vanderplas.
