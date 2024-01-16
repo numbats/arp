@@ -9,7 +9,6 @@ title: "ETC4500/5450 Advanced R Programming"
 
 ## References
 
-* [R for Data Science, 2e](https://r4ds.hadley.nz) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund.
-* [R packages, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
 * [Advanced R, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
-* [Statistical Computing using R and Python](https://srvanderplas.github.io/stat-computing-r-python/) by Susan Vanderplas.
+* [R packages, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
+* [Targets user manual](https://books.ropensci.org/targets/) by Will Landau.
