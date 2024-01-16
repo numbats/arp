@@ -5,7 +5,7 @@ title: "ETC4500/5450 Advanced R Programming"
 ## Teachers
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
-* [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.O'Hara-Wild@monash.edu](mailto:Mitch.O'Hara-Wild@monash.edu)
+* [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.OHara-Wild@monash.edu](mailto:Mitch.OHara-Wild@monash.edu)
 
 ## References
 
