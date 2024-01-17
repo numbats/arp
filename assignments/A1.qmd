@@ -1,0 +1,11 @@
+---
+title: Assignment 1 (25%)
+---
+
+> Create package skeleton. Include a basic function from set of options
+
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "Assignment 1")
+```

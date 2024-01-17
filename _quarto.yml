@@ -3,7 +3,6 @@ project:
   render:
   - "*.qmd"
   - "*.md"
-  - "!/slides/"
 
 website:
   title: "ETC4500/ETC5450 Advanced R Programming"
@@ -14,6 +13,21 @@ website:
       - href: index.qmd
         text: Home
         icon: house-fill
+      - text: Schedule
+        icon: calendar2-fill
+        menu:
+          - week1/index.qmd
+          - week2/index.qmd
+          - week3/index.qmd
+          - week4/index.qmd
+          - week5/index.qmd
+          - week6/index.qmd
+          - week7/index.qmd
+          - week8/index.qmd
+          - week9/index.qmd
+          - week10/index.qmd
+          - week11/index.qmd
+          - week12/index.qmd
       - text: Discussion
         icon: chat-fill
         href: "https://learning.monash.edu/mod/forum/view.php?id=2034181"
@@ -30,7 +44,6 @@ format:
   html:
     theme: [cosmo, numbat.scss]
     highlight: textmate
-    css: styles.css
     toc: true
     mainfont: "Fira Sans"
     html-math-method: katex

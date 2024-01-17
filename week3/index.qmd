@@ -1,0 +1,31 @@
+---
+title: "Week 3: R package development"
+---
+
+```{r}
+week <- 3
+source(here::here("course_info.R"))
+```
+
+## Main reference
+
+```{r}
+#| output: asis
+schedule |>
+  filter(Week == week) |>
+  mutate(ref = glue::glue("[{Reference}]({Reference_URL})")) |>
+  pull(ref)
+```
+
+## What you will learn this week
+
+* usethis
+* testthat v3
+* pkgdown
+* continuous integration (github actions)
+* roxygen2
+
+```{r}
+#| output: asis
+show_assignments(week)
+```

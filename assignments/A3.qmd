@@ -1,0 +1,11 @@
+---
+title: Assignment 3 (20%)
+---
+
+> Use package within larger quarto targets workflow Uses broken function from A2
+
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "Assignment 3")
+```

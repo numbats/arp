@@ -1,0 +1,11 @@
+---
+title: Assignment 2 (25%)
+---
+
+> Give bad broken complicated function for their package, fix it thanks Write tests and docs Explain why it doesn’t work and is now better
+
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "Assignment 2")
+```

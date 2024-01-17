@@ -2,13 +2,67 @@
 title: "ETC4500/5450 Advanced R Programming"
 ---
 
+R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language.
+
+## Learning outcomes
+
+1. be familiar with the foundations of R programming
+2. understand a variety of programming paradigms, including functional programming and object-oriented programming
+3. utilise R’s functional and object-oriented programming systems
+4. integrate the concept of metaprogramming to evaluate and construct new functions
+
 ## Teachers
 
-* [**Rob J Hyndman**](https://robjhyndman.com). Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
+* [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
 * [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.OHara-Wild@monash.edu](mailto:Mitch.OHara-Wild@monash.edu)
+* [**Thomas Lumley**](https://profiles.auckland.ac.nz/t-lumley). (Week 6?)
+* [**Tomasz Wozniak**](https://github.com/donotdespair). (Week 11)
 
 ## References
 
-* [Advanced R, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
-* [R packages, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
-* [Targets user manual](https://books.ropensci.org/targets/) by Will Landau.
+* [*Advanced R*, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
+* [*R packages*, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
+* [*Mastering Shiny*](https://mastering-shiny.org/) by Hadley Wickham.
+* [*The {targets} R package user manual*](https://books.ropensci.org/targets/) by Will Landau.
+
+```{r}
+#| label: load_packages
+#| include: false
+#| message: false
+#| warning: false
+#| echo: false
+#| cache: false
+library(tidyverse)
+options(knitr.kable.NA = '')
+source(here::here("course_info.R"))
+week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
+```
+
+## Weekly schedule
+
+* Workshop: 2 hours in class per week
+
+```{r}
+#| label: schedule2
+#| message: false
+#| warning: false
+#| echo: false
+#| output: asis
+schedule |>
+  transmute(
+    Date = format(Date+1, "%d %b"),
+    Show = !is.na(Week) & Week <= 12,
+    Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
+    Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
+    Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
+  ) |>
+  select(-Show) |>
+  knitr::kable(format = "markdown")
+```
+
+## Assessments
+
+* Make an R package (25%)
+* Fix a broken function (25%)
+* Use your package within a quarto targets workflow (20%)
+* Advanced package and metaprogramming methods (30%)
