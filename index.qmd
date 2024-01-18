@@ -40,7 +40,7 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* Workshop: 2 hours in class per week
+* 2 hour workshop, Mondays 2pm-4pm each week, in Menzies S322.
 
 ```{r}
 #| label: schedule2
@@ -50,7 +50,7 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 #| output: asis
 schedule |>
   transmute(
-    Date = format(Date+1, "%d %b"),
+    Date = format(Date, "%d %b"),
     Show = !is.na(Week) & Week <= 12,
     Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
     Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
