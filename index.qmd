@@ -15,7 +15,7 @@ R is widely used as a tool for data analysis and one of the most popular program
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
 * [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.OHara-Wild@monash.edu](mailto:Mitch.OHara-Wild@monash.edu)
-* [**Thomas Lumley**](https://profiles.auckland.ac.nz/t-lumley). (Week 6?)
+* [**Thomas Lumley**](https://profiles.auckland.ac.nz/t-lumley). (Week 6)
 * [**Tomasz Wozniak**](https://github.com/donotdespair). (Week 11)
 
 ## References
@@ -59,10 +59,3 @@ schedule |>
   select(-Show) |>
   knitr::kable(format = "markdown")
 ```
-
-## Assessments
-
-* Make an R package (25%)
-* Fix a broken function (25%)
-* Use your package within a quarto targets workflow (20%)
-* Advanced package and metaprogramming methods (30%)
