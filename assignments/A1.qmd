@@ -2,7 +2,38 @@
 title: Assignment 1 (25%)
 ---
 
-> Create package skeleton. Include a basic function from set of options
+Your task is to create an R package with one of the following objectives:
+
+* Convert between different units of measurement (e.g. feet to meters, kilograms to pounds, etc.).
+* Find a word for a game of scrabble or crossword given a set of letters.
+* Generate block-bootstrapped samples from a `tsibble` object.
+* Generate bootstrapped samples from a data frame.
+* Generate random numbers from a Conway-Maxwell-Poisson distribution.
+* Generate random numbers from a generalized Pareto distribution.
+* Generate random numbers from a multivariate Poisson distribution.
+* Implement a to-do list with dates and priorities.
+* Produce forecasts for an `xts` object using an ETS or ARIMA model (providing a wrapper to the `forecast` package).
+* Simulate a game of blackjack.
+* Simulate a game of connect four
+* Simulate a game of noughts and crosses (tic-tac-toe).
+* Simulate a game of poker.
+* Simulate a game of snakes and ladders.
+* Simulate a simple epidemic model.
+* Simulate a single-server queueing system.
+* Track your own data (e.g. weight, exercise, etc.).
+* Track your results in a hobby or sport.
+
+You may also have your own ideas for a package. If you would like to do something else, please discuss it with Mitch and Rob first.
+
+Your package should have the following features:
+
+1. The package should be on GitHub and have a `README.md` file with a brief description of the package and instructions on how to install it.
+2. Each user-facing function in the package should have a roxygen header including an example.
+3. Each user-facing function in the package should have at least one test written using `testthat`.
+4. The package should use Github Actions to run the tests on every commit.
+5. The package should have a pkgdown website that is automatically deployed via Github Actions.
+
+For this first assignment, the package does not need to be complete. It should contain at least one user-facing function. You will have the opportunity to improve and extend the package in subsequent assignments.
 
 ```{r}
 #| output: asis
