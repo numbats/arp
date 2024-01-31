@@ -2,7 +2,7 @@
 title: Assignment 2 (25%)
 ---
 
-> Give bad broken complicated function for their package, fix it thanks Write tests and docs Explain why it doesn’t work and is now better
+[This](regression.R) is a script that implements a linear regression model. However, it is poorly written, and gives errors. Your task is to fix the function (without using any functions from the stats package), write tests, and document how you have improved it.
 
 ```{r}
 #| output: asis

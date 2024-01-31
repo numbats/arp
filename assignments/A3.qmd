@@ -14,7 +14,7 @@ Your task is to produce a short report analysing some data using a quarto templa
 * [HILDA Survey](https://melbourneinstitute.unimelb.edu.au/hilda)
 * [Johns Hopkins COVID data](https://github.com/CSSEGISandData/COVID-19)
 
-The source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package. 
+The source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.
 
 Your analysis should include the following elements:
 
