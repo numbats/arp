@@ -21,6 +21,7 @@ R is widely used as a tool for data analysis and one of the most popular program
 ## References
 
 * [*Advanced R*, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
+* [*Advanced R Solutions*](https://advanced-r-solutions.rbind.io/) by Malte Grosser, Henning Bumann & Hadley Wickham.
 * [*R packages*, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
 * [*Mastering Shiny*](https://mastering-shiny.org/) by Hadley Wickham.
 * [*The {targets} R package user manual*](https://books.ropensci.org/targets/) by Will Landau.
