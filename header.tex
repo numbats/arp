@@ -1,0 +1,40 @@
+\makeatletter
+\def\input@path{{..}}
+\makeatother
+\usepackage{beamerthememonash}
+
+% Packages
+\usepackage{bm,booktabs,tabularx,animate,soul}
+\usepackage{fontawesome}
+
+% gt dependencies
+\usepackage{longtable,caption,setspace}
+\captionsetup{font={small,stretch=0.80}}
+
+% Title
+\title{ETC4500/ETC5450 Advanced R Programming}
+
+% Figures
+\graphicspath{{figs/}{../}}
+
+% Fonts
+
+\fontsize{13}{14}\sf
+
+\setbeamerfont{title}{series=\bfseries,parent=structure,size=\fontsize{18}{20}}
+% Redefine shaded environment if it exists (for R plots)
+\ifcsname Shaded\endcsname
+  \renewenvironment{Shaded}{\fontsize{10}{10}\sf\vspace*{0.14cm}\begin{snugshade}}{\end{snugshade}}
+\fi
+
+% Colors
+\definecolor{MonashBlue}{RGB}{30,95,139}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{shadecolor}{RGB}{225,225,225}
+
+% images
+\def\fullwidth#1{\vspace*{0.2cm}\centerline{\includegraphics[height=27.1cm,width=16cm,keepaspectratio=true]{#1}}}
+\def\fullheight#1{\vspace*{0.2cm}\centerline{\includegraphics[height=7.65cm,width=25cm,keepaspectratio=true]{#1}}}
+\def\full#1{\vspace*{0.2cm}\centerline{\includegraphics[height=7.65cm,width=15cm,keepaspectratio=true]{#1}}}
+
+\def\indexc#1{}

@@ -118,3 +118,14 @@ submit <- function(schedule, assignment) {
                    "<font size='+2'>&nbsp;&nbsp;<b>Submit</b>&nbsp;&nbsp;</font><br></a>")
   cat(button)
 }
+
+show_slides <- function(week) {
+  file <- paste0("https://arp.numbat.space/week", week, "/slides.pdf")
+  embed <- paste0(
+    "<iframe src='https://docs.google.com/gview?url=",
+    file,
+    "&embedded=true' width='100%' height=465></iframe>"
+    )
+  button <- paste0("<a href=", file, " class='badge badge-small badge-red'>Download pdf</a>")
+  cat(paste0("## Slides for week\n\n", embed,"\n", button))
+}

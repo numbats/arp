@@ -1,0 +1,474 @@
+---
+title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
+author: "Week 1: Foundations of R programming"
+format:
+  beamer:
+    aspectratio: 169
+    fontsize: "14pt,t"
+    section-titles: false
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    fig-width: 7.5
+    fig-height: 3.5
+    include-in-header: ../header.tex
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+source(here::here("setup.R"))
+source(here::here("course_info.R"))
+```
+
+## Outline
+
+\vspace*{0.4cm}
+\tableofcontents
+
+# Names and values
+
+## Quiz
+\fontsize{12.5}{13}\sf
+
+1.  Given the following data frame, how do I create a new column called "3"
+    that contains the sum of `1` and `2`? You may only use `$`, not `[[`.
+    What makes `1`, `2`, and `3` challenging as variable names?
+
+    ```{r}
+    df <- data.frame(runif(3), runif(3))
+    names(df) <- c(1, 2)
+    ```
+
+1.  In the following code, how much memory does `y` occupy?
+
+    ```{r}
+    x <- runif(1e6)
+    y <- list(x, x, x)
+    ```
+
+1.  On which line does `a` get copied in the following example?
+
+    ```{r}
+    a <- c(1, 5, 3, 2)
+    b <- a
+    b[[1]] <- 10
+    ```
+
+
+## Binding basics
+
+```{r bind1}
+x <- c(1, 2, 3)
+```
+
+\vspace*{0.2cm}
+
+* Creates an object, a vector of values, `c(1, 2, 3)`.
+* Binds that object to a name, `x`.
+* A name is a reference (or pointer) to a value.
+
+\placefig{8}{1.4}{width=3.5cm, height=20cm}{../diagrams/name-value/binding-1.png}\pause\vspace*{1cm}
+
+```{r bind2, dependson = "bind1"}
+y <- x
+```
+
+* Binds the same object to a new name, `y`.
+
+\only<2>{\placefig{8}{5}{width=3.5cm, height=20cm}{../diagrams/name-value/binding-2.png}}
+
+\vspace*{10cm}
+
+## Binding basics
+
+```{r bind3, dependson = "bind2"}
+library(lobstr)
+obj_addr(x)
+obj_addr(y)
+```
+
+These identifiers are long, and change every time you restart R.
+
+## Syntactic names {#non-syntactic}
+
+A __syntactic__ name:
+
+* must consist of letters, digits, `.` and `_`
+* can't begin with `_`, or a digit, or a `.` followed by a digit
+* can't be a __reserved word__ like `TRUE`, `NULL`, `if`, and `function`
+
+```{r, eval = FALSE}
+_abc <- 1
+#> Error: unexpected input in "_"
+
+if <- 10
+#> Error: unexpected assignment in "if <-"
+```
+
+It's possible to override these rules using backticks.
+
+```{r}
+`_abc` <- 1
+`_abc`
+```
+
+## Exercises
+
+1.  Explain the relationship between `a`, `b`, `c` and `d` in the following
+    code:
+
+    ```{r}
+    a <- 1:10
+    b <- a
+    c <- b
+    d <- 1:10
+    ```
+
+2.  What rules does `make.names()` use to convert non-syntactic names into
+    syntactic ones?
+
+3.  Why is `.123e1` not a syntactic name?
+
+## Copy-on-modify
+
+Consider the following code. It binds `x` and `y` to the same underlying value, then modifies `y`.
+
+```{r}
+x <- c(1, 2, 3)
+y <- x
+
+y[[3]] <- 4
+x
+```
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("../diagrams/name-value/binding-3.png")
+```
+
+## `tracemem()`
+
+You can see when an object gets copied using `tracemem()`. \fontsize{9}{9}\sf
+
+```{r trace1}
+x <- c(1, 2, 3)
+tracemem(x)
+```
+
+```{r trace2, dependson = "trace1"}
+y <- x
+y[[3]] <- 4L
+```
+
+```{r trace3, dependson = "trace2"}
+y[[3]] <- 5L
+untracemem(x)
+```
+
+## Modify-in-place
+
+If an object has a single name bound to it, R will modify it in place:
+
+```{r}
+v <- c(1, 2, 3)
+```
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("../diagrams/name-value/v-inplace-1.png")
+```
+
+```{r}
+v[[3]] <- 4
+```
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("../diagrams/name-value/v-inplace-2.png")
+```
+
+## Function calls
+
+The same rules for copying also apply to function calls. \fontsize{9}{9}\sf
+
+```{r}
+f <- function(a) {
+  a
+}
+
+x <- c(1, 2, 3)
+tracemem(x)
+z <- f(x)
+# there's no copy here!
+untracemem(x)
+```
+
+\only<2>{\placefig{8}{4}{width=7.5cm, height=20cm}{../diagrams/name-value/binding-f1.png}}
+
+
+## Lists {#list-references}
+
+Lists store references to their elements,\newline
+not the elements themselves.
+
+```{r list1}
+l1 <- list(1, 2, 3)
+```
+
+\vspace*{1.4cm}
+
+\placefig{11}{2.5}{width=3cm, height=20cm}{../diagrams/name-value/list.png}\pause
+
+```{r list2, dependson = "list1"}
+l2 <- l1
+```
+
+\vspace*{1.4cm}
+
+\only<2->{\placefig{11}{4.5}{width=3cm, height=20cm}{../diagrams/name-value/l-modify-1.png}\pause}
+
+```{r list3, dependson = "list2"}
+l2[[3]] <- 4
+```
+
+\vspace*{1.5cm}
+
+\only<3>{\placefig{11}{6.5}{width=3cm, height=20cm}{../diagrams/name-value/l-modify-2.png}}
+
+\vspace*{10cm}
+
+## Data frames {#df-modify}
+
+Data frames are lists of vectors.
+
+```{r}
+d1 <- data.frame(x = c(1, 5, 6), y = c(2, 4, 3))
+```
+
+\vspace{1.5cm}
+\placefig{9.8}{.7}{height=3.4cm, width=20cm}{../diagrams/name-value/dataframe.png}\pause
+
+Modifying a column:
+
+```{r}
+d2 <- d1
+d2[, 2] <- d2[, 2] * 2
+```
+
+\only<2>{\placefig{9.8}{4.2}{height=4.7cm, width=20cm}{../diagrams/name-value/d-modify-c.png}}
+
+\vspace*{10cm}
+
+## Data frames {#df-modify}
+
+Data frames are lists of vectors.
+
+```{r}
+d1 <- data.frame(x = c(1, 5, 6), y = c(2, 4, 3))
+```
+\vspace{1.5cm}
+\placefig{9.8}{0.7}{height=3.4cm, width=20cm}{../diagrams/name-value/dataframe.png}
+
+Modifying a row:
+
+```{r}
+d3 <- d1
+d3[1, ] <- d3[1, ] * 3
+```
+
+\placefig{9.8}{4.2}{height=3.4cm, width=20cm}{../diagrams/name-value/d-modify-r.png}
+
+\vspace*{10cm}
+
+## Character vectors
+\fontsize{13}{14}\sf
+
+```{r}
+x <- c("a", "a", "abc", "d")
+```
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("../diagrams/name-value/character.png")
+```
+
+* Not quite!
+* R actually uses a __global string pool__ where each element is a pointer to a string in the pool
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("../diagrams/name-value/character-2.png")
+```
+
+## Exercises
+
+1.  Why is `tracemem(1:10)` not useful?
+
+1.  Explain why `tracemem()` shows two copies when you run this code.
+
+    ```{r, results = FALSE}
+    x <- c(1L, 2L, 3L)
+    tracemem(x)
+
+    x[[3]] <- 4
+    ```
+
+## Exercises
+
+3.  Sketch out the relationship between the following objects:
+
+    ```{r}
+    a <- 1:10
+    b <- list(a, a)
+    c <- list(b, a, 1:10)
+    ```
+
+4.  What happens when you run this code?
+
+    ```{r}
+    x <- list(1:10)
+    x[[2]] <- x
+    ```
+
+    Draw a picture.
+
+## Object size
+
+`lobstr::obj_size()` gives the size of an object in memory.
+\fontsize{11}{11}\sf
+
+```{r}
+obj_size(ggplot2::diamonds)
+banana <- "bananas bananas bananas"
+obj_size(banana)
+obj_size(rep(banana, 100))
+```
+
+## Object size
+
+```{r}
+x <- runif(1e6)
+obj_size(x)
+y <- list(x, x, x)
+obj_size(y)
+obj_size(x, y)
+```
+
+## ALTREP
+
+```{r}
+obj_size(1:3)
+obj_size(1:1e3)
+obj_size(1:1e6)
+```
+
+## Exercises
+
+Predict the output of the following code:
+
+```{r}
+#| eval: false
+a <- runif(1e6)
+obj_size(a)
+
+b <- list(a, a)
+obj_size(b)
+obj_size(a, b)
+
+b[[1]][[1]] <- 10
+obj_size(b)
+obj_size(a, b)
+
+b[[2]][[1]] <- 10
+obj_size(b)
+obj_size(a, b)
+```
+
+## For loops
+
+Loops have a reputation for being slow, but often that is caused by iterations creating copies.
+\fontsize{8}{8}\sf\vspace*{-0.2cm}
+
+```{r}
+#| output: false
+x <- data.frame(matrix(runif(3 * 1e4), ncol = 3))
+medians <- vapply(x, median, numeric(1))
+tracemem(x)
+```
+
+\vspace*{-0.3cm}
+
+```{r}
+for (i in seq_along(medians)) {
+  x[[i]] <- x[[i]] - medians[[i]]
+}
+```
+
+\fontsize{13}{15}\sf
+
+* Each iteration copies the data frame two times!
+
+\vspace*{10cm}
+
+## For loops
+
+The same problem but with a list.
+\fontsize{8}{8}\sf\vspace*{-0.2cm}
+
+```{r}
+#| output: false
+y <- as.list(x)
+tracemem(y)
+```
+
+\vspace*{-0.3cm}
+
+```{r}
+for (i in 1:3) {
+  y[[i]] <- y[[i]] - medians[[i]]
+}
+```
+
+\fontsize{13}{15}\sf
+
+* Only one copy created
+
+\vspace*{10cm}
+
+## Unbinding and the garbage collector {#gc}
+
+\placefig{10}{1.5}{width=3.5cm, height=20cm}{../diagrams/name-value/unbinding-1.png}
+\only<2->{\placefig{10}{3.5}{width=3.5cm, height=20cm}{../diagrams/name-value/unbinding-2.png}}
+\only<3>{\placefig{10}{6.5}{width=3.5cm, height=20cm}{../diagrams/name-value/unbinding-3.png}}
+
+
+```{r}
+x <- 1:3
+```
+
+\vspace*{1.5cm}\pause
+
+```{r}
+x <- 2:4
+```
+
+\vspace*{1.5cm}\pause
+
+```{r}
+rm(x)
+```
+
+\vspace*{10cm}
+
+## Garbage collection
+
+* Garbage collection (GC) frees up memory by deleting R objects that are no longer used, and by requesting more memory from the operating system if needed.
+* R traces every object that's reachable from the global environment (recursively).
+* GC runs automatically whenever R needs more memory to create a new object.
+* You can force garbage collection by calling `gc()`. But it's *never* necessary.
+
+# Vectors
+
+# Subsetting
+
+# Control flow
+
+# Functions
+
+# Environments
+
+# Conditions
