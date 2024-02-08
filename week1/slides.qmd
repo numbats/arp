@@ -298,19 +298,6 @@ knitr::include_graphics("../diagrams/name-value/character-2.png")
 
 ## Exercises
 
-1.  Why is `tracemem(1:10)` not useful?
-
-1.  Explain why `tracemem()` shows two copies when you run this code.
-
-    ```{r, results = FALSE}
-    x <- c(1L, 2L, 3L)
-    tracemem(x)
-
-    x[[3]] <- 4
-    ```
-
-## Exercises
-
 3.  Sketch out the relationship between the following objects:
 
     ```{r}
@@ -731,7 +718,7 @@ str(array(1:3, 3))         # "array" vector
   * **POSIXct** vectors for date-times.
   * **difftime** vectors for durations.
 
-\placefig{10}{1}{width=6cm}{../diagrams/vectors/summary-tree-s3-1.png}
+\placefig{10}{2}{width=6cm}{../diagrams/vectors/summary-tree-s3-1.png}
 
 ## Factors
 
@@ -763,21 +750,16 @@ table(sex_char)
 table(sex_factor)
 ```
 
-## Ordered factors
+## Factors
 
-* Similar to factors but order of levels is meaningful.
+* Be careful: some functions convert factors to integers!
+* ggplot preserves ordering of levels in graphs -- useful to reorder panels or legends.
+* Ordered factors are useful when the order of levels is meaningful.
 
 ```{r}
 grade <- ordered(c("b", "b", "a", "c"), levels = c("c", "b", "a"))
 grade
 ```
-
-## Factors in base R
-
-* `read.csv()` automatically converts character vectors to factors.
-* Use argument `stringsAsFactors = FALSE` to suppress this behaviour
-* Be careful: some functions convert factors to integers!
-* ggplot preserves ordering of levels in graphs -- useful to reorder panels or legends.
 
 ## Dates
 
@@ -827,26 +809,6 @@ structure(now_ct, tzone = "America/New_York")
 structure(now_ct, tzone = "Australia/Lord_Howe")
 ```
 
-## Durations
-
-* Durations represent the amount of time between pairs of dates or date-times
-* Stored in difftimes.
-* Difftimes are built on top of doubles, and have a `units` attribute that determines how the integer should be interpreted:
-
-```{r}
-one_week_1 <- as.difftime(1, units = "weeks")
-one_week_1
-```
-
-## Durations
-\fontsize{10}{10}\sf
-
-```{r}
-one_week_2 <- as.difftime(7, units = "days")
-one_week_2
-typeof(one_week_2)
-attributes(one_week_2)
-```
 
 ## Exercises
 
@@ -940,6 +902,11 @@ typeof(df1)
 attributes(df1)
 ```
 
+\placefig{10}{4.1}{width=5cm}{../diagrams/vectors/data-frame-1.png}
+
+\placefig{7}{6}{width=5cm}{../diagrams/vectors/data-frame-2.png}
+
+
 ## Data frames and tibbles
 
 * A data frame has a constraint: the length of each of its vectors must be the same.
@@ -949,6 +916,7 @@ attributes(df1)
   data frame gives the number of columns.
 
 ## Tibbles
+\fontsize{13}{14}\sf
 
 * Modern reimagining of the data frame.
 * tibbles are "lazy and surly": they do less and complain more.
@@ -962,25 +930,6 @@ typeof(df2)
 attributes(df2)
 ```
 
-## Creating data frames
-
-```{r}
-df <- data.frame(
-  x = 1:3,
-  y = c("a", "b", "c")
-)
-str(df)
-```
-
-## Creating tibbles
-
-```{r}
-df2 <- tibble(
-  x = 1:3,
-  y = c("a", "b", "c")
-)
-str(df2)
-```
 
 ## Creating data frames and tibbles
 
@@ -996,22 +945,19 @@ names(tibble(`1` = 1))
 
 ```{r, error = TRUE}
 data.frame(x = 1:4, y = 1:2)
-tibble(x = 1:4, y = 1)
 tibble(x = 1:4, y = 1:2)
 ```
 
 ## Creating data frames and tibbles
+\fontsize{10}{10}\sf
 
 ```{r}
 tibble(
   x = 1:3,
-  y = x * 2
+  y = x * 2,
+  z = 5
 )
 ```
-
-\placefig{10}{1.5}{width=5cm}{../diagrams/vectors/data-frame-1.png}
-
-\placefig{10}{6}{width=5cm}{../diagrams/vectors/data-frame-2.png}
 
 
 ## Row names {#rownames}
@@ -1090,7 +1036,7 @@ dfm <- tibble(
 str(dfm)
 ```
 
-\placefig{10}{2}{width=5cm,height=20cm}{../diagrams/vectors/data-frame-matrix.png}
+\placefig{10}{1.25}{width=5cm,height=20cm}{../diagrams/vectors/data-frame-matrix.png}
 
 ## Exercises
 
