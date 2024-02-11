@@ -114,23 +114,6 @@ It's possible to override these rules using backticks.
 `_abc`
 ```
 
-## Exercises
-
-1.  Explain the relationship between `a`, `b`, `c` and `d` in the following
-    code:
-
-    ```{r}
-    a <- 1:10
-    b <- a
-    c <- b
-    d <- 1:10
-    ```
-
-2.  What rules does `make.names()` use to convert non-syntactic names into
-    syntactic ones?
-
-3.  Why is `.123e1` not a syntactic name?
-
 ## Copy-on-modify
 
 Consider the following code. It binds `x` and `y` to the same underlying value, then modifies `y`.
@@ -138,14 +121,18 @@ Consider the following code. It binds `x` and `y` to the same underlying value, 
 ```{r}
 x <- c(1, 2, 3)
 y <- x
+```
 
+\pause\vspace*{1.5cm}
+
+```{r}
 y[[3]] <- 4
 x
 ```
 
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("../diagrams/name-value/binding-3.png")
-```
+\placefig{10}{2.7}{width=3.5cm, height=20cm}{../diagrams/name-value/binding-2.png}
+
+\only<2>{\placefig{10}{6}{width=3.5cm, height=20cm}{../diagrams/name-value/binding-3.png}}
 
 ## `tracemem()`
 
@@ -638,6 +625,10 @@ names(x) <- c("a", "b", "c")
 x <- setNames(1:3, c("a", "b", "c"))
 ```
 
+```{r}
+x
+```
+
 ## Names
 
 * Avoid using `attr(x, "names")` as it requires more typing and is less readable than `names(x)`.
@@ -847,7 +838,7 @@ typeof(l1)
 str(l1)
 ```
 
-\placefig{10}{2}{width=5cm,height=20cm}{../diagrams/vectors/list.png}
+\placefig{10}{3.5}{width=5cm,height=20cm}{../diagrams/vectors/list.png}
 
 ## Lists
 
@@ -1041,12 +1032,9 @@ str(dfm)
 ## Exercises
 
 1.  Can you have a data frame with zero rows? What about zero columns?
-
 1.  What happens if you attempt to set rownames that are not unique?
-
 1.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
     Perform some experiments, making sure to try different column types.
-
 1.  What does `as.matrix()` do when applied to a data frame with
     columns of different types? How does it differ from `data.matrix()`?
 
