@@ -24,5 +24,6 @@ R Functional (functions, function arguments, function factories)
 
 ```{r}
 #| output: asis
+show_slides(week)
 show_assignments(week)
 ```

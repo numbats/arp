@@ -21,11 +21,12 @@ schedule |>
 
 * usethis
 * testthat v3
+* roxygen2
 * pkgdown
 * continuous integration (github actions)
-* roxygen2
 
 ```{r}
 #| output: asis
+show_slides(week)
 show_assignments(week)
 ```

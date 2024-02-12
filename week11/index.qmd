@@ -23,5 +23,6 @@ Rcpp (Tomasz)
 
 ```{r}
 #| output: asis
+show_slides(week)
 show_assignments(week)
 ```

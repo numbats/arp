@@ -19,13 +19,10 @@ schedule |>
 
 ## What you will learn this week
 
-* objects/values
-* Value types and vectors
-* Control flow (if, loops)
-* Functions
-* Environments / scoping
-* Raising conditions (stop, warning, message, cat)
-
+* Names and values
+* Vectors
+* Subsetting
+* Control flow
 
 ```{r}
 #| output: asis

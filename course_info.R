@@ -12,7 +12,7 @@ schedule <- tibble(
   Week = seq(12),
   Topic = c(
     "Foundations of R programming",
-    "R package development",
+    "Foundations of R programming",
     "R package development",
     "Debugging and profiling",
     "Functional programming",
@@ -25,8 +25,8 @@ schedule <- tibble(
     "Interfacing with other languages"
   ),
   Reference = c(
-    "1-8. *Advanced R*",
-    "*R Packages*",
+    "1-5. *Advanced R*",
+    "6-8. *Advanced R*",
     "*R Packages*",
     "22-24. *Advanced R*",
     "9-11. *Advanced R*",
@@ -120,12 +120,15 @@ submit <- function(schedule, assignment) {
 }
 
 show_slides <- function(week) {
-  file <- paste0("https://arp.numbat.space/week", week, "/slides.pdf")
-  embed <- paste0(
-    "<iframe src='https://docs.google.com/gview?url=",
-    file,
-    "&embedded=true' width='100%' height=465></iframe>"
-    )
-  button <- paste0("<a href=", file, " class='badge badge-small badge-red'>Download pdf</a>")
-  cat(paste0("## Slides for week\n\n", embed,"\n", button))
+  slides_exist <- fs::file_exists(here::here(paste0("week",week,"/slides.qmd")))
+  if(slides_exist) {
+    file <- paste0("https://arp.numbat.space/week", week, "/slides.pdf")
+    embed <- paste0(
+      "<iframe src='https://docs.google.com/gview?url=",
+      file,
+      "&embedded=true' width='100%' height=465></iframe>"
+      )
+    button <- paste0("<a href=", file, " class='badge badge-small badge-red'>Download pdf</a>")
+    cat(paste0("## Slides for week\n\n", embed,"\n", button))
+  }
 }

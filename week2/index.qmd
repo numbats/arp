@@ -1,5 +1,5 @@
 ---
-title: "Week 2: R package development"
+title: "Week 2: Foundations of R programming"
 ---
 
 ```{r}
@@ -19,13 +19,12 @@ schedule |>
 
 ## What you will learn this week
 
-* usethis
-* testthat v3
-* pkgdown
-* continuous integration (github actions)
-* roxygen2
+* Functions
+* Environments
+* Conditions
 
 ```{r}
 #| output: asis
+show_slides(week)
 show_assignments(week)
 ```

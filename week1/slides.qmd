@@ -107,6 +107,8 @@ if <- 10
 #> Error: unexpected assignment in "if <-"
 ```
 
+\pause
+
 It's possible to override these rules using backticks.
 
 ```{r}
@@ -328,8 +330,9 @@ obj_size(x, y)
 
 ```{r}
 obj_size(1:3)
-obj_size(1:1e3)
 obj_size(1:1e6)
+obj_size(c(1:1e6, 10))
+obj_size(2 * (1:1e6))
 ```
 
 ## Exercises
@@ -404,6 +407,8 @@ for (i in 1:3) {
 * Only one copy created
 
 \vspace*{10cm}
+
+
 
 ## Unbinding and the garbage collector {#gc}
 
@@ -609,9 +614,10 @@ str(attributes(a))
 
 ## Names {#attr-names}
 
-Names are a type of attribute.
+* Names are a type of attribute.
+* You can name a vector in three ways:
 
-You can name a vector in three ways:
+\fontsize{10}{10}\sf
 
 ```{r}
 # When creating it:
@@ -955,6 +961,8 @@ tibble(
 
 Data frames allow you to label each row with a name, a character vector containing only unique values:
 
+\fontsize{10}{10}\sf
+
 ```{r}
 df3 <- data.frame(
   age = c(35, 27, 18),
@@ -977,7 +985,7 @@ as_tibble(df3, rownames = "name")
 
 ## Printing
 
-\fontsize{10}{10}\sf
+\fontsize{10}{9.5}\sf
 
 ```{r}
 dplyr::starwars
@@ -1041,44 +1049,139 @@ str(dfm)
 ## `NULL`
 
 ```{r, error = TRUE}
-typeof(NULL)
-
 length(NULL)
-
-x <- NULL
-attr(x, "y") <- 1
 ```
 
 You can test for `NULL`s with `is.null()`:
 
 ```{r}
-is.null(NULL)
+x <- NULL
+x == NULL
+is.null(x)
 ```
-
-There are two common uses of `NULL`:
-
-*   To represent an empty vector (a vector of length zero) of arbitrary type.
-    For example, if you use `c()` but don't include any arguments, you get
-    `NULL`, and concatenating `NULL` to a vector will leave it unchanged:
-
-    ```{r}
-    c()
-    ```
-
-*   To represent an absent vector. For example, `NULL` is often used as a
-    default function argument, when the argument is optional but the default
-    value requires some computation (see Section \@ref(missing-arguments) for
-    more on this). Contrast this with `NA` which is used to indicate that
-    an _element_ of a vector is absent.
-
-If you're familiar with SQL, you'll know about relational `NULL` and might expect it to be the same as R's. However, the database `NULL` is actually equivalent to R's `NA`.
 
 # Subsetting
 
+## Subsetting
+
+1.  What is the result of subsetting a vector with positive integers,
+    negative integers, a logical vector, or a character vector?
+1.  What's the difference between `[`, `[[`, and `$` when applied to a list?
+1.  When should you use `drop = FALSE`?
+1.  If `x` is a matrix, what does `x[] <- 0` do? How is it different from `x <- 0`?
+1.  How can you use a named vector to relabel categorical variables?
+
+## Subsetting
+\fontsize{13}{14}\sf
+
+1.  Fix each of the following common data frame subsetting errors:
+
+    ```{r, eval = FALSE}
+    mtcars[mtcars$cyl = 4, ]
+    mtcars[-1:4, ]
+    mtcars[mtcars$cyl <= 5]
+    mtcars[mtcars$cyl == 4 | 6, ]
+    ```
+
+1.  Why does `mtcars[1:20]` return an error? How does it differ from the
+    similar `mtcars[1:20, ]`?
+
+1.  Implement your own function that extracts the diagonal entries from a
+    matrix (it should behave like `diag(x)` where `x` is a matrix).
+
+## Subsetting
+
+```{r}
+#| eval: false
+mod <- lm(mpg ~ wt, data = mtcars)
+```
+
+Extract the residual degrees of freedom.
+
+Extract the R squared from the model summary (`summary(mod)`)
+
+## Subsetting
+
+1. How would you randomly permute the columns of a data frame?
+2. Can you simultaneously permute the rows and columns in one step?
+3. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
+4. How could you put the columns in a data frame in alphabetical order?
+
+
 # Control flow
 
-# Functions
+## Control flow
 
-# Environments
+*   What is the difference between `if` and `ifelse()`?
 
-# Conditions
+*   In the following code, what will the value of `y` be if `x` is `TRUE`?
+    What if `x` is `FALSE`? What if `x` is `NA`?
+
+    ```{r, eval = FALSE}
+    y <- if (x) 3
+    ```
+
+*   What does `switch("x", x = , y = 2, z = 3)` return?
+
+## ifelse
+\fontsize{13}{14}\sf
+
+What type of vector does each of the following calls to `ifelse()`
+    return?
+
+```{r, eval = FALSE}
+ifelse(TRUE, 1, "no")
+ifelse(FALSE, 1, "no")
+ifelse(NA, 1, "no")
+```
+
+Read the documentation and write down the rules in your own words.
+
+## if else
+
+Why does the following code work?
+
+```{r}
+x <- 1:10
+if (length(x)) "not empty" else "empty"
+
+x <- numeric()
+if (length(x)) "not empty" else "empty"
+```
+
+## Don't allocate memory in a for loop
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory within the loop
+system.time(
+{
+  x <- NULL
+  for(i in seq(1e5)) {
+    x <- c(x, i)
+  }
+}
+)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory before the loop
+system.time(
+{
+  x <- numeric(1e5)
+  for(i in seq(1e5)) {
+    x[i] <- i
+  }
+}
+)
+```
+
+:::
+::::
