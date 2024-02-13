@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 1: Foundations of R programming"
+author: "Week 2: Foundations of R programming"
 format:
   beamer:
     pdf-engine: pdflatex

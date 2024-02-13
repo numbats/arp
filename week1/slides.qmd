@@ -191,9 +191,6 @@ z <- f(x)
 untracemem(x)
 ```
 
-\only<2>{\placefig{8}{4}{width=7.5cm, height=20cm}{../diagrams/name-value/binding-f1.png}}
-
-
 ## Lists {#list-references}
 
 Lists store references to their elements,\newline
@@ -269,7 +266,7 @@ d3[1, ] <- d3[1, ] * 3
 \vspace*{10cm}
 
 ## Character vectors
-\fontsize{13}{14}\sf
+\fontsize{13}{13.5}\sf
 
 ```{r}
 x <- c("a", "a", "abc", "d")
@@ -458,10 +455,14 @@ rm(x)
 * The __class__ attribute powers the S3 object system.
 
 ## Atomic vectors
+\vspace*{-0.2cm}
 
 * Four primary types of atomic vectors: logical, integer, double, and character (which contains strings).
 * Collectively integer and double vectors are known as numeric vectors
-* Two rare types: complex and raw.
+* Two rare types:
+
+  * complex
+  * raw.
 
 \vspace*{10cm}
 
