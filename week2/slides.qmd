@@ -67,19 +67,17 @@ args <- list(1:10, na.rm = TRUE)
 do.call(mean, args)
 ```
 
-## Exercises
+## Quiz
 
-1. Given a name, like `"mean"`, `match.fun()` lets you find a function.
-   Given a function, can you find its name? Why doesn't that make sense in R?
+1.  Given a name, like `"mean"`, `match.fun()` lets you find a function.
+    Given a function, can you find its name? Why doesn't that make sense in R?
 
-1.  Make a list of all functions in the base package.
+2.  Which base function has the most arguments? Hint: Start by making a list of all functions in the base package.
 
     ```{r}
     objs <- mget(ls("package:base", all = TRUE), inherits = TRUE)
     funs <- Filter(is.function, objs)
     ```
-
-    Which base function has the most arguments?
 
 ## Function composition {#function-composition}
 \fontsize{13}{15}\sf
@@ -348,9 +346,9 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 }
 ```
 
-## Exercises
+## Quiz
 
-1.  What does this function return? Why? Which principle does it illustrate?
+3.  What does this function return? Why? Which principle does it illustrate?
 
     ```{r, results = "hide"}
     f2 <- function(x = z) {
@@ -360,9 +358,9 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
     f2()
     ```
 
-## Exercises
+## Quiz
 
-2.  In `hist()`, the default value of `xlim` is `range(breaks)`, the default
+4.  In `hist()`, the default value of `xlim` is `range(breaks)`, the default
     value for `breaks` is `"Sturges"`, and
 
     ```{r}
@@ -371,9 +369,9 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 
     Explain how `hist()` works to get a correct `xlim` value.
 
-## Exercises
+## Quiz
 
-3.  Explain why this function works. Why is it confusing?
+5.  Explain why this function works. Why is it confusing?
 
     ```{r}
     show_time <- function(x = stop("Error!")) {
@@ -433,18 +431,17 @@ str(i04(a = 1, b = 2))
 sum(1, 2, NA, na_rm = TRUE)
 ```
 
-## Exercises
+## Quiz
 
-Explain the following results:
-\fontsize{10}{10}\sf
+6.  Explain the following results: \fontsize{10}{10}\sf
 
-```{r}
-sum(1, 2, 3)
-mean(1, 2, 3)
+    ```{r}
+    sum(1, 2, 3)
+    mean(1, 2, 3)
 
-sum(1, 2, 3, na.omit = TRUE)
-mean(1, 2, 3, na.omit = TRUE)
-```
+    sum(1, 2, 3, na.omit = TRUE)
+    mean(1, 2, 3, na.omit = TRUE)
+    ```
 
 
 ## Exiting a function
@@ -540,7 +537,11 @@ j05()
 ## Exit handlers {#on-exit}
 \fontsize{10}{10}\sf
 
-```{r, error = TRUE}
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
 j06 <- function(x) {
   cat("Hello\n")
   on.exit(cat("Goodbye!\n"), add = TRUE)
@@ -550,9 +551,19 @@ j06 <- function(x) {
     stop("Error")
   }
 }
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r, error = TRUE}
 j06(TRUE)
 j06(FALSE)
 ```
+
+:::
+::::
 
 ## Exit handlers
 
@@ -573,6 +584,7 @@ getwd()
 
 ## Function forms
 
+###
 > To understand computations in R, two slogans are helpful:
 >
 > * Everything that exists is an object.
@@ -683,27 +695,25 @@ When you write `modify(x, 1) <- 10`, behind the scenes R turns it into:
 x <- `modify<-`(x, 1, 10)
 ```
 
-## Exercises
+## Quiz
 
-1.  Clarify the following list of odd function calls:
+7.  Clarify the following list of odd function calls:
 
-```{r, eval = FALSE}
-x <- sample(replace = TRUE, 20, x = c(1:10, NA))
-y <- runif(min = 0, max = 1, 20)
-cor(m = "k", y = y, u = "p", x = x)
-```
+    ```{r, eval = FALSE}
+    x <- sample(replace = TRUE, 20, x = c(1:10, NA))
+    y <- runif(min = 0, max = 1, 20)
+    cor(m = "k", y = y, u = "p", x = x)
+    ```
 
-2. Write your own version of `+` that pastes its inputs together if they are
-   character vectors but behaves as usual otherwise. In other words, make this
-   code work:
+8.  Write your own version of `+` that pastes its inputs together if they are character vectors but behaves as usual otherwise. In other words, make this code work:
 
-```{r, eval = FALSE}
-1 + 2
-#> [1] 3
+    ```{r, eval = FALSE}
+    1 + 2
+    #> [1] 3
 
-"a" + "b"
-#> [1] "ab"
-```
+    "a" + "b"
+    #> [1] "ab"
+    ```
 
 # Environments
 

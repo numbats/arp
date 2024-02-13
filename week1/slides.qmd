@@ -40,14 +40,14 @@ source(here::here("course_info.R"))
     names(df) <- c(1, 2)
     ```
 
-1.  In the following code, how much memory does `y` occupy?
+2.  In the following code, how much memory does `y` occupy?
 
     ```{r}
     x <- runif(1e6)
     y <- list(x, x, x)
     ```
 
-1.  On which line does `a` get copied in the following example?
+3.  On which line does `a` get copied in the following example?
 
     ```{r}
     a <- c(1, 5, 3, 2)
@@ -282,9 +282,9 @@ knitr::include_graphics("../diagrams/name-value/character.png")
 knitr::include_graphics("../diagrams/name-value/character-2.png")
 ```
 
-## Exercises
+## Quiz
 
-3.  Sketch out the relationship between the following objects:
+4.  Sketch out the relationship between the following objects:
 
     ```{r}
     a <- 1:10
@@ -292,7 +292,7 @@ knitr::include_graphics("../diagrams/name-value/character-2.png")
     c <- list(b, a, 1:10)
     ```
 
-4.  What happens when you run this code?
+5.  What happens when you run this code?
 
     ```{r}
     x <- list(1:10)
@@ -332,27 +332,27 @@ obj_size(c(1:1e6, 10))
 obj_size(2 * (1:1e6))
 ```
 
-## Exercises
+## Quiz
 
-Predict the output of the following code:
+6.  Predict the output of the following code:
 
-```{r}
-#| eval: false
-a <- runif(1e6)
-obj_size(a)
+    ```{r}
+    #| eval: false
+    a <- runif(1e6)
+    obj_size(a)
 
-b <- list(a, a)
-obj_size(b)
-obj_size(a, b)
+    b <- list(a, a)
+    obj_size(b)
+    obj_size(a, b)
 
-b[[1]][[1]] <- 10
-obj_size(b)
-obj_size(a, b)
+    b[[1]][[1]] <- 10
+    obj_size(b)
+    obj_size(a, b)
 
-b[[2]][[1]] <- 10
-obj_size(b)
-obj_size(a, b)
-```
+    b[[2]][[1]] <- 10
+    obj_size(b)
+    obj_size(a, b)
+    ```
 
 ## For loops
 
@@ -555,7 +555,7 @@ There are actually four missing values:  `NA` (logical), `NA_integer_` (integer)
 \fontsize{13}{14}\sf\vspace*{-0.25cm}
 
 * For atomic vectors, all elements must be the same type.
-* When you combine different types they are __coerced__ in a fixed order: character → double → integer → logical.
+* When you combine different types they are __coerced__ in a fixed order: logical → integer → double → character.
 
 \fontsize{10}{4}\sf
 
@@ -567,19 +567,19 @@ sum(x)
 as.integer(c("1", "1.5", "a"))
 ```
 
-## Exercises
+## Quiz
 
-1. Predict the output of the following:
+7.  Predict the output of the following:
 
-```{r, eval=FALSE}
-c(1, FALSE)
-c("a", 1)
-c(TRUE, 1L)
-```
+    ```{r, eval=FALSE}
+    c(1, FALSE)
+    c("a", 1)
+    c(TRUE, 1L)
+    ```
 
-1. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+8. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
 
-1. Why is the default missing value, `NA`, a logical vector? What's special
+9. Why is the default missing value, `NA`, a logical vector? What's special
    about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
 
 ## Getting and setting attributes
@@ -691,13 +691,11 @@ str(matrix(1:3, nrow = 1)) # row vector
 str(array(1:3, 3))         # "array" vector
 ```
 
-## Exercises
+## Quiz
 
-1.  What does `dim()` return when applied to a 1-dimensional vector?
-2.  When might you use `NROW()` or `NCOL()`?
-
-3.  How would you describe the following three objects? What makes them
-    different from `1:5`?
+10. What does `dim()` return when applied to a 1-dimensional vector?
+11. When might you use `NROW()` or `NCOL()`?
+12. How would you describe the following three objects? What makes them different from `1:5`?
 
     ```{r}
     x1 <- array(1:5, c(1, 1, 5))
@@ -808,24 +806,23 @@ structure(now_ct, tzone = "Australia/Lord_Howe")
 ```
 
 
-## Exercises
+## Quiz
 
-1.  What sort of object does `table()` return? What is its type? What
+13. What sort of object does `table()` return? What is its type? What
     attributes does it have? How does the dimensionality change as you
     tabulate more variables?
 
-1.  What happens to a factor when you modify its levels?
+14. What happens to a factor when you modify its levels?
 
     ```{r, results = FALSE}
     f1 <- factor(letters)
     levels(f1) <- rev(levels(f1))
     ```
 
-1.  What does this code do? How do `f2` and `f3` differ from `f1`?
+15. What does this code do? How do `f2` and `f3` differ from `f1`?
 
     ```{r, results = FALSE}
     f2 <- rev(factor(letters))
-
     f3 <- factor(letters, levels = rev(letters))
     ```
 
@@ -1038,13 +1035,13 @@ str(dfm)
 
 \placefig{10}{1.25}{width=5cm,height=20cm}{../diagrams/vectors/data-frame-matrix.png}
 
-## Exercises
+## Quiz
 
-1.  Can you have a data frame with zero rows? What about zero columns?
-1.  What happens if you attempt to set rownames that are not unique?
-1.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
+16.  Can you have a data frame with zero rows? What about zero columns?
+17.  What happens if you attempt to set rownames that are not unique?
+18.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
     Perform some experiments, making sure to try different column types.
-1.  What does `as.matrix()` do when applied to a data frame with
+19.  What does `as.matrix()` do when applied to a data frame with
     columns of different types? How does it differ from `data.matrix()`?
 
 ## `NULL`
@@ -1063,19 +1060,19 @@ is.null(x)
 
 # Subsetting
 
-## Subsetting
+## Quiz
 
-1.  What is the result of subsetting a vector with positive integers,
+20. What is the result of subsetting a vector with positive integers,
     negative integers, a logical vector, or a character vector?
-1.  What's the difference between `[`, `[[`, and `$` when applied to a list?
-1.  When should you use `drop = FALSE`?
-1.  If `x` is a matrix, what does `x[] <- 0` do? How is it different from `x <- 0`?
-1.  How can you use a named vector to relabel categorical variables?
+21. What's the difference between `[`, `[[`, and `$` when applied to a list?
+22. When should you use `drop = FALSE`?
+23. If `x` is a matrix, what does `x[] <- 0` do? How is it different from `x <- 0`?
+24. How can you use a named vector to relabel categorical variables?
 
 ## Subsetting
 \fontsize{13}{14}\sf
 
-1.  Fix each of the following common data frame subsetting errors:
+25. Fix each of the following common data frame subsetting errors:
 
     ```{r, eval = FALSE}
     mtcars[mtcars$cyl = 4, ]
@@ -1084,71 +1081,67 @@ is.null(x)
     mtcars[mtcars$cyl == 4 | 6, ]
     ```
 
-1.  Why does `mtcars[1:20]` return an error? How does it differ from the
+26. Why does `mtcars[1:20]` return an error? How does it differ from the
     similar `mtcars[1:20, ]`?
 
-1.  Implement your own function that extracts the diagonal entries from a
+27. Implement your own function that extracts the diagonal entries from a
     matrix (it should behave like `diag(x)` where `x` is a matrix).
 
-## Subsetting
+## Quiz
 
-```{r}
-#| eval: false
-mod <- lm(mpg ~ wt, data = mtcars)
-```
+28. Extract the residual degrees of freedom from `mod`
 
-Extract the residual degrees of freedom.
+    ```{r}
+    #| eval: false
+    mod <- lm(mpg ~ wt, data = mtcars)
+    ```
 
-Extract the R squared from the model summary (`summary(mod)`)
+29. Extract the R squared from the model summary (`summary(mod)`)
 
-## Subsetting
+## Quiz
 
-1. How would you randomly permute the columns of a data frame?
-2. Can you simultaneously permute the rows and columns in one step?
-3. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
-4. How could you put the columns in a data frame in alphabetical order?
+30. How would you randomly permute the columns of a data frame?
+31. Can you simultaneously permute the rows and columns in one step?
+32. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
+33. How could you put the columns in a data frame in alphabetical order?
 
 
 # Control flow
 
-## Control flow
+## Quiz
 
-*   What is the difference between `if` and `ifelse()`?
+34. What is the difference between `if` and `ifelse()`?
 
-*   In the following code, what will the value of `y` be if `x` is `TRUE`?
+35. In the following code, what will the value of `y` be if `x` is `TRUE`?
     What if `x` is `FALSE`? What if `x` is `NA`?
 
     ```{r, eval = FALSE}
     y <- if (x) 3
     ```
 
-*   What does `switch("x", x = , y = 2, z = 3)` return?
+36. What does `switch("x", x = , y = 2, z = 3)` return?
 
-## ifelse
+## Quiz
 \fontsize{13}{14}\sf
 
-What type of vector does each of the following calls to `ifelse()`
+37. What type of vector does each of the following calls to `ifelse()`
     return?
 
-```{r, eval = FALSE}
-ifelse(TRUE, 1, "no")
-ifelse(FALSE, 1, "no")
-ifelse(NA, 1, "no")
-```
+    ```{r, eval = FALSE}
+    ifelse(TRUE, 1, "no")
+    ifelse(FALSE, 1, "no")
+    ifelse(NA, 1, "no")
+    ```
 
-Read the documentation and write down the rules in your own words.
+38. Why does the following code work?\fontsize{10}{10}\sf
 
-## if else
+    ```{r}
+    x <- 1:10
+    if (length(x)) "not empty" else "empty"
 
-Why does the following code work?
-
-```{r}
-x <- 1:10
-if (length(x)) "not empty" else "empty"
-
-x <- numeric()
-if (length(x)) "not empty" else "empty"
-```
+    x <- numeric()
+    if (length(x)) "not empty" else "empty"
+    ```
 
 ## Don't allocate memory in a for loop
 
