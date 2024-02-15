@@ -25,8 +25,8 @@ schedule <- tibble(
     "Interfacing with other languages"
   ),
   Reference = c(
-    "1-5. *Advanced R*",
-    "6-8. *Advanced R*",
+    "1-4. *Advanced R*",
+    "5-8. *Advanced R*",
     "*R Packages*",
     "22-24. *Advanced R*",
     "9-11. *Advanced R*",
