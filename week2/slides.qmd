@@ -29,6 +29,79 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
+# Control flow
+
+## Quiz
+
+1.  What is the difference between `if` and `ifelse()`?
+
+2.  In the following code, what will the value of `y` be if `x` is `TRUE`? What if `x` is `FALSE`? What if `x` is `NA`?
+
+    ```{r, eval = FALSE}
+    y <- if (x) 3
+    ```
+
+3.  What does `switch("x", x = , y = 2, z = 3)` return?
+
+## Quiz
+\fontsize{13}{14}\sf
+
+4.  What type of vector does each of the following calls to `ifelse()`
+    return?
+
+    ```{r, eval = FALSE}
+    ifelse(TRUE, 1, "no")
+    ifelse(FALSE, 1, "no")
+    ifelse(NA, 1, "no")
+    ```
+
+5.  Why does the following code work?\fontsize{10}{10}\sf
+
+    ```{r}
+    x <- 1:10
+    if (length(x)) "not empty" else "empty"
+
+    x <- numeric()
+    if (length(x)) "not empty" else "empty"
+    ```
+
+## Don't allocate memory in a for loop
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory within the loop
+system.time(
+{
+  x <- NULL
+  for(i in seq(1e5)) {
+    x <- c(x, i)
+  }
+}
+)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory before the loop
+system.time(
+{
+  x <- numeric(1e5)
+  for(i in seq(1e5)) {
+    x[i] <- i
+  }
+}
+)
+```
+
+:::
+::::
+
 # Functions
 
 ## Function fundamentals
@@ -72,10 +145,10 @@ do.call(mean, args)
 
 ## Quiz
 
-1.  Given a name, like `"mean"`, `match.fun()` lets you find a function.
+6.  Given a name, like `"mean"`, `match.fun()` lets you find a function.
     Given a function, can you find its name? Why doesn't that make sense in R?
 
-2.  Which base function has the most arguments? Hint: Start by making a list of all functions in the base package.
+7.  Which base function has the most arguments? Hint: Start by making a list of all functions in the base package.
 
     ```{r}
     objs <- mget(ls("package:base", all = TRUE), inherits = TRUE)
@@ -351,7 +424,7 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 
 ## Quiz
 
-3.  What does this function return? Why? Which principle does it illustrate?
+8.  What does this function return? Why? Which principle does it illustrate?
 
     ```{r, results = "hide"}
     f2 <- function(x = z) {
@@ -363,7 +436,7 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 
 ## Quiz
 
-4.  In `hist()`, the default value of `xlim` is `range(breaks)`, the default
+9.  In `hist()`, the default value of `xlim` is `range(breaks)`, the default
     value for `breaks` is `"Sturges"`, and
 
     ```{r}
@@ -374,7 +447,7 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 
 ## Quiz
 
-5.  Explain why this function works. Why is it confusing?
+10. Explain why this function works. Why is it confusing?
 
     ```{r}
     show_time <- function(x = stop("Error!")) {
@@ -436,7 +509,7 @@ sum(1, 2, NA, na_rm = TRUE)
 
 ## Quiz
 
-6.  Explain the following results: \fontsize{10}{10}\sf
+11. Explain the following results: \fontsize{10}{10}\sf
 
     ```{r}
     sum(1, 2, 3)
@@ -700,7 +773,7 @@ x <- `modify<-`(x, 1, 10)
 
 ## Quiz
 
-7.  Clarify the following list of odd function calls:
+12. Clarify the following list of odd function calls:
 
     ```{r, eval = FALSE}
     x <- sample(replace = TRUE, 20, x = c(1:10, NA))
@@ -708,7 +781,7 @@ x <- `modify<-`(x, 1, 10)
     cor(m = "k", y = y, u = "p", x = x)
     ```
 
-8.  Write your own version of `+` that pastes its inputs together if they are character vectors but behaves as usual otherwise. In other words, make this code work:
+13. Write your own version of `+` that pastes its inputs together if they are character vectors but behaves as usual otherwise. In other words, make this code work:
 
     ```{r, eval = FALSE}
     1 + 2
@@ -851,3 +924,141 @@ unused argument (clas
 
 
 # Conditions
+
+## Conditions
+
+```r
+stop("This is what an error looks like")
+#> Error in eval(expr, envir, enclos): This is what an error looks like
+
+warning("This is what a warning looks like")
+#> Warning: This is what a warning looks like
+
+message("This is what a message looks like")
+#> This is what a message looks like
+```
+
+\pause
+
+* Ignore errors with `try()`.
+* Ignore warnings with `suppressWarnings()`.
+* Ignore messages with `suppressMessages()`.
+
+## try()
+
+* Allows execution to continue even if an error occurs.
+* Returns a special object that captures the error.
+
+\fontsize{10}{10}\sf
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f1 <- function(x) {
+  log(x)
+  10
+}
+f1("x")
+```
+
+:::
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+f2("a")
+```
+
+:::
+::::
+
+## Handling conditions
+\fontsize{13}{15}\sf
+
+Allow you to specify what should happen when a condition occurs.
+
+```{r, eval = FALSE}
+tryCatch(
+  error = function(cnd) {
+    # code to run when error is thrown
+  },
+  code_to_run_while_handlers_are_active
+)
+withCallingHandlers(
+  warning = function(cnd) {
+    # code to run when warning is signalled
+  },
+  message = function(cnd) {
+    # code to run when message is signalled
+  },
+  code_to_run_while_handlers_are_active
+)
+```
+
+## tryCatch()
+\fontsize{10}{10}\sf
+
+```{r}
+f3 <- function(x) {
+  tryCatch(
+    error = function(cnd) NA,
+    log(x)
+  )
+}
+
+f3("x")
+```
+
+## Quiz
+
+14. Does the following code throw an error when executed? Why or why not?
+
+    ```{r, eval = FALSE}
+    f2 <- function(a, b) {
+      a * 10
+    }
+    f2(10, stop("This is an error!"))
+    ```
+
+## Quiz
+
+15. What's the difference between these two commands?
+
+    ```{r, eval = FALSE}
+    catch_cnd(stop("An error"))
+    catch_cnd(abort("An error"))
+    ```
+
+16. Explain the results of running this code:
+
+    ```{r}
+    withCallingHandlers(
+      message = function(cnd) message("A"),
+      message("B")
+    )
+    ```
+
+## Quiz
+
+17. Predict the results of evaluating the following code
+
+    ```{r, eval = FALSE}
+    show_condition <- function(code) {
+      tryCatch(
+        error = function(cnd) "error",
+        warning = function(cnd) "warning",
+        message = function(cnd) "message",
+        {
+          code
+          5
+        }
+      )
+    }
+    show_condition(stop("!"))
+    show_condition(10)
+    show_condition(warning("?!"))
+    ```

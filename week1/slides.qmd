@@ -26,6 +26,41 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
+# Introduction to R
+## R history
+
+* S (1976, Chambers, Becker and Wilks; Bell Labs, USA)
+* S-PLUS (1988, Doug Martin; Uni of Washington, USA)
+* R (1993, Ihaka and Gentleman; Uni of Auckland, NZ)
+
+\pause\vspace*{0.4cm}
+
+### R influenced by
+
+* Lisp (functional programming, environments, dynamic typing)
+* Scheme (functional programming, lexical scoping)
+* S and S-PLUS (syntax)
+
+## Why R?
+
+* Free, open source, and on every major platform.
+* A diverse and welcoming community
+* A massive set of packages, often cutting-edge.
+* Powerful communication tools (Shiny, Rmarkdown, \rlap{quarto)}
+* RStudio IDE
+* Deep-seated language support for data analysis.
+* A strong foundation of functional programming.
+* Posit
+* Easy connection to high-performance programming languages
+  like C, Fortran, and C++.
+
+## R challenges
+
+* R users are not usually programmers. Most R code by ordinary users is not very elegant, fast, or easy to understand.
+* R users more focused on results than good software practices.
+* R packages are inconsistent in design.
+* R can be slow.
+
 # Names and values
 
 ## Quiz
@@ -1104,78 +1139,3 @@ is.null(x)
 31. Can you simultaneously permute the rows and columns in one step?
 32. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
 33. How could you put the columns in a data frame in alphabetical order?
-
-
-# Control flow
-
-## Quiz
-
-34. What is the difference between `if` and `ifelse()`?
-
-35. In the following code, what will the value of `y` be if `x` is `TRUE`?
-    What if `x` is `FALSE`? What if `x` is `NA`?
-
-    ```{r, eval = FALSE}
-    y <- if (x) 3
-    ```
-
-36. What does `switch("x", x = , y = 2, z = 3)` return?
-
-## Quiz
-\fontsize{13}{14}\sf
-
-37. What type of vector does each of the following calls to `ifelse()`
-    return?
-
-    ```{r, eval = FALSE}
-    ifelse(TRUE, 1, "no")
-    ifelse(FALSE, 1, "no")
-    ifelse(NA, 1, "no")
-    ```
-
-38. Why does the following code work?\fontsize{10}{10}\sf
-
-    ```{r}
-    x <- 1:10
-    if (length(x)) "not empty" else "empty"
-
-    x <- numeric()
-    if (length(x)) "not empty" else "empty"
-    ```
-
-## Don't allocate memory in a for loop
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-```{r}
-# Allocating memory within the loop
-system.time(
-{
-  x <- NULL
-  for(i in seq(1e5)) {
-    x <- c(x, i)
-  }
-}
-)
-```
-
-:::
-
-::: {.column width="50%"}
-
-```{r}
-# Allocating memory before the loop
-system.time(
-{
-  x <- numeric(1e5)
-  for(i in seq(1e5)) {
-    x[i] <- i
-  }
-}
-)
-```
-
-:::
-::::
