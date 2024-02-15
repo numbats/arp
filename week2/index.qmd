@@ -19,6 +19,7 @@ schedule |>
 
 ## What you will learn this week
 
+* Control flow
 * Functions
 * Environments
 * Conditions

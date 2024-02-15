@@ -19,10 +19,10 @@ schedule |>
 
 ## What you will learn this week
 
+* Introduction to R
 * Names and values
 * Vectors
 * Subsetting
-* Control flow
 
 ```{r}
 #| output: asis
