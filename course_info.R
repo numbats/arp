@@ -120,15 +120,16 @@ submit <- function(schedule, assignment) {
 }
 
 show_slides <- function(week) {
-  slides_exist <- fs::file_exists(here::here(paste0("week",week,"/slides.qmd")))
+  qmd_file <- here::here(paste0("week",week,"/slides.qmd"))
+  slides_exist <- fs::file_exists(qmd_file)
   if(slides_exist) {
-    file <- paste0("https://arp.numbat.space/week", week, "/slides.pdf")
+    pdf_file <- paste0("https://arp.numbat.space/week", week, "/slides.pdf")
     embed <- paste0(
       "<iframe src='https://docs.google.com/gview?url=",
-      file,
+      pdf_file,
       "&embedded=true' width='100%' height=465></iframe>"
       )
-    button <- paste0("<a href=", file, " class='badge badge-small badge-red'>Download pdf</a>")
+    button <- paste0("<a href=", pdf_file, " class='badge badge-small badge-red'>Download pdf</a>")
     cat(paste0("## Slides for week\n\n", embed,"\n", button))
   }
 }
