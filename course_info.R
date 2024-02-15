@@ -94,9 +94,10 @@ schedule <- schedule |>
 show_assignments <- function(week) {
   ass <- schedule |>
     filter(
-      Week >= week & (week > Week - 3 | week > 8),
+      Week >= week,
       !is.na(Assignment),
     ) |>
+    filter(Week == min(Week)) |>
     select(Assignment:File)
   if(NROW(ass) > 0) {
     cat("\n\n## Assignments\n\n")

@@ -1,0 +1,90 @@
+---
+title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
+author: "Week 3: R package development"
+format:
+  beamer:
+    pdf-engine: pdflatex
+    aspectratio: 169
+    fontsize: "14pt,t"
+    section-titles: false
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    fig-width: 7.5
+    fig-height: 3.5
+    include-in-header: ../header.tex
+    keep_tex: yes
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
+source(here::here("setup.R"))
+source(here::here("course_info.R"))
+```
+
+## Outline
+
+\vspace*{0.4cm}
+\tableofcontents
+
+# System setup
+## System setup
+
+```r
+install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
+```
+
+\pause
+
+### R build toolchain
+
+* Windows: [`https://cran.r-project.org/bin/windows/Rtools/`](https://cran.r-project.org/bin/windows/Rtools/)
+* macOS: `xcode-select --install`
+* Linux: `sudo apt install r-base-dev`
+
+\pause
+
+### Verify
+`devtools::dev_sitrep()`
+
+# Package structure and state
+
+## Package states
+
+* **source**: the original files
+* **bundled**: some processing, and compressed to a single `.tar.gz` file (e.g., to upload to CRAN)
+* **binary**: what you usually download from CRAN
+* **installed**: decompressed binary file stored in package library
+* **in-memory**: loaded into R session using `library()`
+
+## Package files
+
+\placefig{0}{1.2}{width=16cm, height = 30cm}{../diagrams/package-files.png}
+
+## Package files
+
+\placefig{0}{1.2}{width=16cm, height = 30cm, trim = 0 0 0 316, clip=true}{../diagrams/package-files.png}
+
+## Package files
+
+\placefig{0}{1.2}{width=16cm, height = 30cm, trim = 0 0 0 540, clip=true}{../diagrams/package-files.png}
+
+## Package structure
+
+
+# Workflow
+## Workflow
+
+\full{../diagrams/workflow.png}
+
+# usethis
+
+# testthat v3
+
+# roxygen2
+
+# pkgdown
+
+# Continuous integration
