@@ -16,7 +16,10 @@ format:
     keep_tex: yes
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
@@ -716,5 +719,135 @@ x <- `modify<-`(x, 1, 10)
     ```
 
 # Environments
+
+## Environment basics
+
+Environments are data structures that power scoping.
+
+An environment is similar to a named list, with four important exceptions:
+
+* Every name must be unique.
+* The names in an environment are not ordered.
+* An environment has a parent.
+* Environments are not copied when modified.
+
+## Environment basics
+
+```{r}
+library(rlang)
+e1 <- env(
+  a = FALSE,
+  b = "a",
+  c = 2.3,
+  d = 1:3,
+)
+```
+
+\placefig{8}{1.9}{width=7cm}{../diagrams/environments/bindings.png}
+
+### Special environments
+
+* The **current environment** is the environment in which code is currently executing.
+* The **global environment** is where all interactive computation takes place. Your "workspace".
+
+## Parent environments
+
+:::: {.columns}
+::: {.column width="50%"}
+
+* Every environment has a parent.
+* If a name is not found in an environment, R looks in the parent environment.
+* The ancestors of the global environment include every attached package.
+
+:::
+::: {.column width="50%"}
+\fontsize{10}{10}\sf\vspace*{-0.3cm}
+
+```{r}
+env_parents(e1, last = empty_env())
+```
+:::
+::::
+
+## Super assignment
+
+* Regular assignment (`<-`) creates a variable in the current environment.
+* Super assignment (`<<-`) modifies a variable in a parent environment.
+* If it can't find an existing variable, it creates one in the global environment.
+
+## Package environments
+\fontsize{13}{15}\sf
+
+* Every package attached becomes one of the parents of the global environment (in order of attachment).\fontsize{10}{10}\sf
+
+  ```{r}
+  search()
+  ```
+
+\fontsize{13}{15}\sf
+
+* Attaching a package changes the parent of the global environment.
+* `Autoloads` uses delayed bindings to save memory by only loading package objects when needed.
+
+## Function environments
+\fontsize{13}{14}\sf
+
+A function binds the current environment when it is created.
+
+\fontsize{10}{10}\sf
+
+```{r}
+y <- 1
+f <- function(x) {
+  env_print(current_env())
+  x + y
+}
+f(2)
+```
+
+## Caller environments
+\fontsize{10}{10}\sf
+
+```{r}
+f <- function(x) {
+  g(x = 2)
+}
+g <- function(x) {
+  h(x = 3)
+}
+h <- function(x) {
+  stop()
+}
+```
+
+```{r, eval = FALSE}
+f(x = 1)
+#> Error: in h(x = 3)
+traceback()
+#> 4: stop() at #3
+#> 3: h(x = 3) at #3
+#> 2: g(x = 2) at #3
+#> 1: f(x = 1)
+```
+
+## Lazy evaluation
+
+```{r, eval = FALSE}
+a <- function(x) b(x)
+b <- function(x) c(x)
+c <- function(x) x
+a(f())
+#> Error: in h(x = 3)
+traceback()
+#> 7: stop() at #3
+#> 6: h(x = 3) at #3
+#> 5: g(x = 2) at #3
+#> 4: f() at #1
+#> 3: c(x) at #1
+#> 2: b(x) at #1
+#> 1: a(f())
+unused argument (clas
+```
+
 
 # Conditions

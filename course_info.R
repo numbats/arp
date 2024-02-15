@@ -1,5 +1,5 @@
 ######## Course info ########
-library(tidyverse)
+library(dplyr)
 
 # Start of semester
 start_semester <- "2024-02-26"
@@ -80,7 +80,7 @@ lastmon <- function(x) {
   7 * floor(as.numeric(x-1+4)/7) + as.Date(1-4, origin="1970-01-01")
 }
 
-assignments <- read_csv(here::here("assignments.csv")) |>
+assignments <- readr::read_csv(here::here("assignments.csv")) |>
   mutate(
     Date = lastmon(Due),
     Moodle = paste0("https://learning.monash.edu/mod/assign/view.php?id=", Moodle),

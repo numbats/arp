@@ -7,7 +7,7 @@ build:
 	quarto render
 
 clean:
-	rm -rf _site
-	rm -rf _freeze
-	rm -rf slides/*_cache
-	rm -rf slides/*_files
+	rm -Rf _site
+	rm -Rf _freeze
+	rm -Rf week*/slides_cache
+	rm -Rf week*/slides_files

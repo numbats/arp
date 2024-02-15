@@ -1069,7 +1069,7 @@ is.null(x)
 23. If `x` is a matrix, what does `x[] <- 0` do? How is it different from `x <- 0`?
 24. How can you use a named vector to relabel categorical variables?
 
-## Subsetting
+## Quiz
 \fontsize{13}{14}\sf
 
 25. Fix each of the following common data frame subsetting errors:
