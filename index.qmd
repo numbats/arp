@@ -41,7 +41,7 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* 2 hour workshop, Mondays 2pm-4pm each week, in Menzies S322.
+* 2 hour workshop, Wednesdays 9am-11am each week, in Menzies E164.
 
 ```{r}
 #| label: schedule2
