@@ -878,6 +878,18 @@ f <- function(x) {
 f(2)
 ```
 
+## Namespaces
+\fontsize{13}{14}\sf
+
+* Package environment: how an R user finds a function in an attached package (only includes exports)
+* Namespace environment: how a package finds its own objects (includes non-exports as well)
+* Each namespace environment has an imports environment (controlled via NAMESPACE file).
+
+```{r}
+#| echo: false
+knitr::include_graphics("../diagrams/environments/namespace-env.png")
+```
+
 ## Caller environments
 \fontsize{10}{10}\sf
 
