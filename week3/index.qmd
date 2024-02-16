@@ -19,11 +19,11 @@ schedule |>
 
 ## What you will learn this week
 
-* usethis
-* testthat v3
-* roxygen2
-* pkgdown
-* continuous integration (github actions)
+* Package metadata
+* Package documentation
+* Package checks and tests
+* Package website
+* Continuous integration via GitHub Actions
 
 ```{r}
 #| output: asis
