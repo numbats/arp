@@ -13,7 +13,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep_tex: yes
+    keep-tex: false
 ---
 
 ```{r}
