@@ -17,7 +17,7 @@ dblr(TRUE)
 check()
 
 document()
-
+build()
 install()
 library(doubler)
 
