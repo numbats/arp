@@ -339,3 +339,13 @@ library(yourpackage)
 * Add it using `usethis::use_logo()`.
 
 # Continuous integration
+
+## Github Actions
+\vspace*{-0.4cm}
+
+* Some development tasks can be executed automatically on Github with a trigger (e.g., a push)
+* Run `R CMD check: `usethis::use_github_action("check_standard")`
+* Compute test coverage: `usethis::use_github_action("test-coverage")`
+* Build and deploy pkgdown site: `usethis::use_github_action("pkgdown")`
+* The `.github/workflows/` directory contains action \rlap{files.}
+* See [`https://github.com/r-lib/actions/`](https://github.com/r-lib/actions/) for more examples.
