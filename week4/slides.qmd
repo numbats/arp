@@ -40,11 +40,15 @@ source(here::here("course_info.R"))
 * Figure out where the test fails
 * Fix it and test
 
-## Locating errors
+## Debugging tools in R
+\fontsize{14}{15}\sf
 
-* `traceback()` -- in reverse order
-* `rlang::last_trace()` -- in natural order
-* Beware of lazy evaluation
+* `traceback`: prints out the function call stack after an error occurs; does nothing if there's no error.
+* `debug`: flags a function for "debug" mode which allows you to step through execution of a function one line at a time.
+* `undebug`: removes the "debug" flag from a function.
+* `browser`: pauses execution of a function and puts the function in debug mode.
+* `trace`: allows you to insert code into a function at a specific line number.
+* `recover`: allows you to modify the error behavior so that you can browse the function call stack after an error occurs.
 
 ## Traceback
 
