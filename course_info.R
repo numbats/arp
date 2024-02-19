@@ -55,6 +55,7 @@ schedule <- tibble(
 )
 
 # Add mid-semester break
+# Date here is Monday of each week
 calendar <- tibble(
     Date = seq(as.Date(start_semester), by = "1 week", length.out = 13)
   ) |>
