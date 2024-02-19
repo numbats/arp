@@ -1,0 +1,252 @@
+---
+title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
+author: "Week 4: Debugging and profiling"
+format:
+  beamer:
+    pdf-engine: pdflatex
+    aspectratio: 169
+    fontsize: "14pt,t"
+    section-titles: false
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    fig-width: 7.5
+    fig-height: 3.5
+    include-in-header: ../header.tex
+    keep-tex: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
+source(here::here("setup.R"))
+source(here::here("course_info.R"))
+```
+
+## Outline
+
+\vspace*{0.4cm}
+\tableofcontents
+
+# Debugging
+
+## Overall debugging strategy
+
+* Google
+* Stack Overflow
+* Create a minimal reproducible example
+* Create a unit test
+* Figure out where the test fails
+* Fix it and test
+
+## Locating errors
+
+* `traceback()` -- in reverse order
+* `rlang::last_trace()` -- in natural order
+* Beware of lazy evaluation
+
+## Traceback
+
+```{r, error = TRUE}
+f <- function(a) g(a)
+g <- function(b) h(b)
+h <- function(c) i(c)
+i <- function(d) {
+  if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
+  d + 10
+}
+```
+
+\only<1>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-error.png}}
+\only<2>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-traceback.png}}
+\pause\pause
+
+```{r, eval = FALSE}
+f("a")
+#> Error: `d` must be numeric
+traceback()
+#> 5: stop("`d` must be numeric", call. = FALSE) at debugging.R#6
+#> 4: i(c) at debugging.R#3
+#> 3: h(b) at debugging.R#2
+#> 2: g(a) at debugging.R#1
+#> 1: f("a")
+```
+
+# Interactive debugging
+
+## Interactive debugging
+
+* Using `browser()`
+
+  ```{r, eval = FALSE}
+  g <- function(b) {
+    browser()
+    h(b)
+  }
+  f(10)
+  ```
+
+* Setting breakpoints
+  * Similar to `browser()` but no change to source code.
+  * Can be set in RStudio by clicking to the left of on the line number, or pressing `Shift + F9`.
+
+* `options(error = recover)`
+
+## Interactive debugging
+
+* `debug()` : inserts a `browser()` statement at start of function.
+* `undebug()` : removes `browser()` statement.
+* `debugonce()` : same as `debug()`, but removes `browser()` after first run.
+
+# Non-interactive debugging
+
+## Non-interactive debugging
+
+* Necessary for debugging code that runs in a non-interactive environment.
+* Is the global environment different? Have you loaded different packages? Are objects left from previous sessions causing differences?
+* Is the working directory different?
+* Is the `PATH` environment variable, which determines where external commands (like `git`) are found, different?
+* Is the `R_LIBS` environment variable, which determines where `library()` looks for packages, different?
+
+## Non-interactive debugging
+
+* `dump.frame()` saves state of R session to file.
+
+  ```r
+  # In batch R process ----
+  dump_and_quit <- function() {
+    # Save debugging info to file last.dump.rda
+    dump.frames(to.file = TRUE)
+    # Quit R with error status
+    q(status = 1)
+  }
+  options(error = dump_and_quit)
+
+  # In a later interactive session ----
+  load("last.dump.rda")
+  debugger()
+  ```
+
+* Last resort: `print()`: slow and primitive.
+
+## Other tricks
+
+* `sink()` : capture output to file.
+* `options(warn = 2)` : turn warnings into errors.
+* `rlang::with_abort()` : turn messages into errors.
+* If R crashes, it is probably a bug in compiled code.
+* Post minimal reproducible example to Posit Community or Stack Overflow.
+
+## Exercise
+
+Find the problem in the following code
+
+????
+
+# Profiling
+
+## Profiling functions
+
+* `Rprof()` : records every function call.
+* `summaryRprof()` : summarises the results.
+* `profvis()` : visualises the results.
+
+## Profiling
+
+Where are the bottlenecks in your code?
+
+```{r}
+library(profvis)
+library(bench)
+f <- function() {
+  pause(0.1)
+  g()
+  h()
+}
+g <- function() {
+  pause(0.1)
+  h()
+}
+h <- function() {
+  pause(0.1)
+}
+```
+
+## Profiling
+\fontsize{10}{10}\sf
+
+```{r, eval = FALSE}
+tmp <- tempfile()
+Rprof(tmp, interval = 0.1)
+f()
+Rprof(NULL)
+writeLines(readLines(tmp))
+#> sample.interval=100000
+#> "pause" "g" "f"
+#> "pause" "h" "g" "f"
+#> "pause" "h" "f"
+```
+
+## Profiling
+\fontsize{10}{10}\sf
+
+```{r, eval=FALSE}
+source(here::here("week4/profiling-example.R"))
+profvis(f())
+```
+
+\vspace*{-0.5cm}
+\centerline{\includegraphics[width = 7cm]{../screenshots/performance/flamegraph.png}}
+
+# Microbenchmarking
+
+## Microbenchmarking
+\fontsize{10}{10}\sf
+
+### `system.time()`
+
+```{r}
+x <- rnorm(1e6)
+system.time(min(x))
+system.time(sort(x)[1])
+system.time(x[order(x)[1]])
+```
+
+## Microbenchmarking
+\fontsize{10}{10}\sf
+
+### `bench::mark()`
+
+```{r}
+bench::mark(
+  min(x),
+  sort(x)[1],
+  x[order(x)[1]]
+)
+```
+
+## Microbenchmarking
+
+* `mem_alloc` tells you the memory allocated in the first run.
+* `n_gc` tells you the total number of garbage collections over all runs.
+* `n_itr` tells you how many times the expression was evaluated.
+* Pay attention to the units!
+
+## Exercises
+
+What's the fastest way to compute a square root? Compare:
+
+  1.  `sqrt(x)`
+  2.  `x^0.5`
+  3.  `exp(log(x) / 2)`
+
+Use `system.time()` in a loop and find the average for each operation.
+
+Repeat using `bench::mark()`.
+
+Why are they different?
+
+## Exercises
+
+Write a function to find the second largest element of a numeric vector. Test several alternatives, and choose the fastest one.
