@@ -19,9 +19,11 @@ schedule |>
 
 ## What you will learn this week
 
-* browser(), debug(), skills, web search, mre (reprex)
+* browser(), debug(), skills, web search
+* MRE using reprex
 * optimising for what - dev time or run time (or code size)
 * profvis, bench
+* renv
 * caching
 
 ```{r}
