@@ -1,3 +1,5 @@
+# Example 1
+
 f <- function(a) g(a)
 g <- function(b) h(b)
 h <- function(c) i(c)
@@ -12,8 +14,3 @@ traceback()
 
 options(error = recover)
 f("a")
-
-f <- function(n = 1e5) {
-  x <- rep(1, n)
-  rm(x)
-}

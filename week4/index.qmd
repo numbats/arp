@@ -26,6 +26,10 @@ schedule |>
 * renv
 * caching
 
+## Online resources
+
+* [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
+
 ```{r}
 #| output: asis
 show_slides(week)
