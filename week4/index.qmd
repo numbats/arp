@@ -19,16 +19,19 @@ schedule |>
 
 ## What you will learn this week
 
-* browser(), debug(), skills, web search
-* MRE using reprex
-* optimising for what - dev time or run time (or code size)
-* profvis, bench
-* renv
-* caching
+* Debugging
+* Measuring performance
+* Efficient R pgoramming
+* R environments
+* Caching
 
 ## Online resources
 
 * [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
+* [Jenny Bryan - Object of type 'closure' is not subsettable](https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r)
+* [Posit Community](https://community.rstudio.com)
+* [Stack Overflow](https://stackoverflow.com/)
+* [Efficient R Programming](https://csgillespie.github.io/efficientR/)
 
 ```{r}
 #| output: asis

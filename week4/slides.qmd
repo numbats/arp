@@ -41,6 +41,24 @@ source(here::here("course_info.R"))
 * Figure out where the test fails
 * Fix it and test
 
+## Minimal reproducible examples
+
+* A minimal data set. Use a small built-in dataset, or make a small example.
+* If you must include your own data, use `dput()`, but subset where possible.
+* The *minimal* amount of code to reproduce the problem. Load only necessary packages.
+* If the example involves random numbers, set the seed with `set.seed()`.
+* Information about package versions, R version, OS. Use `sessioninfo::session_info()`.
+
+## reprex
+
+The **reprex** package helps create *minimal reproducible examples*.
+
+* Results are saved to clipboard in form that can be pasted into a GitHub issue, Stack Overflow question, or email.
+* `reprex::reprex()`: takes R code and outputs it in a markdown format.
+* Append session info via\newline `reprex(..., session_info = TRUE)`.
+* Use the RStudio addin.
+
+
 ## Debugging tools in R
 \fontsize{14}{15}\sf
 
@@ -78,8 +96,6 @@ traceback()
 #> 1: f("a")
 ```
 
-# Interactive debugging
-
 ## Interactive debugging
 
 * Using `browser()`
@@ -98,17 +114,20 @@ traceback()
 
 * `options(error = browser)`
 
-## Example
-
-[![Amanda Gadrow -- Debugging in R](../screenshots/Amanda_Gadrow.png)](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
-
 ## Interactive debugging
 
 * `debug()` : inserts a `browser()` statement at start of function.
 * `undebug()` : removes `browser()` statement.
 * `debugonce()` : same as `debug()`, but removes `browser()` after first run.
 
-# Non-interactive debugging
+## Example
+\vspace*{-0.15cm}
+\centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm, height=20cm]{../screenshots/Amanda_Gadrow.png}}}
+
+## Exercise
+
+1. Exercise using `debug()`
+
 
 ## Non-interactive debugging
 
@@ -147,7 +166,7 @@ traceback()
 * If R or RStudio crashes, it is probably a bug in compiled code.
 * Post minimal reproducible example to Posit Community or Stack Overflow.
 
-# Profiling
+# Measuring performance
 
 ## Profiling functions
 
@@ -202,8 +221,6 @@ profvis(f())
 \vspace*{-0.5cm}
 \centerline{\includegraphics[width = 7cm]{../screenshots/performance/flamegraph.png}}
 
-# Microbenchmarking
-
 ## Microbenchmarking
 \fontsize{10}{10}\sf
 
@@ -238,18 +255,162 @@ bench::mark(
 
 ## Exercises
 
-What's the fastest way to compute a square root? Compare:
+2.  What's the fastest way to compute a square root? Compare:
 
-  1.  `sqrt(x)`
-  2.  `x^0.5`
-  3.  `exp(log(x) / 2)`
+    - `sqrt(x)`
+    - `x^0.5`
+    - `exp(log(x) / 2)`
 
-Use `system.time()` in a loop and find the average for each operation.
+    Use `system.time()` find the time for each operation.
 
-Repeat using `bench::mark()`.
-
-Why are they different?
+    Repeat using `bench::mark()`. Why are they different?
 
 ## Exercises
 
-Write a function to find the second largest element of a numeric vector. Test several alternatives, and choose the fastest one.
+3. Write a function to find the second largest element of a numeric vector. Test several alternatives, and choose the fastest one.
+
+
+## Exercises
+
+4. How can you use `crossprod()` to compute a weighted sum? How much faster is it than the naive `sum(x * w)`? Why is it faster?
+
+
+# Efficient R programming
+
+# R environments
+
+## renv package
+
+![](../diagrams/renv.png)
+
+## renv package
+
+* `renv.init()` : initialize a new project with a new environment. Adds:
+  *  `renv/library` contains all packages used in project
+  *  `renv.lock` contains metadata about packages used in project
+  *  `.Rprofile` run every time R starts.
+
+* `renv.snapshot()` : save the state of the project to `renv.lock`.
+
+* `renv::restore()` : restore the project to the state saved in `renv.lock`.
+
+## renv package
+\fontsize{14}{16}\sf
+
+* renv uses a package cache so you are not repeatedly installing the same packages in multiple projects.
+* `renv::install()` can install from CRAN, Bioconductor, GitHub, Gitlab, Bitbucket, etc.
+* `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
+* Only R packages are supported, not system dependencies, and not R itself.
+* renv is not a replacement for Docker or Singularity.
+* `renv::deactivate(clean = TRUE)` will remove the renv environment.
+
+## Exercise
+
+5. Add renv to your Assignment 1 project.
+
+# Caching
+
+## Caching: using rds
+
+```{r}
+#| eval: false
+if (file.exists("results.rds")) {
+  res <- readRDS("results.rds")
+} else {
+  res <- compute_it()  # a time-consuming function
+  saveRDS(res, "results.rds")
+}
+```
+
+\pause\vspace*{1cm}
+
+\alert{Equivalently\dots}
+
+```{r}
+#| eval: false
+res <- xfun::cache_rds(
+  compute_it(), # a time-consuming function
+  file = "results.rds"
+)
+```
+
+## Caching: using rds
+\fontsize{10}{10}\sf
+
+```{r}
+#| label: cache1
+#| cache: false
+#| freeze: false
+compute <- function(...) {
+    xfun::cache_rds(rnorm(6), file = "results.rds", ...)
+}
+compute()
+compute()
+```
+
+```{r}
+#| label: cache2
+#| dependson: cache1
+#| cache: false
+#| freeze: false
+compute(rerun = TRUE)
+compute()
+```
+
+## Caching: Rmarkdown
+
+````{verbatim}
+```{r import-data, cache=TRUE}
+d <- read.csv('my-precious.csv')
+```
+
+```{r analysis, dependson='import-data', cache=TRUE}
+summary(d)
+```
+````
+
+* Requires explicit dependencies or changes not detected.
+* Changes to functions or packages not detected.
+* Good practice to frequently clear cache to avoid problems.
+* targets is a better solution: Week 8
+
+## Caching: Quarto
+
+````{verbatim}
+```{r}
+#| label: import-data
+#| cache: true
+d <- read.csv('my-precious.csv')
+```
+
+```{r}
+#| label: analysis
+#| dependson: import-data
+#| cache: true
+summary(d)
+```
+````
+
+* Same problems as Rmarkdown
+* targets is a better solution: Week 8
+
+## Caching: memoise
+
+Caching stores results of computations so they can be reused.
+
+\fontsize{10}{10}\sf
+
+```{r}
+library(memoise)
+sq <- function(x) {
+  print("Computing square of 'x'")
+  x**2
+}
+memo_sq <- memoise(sq)
+memo_sq(2)
+memo_sq(2)
+```
+
+## Exercise
+
+6. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
