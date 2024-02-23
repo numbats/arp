@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 4: Debugging and profiling"
+author: "Week 4: Debugging and performance"
 format:
   beamer:
     pdf-engine: pdflatex
@@ -110,7 +110,7 @@ traceback()
 
 * Setting breakpoints
   * Similar to `browser()` but no change to source code.
-  * Can be set in RStudio by clicking to the left of on the line number, or pressing `Shift + F9`.
+  * Can be set in RStudio by clicking to the left of the line number, or pressing `Shift + F9`.
 
 * `options(error = browser)`
 
@@ -124,10 +124,53 @@ traceback()
 \vspace*{-0.15cm}
 \centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm, height=20cm]{../screenshots/Amanda_Gadrow.png}}}
 
-## Exercise
+## Common error messages
+\fontsize{12}{13}\sf
 
-1. Exercise using `debug()`
+* could not find function `"xxxx"`
+* object `xxxx` not found
+* cannot open the connection / No such file or directory
+* missing value where `TRUE` / `FALSE` needed
+* unexpected `=` in `"xxxx"`
+* attempt to apply non-function
+* undefined columns selected
+* subscript out of bounds
+* object of type 'closure' is not subsettable
+* `$` operator is invalid for atomic vectors
+* list object cannot be coerced to type 'double'
+* arguments imply differing number of rows
+* non-numeric argument to binary operator
 
+## Common warning messages
+\fontsize{12}{13}\sf
+
+* NAs introduced by coercion
+* replacement has `xx` rows to replace `yy` rows
+* number of items to replace is not a multiple of replacement length
+* the condition has length > 1 and only the first element will be used
+* longer object length is not a multiple of shorter object length
+* package is not available for R version `xx`
+
+## Exercises
+
+1. What's wrong with this code?
+
+\fontsize{10}{10}\sf
+
+```{r, error = TRUE}
+# Multivariate scaling function
+mvscale <- function(object) {
+  # Remove centers
+  mat <- sweep(object, 2L, colMeans(object))
+  # Scale and rotate
+  S <- var(mat)
+  U <- chol(solve(S))
+  z <- mat %*% t(U)
+  # Return orthogonalized data
+  return(z)
+}
+mvscale(mtcars)
+```
 
 ## Non-interactive debugging
 
@@ -270,43 +313,50 @@ bench::mark(
 3. Write a function to find the second largest element of a numeric vector. Test several alternatives, and choose the fastest one.
 
 
+# Improving performance
+
+## Vectorization
+
+* Vectorization is the process of converting a repeated operation into a vector operation.
+* The loops in a vectorized function are implemented in C instead of R.
+* Using `map()` or `apply()` is **not** vectorization.
+* Matrix operations are vectorized, and usually very fast.
+
+## Beware of over-vectorising
+
+* Change all missing values in a data frame to zero:
+
+  ```{r}
+  #| eval: false
+  x[is.na(x)] <- 0
+  ```
+
+  or
+
+  ```{r}
+  #| eval: false
+  for(i in seq(NCOL(x))) {
+    x[is.na(x[, i]), i] <- 0
+  }
+  ```
+
+  Why might the second approach be preferred?
+
 ## Exercises
 
 4. How can you use `crossprod()` to compute a weighted sum? How much faster is it than the naive `sum(x * w)`? Why is it faster?
 
+## Exercises
 
-# Efficient R programming
+5. Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
 
-# R environments
-
-## renv package
-
-![](../diagrams/renv.png)
-
-## renv package
-
-* `renv.init()` : initialize a new project with a new environment. Adds:
-  *  `renv/library` contains all packages used in project
-  *  `renv.lock` contains metadata about packages used in project
-  *  `.Rprofile` run every time R starts.
-
-* `renv.snapshot()` : save the state of the project to `renv.lock`.
-
-* `renv::restore()` : restore the project to the state saved in `renv.lock`.
-
-## renv package
-\fontsize{14}{16}\sf
-
-* renv uses a package cache so you are not repeatedly installing the same packages in multiple projects.
-* `renv::install()` can install from CRAN, Bioconductor, GitHub, Gitlab, Bitbucket, etc.
-* `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
-* Only R packages are supported, not system dependencies, and not R itself.
-* renv is not a replacement for Docker or Singularity.
-* `renv::deactivate(clean = TRUE)` will remove the renv environment.
-
-## Exercise
-
-5. Add renv to your Assignment 1 project.
+### Monte Carlo Integration
+   a. Initialise: `hits = 0`
+   b. for i in 1:N
+      * Generate two random numbers,  $U_1, U_2$, between 0 and 1
+      * If $U_2 < U_1^2$, then `hits = hits + 1`
+   c. end for
+   d. Area estimate = hits/N
 
 # Caching
 
@@ -411,6 +461,37 @@ memo_sq(2)
 memo_sq(2)
 ```
 
-## Exercise
+## Exercises
 
 6. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
+
+# R environments
+
+## renv package
+
+![](../diagrams/renv.png)
+
+## renv package
+
+* `renv.init()` : initialize a new project with a new environment. Adds:
+  *  `renv/library` contains all packages used in project
+  *  `renv.lock` contains metadata about packages used in project
+  *  `.Rprofile` run every time R starts.
+
+* `renv.snapshot()` : save the state of the project to `renv.lock`.
+
+* `renv::restore()` : restore the project to the state saved in `renv.lock`.
+
+## renv package
+\fontsize{14}{16}\sf
+
+* renv uses a package cache so you are not repeatedly installing the same packages in multiple projects.
+* `renv::install()` can install from CRAN, Bioconductor, GitHub, Gitlab, Bitbucket, etc.
+* `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
+* Only R packages are supported, not system dependencies, and not R itself.
+* renv is not a replacement for Docker or Singularity.
+* `renv::deactivate(clean = TRUE)` will remove the renv environment.
+
+## Exercises
+
+7. Add renv to your Assignment 1 project.
