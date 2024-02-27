@@ -401,7 +401,6 @@ compute()
 
 ```{r}
 #| label: cache2
-#| dependson: cache1
 #| cache: false
 #| freeze: false
 compute(rerun = TRUE)
