@@ -67,7 +67,8 @@ The **reprex** package helps create *minimal reproducible examples*.
 * `undebug`: removes the "debug" flag from a function.
 * `browser`: pauses execution of a function and puts the function in debug mode.
 * `trace`: allows you to insert code into a function at a specific line number.
-* `recover`: allows you to modify the error behavior so that you can browse the function call stack after an error occurs.
+* `untrace`: removes the code inserted by `trace`.
+* `recover`: allows you to modify the error behaviour so that you can browse the function call stack after an error occurs.
 
 ## Traceback
 
