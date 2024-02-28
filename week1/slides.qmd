@@ -337,26 +337,6 @@ knitr::include_graphics("../diagrams/name-value/character.png")
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("../diagrams/name-value/character-2.png")
 ```
-
-## Exercises
-
-4.  Sketch out the relationship between the following objects:
-
-    ```{r}
-    a <- 1:10
-    b <- list(a, a)
-    c <- list(b, a, 1:10)
-    ```
-
-5.  What happens when you run this code?
-
-    ```{r}
-    x <- list(1:10)
-    x[[2]] <- x
-    ```
-
-    Draw a picture.
-
 ## Object size
 
 `lobstr::obj_size()` gives the size of an object in memory.
@@ -387,28 +367,6 @@ obj_size(1:1e6)
 obj_size(c(1:1e6, 10))
 obj_size(2 * (1:1e6))
 ```
-
-## Exercises
-
-6.  Predict the output of the following code:
-
-    ```{r}
-    #| eval: false
-    a <- runif(1e6)
-    obj_size(a)
-
-    b <- list(a, a)
-    obj_size(b)
-    obj_size(a, b)
-
-    b[[1]][[1]] <- 10
-    obj_size(b)
-    obj_size(a, b)
-
-    b[[2]][[1]] <- 10
-    obj_size(b)
-    obj_size(a, b)
-    ```
 
 ## For loops
 
@@ -462,6 +420,42 @@ for (i in 1:3) {
 \vspace*{10cm}
 
 
+## Don't allocate memory in a for loop
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory within the loop
+system.time(
+{
+  x <- NULL
+  for(i in seq(1e5)) {
+    x <- c(x, i)
+  }
+}
+)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+# Allocating memory before the loop
+system.time(
+{
+  x <- numeric(1e5)
+  for(i in seq(1e5)) {
+    x[i] <- i
+  }
+}
+)
+```
+
+:::
+::::
 
 ## Unbinding and the garbage collector {#gc}
 
@@ -625,7 +619,7 @@ as.integer(c("1", "1.5", "a"))
 
 ## Exercises
 
-7.  Predict the output of the following:
+4.  Predict the output of the following:
 
     ```{r, eval=FALSE}
     c(1, FALSE)
@@ -633,9 +627,9 @@ as.integer(c("1", "1.5", "a"))
     c(TRUE, 1L)
     ```
 
-8. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+5. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
 
-9. Why is the default missing value, `NA`, a logical vector? What's special
+6. Why is the default missing value, `NA`, a logical vector? What's special
    about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
 
 ## Getting and setting attributes
@@ -726,38 +720,17 @@ dim(z) <- c(3, 2)
 z
 ```
 
-## Dimensions
-
-Many of the functions for working with vectors have generalisations for matrices and arrays:
-
-| Vector            | Matrix                     | Array            |
-|-------------------|----------------------------|------------------|
-| `names()`         | `rownames()`, `colnames()` | `dimnames()`     |
-| `length()`        | `nrow()`, `ncol()`         | `dim()`          |
-| `c()`             | `rbind()`, `cbind()`       | `abind::abind()` |
-| ---               | `t()`                      | `aperm()`        |
-| `is.null(dim(x))` | `is.matrix()`              | `is.array()`     |
-
-## Dimensions
-
-```{r}
-str(1:3)                   # 1d vector
-str(matrix(1:3, ncol = 1)) # column vector
-str(matrix(1:3, nrow = 1)) # row vector
-str(array(1:3, 3))         # "array" vector
-```
-
 ## Exercises
 
-10. What does `dim()` return when applied to a 1-dimensional vector?
-11. When might you use `NROW()` or `NCOL()`?
-12. How would you describe the following three objects? What makes them different from `1:5`?
+7. What does `dim()` return when applied to a 1-dimensional vector?
+8. When might you use `NROW()` or `NCOL()`?
+9. How would you describe the following three objects? What makes them different from `1:5`?
 
-    ```{r}
-    x1 <- array(1:5, c(1, 1, 5))
-    x2 <- array(1:5, c(1, 5, 1))
-    x3 <- array(1:5, c(5, 1, 1))
-    ```
+   ```{r}
+   x1 <- array(1:5, c(1, 1, 5))
+   x2 <- array(1:5, c(1, 5, 1))
+   x3 <- array(1:5, c(5, 1, 1))
+   ```
 
 ## S3 atomic vectors
 
@@ -864,18 +837,18 @@ structure(now_ct, tzone = "Australia/Lord_Howe")
 
 ## Exercises
 
-13. What sort of object does `table()` return? What is its type? What
+10. What sort of object does `table()` return? What is its type? What
     attributes does it have? How does the dimensionality change as you
     tabulate more variables?
 
-14. What happens to a factor when you modify its levels?
+11. What happens to a factor when you modify its levels?
 
     ```{r, results = FALSE}
     f1 <- factor(letters)
     levels(f1) <- rev(levels(f1))
     ```
 
-15. What does this code do? How do `f2` and `f3` differ from `f1`?
+12. What does this code do? How do `f2` and `f3` differ from `f1`?
 
     ```{r, results = FALSE}
     f2 <- rev(factor(letters))
@@ -1093,11 +1066,11 @@ str(dfm)
 
 ## Exercises
 
-16.  Can you have a data frame with zero rows? What about zero columns?
-17.  What happens if you attempt to set rownames that are not unique?
-18.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
+13.  Can you have a data frame with zero rows? What about zero columns?
+14.  What happens if you attempt to set rownames that are not unique?
+15.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
     Perform some experiments, making sure to try different column types.
-19.  What does `as.matrix()` do when applied to a data frame with
+16.  What does `as.matrix()` do when applied to a data frame with
     columns of different types? How does it differ from `data.matrix()`?
 
 ## `NULL`
@@ -1113,50 +1086,3 @@ x <- NULL
 x == NULL
 is.null(x)
 ```
-
-# Subsetting
-
-## Exercises
-
-20. What is the result of subsetting a vector with positive integers,
-    negative integers, a logical vector, or a character vector?
-21. What's the difference between `[`, `[[`, and `$` when applied to a list?
-22. When should you use `drop = FALSE`?
-23. If `x` is a matrix, what does `x[] <- 0` do? How is it different from `x <- 0`?
-24. How can you use a named vector to relabel categorical variables?
-
-## Exercises
-\fontsize{13}{14}\sf
-
-25. Fix each of the following common data frame subsetting errors:
-
-    ```{r, eval = FALSE}
-    mtcars[mtcars$cyl = 4, ]
-    mtcars[-1:4, ]
-    mtcars[mtcars$cyl <= 5]
-    mtcars[mtcars$cyl == 4 | 6, ]
-    ```
-
-26. Why does `mtcars[1:20]` return an error? How does it differ from the
-    similar `mtcars[1:20, ]`?
-
-27. Implement your own function that extracts the diagonal entries from a
-    matrix (it should behave like `diag(x)` where `x` is a matrix).
-
-## Exercises
-
-28. Extract the residual degrees of freedom from `mod`
-
-    ```{r}
-    #| eval: false
-    mod <- lm(mpg ~ wt, data = mtcars)
-    ```
-
-29. Extract the R squared from the model summary (`summary(mod)`)
-
-## Exercises
-
-30. How would you randomly permute the columns of a data frame?
-31. Can you simultaneously permute the rows and columns in one step?
-32. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
-33. How could you put the columns in a data frame in alphabetical order?

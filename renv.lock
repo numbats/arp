@@ -1795,7 +1795,7 @@
       "Package": "rstudioapi",
       "Version": "0.15.0",
       "Source": "Repository",
-      "Repository": "https://packagemanager.rstudio.com/all/__linux__/focal/latest",
+      "Repository": "CRAN",
       "Hash": "5564500e25cffad9e22244ced1379887"
     },
     "rversions": {
