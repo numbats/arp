@@ -29,25 +29,48 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Control flow
+# Subsetting
 
-## Quiz
+## Exercises
 
-1.  What is the difference between `if` and `ifelse()`?
+1. What is the result of subsetting a vector with positive integers, negative integers, a logical vector, or a character vector?
+2. What's the difference between `[`, `[[`, and `$` when applied to a list?
+3. When should you use `drop = FALSE`?
 
-2.  In the following code, what will the value of `y` be if `x` is `TRUE`? What if `x` is `FALSE`? What if `x` is `NA`?
-
-    ```{r, eval = FALSE}
-    y <- if (x) 3
-    ```
-
-3.  What does `switch("x", x = , y = 2, z = 3)` return?
-
-## Quiz
+## Exercises
 \fontsize{13}{14}\sf
 
-4.  What type of vector does each of the following calls to `ifelse()`
-    return?
+4. Fix each of the following common data frame subsetting errors:
+
+   ```{r, eval = FALSE}
+   mtcars[mtcars$cyl = 4, ]
+   mtcars[-1:4, ]
+   mtcars[mtcars$cyl <= 5]
+   mtcars[mtcars$cyl == 4 | 6, ]
+   ```
+
+5. Extract the residual degrees of freedom from `mod`
+
+   ```{r}
+   #| eval: false
+   mod <- lm(mpg ~ wt, data = mtcars)
+   ```
+
+6. Extract the R squared from the model summary (`summary(mod)`)
+
+## Exercises
+
+7. How would you randomly permute the columns of a data frame?
+8. Can you simultaneously permute the rows and columns in one step?
+9. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
+10. How could you put the columns in a data frame in alphabetical order?
+
+# Control flow
+## Exercises
+
+11. What is the difference between `if` and `ifelse()` and `dplyr::if_else()`?
+
+12. What type of vector does each of the following calls to `ifelse()` return?
 
     ```{r, eval = FALSE}
     ifelse(TRUE, 1, "no")
@@ -55,52 +78,16 @@ source(here::here("course_info.R"))
     ifelse(NA, 1, "no")
     ```
 
-5.  Why does the following code work?\fontsize{10}{10}\sf
+## Exercises
+
+13. Why does the following code work?\fontsize{10}{10}\sf
 
     ```{r}
     x <- 1:10
     if (length(x)) "not empty" else "empty"
-
     x <- numeric()
     if (length(x)) "not empty" else "empty"
     ```
-
-## Don't allocate memory in a for loop
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-```{r}
-# Allocating memory within the loop
-system.time(
-{
-  x <- NULL
-  for(i in seq(1e5)) {
-    x <- c(x, i)
-  }
-}
-)
-```
-
-:::
-
-::: {.column width="50%"}
-
-```{r}
-# Allocating memory before the loop
-system.time(
-{
-  x <- numeric(1e5)
-  for(i in seq(1e5)) {
-    x[i] <- i
-  }
-}
-)
-```
-
-:::
-::::
 
 # Functions
 
@@ -143,24 +130,12 @@ args <- list(1:10, na.rm = TRUE)
 do.call(mean, args)
 ```
 
-## Quiz
-
-6.  Given a name, like `"mean"`, `match.fun()` lets you find a function.
-    Given a function, can you find its name? Why doesn't that make sense in R?
-
-7.  Which base function has the most arguments? Hint: Start by making a list of all functions in the base package.
-
-    ```{r}
-    objs <- mget(ls("package:base", all = TRUE), inherits = TRUE)
-    funs <- Filter(is.function, objs)
-    ```
-
 ## Function composition {#function-composition}
 \fontsize{13}{15}\sf
 
 ```{r}
-square <- function(x) x^2
-deviation <- function(x) x - mean(x)
+square <- function(x) { x^2 }
+deviation <- function(x) { x - mean(x) }
 x <- runif(100)
 ```
 
@@ -257,16 +232,16 @@ g04()
 \fontsize{10}{10}\sf
 
 ```{r}
-g07 <- function(x) x + 1
+g07 <- function(x) { x + 1 }
 g08 <- function() {
-  g07 <- function(x) x + 100
+  g07 <- function(x) { x + 100 }
   g07(10)
 }
 g08()
 ```
 
 ```{r}
-g09 <- function(x) x + 100
+g09 <- function(x) { x + 100 }
 g10 <- function() {
   g09 <- 10
   g09(g09)
@@ -305,7 +280,7 @@ g11()
 \fontsize{10}{10}\sf
 
 ```{r}
-g12 <- function() x + 1
+g12 <- function() { x + 1 }
 x <- 15
 g12()
 
@@ -392,51 +367,9 @@ h04()
 
 \pause\alert{Not recommended!}
 
-## Missing arguments: `sample()`
-\fontsize{9}{9}\sf
+## Exercises
 
-```{r}
-sample
-```
-
-## A better approach
-\fontsize{9}{9}\sf
-
-
-```{r}
-sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
-  if (is.null(size)) {
-    size <- length(x)
-  }
-  x[sample.int(length(x), size, replace = replace, prob = prob)]
-}
-```
-
-\vspace*{1cm}
-\alert{Even simpler}
-
-```{r}
-sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
-  size <- size %||% length(x)
-  x[sample.int(length(x), size, replace = replace, prob = prob)]
-}
-```
-
-## Quiz
-
-8.  What does this function return? Why? Which principle does it illustrate?
-
-    ```{r, results = "hide"}
-    f2 <- function(x = z) {
-      z <- 100
-      x
-    }
-    f2()
-    ```
-
-## Quiz
-
-9.  In `hist()`, the default value of `xlim` is `range(breaks)`, the default
+14. In `hist()`, the default value of `xlim` is `range(breaks)`, the default
     value for `breaks` is `"Sturges"`, and
 
     ```{r}
@@ -445,9 +378,9 @@ sample <- function(x, size = NULL, replace = FALSE, prob = NULL) {
 
     Explain how `hist()` works to get a correct `xlim` value.
 
-## Quiz
+## Exercises
 
-10. Explain why this function works. Why is it confusing?
+15. Explain why this function works. Why is it confusing?
 
     ```{r}
     show_time <- function(x = stop("Error!")) {
@@ -489,10 +422,7 @@ str(i04(a = 1, b = 2))
 ## `...`  (dot-dot-dot)
 \fontsize{13}{14}\sf
 
-*   If your function takes a function as an argument, you want some way to
-    pass additional arguments to that function.
-*   If your function is an S3 generic, you need some way to allow methods to
-    take arbitrary extra arguments.
+*   Allows you to pass arguments to a function called within your function, without having to list them all explicitly.
 
 \pause\alert{Two downsides:}
 
@@ -507,9 +437,9 @@ str(i04(a = 1, b = 2))
 sum(1, 2, NA, na_rm = TRUE)
 ```
 
-## Quiz
+## Exercises
 
-11. Explain the following results: \fontsize{10}{10}\sf
+16. Explain the following results: \fontsize{10}{10}\sf
 
     ```{r}
     sum(1, 2, 3)
@@ -568,14 +498,14 @@ j02(15)
 Most functions return visibly: calling the function in an interactive context prints the result.
 
 ```{r}
-j03 <- function() 1
+j03 <- function() { 1 }
 j03()
 ```
 
 However, you can prevent automatic printing by applying `invisible()` to the last value:
 
 ```{r}
-j04 <- function() invisible(1)
+j04 <- function() { invisible(1) }
 j04()
 ```
 
@@ -719,6 +649,16 @@ You can specify arguments in three ways:
 * By name, like `help(topic = mean)`.
 * Using partial matching, like `help(top = mean)`.
 
+## Exercises
+
+17. Clarify the following list of odd function calls:
+
+    ```{r, eval = FALSE}
+    x <- sample(replace = TRUE, 20, x = c(1:10, NA))
+    y <- runif(min = 0, max = 1, 20)
+    cor(m = "k", y = y, u = "p", x = x)
+    ```
+
 ## Infix functions
 
 Functions with 2 arguments, and the function name comes between the arguments:
@@ -770,26 +710,6 @@ When you write `modify(x, 1) <- 10`, behind the scenes R turns it into:
 ```{r, eval = FALSE}
 x <- `modify<-`(x, 1, 10)
 ```
-
-## Quiz
-
-12. Clarify the following list of odd function calls:
-
-    ```{r, eval = FALSE}
-    x <- sample(replace = TRUE, 20, x = c(1:10, NA))
-    y <- runif(min = 0, max = 1, 20)
-    cor(m = "k", y = y, u = "p", x = x)
-    ```
-
-13. Write your own version of `+` that pastes its inputs together if they are character vectors but behaves as usual otherwise. In other words, make this code work:
-
-    ```{r, eval = FALSE}
-    1 + 2
-    #> [1] 3
-
-    "a" + "b"
-    #> [1] "ab"
-    ```
 
 # Environments
 
@@ -1025,27 +945,9 @@ f3 <- function(x) {
 f3("x")
 ```
 
-## Quiz
+## Exercises
 
-14. Does the following code throw an error when executed? Why or why not?
-
-    ```{r, eval = FALSE}
-    f2 <- function(a, b) {
-      a * 10
-    }
-    f2(10, stop("This is an error!"))
-    ```
-
-## Quiz
-
-15. What's the difference between these two commands?
-
-    ```{r, eval = FALSE}
-    catch_cnd(stop("An error"))
-    catch_cnd(abort("An error"))
-    ```
-
-16. Explain the results of running this code:
+18. Explain the results of running this code:
 
     ```{r}
     withCallingHandlers(
@@ -1054,9 +956,9 @@ f3("x")
     )
     ```
 
-## Quiz
+## Exercises
 
-17. Predict the results of evaluating the following code
+19. Predict the results of evaluating the following code
 
     ```{r, eval = FALSE}
     show_condition <- function(code) {
