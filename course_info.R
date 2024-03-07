@@ -40,7 +40,7 @@ schedule <- tibble(
   ),
   Reference_URL = c(
     "https://adv-r.hadley.nz/foundations-intro.html",
-    "https://r-pkgs.org",
+    "https://adv-r.hadley.nz/foundations-intro.html",
     "https://r-pkgs.org",
     "https://adv-r.hadley.nz/debugging.html",
     "https://adv-r.hadley.nz/fp.html",
