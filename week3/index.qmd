@@ -19,6 +19,7 @@ schedule |>
 
 ## What you will learn this week
 
+* Conditions
 * Package metadata
 * Package documentation
 * Package checks and tests

@@ -29,6 +29,133 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
+# Conditions
+
+## Conditions
+
+```r
+message("This is what a message looks like")
+#> This is what a message looks like
+
+warning("This is what a warning looks like")
+#> Warning: This is what a warning looks like
+
+stop("This is what an error looks like")
+#> Error in eval(expr, envir, enclos): This is what an error looks like
+```
+
+\pause
+
+* Ignore messages with `suppressMessages()`.
+* Ignore warnings with `suppressWarnings()`.
+* Ignore errors with `try()`.
+
+## try()
+
+* Allows execution to continue even if an error occurs.
+* Returns a special object that captures the error.
+
+\fontsize{10}{10}\sf
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f1 <- function(x) {
+  log(x)
+  10
+}
+f1("x")
+```
+
+:::
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+f2("a")
+```
+
+:::
+::::
+
+## Handling conditions
+\fontsize{13}{15}\sf
+
+Allow you to specify what should happen when a condition occurs.
+
+```{r, eval = FALSE}
+tryCatch(
+  error = function(cnd) {
+    # code to run when error is thrown
+  },
+  code_to_run_while_handlers_are_active
+)
+withCallingHandlers(
+  warning = function(cnd) {
+    # code to run when warning is signalled
+  },
+  message = function(cnd) {
+    # code to run when message is signalled
+  },
+  code_to_run_while_handlers_are_active
+)
+```
+
+## tryCatch()
+\fontsize{10}{10}\sf
+
+```{r}
+f3 <- function(x) {
+  tryCatch(
+    error = function(cnd) NA,
+    log(x)
+  )
+}
+
+f3("x")
+```
+
+
+## withCallingHandlers()
+\fontsize{10}{10}\sf
+
+```{r}
+f4 <- function(x) {
+  withCallingHandlers(
+    warning = function(cnd) cat("How did this happen?\n"),
+    log(x)
+  )
+}
+
+f4(-1)
+```
+
+
+## Exercise
+
+Explain the results of running the following code
+
+```{r, eval = FALSE}
+show_condition <- function(code) {
+  tryCatch(
+    error = function(cnd) "error",
+    warning = function(cnd) "warning",
+    message = function(cnd) "message",
+    {
+      code
+      5
+    }
+  )
+}
+show_condition(stop("!"))
+show_condition(10)
+show_condition(warning("?!"))
+```
+
 # Getting started
 
 ## System setup
@@ -81,7 +208,7 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
 * The `DESCRIPTION` file is the principal way to declare dependencies; we don’t do this via `library(somepackage)`.
 * Be explicit about which functions are user-facing and which are internal helpers. By default, functions are not exported.
 
-## Getting started
+## Exercise: Start on your package
 
 ```{r}
 #| eval: false
@@ -134,7 +261,7 @@ Config/testthat/edition: 3
 * **Depends**: packages that are attached with your package. (Not needed for most packages.)
 * **Imports**: packages that are used in your package. (Refer to functions using `pkg::fun()`.)
 * **Suggests**: packages that are used in your package, but not required. (E.g., in tests or examples.)
-* **LazyData**: `true` prevents users using `data()`.
+* **LazyData**: `true` prevents users having to use `data()`.
 
 ## DESCRIPTION file
 
@@ -215,10 +342,23 @@ use_package_doc()
 "object"
 ```
 
+## README.Rmd
+
+1. Describe the high-level purpose of the package.
+2. A simple example illustrating package.
+3. Installation instructions
+4. An overview of the main components of the package.
+
+* Like a short vignette
+* Displayed on the Github repository and the front page of the pkgdown site.
+* Create with `usethis::use_readme_rmd()`
+* Build with `devtools::build_readme()`
+
 ## Vignettes
 
 * A long-form guide to your package, or an extended example.
-* `usethis::use_vignette("my-vignette")`
+
+  * `usethis::use_vignette("my-vignette")`
   * Creates a `vignettes/` directory.
   * Adds the necessary dependencies to `DESCRIPTION`
   * Drafts a vignette, `vignettes/my-vignette.Rmd`.
@@ -258,17 +398,7 @@ library(yourpackage)
 * Any package used in a vignette must be included in Suggests if not already in Imports.
 
 
-## README.Rmd
 
-1. Describe the high-level purpose of the package.
-2. A simple example illustrating package.
-3. Installation instructions
-4. An overview of the main components of the package.
-
-* Like a short vignette
-* Displayed on the Github repository and the front page of the pkgdown site.
-* Create with `usethis::use_readme_rmd()`
-* Build with `devtools::build_readme()`
 
 ## NEWS
 
@@ -299,7 +429,7 @@ library(yourpackage)
 
 ## testthat v3
 
-* `usethis::use_testthat(3)`
+* `usethis::use_testthat()`
   * Create a `tests/testthat/` directory.
   * Add `testthat` to the Suggests field in DESCRIPTION and specify `testthat 3e` in the `Config/testthat/edition` field.
   * Create a file `tests/testthat.R` that runs all your tests when `check()` runs.
@@ -334,7 +464,7 @@ library(yourpackage)
   * Updates `.Rbuildignore`
   * Adds `docs` to `.gitignore`
 * `pkgdown::build_site()` to build the site.
-* `usethis::use_pkgdown_github_pages()` to publish the site via Gituhb Actiosn and GitHub Pages.
+* `usethis::use_pkgdown_github_pages()` to publish the site via GitHub Actions and GitHub Pages.
 * Make a hex sticker with the `hexSticker` package.
 * Add it using `usethis::use_logo()`.
 
