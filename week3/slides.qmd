@@ -176,7 +176,12 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
 
 ### Verify
 \vspace*{-0.2cm}
-`devtools::dev_sitrep()`
+
+```{r}
+#| eval: false
+library(devtools)
+dev_sitrep()
+```
 
 ## Package states
 
@@ -210,10 +215,21 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
 
 ## Exercise: Start on your package
 
-```{r}
-#| eval: false
-usethis::create_package()
-```
+1.  Because we have already set up github repos for everyone, we need to first clone the repo to your local machine. Then we can start working on the package.
+
+    ```{r}
+    #| eval: false
+    create_from_github("numbats/assignment-1-package-creation-robjhyndman")
+    ```
+
+2.  Rename folder and Rproj file to your package name
+
+3.  Create package skeleton
+
+    ```{r}
+    #| eval: false
+    create_package()
+    ```
 
 ## Workflow
 

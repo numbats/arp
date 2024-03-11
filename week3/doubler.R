@@ -2,9 +2,18 @@ devtools::dev_sitrep()
 
 library(devtools)
 # Create package with one function that doubles numbers
-create_package("/tmp/doubler")
-setwd("/tmp/doubler")
-use_git()
+
+# Since github already set up, we will do that first
+
+create_from_github(
+  repo_spec = "numbats/assignment-1-package-creation-robjhyndman",
+  destdir = "~/Desktop/",
+  protocol = "ssh"
+)
+# Rename folder and Rproj to your package name
+create_package("~/Desktop/doubler")
+use_github_links()
+
 use_gpl3_license()
 
 
