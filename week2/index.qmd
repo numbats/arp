@@ -19,10 +19,10 @@ schedule |>
 
 ## What you will learn this week
 
+* Subsetting
 * Control flow
 * Functions
 * Environments
-* Conditions
 
 ```{r}
 #| output: asis
