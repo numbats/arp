@@ -27,5 +27,13 @@ schedule |>
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+## Lab code
+
+Lab code can be downloaded here: [`week2_lab.R`](week2_lab.R)
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```
