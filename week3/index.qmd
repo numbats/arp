@@ -26,6 +26,9 @@ schedule |>
 * Package website
 * Continuous integration via GitHub Actions
 
+
+[**Code used in seminar**](https://raw.githubusercontent.com/numbats/arp/main/week3/doubler.R)
+
 ```{r}
 #| output: asis
 show_slides(week)
