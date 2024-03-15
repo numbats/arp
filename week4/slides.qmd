@@ -60,6 +60,7 @@ The **reprex** package helps create *minimal reproducible examples*.
 
 
 ## Debugging tools in R
+\vspace*{-0.2cm}
 \fontsize{14}{15}\sf
 
 * `traceback`: prints out the function call stack after an error occurs; does nothing if there's no error.
@@ -98,21 +99,21 @@ traceback()
 ```
 
 ## Interactive debugging
+\fontsize{13}{14}\sf
 
 * Using `browser()`
 
-  ```{r, eval = FALSE}
-  g <- function(b) {
+  ```r
+  i <- function(d) {
     browser()
-    h(b)
+    if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
+    d + 10
   }
-  f(10)
   ```
 
 * Setting breakpoints
   * Similar to `browser()` but no change to source code.
-  * Can be set in RStudio by clicking to the left of the line number, or pressing `Shift + F9`.
-
+  * Set in RStudio by clicking to left of line number, or pressing `Shift+F9`.
 * `options(error = browser)`
 
 ## Interactive debugging
@@ -120,6 +121,25 @@ traceback()
 * `debug()` : inserts a `browser()` statement at start of function.
 * `undebug()` : removes `browser()` statement.
 * `debugonce()` : same as `debug()`, but removes `browser()` after first run.
+
+## Exercises
+
+1.  What's wrong with this code?\fontsize{10}{10}\sf
+
+    ```{r, error = TRUE}
+    # Multivariate scaling function
+    mvscale <- function(object) {
+      # Remove centers
+      mat <- sweep(object, 2L, colMeans(object))
+      # Scale and rotate
+      S <- var(mat)
+      U <- chol(solve(S))
+      z <- mat %*% t(U)
+      # Return orthogonalized data
+      return(z)
+    }
+    mvscale(mtcars)
+    ```
 
 ## Example
 \vspace*{-0.15cm}
@@ -151,27 +171,6 @@ traceback()
 * the condition has length > 1 and only the first element will be used
 * longer object length is not a multiple of shorter object length
 * package is not available for R version `xx`
-
-## Exercises
-
-1. What's wrong with this code?
-
-\fontsize{10}{10}\sf
-
-```{r, error = TRUE}
-# Multivariate scaling function
-mvscale <- function(object) {
-  # Remove centers
-  mat <- sweep(object, 2L, colMeans(object))
-  # Scale and rotate
-  S <- var(mat)
-  U <- chol(solve(S))
-  z <- mat %*% t(U)
-  # Return orthogonalized data
-  return(z)
-}
-mvscale(mtcars)
-```
 
 ## Non-interactive debugging
 
@@ -309,11 +308,6 @@ bench::mark(
 
     Repeat using `bench::mark()`. Why are they different?
 
-## Exercises
-
-3. Write a function to find the second largest element of a numeric vector. Test several alternatives, and choose the fastest one.
-
-
 # Improving performance
 
 ## Vectorization
@@ -345,11 +339,7 @@ bench::mark(
 
 ## Exercises
 
-4. How can you use `crossprod()` to compute a weighted sum? How much faster is it than the naive `sum(x * w)`? Why is it faster?
-
-## Exercises
-
-5. Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
+3. Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
 
 ### Monte Carlo Integration
    a. Initialise: `hits = 0`
@@ -397,6 +387,13 @@ compute <- function(...) {
 }
 compute()
 compute()
+```
+
+```{r}
+#| include: false
+#| cache: false
+# Need to explicitly remove results.rds for some reason when doing this in quarto
+file.remove(here::here("cache/results.rds"))
 ```
 
 ```{r}
@@ -463,7 +460,7 @@ memo_sq(2)
 
 ## Exercises
 
-6. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
+4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
 
 # R environments
 
@@ -494,4 +491,4 @@ memo_sq(2)
 
 ## Exercises
 
-7. Add renv to your Assignment 1 project.
+5. Add renv to your Assignment 1 project. Make sure the packages included are the latest CRAN versions of all packages.
