@@ -21,7 +21,7 @@ schedule |>
 
 * Debugging
 * Measuring performance
-* Efficient R pgoramming
+* Efficient R programming
 * Caching
 * R environments
 
