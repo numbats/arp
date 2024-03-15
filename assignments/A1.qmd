@@ -29,7 +29,7 @@ Your package should have the following features:
 2. Each user-facing function in the package should have a roxygen header including an example.
 3. Each user-facing function in the package should have at least one test written using `testthat`.
 4. The package should use Github Actions to run the tests on every commit.
-5. The package should have a pkgdown website that is automatically deployed via Github Actions.
+5. The package should have a pkgdown website that can be deployed locally.
 
 For this first assignment, the package does not need to be complete. It should contain at least one user-facing function. You will have the opportunity to improve and extend the package in subsequent assignments.
 
@@ -44,7 +44,7 @@ For this first assignment, the package does not need to be complete. It should c
 * 2 marks for appropriate use of vectors, functions, and environments.
 * 3 marks for appropriate tests using  `testthat`.
 * 2 marks for using GitHub Actions to run a package check including tests on every commit.
-* 2 marks for using GitHub Actions to generate a pkgdown website that is automatically deployed using GitHub pages.
+* 2 marks for generating a pkgdown website that can be deployed locally.
 
 ```{r}
 #| output: asis
