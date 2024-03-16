@@ -462,7 +462,7 @@ memo_sq(2)
 
 4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
 
-# R environments
+# Reproducible environments
 
 ## renv package
 

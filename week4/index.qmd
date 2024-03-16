@@ -23,10 +23,11 @@ schedule |>
 * Measuring performance
 * Efficient R programming
 * Caching
-* R environments
+* Reproducible environments
 
 ## Online resources
 
+* [Creating a reprex](https://www.tidyverse.org/help/#reprex)
 * [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
 * [Jenny Bryan - Object of type 'closure' is not subsettable](https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r)
 * [Posit Community](https://community.rstudio.com)
