@@ -461,34 +461,3 @@ memo_sq(2)
 ## Exercises
 
 4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
-
-# Reproducible environments
-
-## renv package
-
-![](../diagrams/renv.png)
-
-## renv package
-
-* `renv.init()` : initialize a new project with a new environment. Adds:
-  *  `renv/library` contains all packages used in project
-  *  `renv.lock` contains metadata about packages used in project
-  *  `.Rprofile` run every time R starts.
-
-* `renv.snapshot()` : save the state of the project to `renv.lock`.
-
-* `renv::restore()` : restore the project to the state saved in `renv.lock`.
-
-## renv package
-\fontsize{14}{16}\sf
-
-* renv uses a package cache so you are not repeatedly installing the same packages in multiple projects.
-* `renv::install()` can install from CRAN, Bioconductor, GitHub, Gitlab, Bitbucket, etc.
-* `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
-* Only R packages are supported, not system dependencies, and not R itself.
-* renv is not a replacement for Docker or Singularity.
-* `renv::deactivate(clean = TRUE)` will remove the renv environment.
-
-## Exercises
-
-5. Add renv to your Assignment 1 project. Make sure the packages included are the latest CRAN versions of all packages.

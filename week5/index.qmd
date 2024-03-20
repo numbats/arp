@@ -19,7 +19,8 @@ schedule |>
 
 ## What you will learn this week
 
-R Functional (functions, function arguments, function factories)
+* Reproducible environments
+* Functional programming (functions, function arguments, function factories)
 
 
 ```{r}

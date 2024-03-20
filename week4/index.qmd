@@ -23,7 +23,6 @@ schedule |>
 * Measuring performance
 * Efficient R programming
 * Caching
-* Reproducible environments
 
 ## Online resources
 
