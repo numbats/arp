@@ -10,7 +10,7 @@ regression <- function(y, x, ..., x2, x3, x4, x5, x6, x7, x8, x9, x10) {
   if(!is.missing(x1)) {
       for(j in 1:ncol(x1)); for(k in 1:ncol(x1))
       if(j != k) x1 <- cbind(x1, x1[,j] * x1[,k])
-    X <- cbind(X, as.numeric(x1))
+    X <- cbind(X, as.numeric(x1))}
   }
   if(!is.missing(x2)) {
       for(j in 1:ncol(x2)); for(k in 1:ncol(x2))
@@ -24,7 +24,7 @@ regression <- function(y, x, ..., x2, x3, x4, x5, x6, x7, x8, x9, x10) {
   }
   if(!is.missing(x4)) {
       for(j in 1:ncol(x4)); for(k in 1:ncol(x4))
-      if(j != k) x4 <- cbind(x4, x4[,j] * x4[,k])
+      if(j != k) x3 <- cbind(x4, x4[,j] * x4[,k])
     X <- cbind(X, as.numeric(x4))
   }
   if(!is.missing(x5)) {
