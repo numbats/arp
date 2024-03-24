@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 4: Debugging and performance"
+author: "Week 5: Reproducible environments and functional programming"
 format:
   beamer:
     pdf-engine: pdflatex
@@ -29,7 +29,25 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
+# Assignment 1
+
+## Assignment 1
+
+* Keep working on your package!
+* Final version due on 31 May 2024
+
 # Reproducible environments
+
+## Reproducible environments
+
+* To ensure that your code runs the same way on different machines and at different times, you need the computing environment to be the same.
+  1. Operating system
+  2. System components
+  3. R version
+  4. R packages
+
+* Solutions for 1--4: Docker, Singularity, `containerit`, `rang`
+* Solutions for 4: `packrat`, `checkpoint`, `renv`
 
 ## renv package
 
@@ -59,3 +77,5 @@ source(here::here("course_info.R"))
 ## Exercises
 
 5. Add renv to your Assignment 1 project. Make sure the packages included are the latest CRAN versions of all packages.
+
+# Functional programming
