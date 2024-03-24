@@ -24,10 +24,8 @@ Your analysis should include the following elements:
 * At least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity --- you should use a model that is appropriate for the data.
 * A discussion of the results of the model and how they relate to the plots.
 
-You must use the [targets](https://books.ropensci.org/targets/) package to manage the workflow, with the analysis described in a [quarto](https://quarto.org) report.
+You must use the [targets](https://books.ropensci.org/targets/) package to manage the workflow, [renv](https://rstudio.github.io/renv/) to manage the package environment, with the analysis described in a [quarto](https://quarto.org) report.
 
-
-> Uses broken function from A2
 
 ```{r}
 #| output: asis
