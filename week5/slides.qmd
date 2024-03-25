@@ -78,4 +78,125 @@ source(here::here("course_info.R"))
 
 5. Add renv to your Assignment 1 project. Make sure the packages included are the latest CRAN versions of all packages.
 
-# Functional programming
+# Progamming paradigms
+
+## Progamming paradigms
+
+R code is typically structured using these paradigms:
+
+* Functional programming
+* Object-oriented programming
+* Literate programming
+* Reactive programming
+
+Often several paradigms used together to solve a problem.
+
+## Programming paradigms
+
+::: {.callout-note icon=false title="Functional programming (W5; today!)"}
+* Functions are created and used like any other object.
+* Output should only depend on the function's inputs.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="Object-oriented programming (W6)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
+
+## Programming paradigms
+
+::: {.callout-note icon=false title="Literate programming (W7)"}
+* Natural language is interspersed with code.
+* Aimed at prioritising documentation/comments.
+* Now used to create reproducible reports/documents.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="Reactive programming (W7)"}
+* Objects are expressed using code based on inputs.
+* When inputs change, the object's value updates.
+:::
+
+## Functional programming
+
+R is commonly considered a 'functional' programming language - and so far we have used functional programming.
+
+```{r}
+square <- function(x) {
+  return(x^2)
+}
+square(8)
+```
+
+The `square` function is an object like any other in R.
+
+## Functional programming
+
+R functions can be printed,
+
+```{r}
+print(square)
+```
+
+. . .
+
+inspected,
+
+```{r}
+formals(square)
+```
+
+## Functional programming
+
+put in a list,
+
+```{r}
+my_functions <- list(square, sum, min, max)
+my_functions
+```
+
+## Functional programming
+
+used within lists,
+
+```{r}
+my_functions[[1]](8)
+```
+
+. . .
+
+but they can't be subsetted!
+
+\fontsize{10}{10}\sf
+
+```{r, error = TRUE}
+square$x
+```
+
+## Functional programming
+
+Since functions are like any other object, they can also be:
+
+* inputs to functions
+
+```{r}
+print(square)
+```
+
+## Functional programming
+
+Since functions are like any other object, they can also be:
+
+* outputs of functions
+
+```{r}
+purrr::possibly(square, NA_real_)
+```
+
+
+<!-- 1. purrr/furrr -->
+<!-- 2. functional arguments -->
+<!-- 3. functional outputs -->
