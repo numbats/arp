@@ -84,7 +84,7 @@ lastmon <- function(x) {
 assignments <- readr::read_csv(here::here("assignments.csv")) |>
   mutate(
     Date = lastmon(Due),
-    Github = paste0("https://classroom.github.com/a/", Github),
+    Moodle = paste0("https://learning.monash.edu/mod/assign/view.php?id=", Moodle),
     File = paste0("assignments/", File)
   )
 
@@ -114,7 +114,7 @@ submit <- function(schedule, assignment) {
   ass <- schedule  |>
     filter(Assignment == assignment)
   due <- format(ass$Due, "%e %B %Y") |> stringr::str_trim()
-  url <- ass$Github
+  url <- ass$Moodle
   button <- paste0("<br><br><hr><b>Due: ", due, "</b><br>",
                    "<a href=",url," class = 'badge badge-large badge-blue'>",
                    "<font size='+2'>&nbsp;&nbsp;<b>Submit</b>&nbsp;&nbsp;</font><br></a>")
