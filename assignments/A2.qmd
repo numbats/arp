@@ -12,6 +12,8 @@ You will be given a github repository containing the package, and the problems t
 4. Add a test to the package that confirms the problem is fixed.
 5. Close the issue.
 
+The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem.
+
 In some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.
 
 ```{r}
