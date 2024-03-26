@@ -2,7 +2,17 @@
 title: Assignment 2 (25%)
 ---
 
-To be completed.
+The **randomify** package is designed to help you draw samples of various kinds from data sets. In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.
+
+You will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:
+
+1. Create a reprex that demonstrates the problem as a comment in the issue.
+2. Fix the problem in the package code.
+3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
+4. Add a test to the package that confirms the problem is fixed.
+5. Close the issue.
+
+In some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.
 
 ```{r}
 #| output: asis
