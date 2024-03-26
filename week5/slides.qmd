@@ -126,6 +126,8 @@ Often several paradigms used together to solve a problem.
 * When inputs change, the object's value updates.
 :::
 
+# Functional programming
+
 ## Functional programming
 
 R is commonly considered a 'functional' programming language - and so far we have used functional programming.
@@ -139,7 +141,7 @@ square(8)
 
 The `square` function is an object like any other in R.
 
-## Functional programming
+## Functions are objects
 
 R functions can be printed,
 
@@ -155,16 +157,17 @@ inspected,
 formals(square)
 ```
 
-## Functional programming
+## Functions are objects
 
 put in a list,
 
+\fontsize{10}{10}\sf
 ```{r}
 my_functions <- list(square, sum, min, max)
 my_functions
 ```
 
-## Functional programming
+## Functions are objects
 
 used within lists,
 
@@ -182,25 +185,161 @@ but they can't be subsetted!
 square$x
 ```
 
+## Handling input types
+
+Functional programming handles different input types using control flow. The same code is ran regardless of object type.
+
+```{r}
+square <- function(x) {
+  if(!is.numeric(x)) {
+    stop("`x` needs to be numeric")
+  }
+  return(x^2)
+}
+```
+
+. . .
+
+::: {.callout-tip title="Next class..."}
+We will see object-oriented programming, which handles different input types using different functions (methods)!
+:::
+
+## What are functions?
+
+A function is comprised of three components:
+
+* The arguments/inputs (`formals()`)
+* The body/code (`body()`)
+* The environment (`environment()`)
+
+. . .
+
+::: {.callout-caution title="Your turn!"}
+Use these functions to take a closer look at `square()`.
+
+Try modifying the function's formals/body/env with `<-`.
+:::
+
 ## Functional programming
 
 Since functions are like any other object, they can also be:
 
-* inputs to functions
+* **inputs** to functions
 
-```{r}
-print(square)
-```
+::: {.callout-tip title="Extensible design with function inputs"}
+Using function inputs can improve your package's design!
+
+Rather than limiting users to a few specific methods, allow them to use and write any method with functions.
+:::
 
 ## Functional programming
 
 Since functions are like any other object, they can also be:
 
-* outputs of functions
+* **inputs** to functions
+
+* **outputs** of functions
+
+::: {.callout-tip title="Functions making functions?"}
+These functions are known as *function factories*.
+
+Where have you seen a function that creates a function?
+:::
+
+## Function arguments
+
+Consider a function which calculates accuracy measures:
 
 ```{r}
-purrr::possibly(square, NA_real_)
+accuracy <- function(e, measure, ...) {
+  if (measure == "mae") {
+    mean(abs(e), ...)
+  } else if (measure == "rmse") {
+    sqrt(mean(e^2, ...))
+  } else {
+    stop("Unknown accuracy measure")
+  }
+}
 ```
+
+::: {.callout-tip title="Improving the design"}
+This function is limited to only computing MAE and RMSE.
+:::
+
+## Function arguments
+
+Using function operators allows any measure to be used.
+
+```{r, eval = FALSE}
+MAE <- function(e, ...) mean(abs(e), ...)
+RMSE <- function(e, ...) sqrt(mean(e^2, ...))
+accuracy <- function(e, measure, ...) {
+  ???
+}
+accuracy(rnorm(100), measure = RMSE)
+```
+
+::: {.callout-caution title="Your turn!"}
+Complete the accuracy function to calculate accuracy statistics based on the function passed in to `measure`.
+:::
+
+## Function factories
+
+Let's generalise `square()` to raise numbers to any power.
+
+\fontsize{10}{10}\sf
+
+```{r}
+power <- function(x, exp) {
+  x^exp
+}
+power(8, exp = 2)
+power(8, exp = 3)
+```
+
+::: {.callout-tip title="Starting a factory"}
+What if the function returned a function instead?
+:::
+
+## Function factories
+
+\fontsize{10}{10}\sf
+
+```{r}
+power_factory <- function(exp) {
+  # R is lazy and won't look at exp unless we ask it to
+  force(exp)
+  # Return a function, which finds exp from this environment
+  function(x) {
+    x^exp
+  }
+}
+square <- power_factory(exp = 2)
+square(8)
+```
+
+. . .
+
+```{r}
+cube <- power_factory(exp = 3)
+cube(8)
+```
+
+## Function factories
+
+Consider this function to calculate plot breakpoints of vectors.
+
+```{r}
+breakpoints <- function(x, n.breaks) {
+  seq(min(x), max(x), length.out = n.breaks)
+}
+```
+
+::: {.callout-caution title="Your turn!"}
+Convert this function into a function factory.
+
+Is it better to create functions via `x` or `n.breaks`?
+:::
 
 
 <!-- 1. purrr/furrr -->
