@@ -29,12 +29,18 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Assignment 1
+# Assignments
 
 ## Assignment 1
 
 * Keep working on your package!
 * Final version due on 31 May 2024
+
+## Assignment 2
+
+* About debugging and profiling
+* Available on GitHub Classroom today!
+* Due 19 April 2024
 
 # Reproducible environments
 
