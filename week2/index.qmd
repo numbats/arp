@@ -31,7 +31,7 @@ show_slides(week)
 
 ## Lab code
 
-Lab code can be downloaded here: [`week2_lab.R`](week2_lab.R)
+Lab code can be downloaded here: [`lab.R`](lab.R)
 
 ```{r}
 #| output: asis
