@@ -84,9 +84,9 @@ source(here::here("course_info.R"))
 
 5. Add renv to your Assignment 1 project. Make sure the packages included are the latest CRAN versions of all packages.
 
-# Progamming paradigms
+# Programming paradigms
 
-## Progamming paradigms
+## Programming paradigms
 
 R code is typically structured using these paradigms:
 
@@ -390,8 +390,8 @@ An example of split-apply-combine being used to work with data is when `group_by
 ::: {.column width="50%"}
 ```{r, eval = FALSE}
 library(dplyr)
-mtcars |> 
-  group_by(cyl) |> 
+mtcars |>
+  group_by(cyl) |>
   summarise(mean(mpg))
 ```
 :::
@@ -399,8 +399,8 @@ mtcars |>
 ::: {.column width="50%"}
 ```{r, echo = FALSE}
 library(dplyr)
-mtcars |> 
-  group_by(cyl) |> 
+mtcars |>
+  group_by(cyl) |>
   summarise(mean(mpg))
 ```
 :::
@@ -490,8 +490,8 @@ map_vec(x, square) # vapply(x, square, numeric(1L))
 Recall `group_by()` and `summarise()` from dplyr:
 
 ```{r, eval = FALSE}
-mtcars |> 
-  group_by(cyl) |> 
+mtcars |>
+  group_by(cyl) |>
   summarise(mean(mpg))
 ```
 
@@ -557,7 +557,7 @@ How would you then get the coefficients from all 3 models?
 
 ```{r, eval = FALSE}
 # mtcars_cyl |> lapply(\(.) lm(mpg ~ disp + hp + drat + wt, data = .))
-mtcars_cyl |> 
+mtcars_cyl |>
   map(~ lm(mpg ~ disp + hp + drat + wt, data = .))
 ```
 
@@ -568,8 +568,8 @@ mtcars_cyl |>
 \fontsize{10}{10}\sf
 ```{r, eval = TRUE}
 # lapply(mtcars_cyl, \(.) lm(mpg ~ disp + hp + drat + wt, data = .))
-mtcars_cyl |> 
-  map(~ lm(mpg ~ disp + hp + drat + wt, data = .)) |> 
+mtcars_cyl |>
+  map(~ lm(mpg ~ disp + hp + drat + wt, data = .)) |>
   map(coef)
 ```
 :::
