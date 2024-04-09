@@ -26,3 +26,11 @@ Object-oriented (Thomas Lumley)
 show_slides(week)
 show_assignments(week)
 ```
+
+## Online resources
+
+* [A simple guide to S3 methods](https://www.njtierney.com/post/2016/11/06/simple-s3-post/)
+* [S4: a short guide for the perplexed](https://stuartlee.org/2019/07/09/s4-short-guide/)
+* [Comparing S3 and S4 on an example](https://faculty.washington.edu/kenrice/sisg-adv/sisg17-pack-03.pdf)
+* [S4] https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html
+*
