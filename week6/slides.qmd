@@ -13,9 +13,8 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: true
+    keep-tex: false
 ---
-
 
 ```{r}
 #| label: setup
@@ -31,19 +30,36 @@ source(here::here("course_info.R"))
 \tableofcontents
 
 # Assignments
+## Assignments
 
-## Assignment 1
+### Assignment 1
 
+* Common problems
 * Keep working on your package!
 * Final version due on 31 May 2024
 
-## Assignment 2
+### Assignment 2
 
-* About debugging and profiling
-* Available on GitHub Classroom!
+* Questions?
 * Due 19 April 2024
 
+# Thomas Lumley
+
+## Thomas Lumley
+
+* Professor of Statistics, University of Auckland
+* First degree in pure mathematics from Monash University
+* MSc in Applied Statistics from the University of Oxford
+* PhD in Biostatistics from the University of Washington
+* Fellow of the Royal Society of New Zealand
+* Member of the R core team
+* Maintainer of 11 CRAN packages including *survey*
+* Author of *Biased & Inefficient* blog
+* Advisor to the NZ government on statistical issues
+
 # Object oriented programming
+
+## Object oriented programming
 
 - **Encapsulation**: objects have secret internals that you don't need to understand
 - **Polymorphism**: the same function can do different things to different data as appropriate
@@ -51,8 +67,7 @@ source(here::here("course_info.R"))
 
 Inheritance turns out to be useful mostly for data infrastructure, but encapsulation and polymorphism are generally valuable
 
-
-# Generic functions and methods
+## Generic functions and methods
 
 A simple example: `plot`
 
@@ -65,12 +80,11 @@ plot(trees)
 ---
 
 ```{r}
-m<-lm(log(Volume)~log(Girth)+log(Height), 
+m<-lm(log(Volume)~log(Girth)+log(Height),
        data=trees)
 par(mfrow=c(2,2),mar=c(3,1,1,1))
 plot(m)
 ```
-
 
 ---
 
@@ -86,7 +100,7 @@ plot(nhtemp)
 
 ---
 
-## How?
+### How?
 
 * Giant `switch` statement...
 * ...that gets updated every time you load a package...
@@ -94,8 +108,7 @@ plot(nhtemp)
 
 Generic functions and methods!
 
-
-# Object systems
+## Object systems
 
 R has **a lot** of object systems
 
@@ -107,12 +120,12 @@ R has **a lot** of object systems
 
 ---
 
-## S3
+### S3
 
 Main topic for today
 
 - easy to start writing
-- no safeguards 
+- no safeguards
 - especially good for single-person, small to medium projects
 - can be used for large projects with a lot of attention to documentation and communication
 - limited use of inheritance
@@ -120,7 +133,7 @@ Main topic for today
 
 ---
 
-## S3 `vctrs`
+### S3 `vctrs`
 
 A tidyverse package for making different sorts of vectors
 
@@ -131,19 +144,18 @@ A tidyverse package for making different sorts of vectors
 
 ---
 
-## S4
+### S4
 
 - more work to start writing
 - objects know their structure
 - enforces object structure
 - better for large-scale collaborative programming
 - better at inheritance
-- basis of Bioconductor 
+- basis of Bioconductor
 
 ---
 
-
-## R6
+### R6
 
 - Supports modifiable (mutable) objects
    * database connections, files, etc
@@ -153,22 +165,19 @@ A tidyverse package for making different sorts of vectors
 - not widely used otherwise
 - more similar to other languages
 
----
+# S3
+## S3
 
-
-# S3 
-
-## Back to `plot`
+### Back to `plot`
 
 * `plot()` doesn't *do* anything
 * All the work is done by *methods* for different types of object
 * Methods are just ordinary functions
 * When you call `plot`, R calls the appropriate `plot` method
 
-
 ---
 
-## Generic functions
+### Generic functions
 
 * Generic functions don't *do* anything
 * All the work is done by *methods* for different types of object
@@ -180,7 +189,7 @@ When you call the generic function R calls the appropriate  method
 
 ---
 
-## Try these
+### Try these
 
 ```
 print
@@ -197,17 +206,17 @@ Also, try `methods("plot")` after loading another package
 
 ---
 
-## What do we notice?
+### What do we notice?
 
 - `print` functions are all different
 - names start with `print.`, then the sort of thing they print
 - mostly aren't visible just by name
-- 
-- 
+-
+-
 
 ---
 
-## Generic functions
+### Generic functions
 
 * *methods* that actually do the work 'belong to' *generic functions*
 
@@ -219,7 +228,7 @@ Also, try `methods("plot")` after loading another package
 
 ---
 
-## Classes
+### Classes
 
 - S3 classes are the things that specify which method to use
 - Use `class` to attach a class to an object like a Post-It note
@@ -232,7 +241,7 @@ class(x)<-"numbat"
 
 ---
 
-### Try it
+#### Try it
 
 ```
 print.numbat <- function(x,...){
@@ -241,10 +250,9 @@ print.numbat <- function(x,...){
 }
 ```
 
-
 ---
 
-### Defining classes
+#### Defining classes
 
 - R doesn't care what `class` you attach to an object
 - **You** have to care
@@ -255,13 +263,13 @@ print.numbat <- function(x,...){
 
 ---
 
-### Ways to set up classes
+#### Ways to set up classes
 
 - vectors plus attributes (`ts`, `POSIXct`, matrix)
 - lists plus attributes (`lm`, `data.frame`)
 - environments plus attributes
 
-### Try it
+#### Try it
 
 ```
 unclass(.leap.seconds)
@@ -273,7 +281,7 @@ str(m)
 
 ---
 
-## Defining classes safely
+### Defining classes safely
 
 - Document what all is in a valid object of your class
 - Have a limited set of places where one is created
@@ -285,7 +293,7 @@ This is more important if *someone else* might want to make an object from your 
 
 ---
 
-## Constructors
+### Constructors
 
 - user-friendly: `tibble`, `lm`, `acf`, `svydesign`
 - pure: `new_factor`, `new_difftime` (ARP 13.3.1)
@@ -294,7 +302,7 @@ Makes a new object and ensures that it is valid. Stops users creating the object
 
 ---
 
-## Defining methods
+### Defining methods
 
 - A method should have **the same** arguments as the generic (plus maybe more)
 - The name of the method is `paste(generic,class,sep=".")`
@@ -306,7 +314,7 @@ Makes a new object and ensures that it is valid. Stops users creating the object
 
 ---
 
-## `default` methods
+### `default` methods
 
 Called when there is no specific method for the object (no class, or no matching class)
 
@@ -314,12 +322,11 @@ Called when there is no specific method for the object (no class, or no matching
 - `summary.default`
 - `head.default`
 
-
 ---
 
-## Adding methods to your class
+### Adding methods to your class
 
-No *rules* on which methods, but informal standards 
+No *rules* on which methods, but informal standards
 
 - Start with `print`, `[`
 - `summary` for more information
@@ -327,13 +334,12 @@ No *rules* on which methods, but informal standards
 - `coef`, `vcov`, maybe `logLik` and `AIC` for models
 - `resid` for models with residuals
 
-
 ---
 
-## Base S3 classes
+### Base S3 classes
 
 - The class for method choice isn't just `class(x)` for base types
-- Use `sloop::s3_class` to be sure 
+- Use `sloop::s3_class` to be sure
 
 ```
 > s3_class(1)
@@ -343,12 +349,12 @@ No *rules* on which methods, but informal standards
 > class(1)
 [1] "numeric"
 > class(matrix(1,1,1))
-[1] "matrix" "array" 
+[1] "matrix" "array"
 ```
 
 ---
 
-## Ambiguous cases
+### Ambiguous cases
 
 - `t` is a generic
 - `t.test` is a generic
@@ -361,7 +367,7 @@ Avoid using `.` as a word separator in function names that aren't methods. Use `
 
 ---
 
-## Defining generics
+### Defining generics
 
 A typical generic function includes **only** a call to `UseMethod`
 
@@ -371,13 +377,13 @@ print
 
 ---
 
-## Dispatch on another argument
+### Dispatch on another argument
 
 Specify which argument to use for choosing the method (default is the first)
 
 ```
 > survey:::svymean
-function (x, design, na.rm = FALSE, ...) 
+function (x, design, na.rm = FALSE, ...)
 {
     .svycheck(design)
     UseMethod("svymean", design)
@@ -386,16 +392,16 @@ function (x, design, na.rm = FALSE, ...)
 
 ---
 
-## Inheritance
+### Inheritance
 
 The `class` attribute of an object can have multiple elements
 
 - `UseMethod()` uses the first method that matches, or `default`
-- `NextMethod()` uses the next method that matches 
+- `NextMethod()` uses the next method that matches
 
 ---
 
-## Polite conduct
+### Polite conduct
 
 - if you define a new generic, you can define methods for new and existing classes
 - if you define a new class, you can define methods for new and existing generics
@@ -403,6 +409,8 @@ The `class` attribute of an object can have multiple elements
 - try not to define a generic with the same name as an existing one
 
 # S3 `vctrs`
+
+## S3 `vctrs`
 
 A package for defining new S3 vectors
 
@@ -416,7 +424,7 @@ A package for defining new S3 vectors
 
 ---
 
-# An example: S3 and `vctrs`
+## An example: S3 and `vctrs`
 
 The `rimu` package represents multiple-response questions
 
@@ -439,7 +447,7 @@ e_vctrs<-as.vmr(e_S3,na.rm=TRUE)
 
 ---
 
-### Inheritance
+#### Inheritance
 
 ```
 mr_union<-function(x,y,...) UseMethod("mr_union")
@@ -447,9 +455,9 @@ mr_union<-function(x,y,...) UseMethod("mr_union")
 mr_union.default<-function(x,y,...){
   x<-as.mr(x)
   y<-as.mr(y)
-  if (length(x)!=length(y)) 
+  if (length(x)!=length(y))
     stop("different numbers of observations in x and y")
-  
+
 .....
 }
 ```
@@ -463,11 +471,9 @@ mr_union.vmr<-function(x,y,...) {
 }
 ```
 
-
 ---
 
-
-### Encapsulation
+#### Encapsulation
 
 - base S3 version is matrix of logical, plus levels attribute
     * works in `data.frame`
@@ -476,50 +482,48 @@ mr_union.vmr<-function(x,y,...) {
 
 ---
 
-### Pure constructor
+#### Pure constructor
 
 ```
 new_vmr <- function(x,levels=unique(do.call(c,x))) {
-  vctrs::new_list_of(x, ptype = character(), 
+  vctrs::new_list_of(x, ptype = character(),
   class = "vmr", levs=levels)
 }
 ```
 
 ---
 
-### 'helper' functions
+#### 'helper' functions
 
 ```
 > methods("as.mr")
-[1] as.mr.character*  as.mr.data.frame* as.mr.default*   
-[4] as.mr.factor*     as.mr.list*       as.mr.logical*   
-[7] as.mr.mr*         as.mr.ms*         as.mr.vmr* 
+[1] as.mr.character*  as.mr.data.frame* as.mr.default*
+[4] as.mr.factor*     as.mr.list*       as.mr.logical*
+[7] as.mr.mr*         as.mr.ms*         as.mr.vmr*
 
 > methods("as.vmr")
-[1] as.vmr.default* as.vmr.mr*     
+[1] as.vmr.default* as.vmr.mr*
 ```
 
----
-
 # S4
+## S4
 
 S4 requires classes and methods to be registered in R code (not just in packages)
 
 - `setClass` defines the structure of a class
 - `new` creates a new object from a class
-- `setMethod` defines a method 
+- `setMethod` defines a method
 
 It's possible to ask an object what methods it supports and get a reliable response.
 
 S4 also allows multiple inheritance and multiple dispatch
 
-
 ---
 
-## Bioconductor
+### Bioconductor
 
 - Package system for high-throughput molecular biology
-- Large data 
+- Large data
 - Structured data
 - Annotated data
 - New data types/structures all the time
@@ -530,18 +534,17 @@ It needs consistent infrastructure and large-scale collaboration: S4
 
 ---
 
-## Multiple dispatch
+### Multiple dispatch
 
-Choosing a method based on the class of more than one argument 
+Choosing a method based on the class of more than one argument
 
 - not very often useful
 - important for matrices
 - can be useful for plots
 
-
 ---
 
-## Multiple inheritance
+### Multiple inheritance
 
 `AnnDbObjBimap` is a class for storing look-up tables between different genomic identifiers (eg from different manufacturers)
 
@@ -552,9 +555,9 @@ It is
 
 so it inherits generic functions from both these parents
 
----
-
 # R6
+
+## R6
 
 Remember function factories from last week?
 
@@ -567,14 +570,14 @@ Now do this with
 - multiple functions inheriting this environment
 - allow the shared variables to be modified
 
---- 
+---
 
-### R6 is good for...
+#### R6 is good for...
 
 - large data objects, to reduce copying
 - external objects that R can't just copy (database connections, files,... )
-- shared state such as games 
+- shared state such as games
 
-R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming 
+R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming
 
 [R6.r-lib.org](https://r6.r-lib.org/articles/Introduction.html)
