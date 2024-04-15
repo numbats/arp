@@ -54,7 +54,7 @@ schedule |>
     Date = format(Date + 2, "%d %b"),
     Show = !is.na(Week) & Week <= 12,
     Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
-    Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
+    #Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
     Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
   ) |>
   select(-Show) |>
