@@ -1,8 +1,6 @@
 ---
 title: "Qmd_example"
-format:
-  html
-  memo-pdf
+format: html
 date: "2024-04-15"
 ---
 
