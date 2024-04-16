@@ -317,7 +317,7 @@ The basic way to produce a vctr is with `vctrs::new_vctr()`.
 Just like `structure()`, you provide an object and its new class.
 
 ```{r}
-attendance <- vctrs::new_vctr(c(0.8, 0.7, 0.75, 0.5), class = "percent")
+attendance <- vctrs::new_vctr(c(80, 70, 75, 50), class = "percent")
 attendance
 ```
 
@@ -329,7 +329,7 @@ As with S3, functions provide ways for users to create vectors.
 percent <- function(x) {
   vctrs::new_vctr(x, class = "percent")
 }
-attendance <- percent(c(0.8, 0.7, 0.75, 0.5))
+attendance <- percent(c(80, 70, 75, 50))
 attendance
 ```
 
@@ -365,7 +365,7 @@ While vctrs provides a nice `print` method, we need to specify how our vector sh
 
 ```{r}
 format.percent <- function(x, ...) {
-  paste0(vctrs::vec_data(x)*100, "%")
+  paste0(vctrs::vec_data(x), "%")
 }
 attendance
 ```
@@ -434,8 +434,7 @@ It can be created with `list_of()`, or more easily converted to with `as_list_of
 
 \fontsize{10}{10}\sf
 ```{r}
-percent <- vctrs::as_list_of(list(0.8, 0.7, 0.75, 0.5), .ptype = numeric())
-percent
+vctrs::as_list_of(list(80, 70, 75, 50), .ptype = numeric())
 ```
 
 ## Prototypes
@@ -475,28 +474,283 @@ It depends! If your vector is based on...
 * two or more atomic vectors (like `fraction`), then `rcrd`,
 * complicated objects (like `lm`), then `list_of`.
 
-## That's it! You have created a new R vector!
+## That's it! You have created a new vector for R!
 
-::: {.callout-info title="Time for a break"}
-After the break we will look at writing methods which make these vectors more usable.
+::: {.callout-note title="Time to celebrate with a break!"}
+Ask questions, try using your new vector in various ways.
 :::
 
-## Methods
+## Methods for vctrs
 
-## format()
+While our new vectors looks pretty and fits right in with our tidy tibbles, it isn't very useful yet.
 
-## pillar
+::: {.callout-tip title="Adding features"}
+Since vctrs is built upon S3, the same approach for creating generic functions and methods applies to vctrs.
+:::
 
-## vec_math, vec_arith
+. . .
+
+However there are also some important **vector specific methods** which should be written to improve usability.
+
+## (Proto)typing
+
+We saw earlier how R coerces vectors of different types.
+
+\fontsize{10}{10}\sf
+```{r}
+c("desserts", 10)
+c(pi, 0L)
+c(-1, TRUE, FALSE)
+c(1, Sys.Date())
+```
+
+## (Proto)typing
+
+When combining or comparing vectors of different types, R will (usually) *coerce* to the 'richest' type.
+
+![](../diagrams/vctrs/coerce.png)
+
+## (Proto)typing
+
+vctrs doesn't make any assumptions about how to coerce your vector, and instead raises an error.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+library(vctrs)
+vec_c(attendance, 0.8)
+```
+
+## (Proto)typing
+
+We can specify what the common ('richest') type is by writing `vctrs::vec_ptype2()` methods.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+#' @export
+vec_ptype2.percent.double <- function(x, y, ...) {
+  percent() # Prototype since this produces size-0
+}
+vctrs::vec_ptype2(attendance, 0.8)
+vctrs::vec_ptype2(0.8, attendance)
+```
+
+## (Proto)typing
+
+Common typing uses *double-dispatch*.
+
+We need to define the common type in both directions.
+
+\fontsize{10}{10}\sf
+```{r}
+#' @export
+vec_ptype2.double.percent <- function(x, y, ...) {
+  percent() # Prototype since this produces size-0
+}
+vctrs::vec_ptype2(attendance, 0.8)
+vctrs::vec_ptype2(0.8, attendance)
+```
+
+## (Proto)typing
+
+::: {.callout-caution title="Your turn!"}
+Write methods that define the common (proto)type between `fraction` and `double` as `fraction` -> `double`.
+:::
 
 ## Double dispatch
 
-## Typing
+Unfortunately `c()` from base R can't (yet) be changed to support double-dispatch with S3. Usually this isn't a problem,
+
+```{r}
+c(attendance, attendance)
+c(attendance, 0.8)
+```
+
+## Double dispatch
+
+but if your class isn't used in the first argument...
+
+```{r}
+c(0.8, attendance)
+```
+
+... your common (proto)type will be ignored!
+
+## Double dispatch
+
+vctrs uses double dispatch when needed, and using `vctrs::vec_c()` fixes many coercion problems in R.
+
+```{r}
+#| error: true
+vctrs::vec_c(0.8, attendance)
+vctrs::vec_c(1, Sys.Date())
+```
+
+## Double dispatch
+
+::: {.callout-note title="Double dispatch inheritence"}
+Double dispatch in vctrs doesn't work with inheritance and so:
+
+* `NextMethod()` can't be used
+* Default methods aren't inherited/used.
+:::
 
 ## Casting and coercion
 
-## Recycling
+::: {.callout-important title="Converting percentages"}
+Notice earlier how combining percentages with numbers gave the incorrect result?
 
+This is because we haven't written a method for converting numbers into percentages.
+:::
+
+<!-- While we've established what the common (proto)type is with `vec_ptype2()`,  -->
+The `vctrs::vec_cast()` generic is used to convert/coerce ('cast') one type into another. Time to write more methods!
+
+## Casting and coercion
+
+`vctrs::vec_cast()` also uses double dispatch.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_cast.double.percent <- function(x, to, ...) {
+  vec_data(x)/100
+}
+vec_cast.percent.double <- function(x, to, ...) {
+  percent(x*100)
+}
+
+vec_cast(0.8, percent())
+vec_cast(percent(80), double())
+```
+
+## Casting and coercion
+
+With both `vec_ptype2()` and `vec_cast()` methods for percentages and doubles it is now possible to combine them.
+
+```{r}
+vctrs::vec_c(0.8, attendance)
+```
+
+We can also use coercion to easily perform comparisons.
+
+```{r}
+attendance > 0.7
+```
+
+## Casting and coercion
+
+::: {.callout-caution title="Your turn!"}
+Write a method for casting from a `fraction` to a `double`.
+
+Does this work with `as.numeric()`?
+:::
+
+## Math and arithmetic
+
+Methods also need to be written for math and arithmetic.
+
+`vec_math()` implements mathematical functions like
+
+\fontsize{10}{10}\sf
+```{r}
+mean(attendance)
+```
+
+\fontsize{14}{16}\sf
+`vec_arith()` implements arithmetic operations like
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+attendance + percent(0.1)
+```
+
+## Math and arithmetic
+
+Since attendance is a simple numeric, the default `vec_math` method works fine. The default `vec_math` function is essentially:
+
+```{r}
+vec_math.percent <- function(.fn, .x, ...) {
+  out <- vec_math_base(.fn, .x, ...)
+  vec_restore(out, .x)
+}
+```
+
+1. Apply the math to the underlying numbers
+2. Restore the percentage class
+
+## Math and arithmetic
+
+Unlike double dispatch in `vec_ptype2()` and `vec_cast()`, we currently need to implement our own secondary dispatch for `vec_arith()`.
+
+```{r}
+vec_arith.percent <- function(op, x, y, ...) {
+  UseMethod("vec_arith.percent", y)
+}
+vec_arith.percent.default <- function(op, x, y, ...) {
+  stop_incompatible_op(op, x, y)
+}
+```
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_arith.percent.percent <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, x, y)
+  vec_restore(out, to = percent())
+}
+percent(40) + percent(20)
+```
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+vec_arith.percent.numeric <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, x, vec_cast(y, percent()))
+  vec_restore(out, to = percent())
+}
+percent(40) + 0.3
+0.3 + percent(40)
+```
+
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_arith.numeric.percent <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, vec_cast(x, percent()), y)
+  vec_restore(out, to = percent())
+}
+percent(40) + 0.3
+0.3 + percent(40)
+```
+
+
+## Math and arithmetic
+
+::: {.callout-caution title="Your turn!"}
+Add support for math and arithmetic for the `fraction` class.
+
+\hspace{1em}
+
+*Hint: cast your fraction to a double and then use the base math/arith function, returning a double is fine*.
+
+\hspace{1em}
+*Finished early?*
+
+Try to extend `vec_arith()` so that it retains the `fraction` class for `+`, `-`, `*`, `/` operations. 
+:::
 
 # Literate programming
 
