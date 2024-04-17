@@ -13,7 +13,7 @@ source(here::here("course_info.R"))
 * [roxygen2](https://r-pkgs.org/man.html)
 * [Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
 * [Quarto](https://quarto.org)
-* [targets](https://books.ropensci.org/targets/)
+* [Shiny](https://shiny.rstudio.com)
 
 ```{r}
 #| output: asis
