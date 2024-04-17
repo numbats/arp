@@ -1,15 +1,34 @@
 ---
-title: Assignment 4 (30%)
+title: Assignment 4 (20%)
 ---
 
-Complete the R package you wrote in [Assignment 1](A1.qmd). The package should have at least 3 user-facing functions, and a vignette that describes how to use the package. The package should be well-documented, with all user-facing functions having examples and unit tests.
+Your task is to produce a short report analysing some data using a quarto template with a targets workflow. You may use any data you choose provided it includes at least 1000 observations. Possible sources of data include:
 
-The package should include the use of at least two S3 methods (e.g., print, summary, plot, autoplot) applied to a class that you define.
+* [Human Mortality Database](https://mortality.org)
+* [Human Fertility Database](https://humanfertility.org)
+* [UN Data](https://data.un.org)
+* [IMF Data](https://data.imf.org)
+* [ABS Census Data](https://www.abs.gov.au/census/find-census-data/datapacks?release=2021)
+* [Australian Electoral Commission data](https://www.aec.gov.au/election/downloads.htm)
+* [US General Social Survey](https://gss.norc.org/get-the-data/)
+* [HILDA Survey](https://melbourneinstitute.unimelb.edu.au/hilda)
+* [Johns Hopkins COVID data](https://github.com/CSSEGISandData/COVID-19)
 
-The package should also include at least one function that uses non-standard evaluation. Marks will be awarded for clean and efficient code, and for good design.
+The source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.
+
+Your analysis should include the following elements:
+
+* Reading the raw data into R.
+* Cleaning and wrangling the data into a form suitable for analysis.
+* At least two plots highlighting interesting features of the data.
+* At least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity --- you should use a model that is appropriate for the data.
+* A discussion of the results of the model and how they relate to the plots.
+
+You must use the [targets](https://books.ropensci.org/targets/) package to manage the workflow, [renv](https://rstudio.github.io/renv/) to manage the package environment, with the analysis described in a [quarto](https://quarto.org) report.
+
 
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))
-submit(schedule, "Assignment 4")
+submit(schedule, "Assignment 3")
 ```
