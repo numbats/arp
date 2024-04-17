@@ -17,12 +17,12 @@ schedule <- tibble(
     "Debugging and profiling",
     "Functional programming",
     "Object-oriented programming",
-    "Object-oriented programming",
+    "Object-oriented S3 and vctrs",
     "Literate and reactive programming",
+    "Targets: reproducible workflows",
     "Metaprogramming",
-    "Metaprogramming",
-    "Rewriting R code in C++",
-    "Interfacing with other languages"
+    "Interfacing with other languages",
+    "Rewriting R code in C++"
   ),
   Reference = c(
     "1-4. *Advanced R*",
@@ -31,12 +31,12 @@ schedule <- tibble(
     "22-24. *Advanced R*",
     "9-11. *Advanced R*",
     "12-13. *Advanced R*",
+    "12-13. *Advanced R*",
     "*Mastering Shiny*",
     "*The {targets} R package user manual*",
     "17-20. *Advanced R*",
-    "17-20. *Advanced R*",
-    "25. *Advanced R*",
-    "21. *Advanced R*"
+    "21. *Advanced R*",
+    "25. *Advanced R*"
   ),
   Reference_URL = c(
     "https://adv-r.hadley.nz/foundations-intro.html",
@@ -45,12 +45,12 @@ schedule <- tibble(
     "https://adv-r.hadley.nz/debugging.html",
     "https://adv-r.hadley.nz/fp.html",
     "https://adv-r.hadley.nz/oo.html",
+    "https://adv-r.hadley.nz/oo.html",
     "https://mastering-shiny.org",
     "https://books.ropensci.org/targets/",
     "https://adv-r.hadley.nz/metaprogramming.html",
-    "https://adv-r.hadley.nz/metaprogramming.html",
-    "https://adv-r.hadley.nz/rcpp.html",
-    "https://adv-r.hadley.nz/translation.html"
+    "https://adv-r.hadley.nz/translation.html",
+    "https://adv-r.hadley.nz/rcpp.html"
   )
 )
 
