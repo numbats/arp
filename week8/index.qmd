@@ -1,5 +1,5 @@
 ---
-title: "Week 8: Reactive programming - targets"
+title: "Week 8: Literate and reactive programming"
 ---
 
 ```{r}
@@ -7,22 +7,25 @@ week <- 8
 source(here::here("course_info.R"))
 ```
 
-## Main reference
-
-```{r}
-#| output: asis
-schedule |>
-  filter(Week == week) |>
-  mutate(ref = glue::glue("[{Reference}]({Reference_URL})")) |>
-  pull(ref)
-```
 
 ## What you will learn this week
 
-targets
+* [roxygen2](https://r-pkgs.org/man.html)
+* [Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
+* [Quarto](https://quarto.org)
+* [targets](https://books.ropensci.org/targets/)
 
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+## Other resources
+
+* [Rob's 2020 rstudio::conf talk on Rmarkdown](https://youtu.be/_D-ux3MqGug?si=LeXPIa9K3V9N1rO_)
+
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```

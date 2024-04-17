@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 7: Programming paradigms"
+author: "Week 7: Object-oriented programming (part 2)"
 format:
   beamer:
     pdf-engine: pdflatex
@@ -214,7 +214,7 @@ e
 
 ## Creating your own S3 objects
 
-The `structure()` function is usually only used within other functions made for end-users. For example, 
+The `structure()` function is usually only used within other functions made for end-users. For example,
 
 * `lm()` returns a list with class `"lm"`, and
 * `tibble()` returns a data.frame (list) with classes `"tbl_df"`, `"tbl"`, and `"data.frame"`.
@@ -304,12 +304,12 @@ Lots of vctrs including:
 
   Time points/intervals of various granularities in vectors
 * [graphvec](https://github.com/mitchelloharawild/graphvec/)
-  
+
   Graph factors, storing graph edges between levels.
 * [fabletools](https://github.com/tidyverts/fabletools/)
-  
+
   Custom data frames 'mable', 'fable', and 'dable'.
-  
+
 ## Creating a new vctr
 
 The basic way to produce a vctr is with `vctrs::new_vctr()`.
@@ -749,138 +749,5 @@ Add support for math and arithmetic for the `fraction` class.
 \hspace{1em}
 *Finished early?*
 
-Try to extend `vec_arith()` so that it retains the `fraction` class for `+`, `-`, `*`, `/` operations. 
+Try to extend `vec_arith()` so that it retains the `fraction` class for `+`, `-`, `*`, `/` operations.
 :::
-
-# Literate programming
-
-## Literate programming
-
- * Due to Donald Knuth (Stanford), 1984
- * A script or document that contains an explanation of the program logic in a natural language (e.g. English), interspersed with snippets of source code, which can be compiled and rerun.
- * Generates two representations\newline from a source file: formatted\newline documentation and "tangled" code.
-
-\placefig{10.5}{4.6}{width = 6cm}{WEB.png}
-
-## Literate programming
-
-* As a programming approach, it never quite caught on.
-* But it has become the standard approach for reproducible documents.
-
-## Literate programming examples
-
-* WEB (combining Pascal and TeX)
-* roxygen2 comments
-  * technically documentation generation rather than literate programming
-  * documentation embedded in code, rather than code embedded in documentation
-* Sweave documents
-* Jupyter notebooks
-* Rmarkdown documents
-* Quarto documents
-
-## roxygen2
-
-* roxygen2 documentation are just comments to R.
-* roxygen2::roxygenize():
-  * generates documentation from these comments in the form of Rd files
-  * adds relevant lines to the NAMESPACE file.
-* roxygen2::roxygenize() is called by devtools::document().
-* Advantage: keeps documentation with the code. More readable, less chance for errors.
-
-## Markdown syntax
-\fontsize{14}{16}\sf
-Markdown: a "markup" language for formatting text.
-
-* Headings:
-
-    `# Heading 1`\newline
-    `## Heading 2`
-
-* **Bold**: `**bold**`.
-* *Italic*: `*italic*`.
-* Blockquotes:
-
-    `> blockquote`.
-
-## Markdown and Rmarkdown
-
-* Markdown (markup language):
-  * Extension either `.md` or `.markdown`.
-  * Used in many places on the web, in note-taking apps, etc.
-
-* Rmarkdown (markup language):
-  * an extension of markdown that allows for embedded R code chunks.
-  * Extension `.Rmd`.
-
-* Rmarkdown (package):
-  * an R package that allows for the conversion of `.Rmd` files to other formats.
-
-## Rmarkdown files
-
-* Structure:
-  1. YAML header
-  2. Markdown content
-  3. R code chunks surrounded by `` ```{r} `` and `` ``` ``
-
-* Rmarkdown documents can be compiled to HTML, PDF, Word, and other formats
-* Compile with `rmarkdown::render("file.Rmd")`
-
-## Rmarkdown, knitr and pandoc
-
-* `rmarkdown::render()`
-  * Uses `knitr` to run all code chunks, and "knit" the results into a markdown file (replacing R chunks with output).
-  * Uses `pandoc` to convert the markdown file to the desired output format.
-  * If PDF output is desired, LaTeX then converts the tex file (from pandoc output) to pdf.
-
-\centerline{\includegraphics[width = 10cm]{rmd.png}}
-
-## Some chunk options
-\fontsize{14}{16}\sf
-
-* `eval`: whether to evaluate the code chunk
-* `echo`: whether to display the code chunk
-* `include`: whether to include the code chunk in the output
-* `results = 'hide'` hides printed output.
-* `fig.show = 'hide'` hides figures.
-* `message`: whether to display messages
-* `warning`: whether to display warnings
-* `error = TRUE`: continue even if code returns an error.
-* `fig.cap`: caption for the figure
-* `fig.width`, `fig.height`: width and height of the figure
-* `cache`: whether to cache the code chunk
-
-## Global chunk options
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  echo = FALSE,
-  message = FALSE,
-  warning = FALSE
-)
-```
-````
-
-* The chunk named `setup` will be run before any other chunks.
-
-## Debugging
-
-* The Rmarkdown document is compiled in a different environment from your R console.
-* If you get an error, try running all chunks (Ctrl+Alt+R).
-* If you can't reproduce the error, check the working directory (add `getwd()` in a chunk).
-* Try setting `error = TRUE` on problem chunk to help you diagnose what happens. (But change it back!)
-* Look at the intermediate files (`.md` or `.tex`) to see what is happening.
-
-## Quarto
-\fontsize{14}{16}\sf
-
-* Generalization of Rmarkdown (not dependent on R)
-* Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
-* More consistent yaml header and chunk options.
-* Many more output formats, and many more options for customizing format.
-* Relies on pandoc for converting `md` to other formats.
-* Uses pandoc templates (with Lua) for extensions
-
-\centerline{\includegraphics[width = 10cm]{qmd.png}}

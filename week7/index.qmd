@@ -1,5 +1,5 @@
 ---
-title: "Week 7: Object-oriented programming and literate programming"
+title: "Week 7: Object-oriented programming"
 ---
 
 ```{r}
@@ -11,24 +11,16 @@ source(here::here("course_info.R"))
 
 * [S3](https://adv-r.hadley.nz/s3.html)
 * [vctrs](https://vctrs.r-lib.org)
-* [roxygen2](https://r-pkgs.org/man.html)
-* [Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
-* [Quarto](https://quarto.org)
 
 ## What you will learn this week
 
 * A Q&A on any problems with [Assignment 2](/assignments/A2.qmd)
 * More on S3 and vctrs in preparation for [Assignment 4](/assignments/A4.qmd)
-* Brief overview of literate programming
 
 ```{r}
 #| output: asis
 show_slides(week)
 ```
-
-## Other resources
-
-* [Rob's 2020 rstudio::conf talk on Rmarkdown](https://youtu.be/_D-ux3MqGug?si=LeXPIa9K3V9N1rO_)
 
 ```{r}
 #| output: asis

@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 7: Literate Programming"
+author: "Week 8: Literate and reactive programming"
 format:
   beamer:
     pdf-engine: pdflatex
@@ -28,6 +28,11 @@ source(here::here("course_info.R"))
 
 \vspace*{0.4cm}
 \tableofcontents
+
+# Assignments
+
+## Assignments 3 and 4
+
 
 # Literate programming
 
