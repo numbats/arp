@@ -4,10 +4,23 @@ title: Assignment 3 (30%)
 
 Complete the R package you wrote in [Assignment 1](A1.qmd). The package should have at least 3 user-facing functions, and a vignette that describes how to use the package. The package should be well-documented, with all user-facing functions having examples and unit tests.
 
-The package should include the use of at least two S3 or vctr methods (e.g., print, summary, plot, autoplot) applied to a class that you define.
+You can either extend your package with a custom vctrs class, or S3 object.
+
+If you implement a vector class with vctrs, you should:
+
+* Create and document a function for creating your vector.
+* Define appropriate methods for using your vector, including `format()`, `vec_ptype2()`, and `vec_cast()`.
+* Create generic function(s) for identifying/extracting useful things from your vector (examples below, e.g. suit of the card).
+* Create methods for your custom generic function(s), including suitable defaults.
+
+If you implement a object class with S3, you should:
+
+* Create and document a function which returns your S3 object after doing the suitable calculations (e.g. like `lm()`).
+* Define appropriate methods for using your object, including `print()` and some other more complex method like `plot()`/`autoplot()`.
+* Create generic function(s) to perform a common task specific to your S3 object (examples below, e.g. most common word).
+* Create methods for your custom generic function(s), including suitable defaults.
 
 Marks will be awarded for clean and efficient code, and for good design.
-
 
 ```{r}
 #| output: asis
@@ -17,10 +30,12 @@ submit(schedule, "Assignment 4")
 
 # Some suggestions
 
+Below are some ideas for how S3 and/or vctrs can be used with your package from assignment 1. We encourage you to be creative and come up with your own ideas for how object oriented programming best suits your assignment package.
+
 * Convert between different units of measurement (e.g. feet to meters, kilograms to pounds, etc.). E.g., `feet_to_metres(3)`, `make_metric(c("3lb", "4mph", "5ft"))`.
 
 > Creating vctrs for awareness of unit to allow easy conversion (similar to https://r-quantities.github.io/units/index.html)
-> Parsing character into the appropriate unit vctr
+> Parse character strings into your vector with the appropriate unit.
 
 * Implement `fizzbuzz` (5,7). e.g., `fizzbuzz(c(1:50))`. Generalize to any two numbers.
 
@@ -29,41 +44,45 @@ submit(schedule, "Assignment 4")
 
 * Implement a histogram function using base R graphics without using `cut()` or similar built-in functions.  Allow the user to specify a bin edge and either the number of bins or the bin width, with sensible defaults.
 
-> Create a histogram object like `density()` with a print and plot method
+> Create a histogram S3 object (similar to `density` from `density()`) with a suitable print and plot method.
+> Create a new generic for refitting the histogram with the same bins onto a new vector of data.
 
 * Calculate the score of a ten-pin bowling game where the inputs are the number of pins knocked down in each throw.
 
-> Create a vctr to neatly print out frames of a game, including formatting for splits, strikes, and spares.
+> Create a vctr to neatly print out frames of a game, including formatting for strikes, spares and splits.
 > Create methods for useful calculations like score, and `frame_strike()`, `frame_spare()`, `frame_closed()`, etc.
 
 * Test if two words are anagrams. Extend to produce a list of all words that contain a subset of letters (in any order).
 
-> Create an S3 class for the output of the function, with a print and plot method. e.g., the output might provide a list of all words found with a specific subset of letters, and their relative frequency. The print function could show the input text and output options. The plot function could show a bar plot of the relative frequencies of output words. You will need a dictionary with frequency information for this extension. e.g., https://www.english-corpora.org/coca/ or https://norvig.com/ngrams/count_1w.txt. It would also be good to write an S3 generic and method for getting the `most_common_word()`.
+> Create an S3 object for the output of the function, with a print and plot method. e.g., the output might provide a list of all words found with a specific subset of letters, and their relative frequency. The print function could show the input text and output options. The plot function could show a bar plot of the relative frequencies of output words. You will need a dictionary with frequency information for this extension. e.g., https://www.english-corpora.org/coca/ or https://norvig.com/ngrams/count_1w.txt. It would also be good to write an S3 generic and method for getting the `most_common_word()`.
 
 * Compute the decimal expansion of any fraction to a specified number of places.  e.g., `decimal_expansion(1, 7, digits=20)` should return `0.14285714285714285714`. Extend to any base.
 
-> Create a vctr (probably a rcrd) containing the components for the decimal expansion with format method.
+> Create a vector containing the components for the decimal expansion, with methods to extract and modify the base of the expansion.
 
 * Calculate the score from a game of blackjack. Inputs are the cards held by the player and the dealer at the end of the game.
 
-> Represent cards with vctrs with functions/methods for things like `card_is_face()`, `card_value()`, `card_is_suit()`, etc.
+> Represent the cards with vctrs and provide functions/methods for things like `card_is_face()`, `card_value()`, `card_suit()`, etc.
 
 * Calculate the winning hand from a game of Poker. Inputs are the cards held by each player at the end of the game. Start with a simple version of poker. Start with 2 players and extend to multiple players. e.g., `poker_hands(c("2H", "3D", "5S", "9C", "KD"), c("3C", "3H", "3S", "AC", "AH"))` should return 2 (for player 2).
 
-> Represent cards with vctrs with functions/methods for things like `card_is_face()`, `card_value()`, etc.
+> Represent the cards with vctrs and provide functions/methods for things like `card_is_face()`, `card_value()`, `card_suit()`, etc.
 
 * Simulate a game of snakes and ladders between two people on a fixed board.
 
-> Represent the board state with S3, with methods to roll the dice for a given player (defaulting to the next player), print the board state, and maybe plot the game.
+> Represent the board state with S3, with methods to roll the dice for a given player (defaulting to the next player), print the board state, and plot the game.
+> Write a generic function and suitable method(s) to swap player positions.
 
 * Find a word for a crossword given a set of letters. e.g., `find_word("T_GE_")` should return a list of words including "tiger", "toged" and "tyger". Extend to also return the word frequencies based on a common corpus.
 
-> Create an S3 class for the output containing a list of all possible words and their frequencies. Produce print and plot methods. The print function could print the input text and output options. The plot function could show a bar plot of their relative frequencies. You will need a dictionary with frequency information for this extension. e.g., https://www.english-corpora.org/coca/ or https://norvig.com/ngrams/count_1w.txt. It would also be good to write an S3 generic and method for getting the `most_common_word()`.
+> Create an S3 object for the output containing a list of all possible words and their frequencies. Produce print and plot methods. The print function could print the input text and output options. The plot function could show a bar plot of their relative frequencies. You will need a dictionary with frequency information for this extension. e.g., https://www.english-corpora.org/coca/ or https://norvig.com/ngrams/count_1w.txt. It would also be good to write an S3 generic and method for getting the `most_common_word()`.
 
 * Simulate a simple epidemic model. Start with two states (infected, not infected) and extend to more states (e.g., infected, recovered, not infected). Allow the user to specify the transition probability matrix and the initial state. Plot the number of people in each state over time.
 
-> S3 print states / summaries with plot method to show the simulated epidemic
+> Create an S3 object to represent the model and its transition probability matrix.
+> Create an S3 generic and suitable method(s) for simulating data from the model.
 
 * Implement a to-do list with dates and priorities. Allow the user to add, remove, and update items. Allow the user to filter the list by date and priority. e.g., `add_todo("Buy milk", priority = 3, due = "2022-01-01")`. `show_today()` should return a list of items due today or earlier.
 
-> S3 (or R6 if you want) with methods to add/remove/print/get things from the todo list. Each entry could alternatively be represented elements of a vctr with a rcrd type, with methods for filtering/sorting by priority/date, etc.
+> Create an S3 object that contains all entries in the to-do list. Create generic function(s) and suitable method(s) to add/remove/print/get things from the to-do list. 
+> Alternatively represent each to-do entry as elements of a vector with vctrs, providing generic function(s) and suitable method(s) for filtering/sorting by priority/date, etc.
