@@ -89,8 +89,7 @@ assignments <- readr::read_csv(here::here("assignments.csv")) |>
   )
 
 schedule <- schedule |>
-  full_join(assignments, by = "Date") |>
-  mutate(Week = if_else(is.na(Week) & Date > "2024-05-20", 13, Week))
+  full_join(assignments, by = "Date")
 
 show_assignments <- function(week) {
   ass <- schedule |>
