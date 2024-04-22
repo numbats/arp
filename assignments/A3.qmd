@@ -25,7 +25,7 @@ Marks will be awarded for clean and efficient code, and for good design.
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))
-submit(schedule, "Assignment 4")
+submit(schedule, "Assignment 3")
 ```
 
 # Some suggestions
@@ -84,5 +84,5 @@ Below are some ideas for how S3 and/or vctrs can be used with your package from 
 
 * Implement a to-do list with dates and priorities. Allow the user to add, remove, and update items. Allow the user to filter the list by date and priority. e.g., `add_todo("Buy milk", priority = 3, due = "2022-01-01")`. `show_today()` should return a list of items due today or earlier.
 
-> Create an S3 object that contains all entries in the to-do list. Create generic function(s) and suitable method(s) to add/remove/print/get things from the to-do list. 
+> Create an S3 object that contains all entries in the to-do list. Create generic function(s) and suitable method(s) to add/remove/print/get things from the to-do list.
 > Alternatively represent each to-do entry as elements of a vector with vctrs, providing generic function(s) and suitable method(s) for filtering/sorting by priority/date, etc.

@@ -30,5 +30,5 @@ You must use the [targets](https://books.ropensci.org/targets/) package to manag
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))
-submit(schedule, "Assignment 3")
+submit(schedule, "Assignment 4")
 ```
