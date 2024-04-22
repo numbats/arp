@@ -60,6 +60,7 @@ source(here::here("course_info.R"))
 * Rmarkdown documents
 * Quarto documents
 
+# roxygen2
 ## roxygen2
 
 * roxygen2 documentation are just comments to R.
@@ -68,6 +69,8 @@ source(here::here("course_info.R"))
   * adds relevant lines to the NAMESPACE file.
 * roxygen2::roxygenize() is called by devtools::document().
 * Advantage: keeps documentation with the code. More readable, less chance for errors.
+
+# Rmarkdown
 
 ## Markdown syntax
 \fontsize{14}{16}\sf
@@ -103,6 +106,7 @@ Markdown: a "markup" language for formatting text.
   1. YAML header
   2. Markdown content
   3. R code chunks surrounded by `` ```{r} `` and `` ``` ``
+  4. Inline R surrounded by `` `r `` and `` ` ``
 
 * Rmarkdown documents can be compiled to HTML, PDF, Word, and other formats
 * Compile with `rmarkdown::render("file.Rmd")`
@@ -116,6 +120,25 @@ Markdown: a "markup" language for formatting text.
 
 \centerline{\includegraphics[width = 10cm]{rmd.png}}
 
+## knitr functions
+
+* `knitr::knit()`: knits a single Rmd file --- runs all code chunks and replaces them with output in a markdown file.
+* `knitr::purl()`: extracts all R code from an Rmd file and saves it to a new file.
+* `knitr::spin()`: knits a specially formatted R script file into an Rmd file.
+
+## Rmarkdown packages
+
+  * rmarkdown (to html, pdf, docx, odt, rtf, md, etc.)
+  * bookdown (to html, pdf, epub)
+  * blogdown (to html)
+  * xaringan (to html)
+  * beamer (to pdf)
+  * rticles (to pdf)
+  * tufte (to html, pdf)
+  * vitae (to pdf)
+  * distill (to html)
+  * flexdashboard (to html)
+
 ## Some chunk options
 \fontsize{14}{16}\sf
 
@@ -123,7 +146,7 @@ Markdown: a "markup" language for formatting text.
 * `echo`: whether to display the code chunk
 * `include`: whether to include the code chunk in the output
 * `results = 'hide'` hides printed output.
-* `fig.show = 'hide'` hides figures.
+* `results = 'asis'` includes the output as is.
 * `message`: whether to display messages
 * `warning`: whether to display warnings
 * `error = TRUE`: continue even if code returns an error.
@@ -155,6 +178,161 @@ knitr::opts_chunk$set(
 * Try setting `error = TRUE` on problem chunk to help you diagnose what happens. (But change it back!)
 * Look at the intermediate files (`.md` or `.tex`) to see what is happening.
 
+## Caching
+
+
+````{verbatim}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE)
+```
+````
+
+or by chunk:
+
+````{verbatim}
+```{r, cache = TRUE}
+```
+````
+
+
+## Caching
+
+* When evaluating code chunks, knitr will save the results of chunks with caching to files to be reloaded in subsequent runs.
+* Caching is useful when a chunk takes a long time to run.
+* It will re-run if the code in the chunk changes in any way (even comments or spacing).
+* Beware of inherited objects from earlier chunks. A chunk will not re-run if inherited objects change without explicit dependencies.
+* Beware of dependence on external files.
+
+## Caching
+
+````{verbatim}
+```{r chunk1, cache = TRUE}
+x <- 1
+```
+
+```{r chunk2, cache = TRUE, dependson = "chunk1"}
+y <- x*3
+```
+````
+
+\pause
+
+````{verbatim}
+```{r chunk1, cache = TRUE}
+x <- 1
+```
+
+```{r chunk2, cache = TRUE, cache.extra = x}
+y <- x*3
+```
+````
+
+
+## Caching
+
+Cache will be rebuilt if:
+
+* Chunk options change except `include`
+* Any change in the code, even a space or comment
+* An explicit dependency changes
+
+Do not cache if:
+
+ * setting R options like `options('width')`
+ * setting knitr options like `opts_chunk$set()`
+ * loading packages via `library()` if those packages are used by uncached chunks
+
+## Caching with random numbers
+
+````{verbatim}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+````
+
+* `rand_seed` is an unevaluated expression.
+* Each chunk will check if `.Random.seed` has been changed since the last run.
+* If it has, the chunk will be re-run.
+
+## Some caching options
+\fontsize{14}{15}\sf
+
+* `cache.comments` If `FALSE`, changing comments does not invalidate the cache.
+* `cache.rebuild` If `TRUE`, the cache will be rebuilt even if the code has not changed. e.g.,\newline `cache.rebuild = !file.exists("some-file")`
+* `dependson` A character vector of labels of chunks that this chunk depends on.
+* `my_new_option` A new option that you can use in your code to invalidate the cache. e.g., `my_new_option = c(x,y)`
+* `autodep` If `TRUE`, the dependencies are automatically determined. (May not be reliable.)
+
+## Caching
+
+Build automatic dependencies among chunks
+
+````{verbatim}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, autodep = TRUE)
+```
+````
+
+Make later chunks depend on previous chunks
+
+````{verbatim}
+```{r setup, include=FALSE}
+dep_prev() # Don't use with `autodep = TRUE`
+```
+````
+
+## Child documents
+
+````{verbatim}
+```{r, child=c('one.Rmd', 'two.Rmd')}
+```
+````
+
+\pause\alert{Conditional inclusion}
+
+````{verbatim}
+```{r, child = if(condition) 'file1.Rmd' else 'file2.Rmd'}
+```
+````
+
+\pause\alert{R Script files}
+
+
+````{verbatim}
+```{r, file = c("Rscript1.R", "Rscript2.R")}
+```
+````
+
+* Better than `source("Rscript1.R")` because output of script included and dependencies tracked.
+
+## Other language engines
+
+````{verbatim}
+```{python}
+print("Hello Python!")
+```
+````
+
+````{verbatim}
+```{stata}
+sysuse auto
+summarize
+```
+````
+
+* Python and Stata need to be installed with executables on `PATH`
+
+
+## Other language engines
+\fontsize{12}{12}\sf
+
+```{r}
+#| echo: true
+names(knitr::knit_engines$get())
+```
+
+# Quarto
+
 ## Quarto
 \fontsize{14}{16}\sf
 
@@ -162,7 +340,72 @@ knitr::opts_chunk$set(
 * Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
 * More consistent yaml header and chunk options.
 * Many more output formats, and many more options for customizing format.
-* Relies on pandoc for converting `md` to other formats.
+* Heavier reliance on pandoc
 * Uses pandoc templates (with Lua) for extensions
 
 \centerline{\includegraphics[width = 10cm]{qmd.png}}
+
+## Choose your engine
+
+Specify the engine in the yaml header:
+
+````{verbatim}
+---
+engine: jupyter
+---
+````
+
+
+Or a specific Python version
+
+````{verbatim}
+---
+engine: python3
+---
+````
+
+If R code is found first, it will use the `knitr` engine.
+
+
+## Execute options
+
+Rather than a `setup` chunk with `knitr::opts_chunk$set`, can use the `execute` option in the yaml header:
+
+````{verbatim}
+execute:
+  cache: true
+  echo: false
+  warning: false
+````
+
+* `setup` chunk still allowed.
+
+## Chunk options
+
+Rmarkdown syntax recognized for R chunks.
+
+More consistent chunk options use the hash-pipe `#|`
+
+````{verbatim}
+```{r}
+#| label: mychunk
+#| fig-caption: My figure
+#| fig-width: 6
+#| fig-height: 4
+mtcars |>
+  ggplot(aes(x = mpg, y = wt)) +
+  geom_point()
+```
+````
+
+## Chunk options
+
+* Quarto consistently uses hyphenated options (`fig-width` rather than `fig.width`)
+* The Rmarkdown `knitr` options are recognized for backwards compatibility.
+* Options that are R expressions need to be prefaced by `!expr`
+
+````{verbatim}
+#| fig-cap: !expr paste("My figure", 1+1)
+```
+
+## Templates
