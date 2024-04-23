@@ -13,7 +13,9 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: false
+    colorlinks: true
+    urlcolor: MonashBlue
+    linkcolor: burntorange
 ---
 
 ```{r}
@@ -33,6 +35,8 @@ source(here::here("course_info.R"))
 
 ## Assignments 3 and 4
 
+* Assignment 3 due 10 May
+* Assignment 4 due 24 May
 
 # Literate programming
 
@@ -130,8 +134,8 @@ Markdown: a "markup" language for formatting text.
 
   * rmarkdown (to html, pdf, docx, odt, rtf, md, etc.)
   * bookdown (to html, pdf, epub)
-  * blogdown (to html)
-  * xaringan (to html)
+  * blogdown (to html) -- uses hugo rather than pandoc
+  * xaringan (to html) -- uses remark.js rather than pandoc
   * beamer (to pdf)
   * rticles (to pdf)
   * tufte (to html, pdf)
@@ -340,8 +344,8 @@ names(knitr::knit_engines$get())
 * Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
 * More consistent yaml header and chunk options.
 * Many more output formats, and many more options for customizing format.
-* Heavier reliance on pandoc
-* Uses pandoc templates (with Lua) for extensions
+* Heavier reliance on pandoc Lua filters
+* Uses pandoc templates for extensions
 
 \centerline{\includegraphics[width = 10cm]{qmd.png}}
 
@@ -351,32 +355,31 @@ Specify the engine in the yaml header:
 
 ````{verbatim}
 ---
-engine: jupyter
+engine: knitr
 ---
 ````
-
-
-Or a specific Python version
 
 ````{verbatim}
 ---
-engine: python3
+engine: jupyter
+jupyter: python3
 ---
 ````
 
-If R code is found first, it will use the `knitr` engine.
+
+**Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
 
 
 ## Execute options
 
-Rather than a `setup` chunk with `knitr::opts_chunk$set`, can use the `execute` option in the yaml header:
+*   `execute` option in yaml header can be used instead of a `setup` chunk:
 
-````{verbatim}
-execute:
-  cache: true
-  echo: false
-  warning: false
-````
+    ````{verbatim}
+    execute:
+      cache: true
+      echo: false
+      warning: false
+    ````
 
 * `setup` chunk still allowed.
 
@@ -388,7 +391,7 @@ More consistent chunk options use the hash-pipe `#|`
 
 ````{verbatim}
 ```{r}
-#| label: mychunk
+#| label: fig-chunklabel
 #| fig-caption: My figure
 #| fig-width: 6
 #| fig-height: 4
@@ -404,8 +407,24 @@ mtcars |>
 * The Rmarkdown `knitr` options are recognized for backwards compatibility.
 * Options that are R expressions need to be prefaced by `!expr`
 
-````{verbatim}
-#| fig-cap: !expr paste("My figure", 1+1)
-```
+  ````{verbatim}
+  ```{r}
+  #| fig-cap: !expr paste("My figure", 1+1)
+  ```
+  ````
 
-## Templates
+## Extensions and templates
+\fontsize{13}{17}\sf
+
+* Quarto extensions modify and extend functionality.
+* See <https://quarto.org/docs/extensions/> for a list.
+* Templates are extensions used to define new output formats.
+* Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
+* Monash templates at\newline <https://robjhyndman.com/hyndsight/quarto_templates.html>
+
+## Exercise
+
+* Create a quarto document using an html format
+* Add a code chunk to generate a figure with a figure caption.
+* Reference the figure in the text using `@fig-chunklabel`.
+* Add the monash memo extension and generate a pdf output.
