@@ -18,8 +18,8 @@ schedule <- tibble(
     "Functional programming",
     "Object-oriented programming",
     "Object-oriented S3 and vctrs",
-    "Literate and reactive programming",
-    "Targets: reproducible workflows",
+    "Reactive and literate programming",
+    "Quarto and targets: efficient reproducible workflows",
     "Metaprogramming",
     "Interfacing with other languages",
     "Rewriting R code in C++"

@@ -10,10 +10,9 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
+* [Shiny](https://shiny.rstudio.com)
 * [roxygen2](https://r-pkgs.org/man.html)
 * [Rmarkdown](https://bookdown.org/yihui/rmarkdown/)
-* [Quarto](https://quarto.org)
-* [Shiny](https://shiny.rstudio.com)
 
 ```{r}
 #| output: asis
@@ -23,7 +22,6 @@ show_slides(week)
 ## Other resources
 
 * [Rob's 2020 rstudio::conf talk on Rmarkdown](https://youtu.be/_D-ux3MqGug?si=LeXPIa9K3V9N1rO_)
-
 
 ```{r}
 #| output: asis

@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 8: Literate and reactive programming"
+author: "Week 8: Reactive and literate programming"
 format:
   beamer:
     pdf-engine: pdflatex
@@ -217,7 +217,7 @@ With declarative code you say “Ensure there is a sandwich in the refrigerator 
 
 \fontsize{13}{13}\sf
 ::: {.callout-important title="Use-less cases"}
-This paradigm is rarely needed or used in R for data analysis. 
+This paradigm is rarely needed or used in R for data analysis.
 :::
 
 ::: {.callout-tip title="Useful cases"}
@@ -290,11 +290,11 @@ Reactivity in shiny comprises of:
 
   UI inputs `input*()` and values `reactiveValues()`
 
-* Reactive **conductors** (intermediates): 
+* Reactive **conductors** (intermediates):
 
   Expressions `reactive()` and events `eventReactive()`
 
-* Reactive **endpoints** (results): 
+* Reactive **endpoints** (results):
 
   UI outputs `render*()` and side-effects `observe()`
 
@@ -408,7 +408,7 @@ Other ways reactivity might be prevented include:
 
   * `eventReactive(rnorm(input$n_samples), input$go)`
   * `observeEvent(input$go, message("Go!"))`
-  
+
 * Rate limiting
 
   * `throttle(reactive())`: limits update frequency
@@ -710,97 +710,3 @@ summarize
 #| echo: true
 names(knitr::knit_engines$get())
 ```
-
-# Quarto
-
-## Quarto
-\fontsize{14}{16}\sf
-
-* Generalization of Rmarkdown (not dependent on R)
-* Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
-* More consistent yaml header and chunk options.
-* Many more output formats, and many more options for customizing format.
-* Heavier reliance on pandoc Lua filters
-* Uses pandoc templates for extensions
-
-\centerline{\includegraphics[width = 10cm]{qmd.png}}
-
-## Choose your engine
-
-Specify the engine in the yaml header:
-
-````{verbatim}
----
-engine: knitr
----
-````
-
-````{verbatim}
----
-engine: jupyter
-jupyter: python3
----
-````
-
-
-**Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
-
-
-## Execute options
-
-*   `execute` option in yaml header can be used instead of a `setup` chunk:
-
-    ````{verbatim}
-    execute:
-      cache: true
-      echo: false
-      warning: false
-    ````
-
-* `setup` chunk still allowed.
-
-## Chunk options
-
-Rmarkdown syntax recognized for R chunks.
-
-More consistent chunk options use the hash-pipe `#|`
-
-````{verbatim}
-```{r}
-#| label: fig-chunklabel
-#| fig-caption: My figure
-#| fig-width: 6
-#| fig-height: 4
-mtcars |>
-  ggplot(aes(x = mpg, y = wt)) +
-  geom_point()
-```
-````
-
-## Chunk options
-
-* Quarto consistently uses hyphenated options (`fig-width` rather than `fig.width`)
-* The Rmarkdown `knitr` options are recognized for backwards compatibility.
-* Options that are R expressions need to be prefaced by `!expr`
-
-  ````{verbatim}
-  ```{r}
-  #| fig-cap: !expr paste("My figure", 1+1)
-  ```
-  ````
-
-## Extensions and templates
-\fontsize{13}{17}\sf
-
-* Quarto extensions modify and extend functionality.
-* See <https://quarto.org/docs/extensions/> for a list.
-* Templates are extensions used to define new output formats.
-* Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
-* Monash templates at\newline <https://robjhyndman.com/hyndsight/quarto_templates.html>
-
-## Exercise
-
-* Create a quarto document using an html format
-* Add a code chunk to generate a figure with a figure caption.
-* Reference the figure in the text using `@fig-chunklabel`.
-* Add the monash memo extension and generate a pdf output.

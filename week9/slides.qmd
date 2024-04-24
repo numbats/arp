@@ -1,0 +1,136 @@
+---
+title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
+author: "Week 8: Quarto and targets -- efficient reproducible workflows"
+format:
+  beamer:
+    pdf-engine: pdflatex
+    aspectratio: 169
+    fontsize: "14pt,t"
+    section-titles: false
+    knitr:
+      opts_chunk:
+        dev: "cairo_pdf"
+    fig-width: 7.5
+    fig-height: 3.5
+    include-in-header: ../header.tex
+    colorlinks: true
+    urlcolor: MonashBlue
+    linkcolor: burntorange
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| cache: false
+source(here::here("setup.R"))
+source(here::here("course_info.R"))
+```
+
+## Outline
+
+\vspace*{0.4cm}
+\tableofcontents
+
+# Assignments
+
+## Assignments 3 and 4
+
+* Assignment 3 due 10 May
+* Assignment 4 due 24 May
+
+
+# Quarto
+
+## Quarto
+\fontsize{14}{16}\sf
+
+* Generalization of Rmarkdown (not dependent on R)
+* Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
+* More consistent yaml header and chunk options.
+* Many more output formats, and many more options for customizing format.
+* Heavier reliance on pandoc Lua filters
+* Uses pandoc templates for extensions
+
+\centerline{\includegraphics[width = 10cm]{qmd.png}}
+
+## Choose your engine
+
+Specify the engine in the yaml header:
+
+````{verbatim}
+---
+engine: knitr
+---
+````
+
+````{verbatim}
+---
+engine: jupyter
+jupyter: python3
+---
+````
+
+
+**Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
+
+
+## Execute options
+
+*   `execute` option in yaml header can be used instead of a `setup` chunk:
+
+    ````{verbatim}
+    execute:
+      cache: true
+      echo: false
+      warning: false
+    ````
+
+* `setup` chunk still allowed.
+
+## Chunk options
+
+Rmarkdown syntax recognized for R chunks.
+
+More consistent chunk options use the hash-pipe `#|`
+
+````{verbatim}
+```{r}
+#| label: fig-chunklabel
+#| fig-caption: My figure
+#| fig-width: 6
+#| fig-height: 4
+mtcars |>
+  ggplot(aes(x = mpg, y = wt)) +
+  geom_point()
+```
+````
+
+## Chunk options
+
+* Quarto consistently uses hyphenated options (`fig-width` rather than `fig.width`)
+* The Rmarkdown `knitr` options are recognized for backwards compatibility.
+* Options that are R expressions need to be prefaced by `!expr`
+
+  ````{verbatim}
+  ```{r}
+  #| fig-cap: !expr paste("My figure", 1+1)
+  ```
+  ````
+
+## Extensions and templates
+\fontsize{13}{17}\sf
+
+* Quarto extensions modify and extend functionality.
+* See <https://quarto.org/docs/extensions/> for a list.
+* Templates are extensions used to define new output formats.
+* Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
+* Monash templates at\newline <https://robjhyndman.com/hyndsight/quarto_templates.html>
+
+## Exercise
+
+* Create a quarto document using an html format
+* Add a code chunk to generate a figure with a figure caption.
+* Reference the figure in the text using `@fig-chunklabel`.
+* Add the monash memo extension and generate a pdf output.
+
+# targets
