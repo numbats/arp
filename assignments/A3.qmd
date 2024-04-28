@@ -20,7 +20,10 @@ If you implement a object class with S3, you should:
 * Create generic function(s) to perform a common task specific to your S3 object (examples below, e.g. most common word).
 * Create methods for your custom generic function(s), including suitable defaults.
 
+All user-facing functions should have examples and unit tests.
+
 Marks will be awarded for clean and efficient code, and for good design.
+
 
 ```{r}
 #| output: asis
