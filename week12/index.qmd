@@ -1,5 +1,5 @@
 ---
-title: "Week 12: Interfacing to other languages"
+title: "Week 12: Rewriting R code in C++"
 ---
 
 ```{r}
@@ -19,9 +19,7 @@ schedule |>
 
 ## What you will learn this week
 
-* htmltools
-* reticulate
-* dbplyr
+* Rcpp (with [Tomasz Wozniak](http://bit.ly/tomaszwozniak))
 
 ```{r}
 #| output: asis
