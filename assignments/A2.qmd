@@ -21,3 +21,7 @@ In some cases, the problem reported may highlight a weakness in the package beyo
 source(here::here("course_info.R"))
 submit(schedule, "Assignment 2")
 ```
+
+## Suggested solutions
+
+[Rob's repo](https://github.com/Advanced-R-Programming/assignment-2-debugging-robjhyndman)
