@@ -116,18 +116,42 @@ use_python("/usr/local/bin/python")
 
 \fontsize{10}{10}\sf
 ```{r}
+#| eval: false
+# reticulate::py_install("numpy")
 np <- import("numpy", convert = FALSE)
 
 # do some array manipulations with NumPy
 a <- np$array(c(1:4))
 a
+```
 
+```{r}
+#| echo: false
+r_to_py(1:4)
+```
+
+```{r}
+#| eval: false
 sum <- a$cumsum()
 sum
+```
 
+```{r}
+#| echo: false
+r_to_py(c(1L,3L,6L,10L))
+```
+
+```{r}
+#| eval: false
 # convert to R explicitly at the end
 py_to_r(sum)
 ```
+
+```{r}
+#| echo: false
+c(1L,3L,6L,10L)
+```
+
 
 ## Converting objects between R and Python
 
