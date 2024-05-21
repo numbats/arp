@@ -182,6 +182,11 @@
       ],
       "Hash": "5ea2700d21e038ace58269ecdbeb9ec0"
     },
+    "RcppArmadillo": {
+      "Package": "RcppArmadillo",
+      "Version": "0.12.8.3.0",
+      "Source": "Repository"
+    },
     "RcppTOML": {
       "Package": "RcppTOML",
       "Version": "0.2.2",
