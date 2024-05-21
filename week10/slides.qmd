@@ -267,6 +267,7 @@ Do the following functions use standard evaluation or NSE?
 * `a + b * c`
 * `mtcars |> select(cyl)`
 * `read_csv("data/study.csv")`
+* `ggplot() + geom_line()`
 * `mtcars |> mutate(wt/hp)`
 * `with(mtcars, wt/hp)`
 :::
