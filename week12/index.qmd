@@ -17,9 +17,27 @@ schedule |>
   pull(ref)
 ```
 
+
 ## What you will learn this week
 
-* Rcpp (with [Tomasz Wozniak](http://bit.ly/tomaszwozniak))
+* **C++** for applications in **R** with [Tomasz Woźniak](https://github.com/donotdespair)
+* The first steps with **Rcpp**
+* Some stats with **RcppArmadillo**
+* Hands-on coding with four exercises
+* Create an **R** package with compiled code in ten steps
+
+## Other references used during the session
+
+* **Armadillo** library [documentation](https://arma.sourceforge.net/docs.html)
+* Tsuda, M., [*Rcpp for everyone*](https://teuder.github.io/rcpp4everyone_en/)
+
+## Scripts used during the session
+
+* Simple list creation [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week12/nicetry.cpp)
+* Simple linear regression example [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
+* Simple loop application [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
+* Sampling from inverted gamma 2 distribution [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
+* Step-by-step package creation [`nicepackage.R`](https://github.com/numbats/arp/blob/main/week12/nicepackage.R)
 
 ```{r}
 #| output: asis
