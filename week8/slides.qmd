@@ -1,10 +1,8 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 8: Reactive and literate programming"
+author: "Week 8: Object-oriented Programming (S3)"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -13,9 +11,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    colorlinks: true
-    urlcolor: MonashBlue
-    linkcolor: burntorange
+    keep-tex: false
 ---
 
 ```{r}
@@ -31,682 +27,527 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Assignments
+# Object oriented programming
 
-## Assignments 3 and 4
+## Object oriented programming
 
-* Assignment 3 due 10 May
-* Assignment 4 due 24 May
+- **Encapsulation**: objects have secret internals that you don't need to understand
+- **Polymorphism**: the same function can do different things to different data as appropriate
+- **Inheritance**: you can take an existing kind of object and make a new, more specialised one
 
-# Programming paradigms
+Inheritance turns out to be useful mostly for data infrastructure, but encapsulation and polymorphism are generally valuable
 
-## Programming paradigms
+## Generic functions and methods
 
-::: {.callout-note icon=false title="Functional programming (W5)"}
-* Functions are created and used like any other object.
-* Output should only depend on the function's inputs.
-:::
+A simple example: `plot`
 
-. . .
-
-::: {.callout-note icon=false title="Object-oriented programming (W6-W7)"}
-* Functions are associated with object types.
-* Methods of the same 'function' produce object-specific output.
-:::
-
-## Programming paradigms
-
-::: {.callout-note icon=false title="Reactive programming (W8)"}
-* Objects are expressed using code based on inputs.
-* When inputs change, the object's value updates.
-:::
-
-::: {.callout-note icon=false title="Literate programming (W8)"}
-* Natural language is interspersed with code.
-* Aimed at prioritising documentation/comments.
-* Now used to create reproducible reports/documents.
-:::
-
-# Reactive programming
-
-## Regular (imperative) programming
-
-Consider how code is usually evaluated...
-
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-x <- a + b
-x
-```
-
-What is `x`?
-
-```{r, eval = FALSE}
-a <- -1
-x
-```
-
-What is `x` now?
-
-## Regular (imperative) programming
-
-::: {.callout-tip title="Predictable programming"}
-All programming we've seen so far evaluates code in sequential order, line by line.
-
-\hspace{1em}
-
-Since `x` was not re-evaluated, its value stays the same even when its inputs have changed.
-:::
-
-<!-- . . . -->
-
-<!-- *Note: this is why it's especially important to ensure code works when ran from top to bottom, since when doing a data analysis we often write and run code more freely!* -->
-
-## Reactive programming
-
-Within a reactive programming paradigm, objects *react* to changes in their inputs and automatically update their value!
-
-. . .
-
-::: {.callout-warning title="Disclaimer"}
-Reactive programming is a broad and diverse paradigm, we'll focus only on the basic concepts and how they apply in shiny applications.
-:::
-
-## Reactive programming
-
-We can implement *reactivity* with functions & environments.
+---
 
 ```{r}
-library(rlang)
-react <- function(e) new_function(alist(), expr(eval(!!enexpr(e))))
+plot(trees)
 ```
 
-We'll learn how this function works later (metaprogramming).
+---
 
-Reactive programming is also smarter about *'invalidation'*, results are **cached and reused** if the inputs aren't changed.
-
-## Reactive programming
-
-How does reactive programming differ?
-
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-y <- react(a + b)
-y()
+```{r}
+m<-lm(log(Volume)~log(Girth)+log(Height),
+       data=trees)
+par(mfrow=c(2,2),mar=c(3,1,1,1))
+plot(m)
 ```
 
-What is `y`?
+---
 
-```{r, eval = FALSE}
-a <- -1
-y()
+```{r}
+plot(.leap.seconds)
 ```
 
-What is `y` now?
+---
 
-## Reactive programming
-
-::: {.callout-tip title="(Un)predictable programming?"}
-Reactive programming can be disorienting!
-
-\hspace{1em}
-
-Reactive objects *invalidate* whenever their inputs change, and so its value will be recalculated and stay up-to-date.
-:::
-
-## Reactive programming
-
-::: {.callout-caution title="Your turn!"}
-<!-- Experiment with using `react()` in R. -->
-
-<!-- ```{r} -->
-<!-- library(rlang) -->
-<!-- react <- function(e) new_function(alist(), expr(eval(!!enexpr(e)))) -->
-<!-- ``` -->
-
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-y <- react(a + b)
-y()
+```{r}
+plot(nhtemp)
 ```
 
-When was `a + b` evaluated?
+---
 
-\vspace{1em}
+### How?
 
-How does this differ from ordinary (imperative) code?
-:::
+* Giant `switch` statement...
+* ...that gets updated every time you load a package...
+* ???
 
-## Imperative and declarative programming
+Generic functions and methods!
 
-\fontsize{13}{13}\sf
-::: {.callout-note icon=false title="Imperative programming"}
-* Specific commands are carried out immediately.
-* Usually direct and exact instructions.
-* e.g. read in data from this file.
-:::
+## Object systems
 
-::: {.callout-note icon=false title="Declarative programming"}
-* Specific commands are carried out when needed.
-* Expresses higher order goals / constraints.
-* e.g. make sure this dataset is up to date every time I see it.
-:::
+R has **a lot** of object systems
 
-## Imperative and declarative programming
+- S3
+- [S3 `vctrs`]
+- S4
+- R6
+- R.oo, proto, R7
 
-::: {.callout-note icon=false title="Mastering Shiny: Chapter 3 (Basic Reactivity)"}
-With imperative code you say “Make me a sandwich”.
+---
 
-\hspace{1em}
+### S3
 
-With declarative code you say “Ensure there is a sandwich in the refrigerator whenever I look inside of it”.
+Main topic for today
 
-\hspace{1em}
+- easy to start writing
+- no safeguards
+- especially good for single-person, small to medium projects
+- can be used for large projects with a lot of attention to documentation and communication
+- limited use of inheritance
+- basis of tidyverse and most of CRAN
 
-*Imperative code is **assertive**; *
+---
 
-*declarative code is **passive-aggressive**.*
-:::
+### S3 `vctrs`
 
+A tidyverse package for making different sorts of vectors
 
+- handles a lot of formatting and subsetting details
+- allows for binary operators
+- useful if you want your vectors in a tibble
+- enforces some safeguards
 
-## Use cases for reactive programming
+---
 
-\fontsize{13}{13}\sf
-::: {.callout-important title="Use-less cases"}
-This paradigm is rarely needed or used in R for data analysis.
-:::
+### S4
 
-::: {.callout-tip title="Useful cases"}
-Reactive programming is useful for developing user applications (including web apps!).
+- more work to start writing
+- objects know their structure
+- enforces object structure
+- better for large-scale collaborative programming
+- better at inheritance
+- basis of Bioconductor
 
-\vspace{1em}
+---
 
-In R, the shiny package uses reactive programming for writing app interactivity.
-:::
+### R6
 
-<!-- ## Invalidation -->
+- Supports modifiable (mutable) objects
+   * database connections, files, etc
+   * large data objects we don't want to copy
+   * interfacing to eg tensorflow
+   * shared state between copies of an object
+- not widely used otherwise
+- more similar to other languages
 
-<!-- ## Laziness -->
+# S3
+## S3
 
-<!-- ## Debugging -->
+### Back to `plot`
 
-# Shiny
+* `plot()` doesn't *do* anything
+* All the work is done by *methods* for different types of object
+* Methods are just ordinary functions
+* When you call `plot`, R calls the appropriate `plot` method
 
-## A shiny app
+---
 
-Most shiny apps are organised into several files.
+### Generic functions
 
-* `ui.R`: The specification of the user interface
-* `server.R`: The reactive code that defines app behaviour
-* `global.R`: Static global objects used across app
-* `www/`: Folder for your web data (images, css, js, etc.)
+* Generic functions don't *do* anything
+* All the work is done by *methods* for different types of object
+* Methods are just ordinary functions
+    - with declarations in a package `NAMESPACE`
+    - or R can guess based on function name
 
-Simple apps can consist of only an `app.R` script.
+When you call the generic function R calls the appropriate  method
 
-## Hello *shiny*!
+---
 
-::: {.callout-caution title="Follow along!"}
-Create a shiny app. Save this code as `app.R`.
+### Try these
 
-```r
-library(shiny)
-ui <- fluidPage(
-  textInput("name", "Enter your name: "),
-  textOutput("greeting")
-)
-server <- function(input, output, session) {
-  output$greeting <- renderText({
-    sprintf("Hello %s", input$name)
-  })
+```
+print
+methods("print")
+stats:::print.acf
+tools:::print.CRAN_package_reverse_dependencies_and_views
+plot
+methods("plot")
+plot.ts
+stats:::plot.lm
+```
+
+Also, try `methods("plot")` after loading another package
+
+---
+
+### What do we notice?
+
+- `print` functions are all different
+- names start with `print.`, then the sort of thing they print
+- mostly aren't visible just by name
+-
+-
+
+---
+
+### Generic functions
+
+* *methods* that actually do the work 'belong to' *generic functions*
+
+* This is unusual: most popular OOP systems (Java, C++, Python) have methods belonging to data objects
+
+* Important in R because functions are first-class objects (Week 5)
+
+* Useful for functional programming with objects
+
+---
+
+### Classes
+
+- S3 classes are the things that specify which method to use
+- Use `class` to attach a class to an object like a Post-It note
+- That's all
+
+```
+x<-1
+class(x)<-"numbat"
+```
+
+---
+
+#### Try it
+
+```
+print.numbat <- function(x,...){
+  cat(x,"numbats\n")
+  invisible(x)
 }
-shinyApp(ui, server)
-```
-:::
-
-## Hello *shiny*!
-
-::: {.callout-caution title="Follow along!"}
-Launch the app by clicking **Run App**.
-
-\vspace{1em}
-
-Use the text input field and see how the webpage changes.
-
-\vspace{1em}
-
-Look at the server code to see how it 'reacts'.
-:::
-
-
-## Shiny reactivity
-
-Reactivity in shiny comprises of:
-
-* Reactive **sources** (inputs):
-
-  UI inputs `input*()` and values `reactiveValues()`
-
-* Reactive **conductors** (intermediates):
-
-  Expressions `reactive()` and events `eventReactive()`
-
-* Reactive **endpoints** (results):
-
-  UI outputs `render*()` and side-effects `observe()`
-
-## Reactive graphs
-
-![](../diagrams/reactive/react-graph.png)
-
-The reactivity of an app can be visualised with a graph.
-
-## Reactive graphs
-
-![](../diagrams/reactive/reactlog-components.png)
-
-The graph shows relationships between reactive elements.
-
-## reactlog
-
-\fontsize{12}{12}\sf
-
-The [reactlog package](https://rstudio.github.io/reactlog/) allows you to visualise an app's **reactive graph**.
-
-To **enable logging** of an app's behaviour, run:
-
-```{r, eval = FALSE}
-reactlog::reactlog_enable()
 ```
 
-Then **start, use, and stop your app** to fill the log.
+---
 
-View the log with:
+#### Defining classes
 
-```{r, eval = FALSE}
-shiny::reactlogShow()
+- R doesn't care what `class` you attach to an object
+- **You** have to care
+- `class(x) <- "lm"` makes R call `lm` methods on `x`
+- **You** are responsible for these methods being appropriate
+- Documentation is important
+- No real enforcement of encapsulation
+
+---
+
+#### Ways to set up classes
+
+- vectors plus attributes (`ts`, `POSIXct`, matrix)
+- lists plus attributes (`lm`, `data.frame`)
+- environments plus attributes
+
+#### Try it
+
+```
+unclass(.leap.seconds)
+unclass(nhtemp)
+unclass(trees)
+m<-lm(log(Volume)~log(Girth)+log(Height),data=trees)
+str(m)
 ```
 
-Or while your Shiny app is running, press the key combination Ctrl+F3 (Mac: Cmd+F3) to see the reactive log.
+---
 
-## Hello *reactlog*!
+### Defining classes safely
 
-::: {.callout-caution title="Follow along!"}
-Create a reactive log of the *hello shiny* app.
+- Document what all is in a valid object of your class
+- Have a limited set of places where one is created
+- Consider having a pure constructor function (ARP 13.3.1)
+- Consider having a validator function (ARP 13.3.1)
+- Have a user-friendly function to make valid objects
 
-\vspace{1em}
+This is more important if *someone else* might want to make an object from your class
 
-Start reactlog, then open the app and enter your name.
+---
 
-\vspace{1em}
+### Constructors
 
-Close the app and view the log, see how the app reacts to changes to the input text.
-:::
+- user-friendly: `tibble`, `lm`, `acf`, `svydesign`
+- pure: `new_factor`, `new_difftime` (ARP 13.3.1)
 
-## Reactive expressions
+Makes a new object and ensures that it is valid. Stops users creating the object themselves.
 
-Reactive expressions are used in the shiny server as intermediate calculations.
+---
 
-They are expressions wrapped with `reactive()`.
+### Defining methods
 
-For example:
+- A method should have **the same** arguments as the generic (plus maybe more)
+- The name of the method is `paste(generic,class,sep=".")`
+- Less ambiguous: use a package and declare the functions
+    * `S3method(generic, class)` in `NAMESPACE`
+    * `@method generic class` with `devtools`
+- `sloop::ftype` tells you about the type of a function
+- `sloop::s3_get_method` or `getAnywhere` finds methods even if they're hidden
 
-```{r, eval = FALSE}
-simulation <- reactive(rnorm(input$n_samples))
+---
+
+### `default` methods
+
+Called when there is no specific method for the object (no class, or no matching class)
+
+- `mean.default`
+- `summary.default`
+- `head.default`
+
+---
+
+### Adding methods to your class
+
+No *rules* on which methods, but informal standards
+
+- Start with `print`, `[`
+- `summary` for more information
+- `plot` or `image` if possible (`ggplot` methods take more work)
+- `coef`, `vcov`, maybe `logLik` and `AIC` for models
+- `resid` for models with residuals
+
+---
+
+### Base S3 classes
+
+- The class for method choice isn't just `class(x)` for base types
+- Use `sloop::s3_class` to be sure
+
+```
+> s3_class(1)
+[1] "double"  "numeric"
+> s3_class(matrix(1,1,1))
+[1] "matrix"  "double"  "numeric"
+> class(1)
+[1] "numeric"
+> class(matrix(1,1,1))
+[1] "matrix" "array"
 ```
 
-. . .
+---
 
-The up-to-date value is obtained with `simulation()`.
+### Ambiguous cases
 
-Whenever the input ID `n_samples` changes, the reactive expression `simulation` *invalidates*.
+- `t` is a generic
+- `t.test` is a generic
+- `t.test.formula` is a method for `t.test`
+- `t.data.frame` is a method for `t`
+- `list` is not generic
+- `list.files` isn't a method
 
-## Reactive expressions
+Avoid using `.` as a word separator in function names that aren't methods. Use `camelCase` or `snake_case` or some other consistent approach
 
-::: {.callout-caution title="Follow along!"}
-Use a reactive expression to convert the name to ALLCAPS.
+---
 
-\vspace{1em}
+### Defining generics
 
-Look at the reactive graph and see how it changes.
-:::
-
-## Preventing reactivity
-
-Equally important to telling shiny **how** to react to changes, is describing **when** reactions should (not) occur.
-
-\
-
-. . .
-
-The most useful way to prevent reactivity is with `req()`.
-
-It is similar to `stop()`, silently ending the reactive chain.
-
-`req()` *'requires'* inputs to be 'truthy' (not FALSE or empty).
-
-<!-- This is useful for preventing code from running when no input is given, or if an invalid input is given. -->
-
-## Preventing reactivity
-
-::: {.callout-caution title="Follow along!"}
-Use `req()` to prevent reactivity until text is entered.
-
-\vspace{1em}
-
-Update `req()` to require at least 3 characters inputted.
-:::
-
-## Preventing reactivity
-
-Other ways reactivity might be prevented include:
-
-* Event reactivity
-
-  * `eventReactive(rnorm(input$n_samples), input$go)`
-  * `observeEvent(input$go, message("Go!"))`
-
-* Rate limiting
-
-  * `throttle(reactive())`: limits update frequency
-  * `debounce(reactive())`: waits for changes to stop
-
-# Literate programming
-
-## Literate programming
-
- * Due to Donald Knuth (Stanford), 1984
- * A script or document that contains an explanation of the program logic in a natural language (e.g. English), interspersed with snippets of source code, which can be compiled and rerun.
- * Generates two representations\newline from a source file: formatted\newline documentation and "tangled" code.
-
-\placefig{10.5}{4.6}{width = 6cm}{WEB.png}
-
-## Literate programming
-
-* As a programming approach, it never quite caught on.
-* But it has become the standard approach for reproducible documents.
-
-## Literate programming examples
-
-* WEB (combining Pascal and TeX)
-* roxygen2 comments
-  * technically documentation generation rather than literate programming
-  * documentation embedded in code, rather than code embedded in documentation
-* Sweave documents
-* Jupyter notebooks
-* Rmarkdown documents
-* Quarto documents
-
-# roxygen2
-## roxygen2
-
-* roxygen2 documentation are just comments to R.
-* roxygen2::roxygenize():
-  * generates documentation from these comments in the form of Rd files
-  * adds relevant lines to the NAMESPACE file.
-* roxygen2::roxygenize() is called by devtools::document().
-* Advantage: keeps documentation with the code. More readable, less chance for errors.
-
-# Rmarkdown
-
-## Markdown syntax
-\fontsize{14}{16}\sf
-Markdown: a "markup" language for formatting text.
-
-* Headings:
-
-    `# Heading 1`\newline
-    `## Heading 2`
-
-* **Bold**: `**bold**`.
-* *Italic*: `*italic*`.
-* Blockquotes:
-
-    `> blockquote`.
-
-## Markdown and Rmarkdown
-
-* Markdown (markup language):
-  * Extension either `.md` or `.markdown`.
-  * Used in many places on the web, in note-taking apps, etc.
-
-* Rmarkdown (markup language):
-  * an extension of markdown that allows for embedded R code chunks.
-  * Extension `.Rmd`.
-
-* Rmarkdown (package):
-  * an R package that allows for the conversion of `.Rmd` files to other formats.
-
-## Rmarkdown files
-
-* Structure:
-  1. YAML header
-  2. Markdown content
-  3. R code chunks surrounded by `` ```{r} `` and `` ``` ``
-  4. Inline R surrounded by `` `r `` and `` ` ``
-
-* Rmarkdown documents can be compiled to HTML, PDF, Word, and other formats
-* Compile with `rmarkdown::render("file.Rmd")`
-
-## Rmarkdown, knitr and pandoc
-
-* `rmarkdown::render()`
-  * Uses `knitr` to run all code chunks, and "knit" the results into a markdown file (replacing R chunks with output).
-  * Uses `pandoc` to convert the markdown file to the desired output format.
-  * If PDF output is desired, LaTeX then converts the tex file (from pandoc output) to pdf.
-
-\centerline{\includegraphics[width = 10cm]{rmd.png}}
-
-## knitr functions
-
-* `knitr::knit()`: knits a single Rmd file --- runs all code chunks and replaces them with output in a markdown file.
-* `knitr::purl()`: extracts all R code from an Rmd file and saves it to a new file.
-* `knitr::spin()`: knits a specially formatted R script file into an Rmd file.
-
-## Rmarkdown packages
-
-  * rmarkdown (to html, pdf, docx, odt, rtf, md, etc.)
-  * bookdown (to html, pdf, epub)
-  * blogdown (to html) -- uses hugo rather than pandoc
-  * xaringan (to html) -- uses remark.js rather than pandoc
-  * beamer (to pdf)
-  * rticles (to pdf)
-  * tufte (to html, pdf)
-  * vitae (to pdf)
-  * distill (to html)
-  * flexdashboard (to html)
-
-## Some chunk options
-\fontsize{14}{16}\sf
-
-* `eval`: whether to evaluate the code chunk
-* `echo`: whether to display the code chunk
-* `include`: whether to include the code chunk in the output
-* `results = 'hide'` hides printed output.
-* `results = 'asis'` includes the output as is.
-* `message`: whether to display messages
-* `warning`: whether to display warnings
-* `error = TRUE`: continue even if code returns an error.
-* `fig.cap`: caption for the figure
-* `fig.width`, `fig.height`: width and height of the figure
-* `cache`: whether to cache the code chunk
-
-## Global chunk options
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  echo = FALSE,
-  message = FALSE,
-  warning = FALSE
-)
-```
-````
-
-* The chunk named `setup` will be run before any other chunks.
-
-## Debugging
-
-* The Rmarkdown document is compiled in a different environment from your R console.
-* If you get an error, try running all chunks (Ctrl+Alt+R).
-* If you can't reproduce the error, check the working directory (add `getwd()` in a chunk).
-* Try setting `error = TRUE` on problem chunk to help you diagnose what happens. (But change it back!)
-* Look at the intermediate files (`.md` or `.tex`) to see what is happening.
-
-## Caching
-
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE)
-```
-````
-
-or by chunk:
-
-````{verbatim}
-```{r, cache = TRUE}
-```
-````
-
-
-## Caching
-
-* When evaluating code chunks, knitr will save the results of chunks with caching to files to be reloaded in subsequent runs.
-* Caching is useful when a chunk takes a long time to run.
-* It will re-run if the code in the chunk changes in any way (even comments or spacing).
-* Beware of inherited objects from earlier chunks. A chunk will not re-run if inherited objects change without explicit dependencies.
-* Beware of dependence on external files.
-
-## Caching
-
-````{verbatim}
-```{r chunk1, cache = TRUE}
-x <- 1
-```
-
-```{r chunk2, cache = TRUE, dependson = "chunk1"}
-y <- x*3
-```
-````
-
-\pause
-
-````{verbatim}
-```{r chunk1, cache = TRUE}
-x <- 1
-```
-
-```{r chunk2, cache = TRUE, cache.extra = x}
-y <- x*3
-```
-````
-
-
-## Caching
-
-Cache will be rebuilt if:
-
-* Chunk options change except `include`
-* Any change in the code, even a space or comment
-* An explicit dependency changes
-
-Do not cache if:
-
- * setting R options like `options('width')`
- * setting knitr options like `opts_chunk$set()`
- * loading packages via `library()` if those packages are used by uncached chunks
-
-## Caching with random numbers
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-```
-````
-
-* `rand_seed` is an unevaluated expression.
-* Each chunk will check if `.Random.seed` has been changed since the last run.
-* If it has, the chunk will be re-run.
-
-## Some caching options
-\fontsize{14}{15}\sf
-
-* `cache.comments` If `FALSE`, changing comments does not invalidate the cache.
-* `cache.rebuild` If `TRUE`, the cache will be rebuilt even if the code has not changed. e.g.,\newline `cache.rebuild = !file.exists("some-file")`
-* `dependson` A character vector of labels of chunks that this chunk depends on.
-* `my_new_option` A new option that you can use in your code to invalidate the cache. e.g., `my_new_option = c(x,y)`
-* `autodep` If `TRUE`, the dependencies are automatically determined. (May not be reliable.)
-
-## Caching
-
-Build automatic dependencies among chunks
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, autodep = TRUE)
-```
-````
-
-Make later chunks depend on previous chunks
-
-````{verbatim}
-```{r setup, include=FALSE}
-dep_prev() # Don't use with `autodep = TRUE`
-```
-````
-
-## Child documents
-
-````{verbatim}
-```{r, child=c('one.Rmd', 'two.Rmd')}
-```
-````
-
-\pause\alert{Conditional inclusion}
-
-````{verbatim}
-```{r, child = if(condition) 'file1.Rmd' else 'file2.Rmd'}
-```
-````
-
-\pause\alert{R Script files}
-
-
-````{verbatim}
-```{r, file = c("Rscript1.R", "Rscript2.R")}
-```
-````
-
-* Better than `source("Rscript1.R")` because output of script included and dependencies tracked.
-
-## Other language engines
-
-````{verbatim}
-```{python}
-print("Hello Python!")
-```
-````
-
-````{verbatim}
-```{stata}
-sysuse auto
-summarize
-```
-````
-
-* Python and Stata need to be installed with executables on `PATH`
-
-
-## Other language engines
-\fontsize{12}{12}\sf
+A typical generic function includes **only** a call to `UseMethod`
 
 ```{r}
-#| echo: true
-names(knitr::knit_engines$get())
+print
 ```
+
+---
+
+### Dispatch on another argument
+
+Specify which argument to use for choosing the method (default is the first)
+
+```
+> survey:::svymean
+function (x, design, na.rm = FALSE, ...)
+{
+    .svycheck(design)
+    UseMethod("svymean", design)
+}
+```
+
+---
+
+### Inheritance
+
+The `class` attribute of an object can have multiple elements
+
+- `UseMethod()` uses the first method that matches, or `default`
+- `NextMethod()` uses the next method that matches
+
+---
+
+### Polite conduct
+
+- if you define a new generic, you can define methods for new and existing classes
+- if you define a new class, you can define methods for new and existing generics
+- don't define methods for someone else's class and generic (ask them)
+- try not to define a generic with the same name as an existing one
+
+# S3 `vctrs`
+
+## S3 `vctrs`
+
+A package for defining new S3 vectors
+
+- makes it easy to have them as `tibble` columns
+- requires a *pure constructor* to make new objects, so they will all be valid
+- supports *double dispatch* for binary operators (eg: +,-)
+- has a complicated but reliable system for type conversion
+- requires a lot of method definitions to get started
+
+[vctrs.r-lib.org](https://vctrs.r-lib.org)
+
+---
+
+## An example: S3 and `vctrs`
+
+The `rimu` package represents multiple-response questions
+
+```
+remotes::install_github("tslumley/rimu")
+```
+---
+
+```
+data(usethnicity)
+race<-as.mr(strsplit(as.character(usethnicity$Q5),""))
+race<-mr_drop(race," ")
+mtable(race)
+hispanic<-as.mr(usethnicity$Q4==1,"Hispanic")
+ethnicity<-mr_union(race,hispanic)
+plot(ethnicity)
+e_S3<-ethnicity[101:120]
+e_vctrs<-as.vmr(e_S3,na.rm=TRUE)
+```
+
+---
+
+#### Inheritance
+
+```
+mr_union<-function(x,y,...) UseMethod("mr_union")
+
+mr_union.default<-function(x,y,...){
+  x<-as.mr(x)
+  y<-as.mr(y)
+  if (length(x)!=length(y))
+    stop("different numbers of observations in x and y")
+
+.....
+}
+```
+
+---
+
+```
+mr_union.vmr<-function(x,y,...) {
+    r<-NextMethod()
+    as.vmr(r)
+}
+```
+
+---
+
+#### Encapsulation
+
+- base S3 version is matrix of logical, plus levels attribute
+    * works in `data.frame`
+- vctrs S3 version is list of vectors of strings
+    * works in `tibble`
+
+---
+
+#### Pure constructor
+
+```
+new_vmr <- function(x,levels=unique(do.call(c,x))) {
+  vctrs::new_list_of(x, ptype = character(),
+  class = "vmr", levs=levels)
+}
+```
+
+---
+
+#### 'helper' functions
+
+```
+> methods("as.mr")
+[1] as.mr.character*  as.mr.data.frame* as.mr.default*
+[4] as.mr.factor*     as.mr.list*       as.mr.logical*
+[7] as.mr.mr*         as.mr.ms*         as.mr.vmr*
+
+> methods("as.vmr")
+[1] as.vmr.default* as.vmr.mr*
+```
+
+# S4
+## S4
+
+S4 requires classes and methods to be registered in R code (not just in packages)
+
+- `setClass` defines the structure of a class
+- `new` creates a new object from a class
+- `setMethod` defines a method
+
+It's possible to ask an object what methods it supports and get a reliable response.
+
+S4 also allows multiple inheritance and multiple dispatch
+
+---
+
+### Bioconductor
+
+- Package system for high-throughput molecular biology
+- Large data
+- Structured data
+- Annotated data
+- New data types/structures all the time
+
+It needs consistent infrastructure and large-scale collaboration: S4
+
+[bioconductor.org](https://bioconductor.org)
+
+---
+
+### Multiple dispatch
+
+Choosing a method based on the class of more than one argument
+
+- not very often useful
+- important for matrices
+- can be useful for plots
+
+---
+
+### Multiple inheritance
+
+`AnnDbObjBimap` is a class for storing look-up tables between different genomic identifiers (eg from different manufacturers)
+
+It is
+
+- (by purpose) a two-way lookup object (`BiMap`)
+- (by construction) an object containing a SQLite database (`DbObj`)
+
+so it inherits generic functions from both these parents
+
+# R6
+
+## R6
+
+Remember function factories from last week?
+
+- Create a function closure with useful variables in its environment
+- These variables are visible inside the function
+
+Now do this with
+
+- multiple variables in the shared environment
+- multiple functions inheriting this environment
+- allow the shared variables to be modified
+
+---
+
+#### R6 is good for...
+
+- large data objects, to reduce copying
+- external objects that R can't just copy (database connections, files,... )
+- shared state such as games
+
+R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming
+
+[R6.r-lib.org](https://r6.r-lib.org/articles/Introduction.html)

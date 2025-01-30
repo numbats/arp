@@ -9,14 +9,8 @@ source(here::here("course_info.R"))
 
 ## Main reference
 
-```{r}
-#| output: asis
-schedule |>
-  filter(Week == week) |>
-  mutate(ref = glue::glue("[{Reference}]({Reference_URL})")) |>
-  pull(ref)
-```
-
+* [17-20 *Advanced R*](https://adv-r.hadley.nz/metaprogramming.html)
+*
 ## What you will learn this week
 
 * Design
@@ -32,9 +26,6 @@ schedule |>
 show_slides(week)
 ```
 
-## Lab code
-
-Lab code can be downloaded here: [`lab.R`](lab.R)
 
 ```{r}
 #| output: asis

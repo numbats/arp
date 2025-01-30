@@ -2,9 +2,7 @@
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 2: Foundations of R programming"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -852,4 +850,132 @@ traceback()
 #> 2: b(x) at #1
 #> 1: a(f())
 unused argument (clas
+```
+
+
+# Conditions
+
+## Conditions
+
+```r
+message("This is what a message looks like")
+#> This is what a message looks like
+
+warning("This is what a warning looks like")
+#> Warning: This is what a warning looks like
+
+stop("This is what an error looks like")
+#> Error in eval(expr, envir, enclos): This is what an error looks like
+```
+
+\pause
+
+* Ignore messages with `suppressMessages()`.
+* Ignore warnings with `suppressWarnings()`.
+* Ignore errors with `try()`.
+
+## try()
+
+* Allows execution to continue even if an error occurs.
+* Returns a special object that captures the error.
+
+\fontsize{10}{10}\sf
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f1 <- function(x) {
+  log(x)
+  10
+}
+f1("x")
+```
+
+:::
+::: {.column width="50%"}
+
+```{r, error = TRUE}
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+f2("a")
+```
+
+:::
+::::
+
+## Handling conditions
+\fontsize{13}{15}\sf
+
+Allow you to specify what should happen when a condition occurs.
+
+```{r, eval = FALSE}
+tryCatch(
+  error = function(cnd) {
+    # code to run when error is thrown
+  },
+  code_to_run_while_handlers_are_active
+)
+withCallingHandlers(
+  warning = function(cnd) {
+    # code to run when warning is signalled
+  },
+  message = function(cnd) {
+    # code to run when message is signalled
+  },
+  code_to_run_while_handlers_are_active
+)
+```
+
+## tryCatch()
+\fontsize{10}{10}\sf
+
+```{r}
+f3 <- function(x) {
+  tryCatch(
+    error = function(cnd) NA,
+    log(x)
+  )
+}
+
+f3("x")
+```
+
+
+## withCallingHandlers()
+\fontsize{10}{10}\sf
+
+```{r}
+f4 <- function(x) {
+  withCallingHandlers(
+    warning = function(cnd) cat("How did this happen?\n"),
+    log(x)
+  )
+}
+
+f4(-1)
+```
+
+
+## Exercise
+
+Explain the results of running the following code
+
+```{r, eval = FALSE}
+show_condition <- function(code) {
+  tryCatch(
+    error = function(cnd) "error",
+    warning = function(cnd) "warning",
+    message = function(cnd) "message",
+    {
+      code
+      5
+    }
+  )
+}
+show_condition(stop("!"))
+show_condition(10)
+show_condition(warning("?!"))
 ```

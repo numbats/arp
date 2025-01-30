@@ -1,5 +1,5 @@
 ---
-title: "Week 7: Object-oriented programming"
+title: "Week 7: R package development"
 ---
 
 ```{r}
@@ -7,22 +7,20 @@ week <- 7
 source(here::here("course_info.R"))
 ```
 
-## Main references
+## Main reference
 
-* [S3](https://adv-r.hadley.nz/s3.html)
-* [vctrs](https://vctrs.r-lib.org)
+ * [*R Packages (2e)*](https://r-pkgs.org)
 
 ## What you will learn this week
 
-* A Q&A on any problems with [Assignment 2](/assignments/A2.qmd)
-* More on S3 and vctrs in preparation for [Assignment 4](/assignments/A4.qmd)
+* Package metadata
+* Package documentation
+* Package checks and tests
+* Package website
+* Continuous integration via GitHub Actions
 
 ```{r}
 #| output: asis
 show_slides(week)
-```
-
-```{r}
-#| output: asis
 show_assignments(week)
 ```

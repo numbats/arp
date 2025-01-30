@@ -30,10 +30,10 @@ website:
           - week12/index.qmd
       - text: Discussion
         icon: chat-fill
-        href: "https://edstem.org/au/courses/15860/discussion/"
+        href: "https://edstem.org/au/courses/21222/discussion/"
       - text: Moodle
         icon: mortarboard-fill
-        href: "https://learning.monash.edu/course/view.php?id=12724&section=1"
+        href: "https://learning.monash.edu/course/view.php?id=26696&section=1"
     right:
       - icon: github
         href: https://github.com/numbats/arp

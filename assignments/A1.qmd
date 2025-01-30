@@ -1,50 +1,8 @@
 ---
-title: Assignment 1 (25%)
+title: Assignment 1 (10%)
 ---
 
-Your task is to create an R package with one of the following objectives:
-
-* Convert between different units of measurement (e.g. feet to meters, kilograms to pounds, etc.). E.g., `feet_to_metres(3)`, `make_metric(c("3lb", "4mph", "5ft"))`.
-* Implement `fizzbuzz` (5,7). e.g., `fizzbuzz(c(1:50))`. Generalize to any two numbers. Extend to `fizzbuzzwhizz` handling any three numbers.
-* Implement a histogram function using base R graphics without using `cut()` or similar built-in functions.  Allow the user to specify a bin edge and either the number of bins or the bin width, with sensible defaults. Extend to allow density, frequency, and relative frequency histograms, and the ability to overlay a specified parametric distribution.
-* Calculate the score of a ten-pin bowling game where the inputs are the number of pins knocked down in each throw. Extend to allow multiple players.
-* Test if two words are anagrams. Extend to more than two words, and look for anagram subsets of minimal length (e.g., "tiger" and "right" with a subset of 4 letters).
-* Compute the decimal expansion of any fraction to a specified number of places.  e.g., `decimal_expansion(1, 7, digits=20)` should return `0.14285714285714285714`. Extend to any base. Further extensions could include formatting for repeated strings.
-* Calculate the score from a game of blackjack. Inputs are the cards held by the player and the dealer at the end of the game. Extend to multiple players, and variations of blackjack.
-* Calculate the winning hand from a game of Poker. Inputs are the cards held by each player at the end of the game. Start with a simple version of poker, and extend to more complex versions. Start with 2 players and extend to multiple players. e.g., `poker_hands(c("2H", "3D", "5S", "9C", "KD"), c("3C", "3H", "3S", "AC", "AH"))` should return 2 (for player 2).
-* Simulate a game of snakes and ladders between two people on a fixed board. Extend to allow multiple players, and to allow the user to specify the board layout.
-* Find a word for a crossword given a set of letters. e.g., `find_word("T_GE_")` should return a list of words including "tiger", "toged" and "tyger". Extend to find the most common word, and include definitions in the output.
-* Simulate a simple epidemic model. Start with two states (infected, not infected) and extend to more states (e.g., infected, recovered, not infected). Allow the user to specify the transition probability matrix and the initial state. Plot the number of people in each state over time.
-* Simulate a single-server queuing system. Functions might include `simulate_queue(mean_arrival_time = 5, mean_service_time = 4, n = 1000)` which could return the number of people in the queue at each time point.  Extend to multiple servers, and different distributions for arrival and service times.
-* Implement a to-do list with dates and priorities. Allow the user to add, remove, and update items. Allow the user to filter the list by date and priority. e.g., `add_todo("Buy milk", priority = 3, due = "2022-01-01")`. `show_today()` should return a list of items due today or earlier. Extensions could include a graphical interface, and functions to export and import the list.
-* Generate block-bootstrapped samples from a `tsibble` object. Allow the user to specify the block length and the number of samples. e.g., `block_bootstrap(tsibble, block_length = 5, n = 1000)`. Allow block starting positions to be variable according to a specified distribution, with the user controlling where any incomplete blocks fall. Extend to handle seasonal block bootstrapping, and multiple seasonal block bootstrapping.
-
-You may also have your own ideas for a package. If you would like to do something else, please discuss it with Mitch and Rob first.
-
-## Requirements
-
-Your package should have the following features:
-
-1. The package should be on GitHub and have a `README.md` file with a brief description of the package and instructions on how to install it.
-2. Each user-facing function in the package should have a roxygen header including an example.
-3. Each user-facing function in the package should have at least one test written using `testthat`.
-4. The package should use Github Actions to run the tests on every commit.
-5. The package should have a pkgdown website that can be deployed locally.
-
-For this first assignment, the package does not need to be complete. It should contain at least one user-facing function. You will have the opportunity to improve and extend the package in subsequent assignments.
-
-## Marks
-
-* 2 marks for the package compiling and installing without errors.
-* 3 marks for a `README.md` file with a brief description of the package and instructions on how to install it.
-* 5 marks for having a user-facing function with a roxygen header including an example. The function should work as expected and be coded efficiently.
-* 2 marks for appropriate use of loops.
-* 2 marks for appropriate use of control flow.
-* 2 marks for appropriate use of conditions.
-* 2 marks for appropriate use of vectors, functions, and environments.
-* 3 marks for appropriate tests using  `testthat`.
-* 2 marks for using GitHub Actions to run a package check including tests on every commit.
-* 2 marks for generating a pkgdown website that can be deployed locally.
+Write a function with checks and loops
 
 ```{r}
 #| output: asis

@@ -1,10 +1,8 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 11: Interfacing with other languages"
+author: "Week 11: Rewriting R code in C++"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -13,7 +11,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: false
+    keep-tex: true
 ---
 
 ```{r}
@@ -26,669 +24,473 @@ source(here::here("course_info.R"))
 
 ## Outline
 
+```{=tex}
 \vspace*{0.4cm}
 \tableofcontents
+```
+
+## About me
+
+[Tomasz Woźniak](https://github.com/donotdespair)
+
+* Senior Lecturer in Econometrics at the unimelb
+* Econometrician: Bayesian time series analyst
+* Develops methods for applied macro research
+* Loves cycling, yoga, books, volunteering, contemporary theatre, music, and art
+* I am nice!
 
 
-# Unit updates
+## About me
 
-## Assignment 4
+[Tomasz Woźniak](https://github.com/donotdespair)
 
-* Assignment 4 due 24 May
+* **R** enthusiast and specialised user for 16 years
+* [**bsvars**](https://cran.r-project.org/package=bsvars) package author (more coming up)
 
-Any questions?
-
-## SETUs
-
-**SETUs are now open.**
-
-Please complete your SETU, we make improvements based on your feedback.
-
-This is especially important for us in this unit, since it is our first year running the unit!
-
-<https://monash.edu/ups/setu>
-
-# R as an interface language
-
-## R as an interface language
-
-R is a powerful design language, with lots of flexibility for creating good (or bad) programming interfaces.
-
-Much of R is built up on libraries from other languages, and R's flexible interface design makes them easy to use.
-
-<!-- :::{callout-tip title = "Interface packages"} -->
-<!-- We can write packages that interface libraries from other packages -->
-<!-- ::: -->
-
-## R Core
-
-R itself is mostly written using different programming languages (mostly C and Fortran).
-
-You can find the source code for R at <https://svn.r-project.org/R/>, or mirrored on GitHub at <https://github.com/wch/r-source>
-
-## Wrapper functions and abstractions
-
-The use of abstraction and wrapping other software is fundamental to programming.
-
-Wrapper functions call a second function with minimal/no change to the output. They are used to adapt existing code to work for a new design or programming language.
-
-Wrappers often involve abstraction, a process of reducing complexity by simplifying the user-facing function's design.
+\vspace{0.3cm}\centerline{\includegraphics[width = 3.5cm]{bsvars.png}}
 
 
-## Wrapping functions with NSE
 
-Last week we saw how non-standard evaluation (NSE) can take any syntactically valid R code and evaluate it differently.
+# Motivation
 
-Metaprogramming is often used to directly translate R code into other languages.
+## Motivations
 
-# Interfacing other programming languages
+* Coding in **C++** for **R** applications has always been possible
+* It requires:
+  * writing **C++** code
+  * compiling it, and
+  * linking it to **R**
+* Difficulties:
+  * tedious object-oriented programming
+  * necessity of assuring object compatibility
+* Benefits are great, but the cost was too high
 
-## Interfacing other programming languages
+## Motivations
 
-An interface to a different programming language involves:
+* **Rcpp** is a family of packages by Dirk Eddelbuetel et al. facilitating the application of **C++** to **R**
+* An interface for communication between **R** and **C++**
+* Greatly simplifies the workflow
+* Easier to benefit from the best of the two worlds:
+  * **C++** programs are pre-compiled assuring fast computations\
+  *perfect for writing functions*
+  * **R** code is interpreted and dynamic:\
+  *perfect for data analysis*
 
-* Designing an R interface which can be translated into code for the other language
-* Converting objects to and from each language
-* Passing side-effects (like image output)
+## Objectives for this session
 
-## Interfacing Python with reticulate
+* to facilitate working with **C++** for **R** applications
+* to perform a sequence of exercises
+* to focus on:
+  * basic programming structures
+  * functional programming
+  * object types: scalars, vectors, matrices, lists, etc.
+  * linear algebra
+  * statistical distributions
 
-\placefig{13.5}{0.5}{width=2cm}{../screenshots/reticulate.png}
+
+## Materials for this session
+
+* Lecture slides
+* **C++** scripts:
+  * [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week12/nicetry.cpp)
+  * [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
+  * [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
+  * [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
+* **R** scripts:
+  * [`nicepackage.R`](https://github.com/numbats/arp/blob/main/week12/nicepackage.R)
+
+## learning resources
+
+* This session!
+* vignettes: for packages [**Rcpp**](https://cran.r-project.org/package=Rcpp) and [**RcppArmadillo**](https://cran.r-project.org/package=RcppArmadillo)
+* online resources:
+  * [**Armadillo** library documentation](https://arma.sourceforge.net/docs.html)
+  * [RcppGallery](https://gallery.rcpp.org/)
+  * [stackoverflow.com tag:rcpp](https://stackoverflow.com/questions/tagged/rcpp)
+* François, R., [*Optimizing R Code with Rcpp*](https://www.datacamp.com/courses/optimizing-r-code-with-rcpp) on datacamp
+* Tsuda, M., [*Rcpp for everyone*](https://teuder.github.io/rcpp4everyone_en/)
+* Eddelbuettel, D., [*Seamless R and C++ Integration with Rcpp*](https://doi.org/10.1007/978-1-4614-6868-4)
+
+
+
+
+
+
+# The first steps with Rcpp
+
+## The first steps with Rcpp
+
+Consider the following **C++** applications in **R**:
+
+* Define a **C++** function in an **R** script
+  * promptly available for fast computations
+* Develop a **C++** function in a `.cpp` file
+  * perfect for developing, testing, and benchmarking
+* Use a function from a `*.cpp` file in **R** computations
+  * perfect for elaborate projects
+* Develop an **R** package using **C++** code
+  * perfect for sharing your work with the community
+
+## Define a **C++** function in an **R** script
 
 ```{r}
-library(reticulate)
-```
-
-The `reticulate` package allows Python to run from within R.
-
-* Translates R syntax to Python
-* Converts R objects to Python
-* Converts Python objects to R
-
-The Python version and package environment can be set with:
-
-```{r}
-#| eval: false
-use_python("/usr/local/bin/python")
-```
-
-## Python example from R with reticulate
-
-\fontsize{10}{10}\sf
-```{r}
-#| eval: false
-# reticulate::py_install("numpy")
-np <- import("numpy", convert = FALSE)
-
-# do some array manipulations with NumPy
-a <- np$array(c(1:4))
-a
-```
-
-```{r}
-#| echo: false
-r_to_py(1:4)
-```
-
-```{r}
-#| eval: false
-sum <- a$cumsum()
-sum
-```
-
-```{r}
-#| echo: false
-r_to_py(c(1L,3L,6L,10L))
-```
-
-```{r}
-#| eval: false
-# convert to R explicitly at the end
-py_to_r(sum)
-```
-
-```{r}
-#| echo: false
-c(1L,3L,6L,10L)
-```
-
-
-## Converting objects between R and Python
-
-Full conversion table here: [*Calling Python*](https://rstudio.github.io/reticulate/articles/calling_python.html#type-conversions)
-
-\fontsize{10}{10}\sf
-```{r}
-r_to_py(1)
-r_to_py(1:10)
-r_to_py(list(norm = rnorm(10), pois = rpois(10, 3)))
-r_to_py(mtcars)
-```
-
-## Plots (and other side-effects)
-
-\fontsize{10}{10}\sf
-```{r}
-#| eval: false
-plt <- import("matplotlib.pyplot")
-fig <- plt$figure(figsize=c(14,8))
-x <- seq(-3, 3, by = 0.01)
-plt$plot(x,dnorm(x))
-plt$show()
-```
-
-![](pyplot.png){height=50%}
-
-
-## Interfacing other programming languages
-
-* Any system commands with `system()`
-* C/C++: Directly in R with `.Call()` or Rcpp (next week!)
-* Julia: JuliaCall
-* Matlab/Octave: R.matlab
-* Stata: RStata
-* JavaScript: V8
-* Java: rJava
-* Lua: luajr
-
-# Data analysis with databases
-
-## Data analysis with databases
-
-Often data for analysis is stored and used within a database.
-
-A database is an efficient way of securely storing and interacting with large datasets.
-
-It is also a good technique for working with data that is too large to fit in memory.
-
-## dbplyr
-
-\placefig{13.5}{0.5}{width=2cm}{../screenshots/dbplyr.png}
-
-```{r}
-library(dbplyr)
-```
-
-
-The dbplyr package allows you to use dplyr code to manipulate tables from databases.
-
-It achieves this using non-standard evaluation to convert dplyr and R code into suitable database code for a connected database.
-
-## dbplyr backends
-
-Backends are interfaces between R and database languages.
-
-There are many database backends available for dbplyr:
-
-:::: {.columns}
-
-::: {.column width="50%"}
-* MySQL / SQLite
-* Snowflake
-* PostgreSQL
-* Spark
-* ODBC
-* MS Access
-:::
-
-::: {.column width="50%"}
-* SAP HANA
-* Hive
-* Impala
-* Oracle
-* Redshift
-* Teradata
-:::
-
-::::
-
-## Creating a database
-
-You can quickly create a SQLite database in memory with:
-
-```{r}
-#| cache: false
-con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
-con
-```
-
-Currently this database doesn't contain any tables:
-
-```{r}
-DBI::dbListTables(con)
-```
-
-## Using a database
-
-We can add a dataset to the database from R with:
-
-\fontsize{10}{10}\sf
-```{r}
-#| cache: false
-copy_to(con, mtcars)
-DBI::dbListTables(con)
-```
-
-\fontsize{14}{10}\sf
-You can then retrieve the table using `tbl()`
-
-\fontsize{10}{10}\sf
-```{r}
-tbl(con, "mtcars")
-```
-
-## Manipulating a table
-
-With the database table object, you can use dplyr:
-
-\fontsize{10}{10}\sf
-```{r}
-tbl(con, "mtcars") |> 
-  group_by(cyl) |> 
-  summarise(mean(mpg), mean(hp))
-```
-
-## Collecting the results
-
-When your dplyr data manipulation is complete, you can then `collect()` your results as a regular R data frame for use with other packages.
-
-\fontsize{10}{10}\sf
-```{r}
-tbl(con, "mtcars") |> 
-  group_by(cyl) |> 
-  summarise(mean(mpg), mean(hp)) |> 
-  collect()
-```
-
-## Disconnecting from a database
-
-Once finished, it is good practice to disconnect from the database using `DBI::dbDisconnect()`:
-
-```{r}
-#| cache: false
-#| error: true
-DBI::dbDisconnect(con)
-```
-
-See now that the database is disconnected:
-
-```{r}
-con
-```
-
-
-## Connecting to a remote database
-
-In most cases you will be connecting to a remove database.
-
-Here's the credentials to a PostgreSQL database containing some very important data:
-
-* Host: arp.nectric.com.au:5432
-* Username: monash
-* Password: arp2024
-* Database: arp
-
-## Connecting to a remote database
-
-::: {.callout-caution title="Your turn!"}
-Connect to the remote database and use the data.
-
-\vspace{1em}
-
-Hint: the connection code looks like this:
-
-```{r}
-#| eval: false
-
-con <- DBI::dbConnect(
-  RPostgres::Postgres(), 
-  dbname = "???", 
-  host = "???", port = "???", 
-  user = "???", password = "???"
-)
-```
-
-```{r}
-#| cache: false
-#| include: false
-
-con <- DBI::dbConnect(
-  RPostgres::Postgres(), 
-  dbname = "arp", 
-  host = "arp.nectric.com.au", port = "5432", 
-  user = "monash", password = "arp2024"
-)
-```
-
-:::
-
-
-## Using data on a remote database
-
-As before, dbplyr allows you to manipulate tables using dplyr code.
-
-\fontsize{10}{10}\sf
-```{r}
-tbl(con, "penguins") |> 
-  group_by(species) |> 
-  summarise(avg_mass_g = mean(body_mass_g, na.rm = TRUE))
-```
-
-\fontsize{14}{10}\sf
-All database operations are done on the remote server.
-
-## How it works - translating expressions
-
-dbplyr uses NSE to translate R code into SQL / database code.
-
-You can try this out directly with `translate_sql()`:
-
-\fontsize{10}{10}\sf
-```{r}
-translate_sql(mean(body_mass_g, na.rm = TRUE), con = con)
-translate_sql(x ^ 2L, con = con)
-translate_sql(substr(x, 5, 10), con = con)
-```
-
-## How it works - translating expressions
-
-Not all R functions can be translated to database queries.
-
-Consider `logp1()`, it gets translated directly as SQL:
-
-\fontsize{10}{10}\sf
-```{r}
-translate_sql(logp1(x), con = con)
-```
-
-\fontsize{14}{10}\sf
-However this doesn't work, `log(body_mass_g + 1)` does.
-
-\fontsize{10}{10}\sf
-```{r}
-#| error: true
-tbl(con, "penguins") |> 
-  mutate(logp1(body_mass_g))
-```
-
-
-## How it works - translating expressions
-
-Not all database queries can be written in R.
-
-For this you can write literal `SQL` commands with the `sql()` function.
-
-\fontsize{10}{10}\sf
-```{r}
-translate_sql(sql("x!"), con = con)
-translate_sql(x == sql("ANY VALUES(1, 2, 3)"), con = con)
-```
-
-
-## How it works - translating dplyr verbs
-
-For any chain of dplyr commands, you can find the SQL / database query by using `show_query()` instead of `collect()`.
-
-```{r}
-tbl(con, "penguins") |> 
-  group_by(species) |> 
-  summarise(avg_mass_g = mean(body_mass_g, na.rm = TRUE)) |> 
-  show_query()
-```
-
-# Creating interactive web components
-
-## Creating interactive web components
-
-In week 8 we saw how reactive programming can add interactivity to web applications using shiny.
-
-Today we'll see how to use R and Javascript to create interactive UI elements.
-
-:::{.callout-tip title="Concepts combined"}
-
-The UI elements from today and the reactive server code from week 8 is all the ingredients to create shiny apps.
-
-:::
-
-## Shiny extensions
-
-There are many JS libraries which have been wrapped up into R packages, for use in Shiny or regular analysis.
-
-<https://github.com/nanxstats/awesome-shiny-extensions>
-
-## htmltools
-
-\placefig{13.5}{0.5}{width=2cm}{../screenshots/htmltools.png}
-
-```{r}
-library(htmltools)
-```
-
-The htmltools package allows you to write HTML code with R.
-
-```{r}
-div(
-  p("Hello world!"),
-  img(src = "earth.jpg")
-)
-```
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```html
-<div>
-  <p>Hello world!</p>
-  <img src="earth.jpg"/>
-</div>
-```
-
-:::
-
-::: {.column width="50%"}
-Hello world!
-
-![](earth.jpg){width="50%"}
-:::
-
-::::
-
-## htmltools
-
-This is used to create the UI of a Shiny app.
-
-It is also include the necessary CSS/JS dependencies for HTML reports with interactive 'widgets'.
-
-## htmlwidgets
-
-The htmlwidgets package provides a framework for creating R bindings to JavaScript libraries. HTML Widgets can be:
-
-* Used at the R console for data analysis just like conventional R plots.
-* Embedded within R Markdown documents
-* Incorporated into Shiny web applications.
-* Saved as standalone web pages for ad-hoc sharing via email, file transfer, web deployment, etc.
-
-## htmlwidgets showcase
-
-The htmlwidgets package powers many popular R packages including:
-
-* leaflet
-* plotly
-* visNetwork
-* DiagrammeR
-
-<http://www.htmlwidgets.org/>
-
-## htmlwidgets components
-
-All widgets include the following components:
-
-* Web dependencies: JS and CSS assets used by the widget
-* R binding: This is the function that users call to create the output
-* JavaScript binding: The JavaScript code that glues everything together, passing data/options from the R binding to the underlying JavaScript library.
-
-## htmlwidgets setup
-
-From within a package, you can quickly get started with a htmlwidget using:
-
-```r
-htmlwidgets::scaffoldWidget("mywidget")
-```
-
-::: {.callout-caution title="Follow along!"}
-
-Create a package for making interactive wordclouds.
-
-We'll use the wordcloud2.js library, available on GitHub here: <https://github.com/timdream/wordcloud2.js>
-:::
-
-
-## htmlwidgets setup
-
-The htmlwidgets components are organised in packages with this file structure:
-
-\fontsize{10}{10}\sf
-```
-R/
-| <name>.R
-
-inst/
-|-- htmlwidgets/
-|   |-- <name>.js
-|   |-- <name>.yaml
-|   |-- lib/
-|   |   |-- <javascript library>/
-```
-
-## Web dependencies
-
-Dependencies are specified using the YAML configuration file located at `inst/htmlwidgets/<name>.yaml`.
-
-```yaml
-dependencies:
-  - name: <name>
-    version: <version>
-    src: htmlwidgets/lib/<src>
-    script:
-      - <JS files>
-    stylesheet: 
-      - <CSS files>
-```
-
-## Web dependencies
-
-::: {.callout-caution title="Follow along!"}
-Download the JavaScript src for wordcloud2.js and add it to the package as a htmlwidgets dependency.
-
-The JavaScript library's sources are available in the repository's `src/` folder.
-
-<https://github.com/timdream/wordcloud2.js>
-:::
-
-## R binding
-
-An R function which returns a htmltools widget created with `htmlwidgets::createWidget()`
-
-```r
-function(x, ...) {
-  # R code preparing data/settings
-
-  # Return a HTML widget
-  createWidget(
-    name, # The name of your widget in /inst
-    x, # The data/settings for the widget's JS binding
-    ...
-  )
-}
-```
-
-## R binding
-
-::: {.callout-caution title="Follow along!"}
-Update the generated R binding function to:
-
-* Accept a character vector of words.
-* Accept a numeric vector of frequency/weight.
-* Pass these inputs into the htmlwidget via `x`.
-
-\vspace{1em}
-
-Bonus: improve the design by accepting `.data` as the first input, then using tidy evaluation to pass in the words and frequencies from `.data`.
-:::
-
-## JavaScript binding
-
-The JavaScript code that takes data/settings from R and uses the JS library to create the output.
-
-\fontsize{10}{10}\sf
-```js
-HTMLWidgets.widget({
-  name: "<name>",
-  type: "output",
-  factory: function(el, width, height) {
-    // initialise the JavaScript object from the library here
-    var obj = new <initalise object>;
-    return {
-      renderValue: function(x) {
-        // update the initalised JavaScript object with new data/settings
-      },
-      resize: function(width, height) {
-        // Re-render or otherwise update size when window changes
-      }
-    };
+Rcpp::cppFunction('
+  DataFrame nicetry (int n) {
+    NumericVector v = rnorm(n);
+    IntegerVector x = seq_len(n);
+    LogicalVector y = v > 0;
+    CharacterVector z(n, "nice");
+    return DataFrame::create(_["v"] = v, _["x"] = x, _["y"] = y, _["z"] = z);
   }
-});
+')
+nicetry(2)
 ```
 
-## JavaScript binding
 
-::: {.callout-caution title="Follow along!"}
-Update the generated JavaScript binding to create the wordcloud on the htmlwidgets HTML element `el`.
+## Develop a **C++** function in a `nicetry.cpp` file
 
-\vspace{1em}
+A `*.cpp` file sample contents:
+```{Rcpp rcpp_df}
+#include <Rcpp.h>
+using namespace Rcpp;
 
-Hint: a wordcloud is created using `wordcloud2.js` with:
-
-```js
-WordCloud(el, { list: [['foo', 12], ['bar', 6]] } );
+// [[Rcpp::export]]
+List nicetry (int n) {
+  NumericVector v = rnorm(n);
+  IntegerVector x = seq_len(n);
+  LogicalVector y = v > 0;
+  CharacterVector z(n, "nice");
+  return List::create(_["v"] = v, _["x"] = x, _["y"] = y, _["z"] = z);
+}
+/*** R
+nicetry(2)
+*/
 ```
 
-Hint: The data can be transposed from two separate vectors into the above format with `HTMLWidgets.transposeArray2D([x.words, x.freqs])`
-:::
+
+## Develop a **C++** function in a `nicetry.cpp` file
+
+The script includes:
+
+* **Rcpp** library and `namespace` declarations (skip: `Rcpp::`)
+```{Rcpp rcpp_df1, eval = FALSE}
+#include <Rcpp.h>
+using namespace Rcpp;
+```
+* **Rcpp** marker to export the `nicetry` function to R
+```{Rcpp rcpp_df2, eval = FALSE}
+// [[Rcpp::export]]
+```
+* sample **R** script
+```{Rcpp rcpp_df3, eval = FALSE}
+/*** R
+nicetry(2)
+*/
+```
 
 
-## Create a wordcloud
+## Develop a **C++** function in a `nicetry.cpp` file
+
+The script includes:
+
+* the function definition
+```{Rcpp rcpp_df4, eval = FALSE}
+List nicetry (                    // output type and function name
+    int n                         // input type and name
+) {
+  NumericVector v = rnorm(n);     // define a numeric vector and fill it
+  IntegerVector x = seq_len(n);   // define an integer vector as a sequence
+  LogicalVector y = v > 0;        // define a logical vector
+  CharacterVector z(n, "nice");   // define a character vector
+  // return a list with the created vectors
+  return List::create(_["v"] = v, _["x"] = x, _["y"] = y, _["z"] = z);
+}
+```
+
+## Develop a **C++** function in a `.cpp` file
 
 ::: {.callout-caution title="Your turn!"}
-Your wordcloud function is now ready to use, try it out!
+Develop a **C++** function that creates a `Tx3` matrix with:
 
-\vspace{1em}
+* an integer `T` as the only argument
+* a constant term column
+* a linear trend $t - \bar{t}$ column
+* a quadratic trend $(t - \bar{t})^2$ column
 
-You can try it with the love words example dataset here:
+where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.
 
-```{r}
-#| eval: false
-
-readr::read_csv(
-  "https://arp.numbat.space/week11/lovewords.csv"
-)
-```
-
+Get some help [HERE](https://teuder.github.io/rcpp4everyone_en/080_vector.html).
 :::
 
-## Use the wordclouds in a shiny app
 
-The bindings for shiny apps are already created by `htmlwidgets::scaffoldWidget()`, and can be used in shiny like any other UI output and server renderer.
+## Use a function from a `nicelist.cpp` file in **R**
 
-```{r}
-widgetOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'widget', width, height, 
-                                 package = 'package')
-}
+* `nicelist.cpp` file contents:
 
-renderWidget <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, widgetOutput, env, quoted = TRUE)
+```{Rcpp rcpp_df5, eval = FALSE}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+List nicelist (int n) {
+  NumericVector p = rnorm(n);
+  NumericVector s(n);
+  for (int i=0; i<n; i++) {
+    s[i] =  pow(p[i], 2);
+  }
+  return List::create(_["p"] = p, _["s"] = s);
 }
 ```
 
+
+## Use a function from a `nicelist.cpp` file in **R**
+
+* **R** script using the function from `nicelist.cpp`:
+```{r nicelist}
+Rcpp::sourceCpp("nicelist.cpp")
+nicelist(3)
+```
+
+
+
+## Develop a **C++** function in a `.cpp` file
+
+::: {.callout-caution title="Your turn!"}
+Consider a Gaussian random walk:
+$$
+y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
+$$
+Develop a **C++** function that:
+
+* has an integer `T` as the only argument
+* returns a `T`-vector with Gaussian random walk
+:::
+
+
+
+# Some stats with RcppArmadillo
+
+## Some stats with RcppArmadillo
+
+* Data objects from **Rcpp** have limited functionality
+* **Armadillo** is a **C++** library for linear algebra that
+  * provides a rich set of functions
+  * has a simple and intuitive syntax
+  * includes fast linear algebra routines, and
+  * fast random number generators
+  * has fantastic [documentation](http://arma.sourceforge.net/docs.html)
+* **RcppArmadillo** is a simplified interface with **Armadillo**
+  * allows seamless integration with **Rcpp**
+  * easily passes data between **R** and **C++**
+
+## Some stats with RcppArmadillo: linear regression
+
+Contents of a `nicelr.cpp` file:
+
+```{Rcpp nicelr}
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+using namespace arma;
+
+// [[Rcpp::export]]
+vec nicelr (vec y, mat x) {
+  vec beta_hat = solve(x.t() * x, x.t() * y);
+  return beta_hat;
+}
+
+/*** R
+x = cbind(rep(1,5),1:5); y = x %*% c(1,2) + rnorm(5)
+nicelr(y, x)
+*/
+```
+
+
+
+## Some stats with RcppArmadillo: linear regression
+
+::: {.callout-caution title="Your turn!"}
+Extend the `nicelr` function to return also the covariance of $\hat{\beta}$:
+$$
+\widehat{Cov}\left[\hat\beta\right] = \hat\sigma^2 \left(X'X\right)^{-1}, \qquad \hat\sigma^2 = \frac{1}{T} \left( Y - \hat\beta X \right)'\left( Y - \hat\beta X \right)
+$$
+
+* don't adjust the arguments
+* return `beta_hat` and `cov_beta_hat` in a list
+
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
+:::
+
+
+
+## Some stats with RcppArmadillo: IG2 distribution
+
+Sampling random draws from an inverted gamma 2 distribution.
+
+A positive random variable $\sigma^2$ following an inverted gamma 2 distribution with positive scale $s$ and shape $\nu$ parameters is denoted by:
+$$
+\sigma^2 \sim IG2\left(s, \nu\right)
+$$
+
+1. Generate random draw $x$ from $\chi^2(\nu)$
+2. Return $\frac{s}{x}$
+
+
+## Some stats with RcppArmadillo: IG2 distribution
+
+Contents of a `nicerig2.cpp` file:
+
+```{Rcpp nicerig2}
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+using namespace arma;
+
+// [[Rcpp::export]]
+vec nicerig2 (const int n, const double s, const double nu) {
+  vec rig2 = s / chi2rnd( nu, n );
+  return rig2;
+}
+
+/*** R
+nicerig2(2, 1, 1)
+*/
+```
+
+
+## Some stats with RcppArmadillo: NIG2 distribution
+
+**Normal-inverted gamma 2 distribution.**
+
+Random variables, an $N$-vector $\mathbf{x}$ and a positive scalar, $\sigma^2$, following the normal-inverted gamma 2 distribution with
+
+* an $N$-vector of the mean $\boldsymbol\mu$
+* a positive definite $N\times N$ covariance matrix $\boldsymbol\Sigma$
+* a positive scale $s$
+* a positive shape $\nu$
+
+## Some stats with RcppArmadillo: NIG2 distribution
+
+**Normal-inverted gamma 2 distribution.**
+\begin{align*}
+\left(\mathbf{x}, \sigma^2\right) &\sim NIG2\left(\boldsymbol\mu, \boldsymbol\Sigma, s, \nu\right)\\[2ex]
+p\left(\mathbf{x}, \sigma^2\right) &= p\left(\mathbf{x} \mid \sigma^2\right)p\left(\sigma^2\right)\\[2ex]
+\sigma^2 &\sim IG2\left(s, \nu\right)\\
+\mathbf{x} \mid \sigma^2 &\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
+\end{align*}
+
+
+## Some stats with RcppArmadillo: NIG2 distribution
+
+To generate $n$ random draws from the normal-inverted gamma 2 distribution:
+
+1. Generate $n$ independent random draws of $\sigma^{2(j)}$ from $IG2(s, \nu)$ for $j=1,\dots,n$
+2. For each $j$, generate the corresponding random draw of $\mathbf{x}^{(j)}$ from $N\left(\boldsymbol\mu, \sigma^{2(j)}\boldsymbol\Sigma\right)$
+3. Return the collection of pairs $\left\{\mathbf{x}^{(j)}, \sigma^{2(j)}\right\}_{j=1}^n$
+
+
+## Some stats with RcppArmadillo: NIG2 distribution
+
+
+::: {.callout-caution title="Your turn!"}
+Complement the `niceig2` function with another one that provides $n$ random draws from the normal-inverted gamma 2 distribution.
+
+* adjust the arguments
+* return a list containing
+  * an $n$-vector of $\sigma^2$ draws
+  * an $n\times N$ matrix of $\mathbf{x}$ draws
+
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
+:::
+
+## Some stats with RcppArmadillo: Simulation smoother
+
+::: {.callout-caution title="Additional resources!"}
+Have a look at my article on [*Simulation Smoother using RcppArmadillo*](https://gallery.rcpp.org/articles/simulation-smoother-using-rcpparmadillo/) at *Rcpp Gallery*.
+:::
+
+
+
+# Create an R package with compiled code in ten steps
+
+## Step 1: create a package
+
+Run the following code in **R**:
+
+```{r step1, eval = FALSE}
+RcppArmadillo::RcppArmadillo.package.skeleton("nicepackage")
+```
+
+* **C++** code lives in `src/`
+* `DESCRIPTION` includes necessary dependencies
+* `NAMESPACE` includes `useDynLib(nicepackage)`
+* **R** functions in `R/` refer to **C++** functions via `.Call()`
+* File `R/RcppExports.R` contains all **C++** functions exported to **R**
+
+## Step 2: create R project and open it
+
+* you know what to do
+
+## Step 3: some cleaning
+
+* remove files:
+  * `Read-and-delete-me`
+  * `src/HelloWorld.cpp`
+  * `man/*`
+
+## Step 4: include useful elements
+
+1. Set **git** `usethis::use_git()`
+2. Set licencing `usethis::use_gpl3_license()`
+3. Set package doc `usethis::use_package_doc()`
+4. Set **roxy** `roxygen2::roxygenise()`
+  * copy `Encoding: UTC-8` to `DESCRIPTION`
+  * remove the `NAMESPACE` file
+  * run `roxygen2::roxygenise()` again
+<!-- 5. Run `usethis::use_rcpp_armadillo()` -->
+
+
+## Step 5: edit the `DESCRIPTION` file
+
+* you know what to do!
+
+## Step 6: include compiled code
+
+1. copy the `nicerig2.cpp` file to `src/` directory
+2. edit it
+3. include the header file `nicerig2.h` in the `src/` directory
+4. edit it
+
+## Step 7: compile the code the first time
+
+1. Run `Rcpp::compileAttributes()` to update the `R/RcppExports.R` file
+<!-- 2. Run `devtools::check()` -->
+
+## Step 8: include R wrapper for C++ function
+
+1. Create an `R/nicerig2.R` file
+2. Copy/paste the corresponding function from the `R/RcppExports.R` file
+3. Include argument check
+4. Include documentation
+5. Implement further adjustments
+
+## Step 9: some final touches
+
+1. Run `Rcpp::compileAttributes()`
+2. Run `devtools::document()` to generate documentation
+3. Run `devtools::check()` to check the package
+
+TADA! Your package is ready!
+
+## Step 10: use the package for the first time
+
+1. Run `devtools::load_all()` to load the package
+2. Run `hist(nicerig2(1e4), breaks = 100)` to test the function
+3. Run `?nicerig2` and `?nicepackage` to check the documentation
+
+
+## What's next?
+
+$$ $$
+
+\begin{center}
+\LARGE\textbf{Rewrite all your code in Rcpp!\\[1ex] Nice!}
+\end{center}

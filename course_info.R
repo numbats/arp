@@ -2,10 +2,10 @@
 library(dplyr)
 
 # Start of semester
-start_semester <- "2024-02-26"
+start_semester <- "2025-03-03"
 
 # Week of mid-semester break
-mid_semester_break <- "2024-04-01"
+mid_semester_break <- "2025-04-21"
 
 # Schedule
 schedule <- tibble(
@@ -13,44 +13,16 @@ schedule <- tibble(
   Topic = c(
     "Foundations of R programming",
     "Foundations of R programming",
-    "R package development",
-    "Debugging and profiling",
+    "Debugging",
+    "Literate programming with Quarto",
+    "Efficient reproducible workflows with targets and renv",
     "Functional programming",
-    "Object-oriented programming",
-    "Object-oriented S3 and vctrs",
-    "Reactive and literate programming",
-    "Quarto and targets: efficient reproducible workflows",
+    "R package development",
+    "Object-oriented programming with S3",
+    "Object-oriented programming with vctrs",
     "Metaprogramming",
-    "Interfacing with other languages",
-    "Rewriting R code in C++"
-  ),
-  Reference = c(
-    "1-4. *Advanced R*",
-    "5-8. *Advanced R*",
-    "*R Packages*",
-    "22-24. *Advanced R*",
-    "9-11. *Advanced R*",
-    "12-13. *Advanced R*",
-    "12-13. *Advanced R*",
-    "*Mastering Shiny*",
-    "*The {targets} R package user manual*",
-    "17-20. *Advanced R*",
-    "21. *Advanced R*",
-    "25. *Advanced R*"
-  ),
-  Reference_URL = c(
-    "https://adv-r.hadley.nz/foundations-intro.html",
-    "https://adv-r.hadley.nz/foundations-intro.html",
-    "https://r-pkgs.org",
-    "https://adv-r.hadley.nz/debugging.html",
-    "https://adv-r.hadley.nz/fp.html",
-    "https://adv-r.hadley.nz/oo.html",
-    "https://adv-r.hadley.nz/oo.html",
-    "https://mastering-shiny.org",
-    "https://books.ropensci.org/targets/",
-    "https://adv-r.hadley.nz/metaprogramming.html",
-    "https://adv-r.hadley.nz/translation.html",
-    "https://adv-r.hadley.nz/rcpp.html"
+    "Rewriting R code in C++",
+    "Interfacing with other languages"
   )
 )
 
@@ -70,9 +42,7 @@ schedule <- schedule |>
   left_join(calendar, by = "Week") |>
   mutate(
     Week = if_else(Date == mid_semester_break, NA, Week),
-    Topic = if_else(Date == mid_semester_break, "Mid-semester break", Topic),
-    Reference = if_else(Date == mid_semester_break, NA, Reference),
-    Reference_URL = if_else(Date == mid_semester_break, NA, Reference_URL)
+    Topic = if_else(Date == mid_semester_break, "Mid-semester break", Topic)
   ) |>
   select(Week, Date, everything())
 

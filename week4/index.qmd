@@ -1,5 +1,5 @@
 ---
-title: "Week 4: Debugging and profiling"
+title: "Week 4: Literate programming with Quarto"
 ---
 
 ```{r}
@@ -7,34 +7,23 @@ week <- 4
 source(here::here("course_info.R"))
 ```
 
-## Main reference
-
-```{r}
-#| output: asis
-schedule |>
-  filter(Week == week) |>
-  mutate(ref = glue::glue("[{Reference}]({Reference_URL})")) |>
-  pull(ref)
-```
-
 ## What you will learn this week
 
-* Debugging
-* Measuring performance
-* Efficient R programming
-* Caching
+* [Quarto](https://quarto.org)
 
-## Online resources
-
-* [Creating a reprex](https://www.tidyverse.org/help/#reprex)
-* [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
-* [Jenny Bryan - Object of type 'closure' is not subsettable](https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r)
-* [Posit Community](https://community.rstudio.com)
-* [Stack Overflow](https://stackoverflow.com/)
-* [Efficient R Programming](https://csgillespie.github.io/efficientR/)
 
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+## Other resources
+
+* [Quarto extensions](https://quarto.org/docs/extensions/)
+* [Monash quarto templates](https://github.com/quarto-monash)
+
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```

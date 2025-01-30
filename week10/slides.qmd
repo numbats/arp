@@ -2,9 +2,7 @@
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 10: Metaprogramming"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -40,7 +38,7 @@ In other words, writing code that can *inspect* and *modify* code.
 . . .
 
 ::: {.callout-tip title="A powerful idea"}
-Unlike most programming languages, R *embraces* metaprogramming and non-standard evaluation (NSE). 
+Unlike most programming languages, R *embraces* metaprogramming and non-standard evaluation (NSE).
 
 This powers much of the strange but wonderful interface designs in R and its packages.
 :::
@@ -303,7 +301,7 @@ In `rlang`, we have three main building block functions:
 
 ::: {.callout-caution title="Follow along!"}
 
-Use `call2()` and these building blocks to construct and evaluate `mtcars |> mutate(wt/hp)`. 
+Use `call2()` and these building blocks to construct and evaluate `mtcars |> mutate(wt/hp)`.
 
 Hint: recall that `x |> f(y)` is parsed as `f(x, y)`.
 
@@ -313,7 +311,7 @@ Hint: recall that `x |> f(y)` is parsed as `f(x, y)`.
 
 ::: {.callout-caution title="Your turn!"}
 
-Spot the difference. 
+Spot the difference.
 
 How do the results of the following functions differ?
 
@@ -405,7 +403,7 @@ Suppose we wanted to programmatically `filter()` `mtcars$cyl`:
 ```{r}
 #| eval: false
 cyl <- 4
-mtcars |> 
+mtcars |>
   filter(cyl == cyl)
 ```
 
@@ -430,11 +428,11 @@ Consider this function for summarising a value's range:
 ```{r}
 #| eval: false
 var_summary <- function(data, var) {
-  data |> 
+  data |>
     summarise(n = n(), min = min({{ var }}), max = max({{ var }}))
 }
-mtcars |> 
-  group_by(cyl) |> 
+mtcars |>
+  group_by(cyl) |>
   var_summary(mpg)
 ```
 
@@ -465,11 +463,11 @@ var_summaries <- function(data, ...) {
   vars <- enquos(...)
   .min <- purrr::map(vars, ~ expr(min(!!.)))
   .max <- purrr::map(vars, ~ expr(max(!!.)))
-  data |> 
+  data |>
     summarise(n = n(), !!!.min, !!!.max)
 }
-mtcars |> 
-  group_by(cyl) |> 
+mtcars |>
+  group_by(cyl) |>
   var_summaries(mpg, wt)
 ```
 
@@ -513,7 +511,7 @@ This is a type of NSE, since it changes the environment in which code is ran.
 
 ```{r}
 #| eval: false
-mtcars |> 
+mtcars |>
   mutate(mpg/wt)
 ```
 
@@ -544,7 +542,7 @@ my_mutate <- function(.data, mutation) {
   .data[[as_label(mutation)]] <- result
   .data
 }
-mtcars |> 
+mtcars |>
   my_mutate(mpg/wt)
 ```
 
@@ -655,5 +653,5 @@ If you must use NSE, you should:
 * Be consistent
 * Clearly document it
 * Get a lot of design benefit from it
-  
+
   (not just for slightly less typing!)

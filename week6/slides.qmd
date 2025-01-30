@@ -1,10 +1,8 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 6: Object-oriented Programming"
+author: "Week 6: Functional programming"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -13,7 +11,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: false
+    keep-tex: true
 ---
 
 ```{r}
@@ -29,555 +27,672 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Assignments
-## Assignments
 
-### Assignment 1
+# Programming paradigms
 
-* Common problems
-* Keep working on your package!
-* Final version due on 31 May 2024
+## Programming paradigms
 
-### Assignment 2
+R code is typically structured using these paradigms:
 
-* Questions?
-* Due 19 April 2024
+* Functional programming
+* Object-oriented programming
+* Literate programming
+* Reactive programming
 
-# Thomas Lumley
+Often several paradigms used together to solve a problem.
 
-## Thomas Lumley
+## Programming paradigms
 
-* Professor of Statistics, University of Auckland
-* First degree in pure mathematics from Monash University
-* MSc in Applied Statistics from the University of Oxford
-* PhD in Biostatistics from the University of Washington
-* Fellow of the Royal Society of New Zealand
-* Member of the R core team
-* Maintainer of 11 CRAN packages including *survey*
-* Author of *Biased & Inefficient* blog
-* Advisor to the NZ government on statistical issues
+::: {.callout-note icon=false title="Functional programming (W5; today!)"}
+* Functions are created and used like any other object.
+* Output should only depend on the function's inputs.
+:::
 
-# Object oriented programming
+. . .
 
-## Object oriented programming
+::: {.callout-note icon=false title="Object-oriented programming (W6)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
 
-- **Encapsulation**: objects have secret internals that you don't need to understand
-- **Polymorphism**: the same function can do different things to different data as appropriate
-- **Inheritance**: you can take an existing kind of object and make a new, more specialised one
+## Programming paradigms
 
-Inheritance turns out to be useful mostly for data infrastructure, but encapsulation and polymorphism are generally valuable
+::: {.callout-note icon=false title="Literate programming (W7)"}
+* Natural language is interspersed with code.
+* Aimed at prioritising documentation/comments.
+* Now used to create reproducible reports/documents.
+:::
 
-## Generic functions and methods
+. . .
 
-A simple example: `plot`
+::: {.callout-note icon=false title="Reactive programming (W7)"}
+* Objects are expressed using code based on inputs.
+* When inputs change, the object's value updates.
+:::
 
----
+# Functional programming
 
-```{r}
-plot(trees)
-```
+## Functional programming
 
----
-
-```{r}
-m<-lm(log(Volume)~log(Girth)+log(Height),
-       data=trees)
-par(mfrow=c(2,2),mar=c(3,1,1,1))
-plot(m)
-```
-
----
+R is commonly considered a 'functional' programming language - and so far we have used functional programming.
 
 ```{r}
-plot(.leap.seconds)
+square <- function(x) {
+  return(x^2)
+}
+square(8)
 ```
 
----
+The `square` function is an object like any other in R.
+
+## Functions are objects
+
+R functions can be printed,
 
 ```{r}
-plot(nhtemp)
+print(square)
 ```
 
----
+. . .
 
-### How?
+inspected,
 
-* Giant `switch` statement...
-* ...that gets updated every time you load a package...
-* ???
-
-Generic functions and methods!
-
-## Object systems
-
-R has **a lot** of object systems
-
-- S3
-- [S3 `vctrs`]
-- S4
-- R6
-- R.oo, proto, R7
-
----
-
-### S3
-
-Main topic for today
-
-- easy to start writing
-- no safeguards
-- especially good for single-person, small to medium projects
-- can be used for large projects with a lot of attention to documentation and communication
-- limited use of inheritance
-- basis of tidyverse and most of CRAN
-
----
-
-### S3 `vctrs`
-
-A tidyverse package for making different sorts of vectors
-
-- handles a lot of formatting and subsetting details
-- allows for binary operators
-- useful if you want your vectors in a tibble
-- enforces some safeguards
-
----
-
-### S4
-
-- more work to start writing
-- objects know their structure
-- enforces object structure
-- better for large-scale collaborative programming
-- better at inheritance
-- basis of Bioconductor
-
----
-
-### R6
-
-- Supports modifiable (mutable) objects
-   * database connections, files, etc
-   * large data objects we don't want to copy
-   * interfacing to eg tensorflow
-   * shared state between copies of an object
-- not widely used otherwise
-- more similar to other languages
-
-# S3
-## S3
-
-### Back to `plot`
-
-* `plot()` doesn't *do* anything
-* All the work is done by *methods* for different types of object
-* Methods are just ordinary functions
-* When you call `plot`, R calls the appropriate `plot` method
-
----
-
-### Generic functions
-
-* Generic functions don't *do* anything
-* All the work is done by *methods* for different types of object
-* Methods are just ordinary functions
-    - with declarations in a package `NAMESPACE`
-    - or R can guess based on function name
-
-When you call the generic function R calls the appropriate  method
-
----
-
-### Try these
-
-```
-print
-methods("print")
-stats:::print.acf
-tools:::print.CRAN_package_reverse_dependencies_and_views
-plot
-methods("plot")
-plot.ts
-stats:::plot.lm
+```{r}
+formals(square)
 ```
 
-Also, try `methods("plot")` after loading another package
+## Functions are objects
 
----
+put in a list,
 
-### What do we notice?
-
-- `print` functions are all different
-- names start with `print.`, then the sort of thing they print
-- mostly aren't visible just by name
--
--
-
----
-
-### Generic functions
-
-* *methods* that actually do the work 'belong to' *generic functions*
-
-* This is unusual: most popular OOP systems (Java, C++, Python) have methods belonging to data objects
-
-* Important in R because functions are first-class objects (Week 5)
-
-* Useful for functional programming with objects
-
----
-
-### Classes
-
-- S3 classes are the things that specify which method to use
-- Use `class` to attach a class to an object like a Post-It note
-- That's all
-
-```
-x<-1
-class(x)<-"numbat"
+\fontsize{10}{10}\sf
+```{r}
+my_functions <- list(square, sum, min, max)
+my_functions
 ```
 
----
+## Functions are objects
 
-#### Try it
+used within lists,
 
+```{r}
+my_functions[[1]](8)
 ```
-print.numbat <- function(x,...){
-  cat(x,"numbats\n")
-  invisible(x)
+
+. . .
+
+but they can't be subsetted!
+
+\fontsize{10}{10}\sf
+
+```{r, error = TRUE}
+square$x
+```
+
+## Handling input types
+
+Functional programming handles different input types using control flow. The same code is ran regardless of object type.
+
+```{r}
+square <- function(x) {
+  if(!is.numeric(x)) {
+    stop("`x` needs to be numeric")
+  }
+  return(x^2)
 }
 ```
 
----
+. . .
 
-#### Defining classes
+::: {.callout-tip title="Next class..."}
+We will see object-oriented programming, which handles different input types using different functions (methods)!
+:::
 
-- R doesn't care what `class` you attach to an object
-- **You** have to care
-- `class(x) <- "lm"` makes R call `lm` methods on `x`
-- **You** are responsible for these methods being appropriate
-- Documentation is important
-- No real enforcement of encapsulation
+## What are functions?
 
----
+A function is comprised of three components:
 
-#### Ways to set up classes
+* The arguments/inputs (`formals()`)
+* The body/code (`body()`)
+* The environment (`environment()`)
 
-- vectors plus attributes (`ts`, `POSIXct`, matrix)
-- lists plus attributes (`lm`, `data.frame`)
-- environments plus attributes
+. . .
 
-#### Try it
+::: {.callout-caution title="Your turn!"}
+Use these functions to take a closer look at `square()`.
 
-```
-unclass(.leap.seconds)
-unclass(nhtemp)
-unclass(trees)
-m<-lm(log(Volume)~log(Girth)+log(Height),data=trees)
-str(m)
-```
+Try modifying the function's formals/body/env with `<-`.
+:::
 
----
+## Functional programming
 
-### Defining classes safely
+Since functions are like any other object, they can also be:
 
-- Document what all is in a valid object of your class
-- Have a limited set of places where one is created
-- Consider having a pure constructor function (ARP 13.3.1)
-- Consider having a validator function (ARP 13.3.1)
-- Have a user-friendly function to make valid objects
+* **inputs** to functions
 
-This is more important if *someone else* might want to make an object from your class
+::: {.callout-tip title="Extensible design with function inputs"}
+Using function inputs can improve your package's design!
 
----
+Rather than limiting users to a few specific methods, allow them to use and write any method with functions.
+:::
 
-### Constructors
 
-- user-friendly: `tibble`, `lm`, `acf`, `svydesign`
-- pure: `new_factor`, `new_difftime` (ARP 13.3.1)
+## Function arguments
 
-Makes a new object and ensures that it is valid. Stops users creating the object themselves.
-
----
-
-### Defining methods
-
-- A method should have **the same** arguments as the generic (plus maybe more)
-- The name of the method is `paste(generic,class,sep=".")`
-- Less ambiguous: use a package and declare the functions
-    * `S3method(generic, class)` in `NAMESPACE`
-    * `@method generic class` with `devtools`
-- `sloop::ftype` tells you about the type of a function
-- `sloop::s3_get_method` or `getAnywhere` finds methods even if they're hidden
-
----
-
-### `default` methods
-
-Called when there is no specific method for the object (no class, or no matching class)
-
-- `mean.default`
-- `summary.default`
-- `head.default`
-
----
-
-### Adding methods to your class
-
-No *rules* on which methods, but informal standards
-
-- Start with `print`, `[`
-- `summary` for more information
-- `plot` or `image` if possible (`ggplot` methods take more work)
-- `coef`, `vcov`, maybe `logLik` and `AIC` for models
-- `resid` for models with residuals
-
----
-
-### Base S3 classes
-
-- The class for method choice isn't just `class(x)` for base types
-- Use `sloop::s3_class` to be sure
-
-```
-> s3_class(1)
-[1] "double"  "numeric"
-> s3_class(matrix(1,1,1))
-[1] "matrix"  "double"  "numeric"
-> class(1)
-[1] "numeric"
-> class(matrix(1,1,1))
-[1] "matrix" "array"
-```
-
----
-
-### Ambiguous cases
-
-- `t` is a generic
-- `t.test` is a generic
-- `t.test.formula` is a method for `t.test`
-- `t.data.frame` is a method for `t`
-- `list` is not generic
-- `list.files` isn't a method
-
-Avoid using `.` as a word separator in function names that aren't methods. Use `camelCase` or `snake_case` or some other consistent approach
-
----
-
-### Defining generics
-
-A typical generic function includes **only** a call to `UseMethod`
+Consider a function which calculates accuracy measures:
 
 ```{r}
-print
-```
-
----
-
-### Dispatch on another argument
-
-Specify which argument to use for choosing the method (default is the first)
-
-```
-> survey:::svymean
-function (x, design, na.rm = FALSE, ...)
-{
-    .svycheck(design)
-    UseMethod("svymean", design)
+accuracy <- function(e, measure, ...) {
+  if (measure == "mae") {
+    mean(abs(e), ...)
+  } else if (measure == "rmse") {
+    sqrt(mean(e^2, ...))
+  } else {
+    stop("Unknown accuracy measure")
+  }
 }
 ```
 
----
+::: {.callout-tip title="Improving the design"}
+This function is limited to only computing MAE and RMSE.
+:::
 
-### Inheritance
+## Function arguments
 
-The `class` attribute of an object can have multiple elements
+Using function operators allows any measure to be used.
 
-- `UseMethod()` uses the first method that matches, or `default`
-- `NextMethod()` uses the next method that matches
-
----
-
-### Polite conduct
-
-- if you define a new generic, you can define methods for new and existing classes
-- if you define a new class, you can define methods for new and existing generics
-- don't define methods for someone else's class and generic (ask them)
-- try not to define a generic with the same name as an existing one
-
-# S3 `vctrs`
-
-## S3 `vctrs`
-
-A package for defining new S3 vectors
-
-- makes it easy to have them as `tibble` columns
-- requires a *pure constructor* to make new objects, so they will all be valid
-- supports *double dispatch* for binary operators (eg: +,-)
-- has a complicated but reliable system for type conversion
-- requires a lot of method definitions to get started
-
-[vctrs.r-lib.org](https://vctrs.r-lib.org)
-
----
-
-## An example: S3 and `vctrs`
-
-The `rimu` package represents multiple-response questions
-
-```
-remotes::install_github("tslumley/rimu")
-```
----
-
-```
-data(usethnicity)
-race<-as.mr(strsplit(as.character(usethnicity$Q5),""))
-race<-mr_drop(race," ")
-mtable(race)
-hispanic<-as.mr(usethnicity$Q4==1,"Hispanic")
-ethnicity<-mr_union(race,hispanic)
-plot(ethnicity)
-e_S3<-ethnicity[101:120]
-e_vctrs<-as.vmr(e_S3,na.rm=TRUE)
+```{r, eval = FALSE}
+MAE <- function(e, ...) mean(abs(e), ...)
+RMSE <- function(e, ...) sqrt(mean(e^2, ...))
+accuracy <- function(e, measure, ...) {
+  ???
+}
+accuracy(rnorm(100), measure = RMSE)
 ```
 
----
+::: {.callout-caution title="Your turn!"}
+Complete the accuracy function to calculate accuracy statistics based on the function passed in to `measure`.
+:::
 
-#### Inheritance
+## Functional programming
 
+Since functions are like any other object, they can also be:
+
+* **inputs** to functions
+
+* **outputs** of functions
+
+::: {.callout-tip title="Functions making functions?"}
+These functions are known as *function factories*.
+
+Where have you seen a function that creates a function?
+:::
+
+## Function factories
+
+Let's generalise `square()` to raise numbers to any power.
+
+\fontsize{10}{10}\sf
+
+```{r}
+power <- function(x, exp) {
+  x^exp
+}
+power(8, exp = 2)
+power(8, exp = 3)
 ```
-mr_union<-function(x,y,...) UseMethod("mr_union")
 
-mr_union.default<-function(x,y,...){
-  x<-as.mr(x)
-  y<-as.mr(y)
-  if (length(x)!=length(y))
-    stop("different numbers of observations in x and y")
+::: {.callout-tip title="Starting a factory"}
+What if the function returned a function instead?
+:::
 
-.....
+## Function factories
+
+\fontsize{10}{10}\sf
+
+```{r}
+power_factory <- function(exp) {
+  # R is lazy and won't look at exp unless we ask it to
+  force(exp)
+  # Return a function, which finds exp from this environment
+  function(x) {
+    x^exp
+  }
+}
+square <- power_factory(exp = 2)
+square(8)
+```
+
+. . .
+
+```{r}
+cube <- power_factory(exp = 3)
+cube(8)
+```
+
+## Function factories
+
+Consider this function to calculate plot breakpoints of vectors.
+
+```{r}
+breakpoints <- function(x, n.breaks) {
+  seq(min(x), max(x), length.out = n.breaks)
 }
 ```
 
----
+::: {.callout-caution title="Your turn!"}
+Convert this function into a function factory.
 
+Is it better to create functions via `x` or `n.breaks`?
+:::
+
+# Functional problem solving
+
+## Split, apply, combine
+
+Many problems can be simplified/solved using this process:
+
+* split (break the problem into smaller parts)
+* apply (solve the smaller problems)
+* combine (join solved parts to solve original problem)
+
+. . .
+
+This technique applies to both
+
+* writing functions (rewriting a function into sub-functions)
+* working with data (same function across groups or files)
+
+<!-- ## Functionals -->
+
+<!-- ::: {.callout-note title="Functionals"} -->
+<!-- *Functionals* use function inputs and returns vectors.  -->
+<!-- ::: -->
+
+<!-- ```{r} -->
+<!-- randomise <- function(f) f(runif(1e3)) -->
+<!-- randomise(mean) -->
+<!-- randomise(sum) -->
+<!-- ``` -->
+
+## data |> group_by() |> summarise()
+
+An example of split-apply-combine being used to work with data is when `group_by()` and `summarise()` are used together.
+
+. . .
+
+* split: `group_by()` splits up the data into groups
+* apply: your `summarise()` code calculates a single value
+* combine: `summarise()` combines the results into a vector
+
+. . .
+
+\fontsize{10}{10}\sf
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, eval = FALSE}
+library(dplyr)
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
 ```
-mr_union.vmr<-function(x,y,...) {
-    r<-NextMethod()
-    as.vmr(r)
+:::
+
+::: {.column width="50%"}
+```{r, echo = FALSE}
+library(dplyr)
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
+```
+:::
+
+::::
+
+
+## Split-apply-combine for vectors and lists
+
+The same idea can be used for calculations on vectors.
+
+. . .
+
+There are two main implementations we consider:
+
+* base R: The `*apply()` functions
+* purrr: The `map*()` functions
+
+. . .
+
+We will use purrr and but I'll also share the base R equivalent.
+
+## for or map?
+
+Let's `square()` a vector of numbers with a for loop.
+
+\fontsize{10}{10}\sf
+```{r}
+x <- c(1, 3, 8)
+x2 <- numeric(length(x))
+for (i in seq_along(x)) {
+  x2[i] <- square(x[i])
 }
+x2
 ```
 
----
+. . .
 
-#### Encapsulation
+\fontsize{13}{14}\sf
+::: {.callout-tip title="Vectorisation?"}
+Of course `square()` is vectorised, so we should use `square(x)`. Other functions like `lm()` or `read.csv()` are not!
+:::
 
-- base S3 version is matrix of logical, plus levels attribute
-    * works in `data.frame`
-- vctrs S3 version is list of vectors of strings
-    * works in `tibble`
+## for or map?
 
----
+Instead using `map()` we get...
 
-#### Pure constructor
-
-```
-new_vmr <- function(x,levels=unique(do.call(c,x))) {
-  vctrs::new_list_of(x, ptype = character(),
-  class = "vmr", levs=levels)
-}
+\fontsize{13}{14}\sf
+```{r}
+library(purrr)
+x <- c(1, 3, 8)
+map(x, square) # lapply(x, square)
 ```
 
----
+## Mapping vectors
 
-#### 'helper' functions
+The same result, but it has been combined differently!
 
+![](../diagrams/functionals/map.png){fig-align="center"}
+
+## Mapping vectors
+
+To combine the results into a vector rather than a list, we instead use `map_vec()` to combine results into a vector.
+
+```{r}
+library(purrr)
+x <- c(1, 3, 8)
+map_vec(x, square) # vapply(x, square, numeric(1L))
 ```
-> methods("as.mr")
-[1] as.mr.character*  as.mr.data.frame* as.mr.default*
-[4] as.mr.factor*     as.mr.list*       as.mr.logical*
-[7] as.mr.mr*         as.mr.ms*         as.mr.vmr*
 
-> methods("as.vmr")
-[1] as.vmr.default* as.vmr.mr*
+## for or map
+
+::: {.callout-tip title="Advantages of map"}
+* Less coding (less bugs!)
+* Easier to read and understand.
+:::
+
+. . .
+
+::: {.callout-important title="Disadvantages of map"}
+* Less control over loop
+* Cannot solve sequential problems
+:::
+
+## Functional mapping
+
+Recall `group_by()` and `summarise()` from dplyr:
+
+```{r, eval = FALSE}
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
 ```
 
-# S4
-## S4
+::: {.callout-caution title="Your turn!"}
+Use `split()` and `map_vec()` to achieve a similar result.
 
-S4 requires classes and methods to be registered in R code (not just in packages)
+*Hint: `split(mtcars$mpg, mtcars$cyl)` creates a list that splits `mtcars$mpg` by each value of `mtcars$cyl`.*
+:::
 
-- `setClass` defines the structure of a class
-- `new` creates a new object from a class
-- `setMethod` defines a method
+## Anonymous mapper functions
 
-It's possible to ask an object what methods it supports and get a reliable response.
+<!-- Often the function that you map is more complicated than `mean`, and you might need to specify where the mapped vector is used. -->
 
-S4 also allows multiple inheritance and multiple dispatch
+Suppose we want to separately model `mpg` for each `cyl`.
 
----
+```{r, eval = FALSE}
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4,])
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 6,])
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 8,])
+```
 
-### Bioconductor
+## Anonymous mapper functions
 
-- Package system for high-throughput molecular biology
-- Large data
-- Structured data
-- Annotated data
-- New data types/structures all the time
+We can split the data by `cyl` with `split()`,
 
-It needs consistent infrastructure and large-scale collaboration: S4
+```{r}
+mtcars_cyl <- split(mtcars, mtcars$cyl)
+```
 
-[bioconductor.org](https://bioconductor.org)
+but `map(mtcars_cyl, lm, mpg ~ disp + hp + drat + wt)` won't work - why?
 
----
+. . .
 
-### Multiple dispatch
+::: {.callout-important title="Difficult to map"}
+Using `map(mtcars_cyl, lm)` will apply `lm(mtcars_cyl[i])`.
 
-Choosing a method based on the class of more than one argument
+The mapped vector is always used as the first argument!
+:::
 
-- not very often useful
-- important for matrices
-- can be useful for plots
+## Anonymous mapper functions
 
----
+We can write our own functions!
 
-### Multiple inheritance
+\fontsize{10}{10}\sf
+```{r}
+mtcars_lm <- function(.) lm(mpg ~ disp + hp + drat + wt, data = .)
+map(mtcars_cyl, mtcars_lm)
+```
 
-`AnnDbObjBimap` is a class for storing look-up tables between different genomic identifiers (eg from different manufacturers)
+## Anonymous mapper functions
 
-It is
+Or use `~ body` to create anonymous functions.
 
-- (by purpose) a two-way lookup object (`BiMap`)
-- (by construction) an object containing a SQLite database (`DbObj`)
+\fontsize{10}{10}\sf
+```{r}
+# lapply(mtcars_cyl, \(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+map(mtcars_cyl, ~ lm(mpg ~ disp + hp + drat + wt, data = .))
+```
 
-so it inherits generic functions from both these parents
+## Mapping mapping mapping
 
-# R6
+How would you then get the coefficients from all 3 models?
 
-## R6
+```{r, eval = FALSE}
+# mtcars_cyl |> lapply(\(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+mtcars_cyl |>
+  map(~ lm(mpg ~ disp + hp + drat + wt, data = .))
+```
 
-Remember function factories from last week?
+. . .
 
-- Create a function closure with useful variables in its environment
-- These variables are visible inside the function
+::: {.callout-tip title="Solution"}
 
-Now do this with
+\fontsize{10}{10}\sf
+```{r, eval = TRUE}
+# lapply(mtcars_cyl, \(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+mtcars_cyl |>
+  map(~ lm(mpg ~ disp + hp + drat + wt, data = .)) |>
+  map(coef)
+```
+:::
 
-- multiple variables in the shared environment
-- multiple functions inheriting this environment
-- allow the shared variables to be modified
 
----
+## Mapping arguments
 
-#### R6 is good for...
+Any arguments after your function are passed to all functions.
 
-- large data objects, to reduce copying
-- external objects that R can't just copy (database connections, files,... )
-- shared state such as games
+![](../diagrams/functionals/map-arg.png){fig-align="center"}
 
-R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming
+## Mapping arguments
 
-[R6.r-lib.org](https://r6.r-lib.org/articles/Introduction.html)
+This works by passing through `...` to the function.
+
+```{r}
+x <- list(1:5, c(1:10, NA))
+map_dbl(x, ~ mean(.x, na.rm = TRUE))
+map_dbl(x, mean, na.rm = TRUE)
+```
+
+## Mapping arguments
+
+These additional arguments are not decomposed / mapped.
+
+![](../diagrams/functionals/map-arg-recycle.png){fig-align="center"}
+
+## Mapping multiple arguments
+
+It is often useful to map multiple arguments.
+
+![](../diagrams/functionals/map2.png){fig-align="center"}
+
+## Mapping multiple arguments
+
+```{r}
+xs <- map(1:8, ~ ifelse(runif(10) > 0.8, NA, runif(10)))
+map_vec(xs, mean, na.rm = TRUE)
+```
+
+. . .
+
+```{r}
+ws <- map(1:8, ~ rpois(10, 5) + 1)
+map2_vec(xs, ws, weighted.mean, na.rm = TRUE)
+```
+
+
+## Mapping multiple arguments
+
+![](../diagrams/functionals/map2-arg.png){fig-align="center"}
+
+## Mapping many arguments
+
+It is also possible to map any number of inputs with `pmap`.
+
+\fontsize{10}{10}\sf
+```{r}
+n <- 1:3
+min <- c(0, 10, 100)
+max <- c(1, 100, 1000)
+pmap(list(n, min, max), runif) # .mapply(runif, list(n, min, max), list())
+```
+
+## Mapping many arguments
+
+![](../diagrams/functionals/pmap-3.png){fig-align="center"}
+
+## Parallel mapping
+
+Split-apply-combine problems are *embarrassingly parallel*.
+
+. . .
+
+The furrr package (future + purrr) makes it easy to use `map()` in parallel, providing `future_map()` variants.
+
+```{r}
+library(furrr)
+plan(multisession, workers = 4)
+future_map_dbl(xs, mean, na.rm = TRUE)
+future_map2_dbl(xs, ws, weighted.mean, na.rm = TRUE)
+```
+
+## Reduce vectors to single values
+
+Sometimes you want to collapse a vector, reducing it to a single value. `reduce()` always returns a vector of length 1.
+
+\fontsize{10}{10}\sf
+```{r}
+x <- sample(1:100, 10)
+x
+sum(x)
+# Alternative to sum()
+reduce(x, `+`) # Reduce(`+`, x)
+```
+
+## Reduce vectors to single values
+
+The result from the function is re-used as the first argument.
+
+![](../diagrams/functionals/reduce.png){fig-align="center"}
+
+## Reduce vectors to single values
+
+::: {.callout-caution title="Your turn!"}
+We're studying the letters in 3 bowls of alphabet soup.
+
+![](../diagrams/alphabet-soup.jpg){height=50%}
+:::
+
+
+## Reduce vectors to single values
+
+::: {.callout-caution title="Your turn!"}
+We're studying the letters in 3 bowls of alphabet soup.
+
+Use `reduce()` to find the letters were in all bowls of soup!
+
+Are all letters found in the soups?
+
+\fontsize{10}{10}\sf
+```{r}
+alphabet_soup <- map(c(10,24,13), sample, x=letters, replace=TRUE)
+alphabet_soup
+```
+
+:::
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-note icon=false title="Capturing conditions"}
+* `possibly(.f, otherwise)`: If the function errors, it will return `otherwise` instead.
+* `safely(.f)`: The function now returns a list with 'result' and 'error', preventing errors.
+* `quietly(.f)`: Any conditions (messages, warnings, printed output) are now captured into a list.
+:::
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-note icon=false title="Changing results"}
+* `negate(.f)` will return `!result`.
+:::
+
+::: {.callout-note icon=false title="Chaining functions"}
+* `compose(...)` will chain functions together like a chain of piped functions.
+:::
+
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-tip title="Functions modifying functions?"}
+These functions are all *function factories*!
+
+More specifically they are known as *function operators* since both the input and output is a function.
+
+`memoise::memoise()` is also a *function operator*.
+:::
+
+
+<!-- These are function factories! -->
+
+<!-- ## How does it work? -->
+
+<!-- ```{r, eval = FALSE} -->
+<!-- simple_map <- function(x, f, ...) { -->
+<!--   out <- vector("list", length(x)) -->
+<!--   for(i in seq_along(x)) { -->
+<!--     out[[i]] <- f(x[[i]], ...) -->
+<!--   } -->
+<!--   out -->
+<!-- } -->
+<!-- ``` -->
+
+
+<!-- 1. purrr/furrr -->
+<!-- 2. functional arguments -->
+<!-- 3. functional outputs -->

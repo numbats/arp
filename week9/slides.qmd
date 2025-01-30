@@ -1,10 +1,8 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 8: Quarto and targets -- efficient reproducible workflows"
+author: "Week 9: Object-oriented programming (vctrs)"
 format:
-  beamer:
-    pdf-engine: pdflatex
-    aspectratio: 169
+  presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
     knitr:
@@ -13,9 +11,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    colorlinks: true
-    urlcolor: MonashBlue
-    linkcolor: burntorange
+    keep-tex: false
 ---
 
 ```{r}
@@ -31,320 +27,718 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Assignments
+# Programming paradigms
 
-## Assignments
+## Programming paradigms
 
-* Assignment 2 feedback
-* Assignment 3 due 10 May
-* Assignment 4 due 24 May
+::: {.callout-note icon=false title="Functional programming (W5)"}
+* Functions are created and used like any other object.
+* Output should only depend on the function's inputs.
+:::
 
+. . .
 
-# Quarto
+::: {.callout-note icon=false title="Object-oriented programming (W6-W7)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
 
-## Quarto
-\fontsize{14}{16}\sf
+## Programming paradigms
 
-* Generalization of Rmarkdown (not dependent on R)
-* Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
-* More consistent yaml header and chunk options.
-* Many more output formats, and many more options for customizing format.
-* Heavier reliance on pandoc Lua filters
-* Uses pandoc templates for extensions
+::: {.callout-note icon=false title="Literate programming (W7)"}
+* Natural language is interspersed with code.
+* Aimed at prioritising documentation/comments.
+* Now used to create reproducible reports/documents.
+:::
 
-\centerline{\includegraphics[width = 10cm]{images/qmd.png}}
+. . .
 
-## Choose your engine
-
-Specify the engine in the yaml header:
-
-````{verbatim}
----
-engine: knitr
----
-````
-
-````{verbatim}
----
-engine: jupyter
-jupyter: python3
----
-````
+::: {.callout-note icon=false title="Reactive programming (W8)"}
+* Objects are expressed using code based on inputs.
+* When inputs change, the object's value updates.
+:::
 
 
-**Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
+# Object oriented programming
+
+## Object oriented programming
+
+::: {.callout-note icon=false title="S3"}
+* The OO system used by most of CRAN.
+* Very simple (and 'limited') compared to other systems.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="vctrs"}
+* Builds upon S3 to make creating vectors easier.
+* Good practices inherited by default.
+:::
 
 
-## Execute options
+## S3 Recap: Objects and methods
 
-*   `execute` option in yaml header can be used instead of a `setup` chunk:
+Unlike most OO systems where methods belong to **objects/data**, S3 methods *belong* to 'generic' **functions**.
 
-    ````{verbatim}
-    execute:
-      cache: true
-      echo: false
-      warning: false
-    ````
+Recall that functions in R are objects like any other.
 
-* `setup` chunk still allowed.
+. . .
 
-## Chunk options
 
-Rmarkdown syntax recognized for R chunks.
+::: {.callout-tip title="Self awareness"}
+In S3, there is no concept of 'self' since the relevant objects are available as function arguments.
 
-More consistent chunk options use the hash-pipe `#|`
+However S3 is self-aware of registered methods, allowing `NextMethod()` to call the S3 method of the inherited class.
+:::
 
-````{verbatim}
-```{r}
-#| label: fig-chunklabel
-#| fig-caption: My figure
-#| fig-width: 6
-#| fig-height: 4
-mtcars |>
-  ggplot(aes(x = mpg, y = wt)) +
-  geom_point()
-```
-````
+## S3 Recap: S3 dispatch
 
-Reference the figure using `@fig-chunklabel`.
-
-## Chunk options
-
-* Quarto consistently uses hyphenated options (`fig-width` rather than `fig.width`)
-* The Rmarkdown `knitr` options are recognized for backwards compatibility.
-* Options that are R expressions need to be prefaced by `!expr`
-
-  ````{verbatim}
-  ```{r}
-  #| fig-cap: !expr paste("My figure", 1+1)
-  ```
-  ````
-
-## Extensions and templates
-\fontsize{13}{17}\sf
-
-* Quarto extensions modify and extend functionality.
-* They are stored locally, in the `_extensions` folder alongside the qmd document.
-* See <https://quarto.org/docs/extensions/> for a list.
-* Templates are extensions used to define new output formats.
-* Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
-* Monash templates at\newline <https://robjhyndman.com/hyndsight/quarto_templates.html>
-
-## quarto on the command line
-\fontsize{14}{14.5}\sf\vspace*{-0.4cm}
-
-* `quarto render` to render a quarto or Rmarkdown document.
-* `quarto preview` to preview a quarto or Rmarkdown document.
-* `quarto add <gh-org>/<gh-repo>` to add an extension from a github repository.
-* `quarto update <gh-org>/<gh-repo>` to update an extension
-* `quarto remove <gh-org>/<gh-repo>` to remove an extension
-* `quarto list extensions installed`
-* `quarto use template <gh-org>/<gh-repo>` to use existing repo as starter template.
-
-## Add a custom format
-
-From the CLI:\qquad  `quarto add numbats/monash-quarto-memo`\pause
-
-New folder/files added
-
-```{verbatim}
-├── _extensions
-│   └── numbats
-│       └── memo
-│           └── ...
-```
-
-\pause
-
-Update YAML
-
-```{verbatim}
----
-title: "My new file using the `memo-pdf` format"
-format: memo-pdf
----
-```
-
-## Exercise
-
-* Set up a new project.
-* Create a quarto document using an html format.
-* Add a code chunk to generate a figure with a caption.
-* Reference the figure in the text using `@fig-chunklabel`.
-* Add the monash memo extension and generate a pdf output.
-
-# targets
-
-## targets: reproducible computation at scale
-
-\placefig{0.5}{1.8}{width=5cm}{images/logo.png}
-
-\begin{textblock}{15}(0.5,8.5)
-\textcolor{gray}{\footnotesize Some images from https://wlandau.github.io/targets-tutorial}
-\end{textblock}
-
-\begin{textblock}{10}(6, 2)
-\begin{itemize}
-\item Supports a clean, modular, function-oriented programming style.
-\item Learns how your pipeline fits together.
-\item Runs only the necessary computation.
-\item Abstracts files as R objects.
-\item Similar to Makefiles, but with R functions.
-\end{itemize}
-\end{textblock}
-
-## Interconnected tasks
-
-\only<1>{\placefig{0.5}{2}{width=13cm}{images/workflow.png}}
-\only<2>{\placefig{0.5}{2}{width=13cm}{images/change.png}}
-\only<3>{\placefig{0.5}{2}{width=13cm}{images/downstream.png}}
-
-## Dilemma: short runtimes or reproducible results?
-
-\fullheight{images/decisions.png}
-
-## Let a pipeline tool do the work
-
-\fullwidth{images/pipeline_graph.png}\vspace*{-0.15cm}
-
-* Save time while ensuring computational reproducibility.
-* Automatically skip tasks that are already up to date.
-
-## Typical project structure
-
-```{verbatim}
-_targets.R # Required top-level configuration file.
-R/
-└── functions.R
-data/
-└── my_data.csv
-```
-
-### _targets.R
-\vspace*{-0.26cm}
+To use S3, we call the generic function (e.g. `plot()`).
 
 ```{r}
-#| eval: false
-library(targets)
-tar_source() # source all files in R folder
-tar_option_set(packages = c("tidyverse", "fable"))
-list(
-  tar_target(my_file, "data/my_data.csv", format = "file"),
-  tar_target(my_data, read_csv(my_file)),
-  tar_target(my_model, model_function(my_data))
+plot
+```
+
+## S3 Recap: S3 dispatch
+
+This function looks at the inputs and dispatches (uses) the appropriate method for the input variable class/type.
+
+\fontsize{10}{10}\sf
+```{r}
+stats:::plot.density
+```
+
+## S3 Recap: S3 dispatch
+
+If there isn't a registered method for the object, the default method for the generic will be used.
+
+\fontsize{10}{10}\sf
+```{r}
+graphics:::plot.default
+```
+
+## Creating an S3 generic
+
+S3 generics are work like any ordinary function, but they include `UseMethod()` which calls the appropriate method.
+
+::: {.callout-caution title="Your turn!"}
+Create an S3 generic called "reverse".
+
+This function will reverse objects. For example,
+
+* `reverse("stressed")` becomes `"desserts"`,
+* `reverse(7919)` becomes `9197`,
+* `reverse(1.9599)` becomes `9959.1`.
+:::
+
+## Writing S3 methods
+
+An S3 method is an ordinary function with some constraints:
+
+* The function's name is of the form `<generic>.<class>`,
+* The function's arguments match the generic's arguments,
+* The function is registered as an S3 method (for packages).
+
+This looks like:
+
+```r
+#' Documentation for the method
+#' @method <generic> <class>
+<generic>.<class> <- function(<generic args>, <method args>, ...) {
+  # The code for the method
+}
+```
+
+## Writing S3 methods
+
+::: {.callout-caution title="Your turn!"}
+Write methods for reversing `character`, `integer`, and `double` objects.
+
+* `reverse("stressed")` becomes `"desserts"`,
+* `reverse(7919L)` becomes `9197L`,
+* `reverse(1.9599)` becomes `9959.1`.
+
+*Hint: `stringi::stri_reverse()` will reverse a string.*
+
+*The `integer` and `double` methods should return an integer and double respectively.*
+:::
+
+## Writing S3 defaults
+
+What if we tried to reverse the current date; `reverse(Sys.Date())`?
+
+. . .
+
+::: {.callout-caution title="Your turn!"}
+
+Question: what should the default behaviour be?
+
+:::
+
+. . .
+
+* Raise an error?
+* Return a reversed string?
+* Something else entirely?
+
+## Creating your own S3 objects
+
+S3 methods are *(mostly)* dispatched based on the `class()`.
+
+```{r}
+class("stressed")
+class(7919L)
+class(1.9599)
+```
+
+## Creating your own S3 objects
+
+To create an S3 object, we add a class to an object.
+
+This is usually done with `structure()`, for example:
+
+\fontsize{10}{10}\sf
+```{r}
+e <- structure(list(numerator = 2721, denominator = 1001), class = "fraction")
+e
+```
+
+## Creating your own S3 objects
+
+The `structure()` function is usually only used within other functions made for end-users. For example,
+
+* `lm()` returns a list with class `"lm"`, and
+* `tibble()` returns a data.frame (list) with classes `"tbl_df"`, `"tbl"`, and `"data.frame"`.
+
+. . .
+
+::: {.callout-caution title="Your turn!"}
+
+Create `fraction()`, which returns `fraction` objects.
+
+This function should check that the inputs are suitable
+:::
+
+## Creating your own S3 objects
+
+The `fraction` class doesn't yet have any methods, so it inherits methods from its list type.
+
+Usually we would create a method for printing S3 objects.
+
+```{r}
+print.fraction <- function(x, ...) {
+  paste(x$numerator, x$denominator, sep = "/")
+}
+e
+```
+
+## Creating your own S3 objects
+
+::: {.callout-caution title="Your turn!"}
+Create a `reverse()` method for the `fraction` object class, which inverts the numerator and denominator.
+
+\vspace{1em}
+
+*Finished early?*
+
+Write a method for converting a `fraction` into a number.
+:::
+
+```{r, include = FALSE}
+as.double.fraction <- function(x, ...) {
+  x$numerator / x$denominator
+}
+```
+
+
+## Creating your own S3 vectors (with vctrs)
+
+The *vctrs* package is helpful for creating custom vectors.
+
+It is built upon S3, so the same approach for creating S3 generics and S3 methods also applies to vctrs.
+
+::: {.callout-tip title="S3 or vctrs?"}
+* Regular S3 is useful for creating singular objects
+* vctrs is useful for creating vectorised objects
+:::
+
+
+## Creating your own S3 vectors (with vctrs)
+
+::: {.callout-tip title="Why vctrs?"}
+*vctrs* simplifies the complicated parts in creating vectors
+
+* easy subsetting
+* nice printing
+* predictable recycling
+* casting / coercion
+* tidyverse compatibility
+:::
+
+## Examples of vctrs packages
+
+Lots of vctrs including:
+
+* IP addresses
+* Spatial geometries
+* Time
+* uncertainty
+
+<https://github.com/krlmlr/awesome-vctrs>
+
+## Some packages I've made that use vctrs
+
+* [distributional](https://github.com/mitchelloharawild/distributional/)
+
+  Distributions of various shapes in vectors
+* [mixtime](https://github.com/mitchelloharawild/mixtime)
+
+  Time points/intervals of various granularities in vectors
+* [graphvec](https://github.com/mitchelloharawild/graphvec/)
+
+  Graph factors, storing graph edges between levels.
+* [fabletools](https://github.com/tidyverts/fabletools/)
+
+  Custom data frames 'mable', 'fable', and 'dable'.
+
+## Creating a new vctr
+
+The basic way to produce a vctr is with `vctrs::new_vctr()`.
+
+Just like `structure()`, you provide an object and its new class.
+
+```{r}
+attendance <- vctrs::new_vctr(c(80, 70, 75, 50), class = "percent")
+attendance
+```
+
+## Creating a new vctr
+
+As with S3, functions provide ways for users to create vectors.
+
+```{r}
+percent <- function(x) {
+  vctrs::new_vctr(x, class = "percent")
+}
+attendance <- percent(c(80, 70, 75, 50))
+attendance
+```
+
+## Creating a new vctr
+
+Don't forget to check the inputs, vctrs provides helpful functions to make this easier and provide informative errors.
+
+```{r}
+#| error: true
+percent <- function(x) {
+  vctrs::vec_assert(x, numeric())
+  vctrs::new_vctr(x, class = "percent")
+}
+percent("80%")
+```
+
+## Creating a new vctr
+
+It's useful to provide default arguments in this function which creates a length 0 vector (similar to how empty vectors are created with `numeric()` and `character()`).
+
+```{r}
+#| error: true
+percent <- function(x = numeric()) {
+  vctrs::vec_assert(x, numeric())
+  vctrs::new_vctr(x, class = "percent")
+}
+percent()
+```
+
+## Creating a new vctr
+
+While vctrs provides a nice `print` method, we need to specify how our vector should be formatted.
+
+```{r}
+format.percent <- function(x, ...) {
+  paste0(vctrs::vec_data(x), "%")
+}
+attendance
+```
+
+
+## The rcrd type
+
+A special type of vctr is a record (rcrd).
+
+A record is a list containing equal length vectors, and its size is the length its vectors rather than its list.
+
+::: {.callout-tip title="Record indexing"}
+Usually in R, indexing happens across the list. With the record type, indexing happens within the list's vectors.
+:::
+
+## The rcrd type
+
+::: {.callout-tip title="Length of a data frame"}
+Usually the length of data refers to the number of rows, but in R it is the number of columns since it is a list.
+
+```{r}
+length(mtcars)
+```
+
+In vctrs, data is a record so we get the number of rows.
+
+```{r}
+vctrs::vec_size(mtcars)
+```
+
+:::
+
+## Creating a new rcrd
+
+A record is created with the `vctrs::new_rcrd()` function.
+
+```{r}
+wallet <- vctrs::new_rcrd(
+  list(amt = c(10, 38), unit = c("AU$", "¥")), class = "currency"
 )
+format.currency <- function(x, ...) {
+  paste0(vctrs::field(x, "unit"), vctrs::field(x, "amt"))
+}
+wallet
 ```
 
-## Generate `_targets.R` in working directory
+## Creating a new rcrd
+
+::: {.callout-caution title="Your turn!"}
+Rewrite the `fraction()` function to use the rcrd data type.
+
+\vspace{1em}
+
+You will also need to update the methods:
+
+* Obtain the numerator and denominator with `field()`.
+* Replace the `print` method with a `format` method.
+* Remove the `print.fraction` method with `rm()`.
+:::
+
+## The list_of type
+
+`list_of()` vectors require list elements to be the same type.
+
+It can be created with `list_of()`, or more easily converted to with `as_list_of()`. It behaves identically to `new_vctr()`.
+
+\fontsize{10}{10}\sf
+```{r}
+vctrs::as_list_of(list(80, 70, 75, 50), .ptype = numeric())
+```
+
+## Prototypes
+
+Notice the `.ptype` when we used `as_list_of()`?
+
+`ptype` is shorthand for prototype, which is a size-0 vector.
+
+::: {.callout-tip title="Prototype attributes!"}
+Prototypes contains all relevant attributes of the object, such as class, dimension, and levels of factors.
+:::
+
+
+## Prototypes
+
+Obtain prototypes of a vector with `vctrs::vec_ptype()`.
+
+\fontsize{10}{10}\sf
+```{r}
+vctrs::vec_ptype(1:10)
+vctrs::vec_ptype(rnorm(10))
+vctrs::vec_ptype(factor(letters))
+vctrs::vec_ptype(attendance)
+```
+
+## vctr, rcrd, or list_of?
+
+::: {.callout-caution title="Your turn!"}
+What's better? The `vctr` type or `list_of`?
+:::
+
+. . .
+
+It depends! If your vector is based on...
+
+* a single atomic vector (like `percent`) then `vctr`,
+* two or more atomic vectors (like `fraction`), then `rcrd`,
+* complicated objects (like `lm`), then `list_of`.
+
+## That's it! You have created a new vector for R!
+
+::: {.callout-note title="Time to celebrate with a break!"}
+Ask questions, try using your new vector in various ways.
+:::
+
+## Methods for vctrs
+
+While our new vectors looks pretty and fits right in with our tidy tibbles, it isn't very useful yet.
+
+::: {.callout-tip title="Adding features"}
+Since vctrs is built upon S3, the same approach for creating generic functions and methods applies to vctrs.
+:::
+
+. . .
+
+However there are also some important **vector specific methods** which should be written to improve usability.
+
+## (Proto)typing
+
+We saw earlier how R coerces vectors of different types.
+
+\fontsize{10}{10}\sf
+```{r}
+c("desserts", 10)
+c(pi, 0L)
+c(-1, TRUE, FALSE)
+c(1, Sys.Date())
+```
+
+## (Proto)typing
+
+When combining or comparing vectors of different types, R will (usually) *coerce* to the 'richest' type.
+
+![](../diagrams/vctrs/coerce.png)
+
+## (Proto)typing
+
+vctrs doesn't make any assumptions about how to coerce your vector, and instead raises an error.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+library(vctrs)
+vec_c(attendance, 0.8)
+```
+
+## (Proto)typing
+
+We can specify what the common ('richest') type is by writing `vctrs::vec_ptype2()` methods.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+#' @export
+vec_ptype2.percent.double <- function(x, y, ...) {
+  percent() # Prototype since this produces size-0
+}
+vctrs::vec_ptype2(attendance, 0.8)
+vctrs::vec_ptype2(0.8, attendance)
+```
+
+## (Proto)typing
+
+Common typing uses *double-dispatch*.
+
+We need to define the common type in both directions.
+
+\fontsize{10}{10}\sf
+```{r}
+#' @export
+vec_ptype2.double.percent <- function(x, y, ...) {
+  percent() # Prototype since this produces size-0
+}
+vctrs::vec_ptype2(attendance, 0.8)
+vctrs::vec_ptype2(0.8, attendance)
+```
+
+## (Proto)typing
+
+::: {.callout-caution title="Your turn!"}
+Write methods that define the common (proto)type between `fraction` and `double` as `fraction` -> `double`.
+:::
+
+## Double dispatch
+
+Unfortunately `c()` from base R can't (yet) be changed to support double-dispatch with S3. Usually this isn't a problem,
 
 ```{r}
-#| eval: false
-library(targets)
-tar_script()
+c(attendance, attendance)
+c(attendance, 0.8)
 ```
 
+## Double dispatch
 
-## Useful targets commands
-
-* `tar_make()` to run the pipeline.
-* `tar_make(starts_with("fig"))` to run only targets starting with "fig".
-* `tar_read(object)` to read a target.
-* `tar_load(object)` to load a target.
-* `tar_load_everything()` to load all targets.
-* `tar_manifest()` to list all targets
-* `tar_visnetwork()` to visualize the pipeline.
-* `tar_destroy()` to remove all targets.
-* `tar_outdated()` to list outdated targets.
-
-## Debugging
-
-Errored targets to return `NULL` so pipeline continues.
+but if your class isn't used in the first argument...
 
 ```{r}
-#| eval: false
-tar_option_set(error = "null")
+c(0.8, attendance)
 ```
 
-\pause
+... your common (proto)type will be ignored!
 
-See error messages for all targets.
+## Double dispatch
+
+vctrs uses double dispatch when needed, and using `vctrs::vec_c()` fixes many coercion problems in R.
 
 ```{r}
-#| eval: false
-tar_meta(fields = error, complete_only = TRUE)
+#| error: true
+vctrs::vec_c(0.8, attendance)
+vctrs::vec_c(1, Sys.Date())
 ```
 
-\pause
+## Double dispatch
 
-See warning messages for all targets.
+::: {.callout-note title="Double dispatch inheritence"}
+Double dispatch in vctrs doesn't work with inheritance and so:
+
+* `NextMethod()` can't be used
+* Default methods aren't inherited/used.
+:::
+
+## Casting and coercion
+
+::: {.callout-important title="Converting percentages"}
+Notice earlier how combining percentages with numbers gave the incorrect result?
+
+This is because we haven't written a method for converting numbers into percentages.
+:::
+
+<!-- While we've established what the common (proto)type is with `vec_ptype2()`,  -->
+The `vctrs::vec_cast()` generic is used to convert/coerce ('cast') one type into another. Time to write more methods!
+
+## Casting and coercion
+
+`vctrs::vec_cast()` also uses double dispatch.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_cast.double.percent <- function(x, to, ...) {
+  vec_data(x)/100
+}
+vec_cast.percent.double <- function(x, to, ...) {
+  percent(x*100)
+}
+
+vec_cast(0.8, percent())
+vec_cast(percent(80), double())
+```
+
+## Casting and coercion
+
+With both `vec_ptype2()` and `vec_cast()` methods for percentages and doubles it is now possible to combine them.
 
 ```{r}
-#| eval: false
-tar_meta(fields = warnings, complete_only = TRUE)
+vctrs::vec_c(0.8, attendance)
 ```
 
-## Debugging
-\fontsize{14}{15.5}\sf
-
-* Try loading all available targets: `tar_load_everything()`. Then run the command of the errored target in the console.
-
-* Pause the pipeline with `browser()`
-
-* Use the debug option: `tar_option_set(debug = "target_name")`
-
-* Save the workspaces:
-
-  - `tar_option_set(workspace_on_error = TRUE)`
-  - `tar_workspaces()`
-  - `tar_workspace(target_name)`
-
-
-## Random numbers
-
-* Each target runs with its own seed based on its name and the global seed from `tar_option_set(seed = ???)`
-* So running only some targets, or running them in a different order, will not change the results.
-
-## Folder structure
-
-```{verbatim}
-├── .git/
-├── .Rprofile
-├── .Renviron
-├── renv/
-├── index.Rmd
-├── _targets/
-├── _targets.R
-├── _targets.yaml
-├── R/
-├──── functions_data.R
-├──── functions_analysis.R
-├──── functions_visualization.R
-├── data/
-└──── input_data.csv
-```
-
-## targets with quarto
+We can also use coercion to easily perform comparisons.
 
 ```{r}
-#| eval: false
-library(targets)
-library(tarchetypes)                                                 # <1>
-tar_source() # source all files in R folder
-tar_option_set(packages = c("tidyverse", "fable"))
-list(
-  tar_target(my_file, "data/my_data.csv", format = "file"),
-  tar_target(my_data, read_csv(my_file)),
-  tar_target(my_model, model_function(my_data))
-  tar_quarto(report, "file.qmd", extra_files = "references.bib")     # <2>
-  )
+attendance > 0.7
 ```
 
-1. Load `tarchetypes` package for quarto support.
-2. Add a quarto target.
+## Casting and coercion
 
-## Exercise
+::: {.callout-caution title="Your turn!"}
+Write a method for casting from a `fraction` to a `double`.
 
-* Add a targets workflow to your quarto document.
-* Create a visualization of the pipeline network using `tar_visnetwork()`.
+Does this work with `as.numeric()`?
+:::
 
-## Assignment 4
+## Math and arithmetic
+
+Methods also need to be written for math and arithmetic.
+
+`vec_math()` implements mathematical functions like
+
+\fontsize{10}{10}\sf
+```{r}
+mean(attendance)
+```
+
+\fontsize{14}{16}\sf
+`vec_arith()` implements arithmetic operations like
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+attendance + percent(0.1)
+```
+
+## Math and arithmetic
+
+Since attendance is a simple numeric, the default `vec_math` method works fine. The default `vec_math` function is essentially:
+
+```{r}
+vec_math.percent <- function(.fn, .x, ...) {
+  out <- vec_math_base(.fn, .x, ...)
+  vec_restore(out, .x)
+}
+```
+
+1. Apply the math to the underlying numbers
+2. Restore the percentage class
+
+## Math and arithmetic
+
+Unlike double dispatch in `vec_ptype2()` and `vec_cast()`, we currently need to implement our own secondary dispatch for `vec_arith()`.
+
+```{r}
+vec_arith.percent <- function(op, x, y, ...) {
+  UseMethod("vec_arith.percent", y)
+}
+vec_arith.percent.default <- function(op, x, y, ...) {
+  stop_incompatible_op(op, x, y)
+}
+```
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_arith.percent.percent <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, x, y)
+  vec_restore(out, to = percent())
+}
+percent(40) + percent(20)
+```
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+#| error: true
+vec_arith.percent.numeric <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, x, vec_cast(y, percent()))
+  vec_restore(out, to = percent())
+}
+percent(40) + 0.3
+0.3 + percent(40)
+```
+
+
+## Math and arithmetic
+
+Then we can create methods for arithmetic.
+
+\fontsize{10}{10}\sf
+```{r}
+vec_arith.numeric.percent <- function(op, x, y, ...) {
+  out <- vec_arith_base(op, vec_cast(x, percent()), y)
+  vec_restore(out, to = percent())
+}
+percent(40) + 0.3
+0.3 + percent(40)
+```
+
+
+## Math and arithmetic
+
+::: {.callout-caution title="Your turn!"}
+Add support for math and arithmetic for the `fraction` class.
+
+\hspace{1em}
+
+*Hint: cast your fraction to a double and then use the base math/arith function, returning a double is fine*.
+
+\hspace{1em}
+*Finished early?*
+
+Try to extend `vec_arith()` so that it retains the `fraction` class for `+`, `-`, `*`, `/` operations.
+:::

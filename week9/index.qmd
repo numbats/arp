@@ -1,5 +1,5 @@
 ---
-title: "Week 9: Quarto and targets -- efficient reproducible workflows"
+title: "Week 9: Object-oriented programming (vctrs)"
 ---
 
 ```{r}
@@ -7,23 +7,18 @@ week <- 9
 source(here::here("course_info.R"))
 ```
 
-## What you will learn this week
+## Main references
 
-* [Quarto](https://quarto.org)
-* [The {targets} R package user manual](https://books.ropensci.org/targets/)
+* [13 *Advanced R*](https://adv-r.hadley.nz/s3.html)
+* [vctrs](https://vctrs.r-lib.org)
+
+## What you will learn this week
 
 
 ```{r}
 #| output: asis
 show_slides(week)
 ```
-
-## Other resources
-
-* [Quarto extensions](https://quarto.org/docs/extensions/)
-* [Monash quarto templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
-* [targets package](https://docs.ropensci.org/targets/)
-
 
 ```{r}
 #| output: asis
