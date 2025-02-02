@@ -2,8 +2,9 @@
 title: Assignment 3 (20%)
 ---
 
-Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data you choose provided it includes at least 1000 observations. Possible sources of data include:
+Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:
 
+* [Our World in Data](https://ourworldindata.org)
 * [Human Mortality Database](https://mortality.org)
 * [Human Fertility Database](https://humanfertility.org)
 * [UN Data](https://data.un.org)
