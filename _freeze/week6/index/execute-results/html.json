@@ -1,0 +1,15 @@
+{
+  "hash": "c2c5b66d88e3d1e42ba257fa93cc8d9d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 6: Functional programming\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [9-11. *Advanced R*](https://adv-r.hadley.nz/fp.html)\n\n## What you will learn this week\n\n* Functions\n* Function arguments\n* Function factories\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Thursday 17 April.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

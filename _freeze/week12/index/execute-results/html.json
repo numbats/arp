@@ -1,0 +1,15 @@
+{
+  "hash": "8078de88879455491fa4268e49009687",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 12: Interfacing with other languages\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [21. *Advanced R*](https://adv-r.hadley.nz/rcpp.html)\n\n\n## What you will learn this week\n\n* htmltools\n* reticulate\n* dbplyr\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week12/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week12/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

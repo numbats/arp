@@ -40,6 +40,8 @@ website:
 
 date-format: "D MMMM YYYY"
 
+freeze: auto
+
 format:
   html:
     theme: [cosmo, numbat.scss]
@@ -50,8 +52,8 @@ format:
     include-in-header:
       file: header.html
 
-
 execute:
   echo: false
-  warning: false
   message: false
+  warning: false
+  cache: false

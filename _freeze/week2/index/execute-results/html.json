@@ -1,0 +1,15 @@
+{
+  "hash": "fdf130d8ee174df97da79798be6f6983",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 2: Foundations of R programming\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n * TBA\n\n## What you will learn this week\n\n* TBA\n\n\n\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Friday 21 March.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

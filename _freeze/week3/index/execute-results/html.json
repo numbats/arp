@@ -1,0 +1,15 @@
+{
+  "hash": "c5fe485a11d1b0c159195b7f0cd3e19c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 3: Debugging\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [22 *Advanced R*](https://adv-r.hadley.nz/debugging.html)\n\n## What you will learn this week\n\n* Debugging\n* Measuring performance\n* Efficient R programming\n\n## Online resources\n\n* [Creating a reprex](https://www.tidyverse.org/help/#reprex)\n* [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)\n* [Jenny Bryan - Object of type 'closure' is not subsettable](https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r)\n* [Posit Community](https://community.rstudio.com)\n* [Stack Overflow](https://stackoverflow.com/)\n* [Efficient R Programming](https://csgillespie.github.io/efficientR/)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week3/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week3/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Friday 21 March.\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 04 April.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

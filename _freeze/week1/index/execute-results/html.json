@@ -1,0 +1,15 @@
+{
+  "hash": "76d3cc9c79d687186f870f1619556187",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 1: Foundations of R programming\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n * [1-8, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)\n\n## What you will learn this week\n\n* Introduction to R\n* Names and values\n* Vectors\n* Subsetting\n* Control flow\n* Functions\n* Environments\n* Conditions\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week1/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week1/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Friday 21 March.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
