@@ -1,5 +1,5 @@
 ---
-title: Game package 2 (40%)
+title: Game package 2 (30%)
 ---
 
 You need to extend your game package to include a custom vctrs class, and some element of metaprogramming or the use of C++.
@@ -12,7 +12,6 @@ You need to extend your game package to include a custom vctrs class, and some e
 All user-facing functions should have examples and unit tests.
 
 Marks will be awarded for clean and efficient code, and for good design.
-
 
 # Some suggestions
 

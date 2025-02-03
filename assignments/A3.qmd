@@ -1,5 +1,5 @@
 ---
-title: Assignment 3 (20%)
+title: Assignment 3 (25%)
 ---
 
 Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:
@@ -26,7 +26,6 @@ Your analysis should include the following elements:
 * A discussion of the results of the model and how they relate to the plots.
 
 You must use the [targets](https://books.ropensci.org/targets/) package to manage the workflow, [renv](https://rstudio.github.io/renv/) to manage the package environment, with the analysis described in a [quarto](https://quarto.org) report.
-
 
 ```{r}
 #| output: asis

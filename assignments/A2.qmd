@@ -1,10 +1,11 @@
 ---
-title: Assignment 2 (20%)
+title: Assignment 2 (25%)
 ---
 
-Debugging
 
-The **randomifyR** package is designed to help you draw samples of various kinds from data sets. In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.
+The **????** package is designed to ?????.
+
+In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.
 
 You will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:
 
