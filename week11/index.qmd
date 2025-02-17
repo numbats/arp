@@ -2,6 +2,8 @@
 title: "Week 11: Rewriting R code in C++"
 ---
 
+Guest Lecturer: [Tomasz Wozniak](https://github.com/donotdespair)
+
 ```{r}
 week <- 11
 source(here::here("course_info.R"))

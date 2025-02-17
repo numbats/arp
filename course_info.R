@@ -12,17 +12,17 @@ schedule <- tibble(
   Week = seq(12),
   Topic = c(
     "Foundations of R programming",
-    "Foundations of R programming",
-    "Debugging",
-    "Literate programming with Quarto",
-    "Efficient reproducible workflows with targets and renv",
-    "Functional programming",
+    "TBD",
     "R package development",
+    "Debugging and profiling",
+    "Functional programming",
+    "Literate programming with Quarto",
+    "Reactive programming with targets and renv",
     "Object-oriented programming with S3",
     "Object-oriented programming with vctrs",
     "Metaprogramming",
     "Rewriting R code in C++",
-    "Interfacing with other languages"
+    "Package hackathon"
   )
 )
 

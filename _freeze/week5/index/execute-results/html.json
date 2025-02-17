@@ -1,9 +1,11 @@
 {
-  "hash": "d53405762fbba1547c1f1521c6d644e0",
+  "hash": "707876ca423266e0850814d0b4c61b98",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 5: Efficient reproducible workflows with targets and renv\"\n---\n\n::: {.cell}\n\n:::\n\n## What you will learn this week\n\n* [targets](https://books.ropensci.org/targets/)\n* [renv](https://rstudio.github.io/renv/)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week5/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week5/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 04 April.\n* [Assignment 3](../assignments/A3.qmd) is due on Thursday 17 April.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 5: Functional programming\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [9-11. *Advanced R*](https://adv-r.hadley.nz/fp.html)\n\n## What you will learn this week\n\n* Functions\n* Function arguments\n* Function factories\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 11 April.\n* [Assignment 3](../assignments/A3.qmd) is due on Monday 28 April.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

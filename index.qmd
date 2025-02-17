@@ -1,5 +1,7 @@
 ---
 title: "ETC4500/5450 Advanced R Programming"
+execute:
+  cache: false
 ---
 
 R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language.
@@ -15,7 +17,8 @@ R is widely used as a tool for data analysis and one of the most popular program
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
 * [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.OHara-Wild@monash.edu](mailto:Mitch.OHara-Wild@monash.edu)
-* [**Hadley Wickham**](https://hadley.nz). Week 2
+* [**Hadley Wickham**](https://hadley.nz), Week 2
+* [**Tomasz Wozniak**](https://github.com/donotdespair), Week 11
 
 ## References
 

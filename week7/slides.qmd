@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 7: R package development"
+author: "Week 5: targets and renv -- efficient reproducible workflows"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -11,7 +11,9 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: false
+    colorlinks: true
+    urlcolor: MonashBlue
+    linkcolor: burntorange
 ---
 
 ```{r}
@@ -28,342 +30,214 @@ source(here::here("course_info.R"))
 \tableofcontents
 
 
-# Getting started
+# targets
 
-## System setup
+## targets: reproducible computation at scale
 
-```r
-install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
+\placefig{0.5}{1.8}{width=5cm}{images/logo.png}
+
+\begin{textblock}{15}(0.5,8.5)
+\textcolor{gray}{\footnotesize Some images from https://wlandau.github.io/targets-tutorial}
+\end{textblock}
+
+\begin{textblock}{10}(6, 2)
+\begin{itemize}
+\item Supports a clean, modular, function-oriented programming style.
+\item Learns how your pipeline fits together.
+\item Runs only the necessary computation.
+\item Abstracts files as R objects.
+\item Similar to Makefiles, but with R functions.
+\end{itemize}
+\end{textblock}
+
+## Interconnected tasks
+
+\only<1>{\placefig{0.5}{2}{width=13cm}{images/workflow.png}}
+\only<2>{\placefig{0.5}{2}{width=13cm}{images/change.png}}
+\only<3>{\placefig{0.5}{2}{width=13cm}{images/downstream.png}}
+
+## Dilemma: short runtimes or reproducible results?
+
+\fullheight{images/decisions.png}
+
+## Let a pipeline tool do the work
+
+\fullwidth{images/pipeline_graph.png}\vspace*{-0.15cm}
+
+* Save time while ensuring computational reproducibility.
+* Automatically skip tasks that are already up to date.
+
+## Typical project structure
+
+```{verbatim}
+_targets.R # Required top-level configuration file.
+R/
+└── functions.R
+data/
+└── my_data.csv
 ```
 
-\pause
-
-### R build toolchain
-\vspace*{-0.2cm}
-* Windows: [`https://cran.r-project.org/bin/windows/Rtools/`](https://cran.r-project.org/bin/windows/Rtools/)
-* macOS: `xcode-select --install`
-* Linux: `sudo apt install r-base-dev`
-
-\pause
-
-### Verify
-\vspace*{-0.2cm}
+### _targets.R
+\vspace*{-0.26cm}
 
 ```{r}
 #| eval: false
-library(devtools)
-dev_sitrep()
-```
-
-## Package states
-
-* **source**: the original files
-* **bundled**: some processing, and compressed to a single `.tar.gz` file (e.g., to upload to CRAN)
-* **binary**: what you usually download from CRAN
-* **installed**: decompressed binary file stored in package library
-* **in-memory**: loaded into R session using `library()`
-
-## Package states
-
-\fullheight{../diagrams/install-load.png}
-
-
-## Package structure
-
-\placefig{3}{1.4}{width = 20cm, height=7.6cm, trim = 30 420 740 200, clip = true}{../diagrams/package-development.pdf}
-
-## Package name
-
-* Only letters, numbers and periods.
-* Must start with a letter.
-* It cannot end with a period.
-* No hyphens or underscores.
-* Use the `available::available()` function to try ideas.
-
-## Package code is different
-
-* The `DESCRIPTION` file is the principal way to declare dependencies; we don’t do this via `library(somepackage)`.
-* Be explicit about which functions are user-facing and which are internal helpers. By default, functions are not exported.
-
-## Exercise: Start on your package
-
-1.  Because we have already set up github repos for everyone, we need to first clone the repo to your local machine. Then we can start working on the package.
-
-    ```{r}
-    #| eval: false
-    create_from_github("numbats/assignment-1-package-creation-robjhyndman")
-    ```
-
-2.  Rename folder and Rproj file to your package name
-
-3.  Create package skeleton
-
-    ```{r}
-    #| eval: false
-    create_package()
-    ```
-
-## Workflow
-
-\full{../diagrams/workflow.png}
-
-## Workflow shortcuts
-
-* `install()` : Ctrl-Shift-B
-* `load_all()` : Ctrl-Shift-L
-* `document()` : Ctrl-Shift-D
-* `check()` : Ctrl-Shift-E
-* `test()` : Ctrl-Shift-T
-
-# Package metadata
-
-## DESCRIPTION file
-\fontsize{10}{10}\sf
-
-```
-Package: doubler
-Title: This package doubles numbers
-Version: 0.0.0.9000
-Authors@R:
-    person("Rob", "Hyndman", , "Rob.Hyndman@monash.edu", role = c("aut", "cre"))
-Description: Whether the input is real, complex or character, this will double it.
-License: GPL (>= 3)
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-Suggests:
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
-```
-
-## DESCRIPTION file
-
-* **Title**: one line description. Plain text, title case, no more than 65 characters.
-* **Description**: Several sentences, one paragraph. 80 characters per line, 4 space indentation. Don't include the package name in the Title or Description. Do not start with "This package does..."
-* **Author**: Use `Authors@R` with `person()` for each author.
-* **Version**. `Major.Minor.Patch.9000`. The `9000` is a placeholder for development versions.
-* **License**: `GPL-3` or `MIT` are common.
-
-## DESCRIPTION file
-
-* **Depends**: packages that are attached with your package. (Not needed for most packages.)
-* **Imports**: packages that are used in your package. (Refer to functions using `pkg::fun()`.)
-* **Suggests**: packages that are used in your package, but not required. (E.g., in tests or examples.)
-* **LazyData**: `true` prevents users having to use `data()`.
-
-## DESCRIPTION file
-
-Functions to help with the DESCRIPTION file:
-
-* `use_github()` or `use_github_links()`: set the GitHub repository, URL and BugReports.
-* `use_mit_license()`: set the license to MIT.
-* `use_gpl3_license()`: set the license to GPL-3.
-* `use_package()`: Add package to Imports or Suggests.
-* `use_data()`: Add data to your package.
-* `use_tidy_description()`: Clean up the DESCRIPTION file.
-
-## NAMESPACE file
-
-* Generated by `roxygen2`, so don't edit by hand.
-* `export()`: export a function (including S3 and S4 generics).
-* `S3method()`: export an S3 method.
-* `importFrom()`: import selected object from another namespace (including S4 generics).
-* `import()`: import all objects from another package’s namespace.
-* `useDynLib()`: registers routines from a DLL (this is specific to packages with compiled code).
-
-# Documentation
-
-## Documenting the package
-
-```r
-use_package_doc()
-```
-
-## Documenting functions
-
-* Add roxygen2 comments to your `.R` files
-  * RStudio menu: `Code > Insert roxygen skeleton` (while cursor is within function)
-  * Or use Github Copilot (in RStudio or VS-Code)
-  * Or write them by hand
-* Then use `document()` to generate the `Rd` files and the `NAMESPACE` file. (Or press `Ctrl+Shift+D` in RStudio.)
-* Preview documentation with `?function`
-
-## Documenting functions
-\fontsize{9}{9}\sf
-
-```r
-#' Title
-#'
-#' Description
-#' More description
-#'
-#' @param x Description of x
-#' @inheritParams fun
-#' @returns Description of return value
-#' @examples
-#' @importFrom pkg fun
-#' @import pkg
-#' @rdname fun
-#' @aliases fun
-#' @seealso fun
-#' @references Some reference
-#' @author Your name
-#' @export
-```
-
-## Documenting data
-
-* Put raw data in `data-raw/`
-* Code to wrangle data and create objects in `data-raw/`
-* `use_data(object)` to add rda to `data/`
-
-```r
-#' Title
-#'
-#' Description
-#' More description
-#'
-#' @source Where did you get the data?
-#' @format Class, dimensions, or other details
-#' @keywords datasets
-#' @examples
-"object"
-```
-
-## README.Rmd
-
-1. Describe the high-level purpose of the package.
-2. A simple example illustrating package.
-3. Installation instructions
-4. An overview of the main components of the package.
-
-* Like a short vignette
-* Displayed on the Github repository and the front page of the pkgdown site.
-* Create with `usethis::use_readme_rmd()`
-* Build with `devtools::build_readme()`
-
-## Vignettes
-
-* A long-form guide to your package, or an extended example.
-
-  * `usethis::use_vignette("my-vignette")`
-  * Creates a `vignettes/` directory.
-  * Adds the necessary dependencies to `DESCRIPTION`
-  * Drafts a vignette, `vignettes/my-vignette.Rmd`.
-  * Adds some patterns to `.gitignore`
-
-## Vignettes YAML
-
-```yaml
----
-title: "Vignette Title"
-author: Your name
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-```
-
-## Vignettes initial code chunks
-
-````{verbatim}
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+library(targets)
+tar_source() # source all files in R folder
+tar_option_set(packages = c("tidyverse", "fable"))
+list(
+  tar_target(my_file, "data/my_data.csv", format = "file"),
+  tar_target(my_data, read_csv(my_file)),
+  tar_target(my_model, model_function(my_data))
 )
 ```
-````
 
-````{verbatim}
-```{r setup}
-library(yourpackage)
-```
-````
+## Generate `_targets.R` in working directory
 
-* Any package used in a vignette must be included in Suggests if not already in Imports.
-
-
-
-
-## NEWS
-
-* List changes in each release that users might care \rlap{about.}
-* Use `usethis::use_news_md()` to create a `NEWS.md` file.
-
-\fontsize{9}{9}\sf
-
-```markdown
-# foofy (development version)
-
-* Better error message when grooving an invalid grobble (#206).
-
-# foofy 1.0.0
-
-## Major changes
-
-* Can now work with all grooveable grobbles!
-
-## Minor improvements and bug fixes
-
-* Printing scrobbles no longer errors (@githubusername, #100).
-
-* Wibbles are now 55% less jibbly (#200).
+```{r}
+#| eval: false
+library(targets)
+tar_script()
 ```
 
-# Tests
 
-## testthat v3
+## Useful targets commands
 
-* `usethis::use_testthat()`
-  * Create a `tests/testthat/` directory.
-  * Add `testthat` to the Suggests field in DESCRIPTION and specify `testthat 3e` in the `Config/testthat/edition` field.
-  * Create a file `tests/testthat.R` that runs all your tests when `check()` runs.
-* Every exported function should have tests.
-* `usethis::use_test("some_tests.R")` creates a test file for a function or group of functions.
-* Each R file should match a test file.
+* `tar_make()` to run the pipeline.
+* `tar_make(starts_with("fig"))` to run only targets starting with "fig".
+* `tar_read(object)` to read a target.
+* `tar_load(object)` to load a target.
+* `tar_load_everything()` to load all targets.
+* `tar_manifest()` to list all targets
+* `tar_visnetwork()` to visualize the pipeline.
+* `tar_destroy()` to remove all targets.
+* `tar_outdated()` to list outdated targets.
 
-## testthat v3
+## Debugging
 
-* Test files live in `tests/testthat/` and are named `test-*.R`.
-* Each test file should test one function or a small group of related functions.
-* Useful testing functions:
-  * `expect_equal()`, `expect_identical()`, `expect_true()`, `expect_false()`
-  * `expect_error()`, `expect_warning()`, `expect_message()`
-* `test()` runs all tests.
+Errored targets to return `NULL` so pipeline continues.
 
-## What to test
+```{r}
+#| eval: false
+tar_option_set(error = "null")
+```
 
-* Focus on testing the exported functions.
-* Strive to test each behaviour in one and only one test.
-* Avoid testing simple code that you’re confident will work.
-* Always write a test when you discover a bug.
-* The test-first philosophy: always start by writing the tests, and then write the code that makes them pass.
-* Use `devtools::test_coverage()` to see which parts of your package are tested.
+\pause
 
-# Website
+See error messages for all targets.
 
-## pkgdown websites
+```{r}
+#| eval: false
+tar_meta(fields = error, complete_only = TRUE)
+```
 
-* `usethis::use_pkgdown()`
-  * Creates `_pkgdown.yml` to configure site.
-  * Updates `.Rbuildignore`
-  * Adds `docs` to `.gitignore`
-* `pkgdown::build_site()` to build the site.
-* `usethis::use_pkgdown_github_pages()` to publish the site via GitHub Actions and GitHub Pages.
-* Make a hex sticker with the `hexSticker` package.
-* Add it using `usethis::use_logo()`.
+\pause
 
-# Continuous integration
+See warning messages for all targets.
 
-## Github Actions
-\vspace*{-0.4cm}
+```{r}
+#| eval: false
+tar_meta(fields = warnings, complete_only = TRUE)
+```
 
-* Some development tasks can be executed automatically on Github with a trigger (e.g., a push)
-* Run `R CMD check: `usethis::use_github_action("check_standard")`
-* Compute test coverage: `usethis::use_github_action("test-coverage")`
-* Build and deploy pkgdown site: `usethis::use_github_action("pkgdown")`
-* The `.github/workflows/` directory contains action \rlap{files.}
-* See [`https://github.com/r-lib/actions/`](https://github.com/r-lib/actions/) for more examples.
+## Debugging
+\fontsize{14}{15.5}\sf
+
+* Try loading all available targets: `tar_load_everything()`. Then run the command of the errored target in the console.
+
+* Pause the pipeline with `browser()`
+
+* Use the debug option: `tar_option_set(debug = "target_name")`
+
+* Save the workspaces:
+
+  - `tar_option_set(workspace_on_error = TRUE)`
+  - `tar_workspaces()`
+  - `tar_workspace(target_name)`
+
+
+## Random numbers
+
+* Each target runs with its own seed based on its name and the global seed from `tar_option_set(seed = ???)`
+* So running only some targets, or running them in a different order, will not change the results.
+
+## Folder structure
+
+```{verbatim}
+├── .git/
+├── .Rprofile
+├── .Renviron
+├── renv/
+├── index.Rmd
+├── _targets/
+├── _targets.R
+├── _targets.yaml
+├── R/
+├──── functions_data.R
+├──── functions_analysis.R
+├──── functions_visualization.R
+├── data/
+└──── input_data.csv
+```
+
+## targets with quarto
+
+```{r}
+#| eval: false
+library(targets)
+library(tarchetypes)                                                 # <1>
+tar_source() # source all files in R folder
+tar_option_set(packages = c("tidyverse", "fable"))
+list(
+  tar_target(my_file, "data/my_data.csv", format = "file"),
+  tar_target(my_data, read_csv(my_file)),
+  tar_target(my_model, model_function(my_data))
+  tar_quarto(report, "file.qmd", extra_files = "references.bib")     # <2>
+  )
+```
+
+1. Load `tarchetypes` package for quarto support.
+2. Add a quarto target.
+
+## Exercise
+
+* Add a targets workflow to your quarto document.
+* Create a visualization of the pipeline network using `tar_visnetwork()`.
+
+# Reproducible environments
+
+## Reproducible environments
+
+* To ensure that your code runs the same way on different machines and at different times, you need the computing environment to be the same.
+  1. Operating system
+  2. System components
+  3. R version
+  4. R packages
+
+* Solutions for 1--4: Docker, Singularity, `containerit`, `rang`
+* Solutions for 4: `packrat`, `checkpoint`, `renv`
+
+## renv package
+
+![](../diagrams/renv.png)
+
+## renv package
+
+* `renv::init()` : initialize a new project with a new environment. Adds:
+  *  `renv/library` contains all packages used in project
+  *  `renv.lock` contains metadata about packages used in project
+  *  `.Rprofile` run every time R starts.
+
+* `renv::snapshot()` : save the state of the project to `renv.lock`.
+
+* `renv::restore()` : restore the project to the state saved in `renv.lock`.
+
+## renv package
+\fontsize{14}{16}\sf
+
+* renv uses a package cache so you are not repeatedly installing the same packages in multiple projects.
+* `renv::install()` can install from CRAN, Bioconductor, GitHub, Gitlab, Bitbucket, etc.
+* `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
+* Only R packages are supported, not system dependencies, and not R itself.
+* renv is not a replacement for Docker or Singularity.
+* `renv::deactivate(clean = TRUE)` will remove the renv environment.

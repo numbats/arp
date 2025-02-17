@@ -1,9 +1,11 @@
 {
-  "hash": "c2c5b66d88e3d1e42ba257fa93cc8d9d",
+  "hash": "28bd0c6f95302091a61e71fc1e49c635",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 6: Functional programming\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [9-11. *Advanced R*](https://adv-r.hadley.nz/fp.html)\n\n## What you will learn this week\n\n* Functions\n* Function arguments\n* Function factories\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Thursday 17 April.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 6: Literate programming with Quarto\"\n---\n\n::: {.cell}\n\n:::\n\n## What you will learn this week\n\n* [Quarto](https://quarto.org)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week4/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week4/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Other resources\n\n* [Quarto extensions](https://quarto.org/docs/extensions/)\n* [Monash quarto templates](https://github.com/quarto-monash)\n\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 11 April.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

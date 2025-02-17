@@ -1,6 +1,8 @@
 ---
-title: "Week 2: Foundations of R programming"
+title: "Week 2: TBD"
 ---
+
+Guest Lecturer: [Hadley Wickham](https://hadley.nz)
 
 ```{r}
 week <- 2
@@ -14,12 +16,6 @@ source(here::here("course_info.R"))
 ## What you will learn this week
 
 * TBA
-
-```{r}
-#| eval: false
-#| output: asis
-show_slides(week)
-```
 
 
 ```{r}

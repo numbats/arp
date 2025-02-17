@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 3: Debugging"
+author: "Week 7: R package development"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -11,7 +11,7 @@ format:
     fig-width: 7.5
     fig-height: 3.5
     include-in-header: ../header.tex
-    keep-tex: true
+    keep-tex: false
 ---
 
 ```{r}
@@ -27,435 +27,343 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
-# Debugging
 
-## Overall debugging strategy
+# Getting started
 
-* Google
-* Stack Overflow
-* Posit Community
-* Create a minimal reproducible example
-* Create a unit test
-* Figure out where the test fails
-* Fix it and test
+## System setup
 
-## Minimal reproducible examples
+```r
+install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
+```
 
-* A minimal data set. Use a small built-in dataset, or make a small example.
-* If you must include your own data, use `dput()`, but subset where possible.
-* The *minimal* amount of code to reproduce the problem. Load only necessary packages.
-* If the example involves random numbers, set the seed with `set.seed()`.
-* Information about package versions, R version, OS. Use `sessioninfo::session_info()`.
+\pause
 
-## reprex
-
-The **reprex** package helps create *minimal reproducible examples*.
-
-* Results are saved to clipboard in form that can be pasted into a GitHub issue, Stack Overflow question, or email.
-* `reprex::reprex()`: takes R code and outputs it in a markdown format.
-* Append session info via\newline `reprex(..., session_info = TRUE)`.
-* Use the RStudio addin.
-
-
-## Debugging tools in R
+### R build toolchain
 \vspace*{-0.2cm}
-\fontsize{14}{15}\sf
+* Windows: [`https://cran.r-project.org/bin/windows/Rtools/`](https://cran.r-project.org/bin/windows/Rtools/)
+* macOS: `xcode-select --install`
+* Linux: `sudo apt install r-base-dev`
 
-* `traceback`: prints out the function call stack after an error occurs; does nothing if there's no error.
-* `debug`: flags a function for "debug" mode which allows you to step through execution of a function one line at a time.
-* `undebug`: removes the "debug" flag from a function.
-* `browser`: pauses execution of a function and puts the function in debug mode.
-* `trace`: allows you to insert code into a function at a specific line number.
-* `untrace`: removes the code inserted by `trace`.
-* `recover`: allows you to modify the error behaviour so that you can browse the function call stack after an error occurs.
+\pause
 
-## Traceback
+### Verify
+\vspace*{-0.2cm}
 
-```{r, error = TRUE}
-f <- function(a) g(a)
-g <- function(b) h(b)
-h <- function(c) i(c)
-i <- function(d) {
-  if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
-  d + 10
-}
+```{r}
+#| eval: false
+library(devtools)
+dev_sitrep()
 ```
 
-\only<1>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-error.png}}
-\only<2>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-traceback.png}}
-\pause\pause
+## Package states
 
-```{r, eval = FALSE}
-f("a")
-#> Error: `d` must be numeric
-traceback()
-#> 5: stop("`d` must be numeric", call. = FALSE) at debugging.R#6
-#> 4: i(c) at debugging.R#3
-#> 3: h(b) at debugging.R#2
-#> 2: g(a) at debugging.R#1
-#> 1: f("a")
-```
+* **source**: the original files
+* **bundled**: some processing, and compressed to a single `.tar.gz` file (e.g., to upload to CRAN)
+* **binary**: what you usually download from CRAN
+* **installed**: decompressed binary file stored in package library
+* **in-memory**: loaded into R session using `library()`
 
-## Interactive debugging
-\fontsize{13}{14}\sf
+## Package states
 
-* Using `browser()`
+\fullheight{../diagrams/install-load.png}
 
-  ```r
-  i <- function(d) {
-    browser()
-    if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
-    d + 10
-  }
-  ```
 
-* Setting breakpoints
-  * Similar to `browser()` but no change to source code.
-  * Set in RStudio by clicking to left of line number, or pressing `Shift+F9`.
-* `options(error = browser)`
+## Package structure
 
-## Interactive debugging
+\placefig{3}{1.4}{width = 20cm, height=7.6cm, trim = 30 420 740 200, clip = true}{../diagrams/package-development.pdf}
 
-* `debug()` : inserts a `browser()` statement at start of function.
-* `undebug()` : removes `browser()` statement.
-* `debugonce()` : same as `debug()`, but removes `browser()` after first run.
+## Package name
 
-## Exercises
+* Only letters, numbers and periods.
+* Must start with a letter.
+* It cannot end with a period.
+* No hyphens or underscores.
+* Use the `available::available()` function to try ideas.
 
-1.  What's wrong with this code?\fontsize{10}{10}\sf
+## Package code is different
 
-    ```{r, error = TRUE}
-    # Multivariate scaling function
-    mvscale <- function(object) {
-      # Remove centers
-      mat <- sweep(object, 2L, colMeans(object))
-      # Scale and rotate
-      S <- var(mat)
-      U <- chol(solve(S))
-      z <- mat %*% t(U)
-      # Return orthogonalized data
-      return(z)
-    }
-    mvscale(mtcars)
+* The `DESCRIPTION` file is the principal way to declare dependencies; we don’t do this via `library(somepackage)`.
+* Be explicit about which functions are user-facing and which are internal helpers. By default, functions are not exported.
+
+## Exercise: Start on your package
+
+1.  Because we have already set up github repos for everyone, we need to first clone the repo to your local machine. Then we can start working on the package.
+
+    ```{r}
+    #| eval: false
+    create_from_github("numbats/assignment-1-package-creation-robjhyndman")
     ```
 
-## Example
-\vspace*{-0.15cm}
-\centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm, height=20cm]{../screenshots/Amanda_Gadrow.png}}}
+2.  Rename folder and Rproj file to your package name
 
-## Common error messages
-\fontsize{12}{13}\sf
+3.  Create package skeleton
 
-* could not find function `"xxxx"`
-* object `xxxx` not found
-* cannot open the connection / No such file or directory
-* missing value where `TRUE` / `FALSE` needed
-* unexpected `=` in `"xxxx"`
-* attempt to apply non-function
-* undefined columns selected
-* subscript out of bounds
-* object of type 'closure' is not subsettable
-* `$` operator is invalid for atomic vectors
-* list object cannot be coerced to type 'double'
-* arguments imply differing number of rows
-* non-numeric argument to binary operator
+    ```{r}
+    #| eval: false
+    create_package()
+    ```
 
-## Common warning messages
-\fontsize{12}{13}\sf
+## Workflow
 
-* NAs introduced by coercion
-* replacement has `xx` rows to replace `yy` rows
-* number of items to replace is not a multiple of replacement length
-* the condition has length > 1 and only the first element will be used
-* longer object length is not a multiple of shorter object length
-* package is not available for R version `xx`
+\full{../diagrams/workflow.png}
 
-## Non-interactive debugging
+## Workflow shortcuts
 
-* Necessary for debugging code that runs in a non-interactive environment.
-* Is the global environment different? Have you loaded different packages? Are objects left from previous sessions causing differences?
-* Is the working directory different?
-* Is the `PATH` environment variable, which determines where external commands (like `git`) are found, different?
-* Is the `R_LIBS` environment variable, which determines where `library()` looks for packages, different?
+* `install()` : Ctrl-Shift-B
+* `load_all()` : Ctrl-Shift-L
+* `document()` : Ctrl-Shift-D
+* `check()` : Ctrl-Shift-E
+* `test()` : Ctrl-Shift-T
 
-## Non-interactive debugging
+# Package metadata
 
-* `dump.frame()` saves state of R session to file.
-
-  ```r
-  # In batch R process ----
-  dump_and_quit <- function() {
-    # Save debugging info to file last.dump.rda
-    dump.frames(to.file = TRUE)
-    # Quit R with error status
-    q(status = 1)
-  }
-  options(error = dump_and_quit)
-
-  # In a later interactive session ----
-  load("last.dump.rda")
-  debugger()
-  ```
-
-* Last resort: `print()`: slow and primitive.
-
-## Other tricks
-
-* `sink()` : capture output to file.
-* `options(warn = 2)` : turn warnings into errors.
-* `rlang::with_abort()` : turn messages into errors.
-* If R or RStudio crashes, it is probably a bug in compiled code.
-* Post minimal reproducible example to Posit Community or Stack Overflow.
-
-# Measuring performance
-
-## Profiling functions
-
-* `Rprof()` : records every function call.
-* `summaryRprof()` : summarises the results.
-* `profvis()` : visualises the results.
-
-## Profiling
-
-Where are the bottlenecks in your code?
-
-```{r}
-library(profvis)
-library(bench)
-f <- function() {
-  pause(0.1)
-  g()
-  h()
-}
-g <- function() {
-  pause(0.1)
-  h()
-}
-h <- function() {
-  pause(0.1)
-}
-```
-
-## Profiling
+## DESCRIPTION file
 \fontsize{10}{10}\sf
 
-```{r, eval = FALSE}
-tmp <- tempfile()
-Rprof(tmp, interval = 0.1)
-f()
-Rprof(NULL)
-writeLines(readLines(tmp))
-#> sample.interval=100000
-#> "pause" "g" "f"
-#> "pause" "h" "g" "f"
-#> "pause" "h" "f"
+```
+Package: doubler
+Title: This package doubles numbers
+Version: 0.0.0.9000
+Authors@R:
+    person("Rob", "Hyndman", , "Rob.Hyndman@monash.edu", role = c("aut", "cre"))
+Description: Whether the input is real, complex or character, this will double it.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 ```
 
-## Profiling
-\fontsize{10}{10}\sf
+## DESCRIPTION file
 
-```{r, eval=FALSE}
-source(here::here("week4/profiling-example.R"))
-profvis(f())
+* **Title**: one line description. Plain text, title case, no more than 65 characters.
+* **Description**: Several sentences, one paragraph. 80 characters per line, 4 space indentation. Don't include the package name in the Title or Description. Do not start with "This package does..."
+* **Author**: Use `Authors@R` with `person()` for each author.
+* **Version**. `Major.Minor.Patch.9000`. The `9000` is a placeholder for development versions.
+* **License**: `GPL-3` or `MIT` are common.
+
+## DESCRIPTION file
+
+* **Depends**: packages that are attached with your package. (Not needed for most packages.)
+* **Imports**: packages that are used in your package. (Refer to functions using `pkg::fun()`.)
+* **Suggests**: packages that are used in your package, but not required. (E.g., in tests or examples.)
+* **LazyData**: `true` prevents users having to use `data()`.
+
+## DESCRIPTION file
+
+Functions to help with the DESCRIPTION file:
+
+* `use_github()` or `use_github_links()`: set the GitHub repository, URL and BugReports.
+* `use_mit_license()`: set the license to MIT.
+* `use_gpl3_license()`: set the license to GPL-3.
+* `use_package()`: Add package to Imports or Suggests.
+* `use_data()`: Add data to your package.
+* `use_tidy_description()`: Clean up the DESCRIPTION file.
+
+## NAMESPACE file
+
+* Generated by `roxygen2`, so don't edit by hand.
+* `export()`: export a function (including S3 and S4 generics).
+* `S3method()`: export an S3 method.
+* `importFrom()`: import selected object from another namespace (including S4 generics).
+* `import()`: import all objects from another package’s namespace.
+* `useDynLib()`: registers routines from a DLL (this is specific to packages with compiled code).
+
+# Documentation
+
+## Documenting the package
+
+```r
+use_package_doc()
 ```
 
-\vspace*{-0.5cm}
-\centerline{\includegraphics[width = 7cm]{../screenshots/performance/flamegraph.png}}
+## Documenting functions
 
-## Microbenchmarking
-\fontsize{10}{10}\sf
+* Add roxygen2 comments to your `.R` files
+  * RStudio menu: `Code > Insert roxygen skeleton` (while cursor is within function)
+  * Or use Github Copilot (in RStudio or VS-Code)
+  * Or write them by hand
+* Then use `document()` to generate the `Rd` files and the `NAMESPACE` file. (Or press `Ctrl+Shift+D` in RStudio.)
+* Preview documentation with `?function`
 
-### `system.time()`
+## Documenting functions
+\fontsize{9}{9}\sf
 
-```{r}
-x <- rnorm(1e6)
-system.time(min(x))
-system.time(sort(x)[1])
-system.time(x[order(x)[1]])
+```r
+#' Title
+#'
+#' Description
+#' More description
+#'
+#' @param x Description of x
+#' @inheritParams fun
+#' @returns Description of return value
+#' @examples
+#' @importFrom pkg fun
+#' @import pkg
+#' @rdname fun
+#' @aliases fun
+#' @seealso fun
+#' @references Some reference
+#' @author Your name
+#' @export
 ```
 
-## Microbenchmarking
-\fontsize{10}{10}\sf
+## Documenting data
 
-### `bench::mark()`
+* Put raw data in `data-raw/`
+* Code to wrangle data and create objects in `data-raw/`
+* `use_data(object)` to add rda to `data/`
 
-```{r}
-bench::mark(
-  min(x),
-  sort(x)[1],
-  x[order(x)[1]]
-)
+```r
+#' Title
+#'
+#' Description
+#' More description
+#'
+#' @source Where did you get the data?
+#' @format Class, dimensions, or other details
+#' @keywords datasets
+#' @examples
+"object"
 ```
 
-## Microbenchmarking
+## README.Rmd
 
-* `mem_alloc` tells you the memory allocated in the first run.
-* `n_gc` tells you the total number of garbage collections over all runs.
-* `n_itr` tells you how many times the expression was evaluated.
-* Pay attention to the units!
+1. Describe the high-level purpose of the package.
+2. A simple example illustrating package.
+3. Installation instructions
+4. An overview of the main components of the package.
 
-## Exercises
+* Like a short vignette
+* Displayed on the Github repository and the front page of the pkgdown site.
+* Create with `usethis::use_readme_rmd()`
+* Build with `devtools::build_readme()`
 
-2.  What's the fastest way to compute a square root? Compare:
+## Vignettes
 
-    - `sqrt(x)`
-    - `x^0.5`
-    - `exp(log(x) / 2)`
+* A long-form guide to your package, or an extended example.
 
-    Use `system.time()` find the time for each operation.
+  * `usethis::use_vignette("my-vignette")`
+  * Creates a `vignettes/` directory.
+  * Adds the necessary dependencies to `DESCRIPTION`
+  * Drafts a vignette, `vignettes/my-vignette.Rmd`.
+  * Adds some patterns to `.gitignore`
 
-    Repeat using `bench::mark()`. Why are they different?
+## Vignettes YAML
 
-# Improving performance
-
-## Vectorization
-
-* Vectorization is the process of converting a repeated operation into a vector operation.
-* The loops in a vectorized function are implemented in C instead of R.
-* Using `map()` or `apply()` is **not** vectorization.
-* Matrix operations are vectorized, and usually very fast.
-
-## Beware of over-vectorising
-
-* Change all missing values in a data frame to zero:
-
-  ```{r}
-  #| eval: false
-  x[is.na(x)] <- 0
-  ```
-
-  or
-
-  ```{r}
-  #| eval: false
-  for(i in seq(NCOL(x))) {
-    x[is.na(x[, i]), i] <- 0
-  }
-  ```
-
-  Why might the second approach be preferred?
-
-## Exercises
-
-3. Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
-
-### Monte Carlo Integration
-   a. Initialise: `hits = 0`
-   b. for i in 1:N
-      * Generate two random numbers,  $U_1, U_2$, between 0 and 1
-      * If $U_2 < U_1^2$, then `hits = hits + 1`
-   c. end for
-   d. Area estimate = hits/N
-
-# Caching
-
-## Caching: using rds
-
-```{r}
-#| eval: false
-if (file.exists("results.rds")) {
-  res <- readRDS("results.rds")
-} else {
-  res <- compute_it()  # a time-consuming function
-  saveRDS(res, "results.rds")
-}
+```yaml
+---
+title: "Vignette Title"
+author: Your name
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 ```
 
-\pause\vspace*{1cm}
-
-\alert{Equivalently\dots}
-
-```{r}
-#| eval: false
-res <- xfun::cache_rds(
-  compute_it(), # a time-consuming function
-  file = "results.rds"
-)
-```
-
-## Caching: using rds
-\fontsize{10}{10}\sf
-
-```{r}
-#| label: cache1
-#| cache: false
-#| freeze: false
-compute <- function(...) {
-    xfun::cache_rds(rnorm(6), file = "results.rds", ...)
-}
-compute()
-compute()
-```
-
-```{r}
-#| include: false
-#| cache: false
-# Need to explicitly remove results.rds for some reason when doing this in quarto
-file.remove(here::here("cache/results.rds"))
-```
-
-```{r}
-#| label: cache2
-#| cache: false
-#| freeze: false
-compute(rerun = TRUE)
-compute()
-```
-
-## Caching: Rmarkdown
+## Vignettes initial code chunks
 
 ````{verbatim}
-```{r import-data, cache=TRUE}
-d <- read.csv('my-precious.csv')
-```
-
-```{r analysis, dependson='import-data', cache=TRUE}
-summary(d)
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 ````
 
-* Requires explicit dependencies or changes not detected.
-* Changes to functions or packages not detected.
-* Good practice to frequently clear cache to avoid problems.
-* targets is a better solution: Week 8
-
-## Caching: Quarto
-
 ````{verbatim}
-```{r}
-#| label: import-data
-#| cache: true
-d <- read.csv('my-precious.csv')
-```
-
-```{r}
-#| label: analysis
-#| dependson: import-data
-#| cache: true
-summary(d)
+```{r setup}
+library(yourpackage)
 ```
 ````
 
-* Same problems as Rmarkdown
-* targets is a better solution: Week 8
+* Any package used in a vignette must be included in Suggests if not already in Imports.
 
-## Caching: memoise
 
-Caching stores results of computations so they can be reused.
 
-\fontsize{10}{10}\sf
 
-```{r}
-library(memoise)
-sq <- function(x) {
-  print("Computing square of 'x'")
-  x**2
-}
-memo_sq <- memoise(sq)
-memo_sq(2)
-memo_sq(2)
+## NEWS
+
+* List changes in each release that users might care \rlap{about.}
+* Use `usethis::use_news_md()` to create a `NEWS.md` file.
+
+\fontsize{9}{9}\sf
+
+```markdown
+# foofy (development version)
+
+* Better error message when grooving an invalid grobble (#206).
+
+# foofy 1.0.0
+
+## Major changes
+
+* Can now work with all grooveable grobbles!
+
+## Minor improvements and bug fixes
+
+* Printing scrobbles no longer errors (@githubusername, #100).
+
+* Wibbles are now 55% less jibbly (#200).
 ```
 
-## Exercises
+# Tests
 
-4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
+## testthat v3
+
+* `usethis::use_testthat()`
+  * Create a `tests/testthat/` directory.
+  * Add `testthat` to the Suggests field in DESCRIPTION and specify `testthat 3e` in the `Config/testthat/edition` field.
+  * Create a file `tests/testthat.R` that runs all your tests when `check()` runs.
+* Every exported function should have tests.
+* `usethis::use_test("some_tests.R")` creates a test file for a function or group of functions.
+* Each R file should match a test file.
+
+## testthat v3
+
+* Test files live in `tests/testthat/` and are named `test-*.R`.
+* Each test file should test one function or a small group of related functions.
+* Useful testing functions:
+  * `expect_equal()`, `expect_identical()`, `expect_true()`, `expect_false()`
+  * `expect_error()`, `expect_warning()`, `expect_message()`
+* `test()` runs all tests.
+
+## What to test
+
+* Focus on testing the exported functions.
+* Strive to test each behaviour in one and only one test.
+* Avoid testing simple code that you’re confident will work.
+* Always write a test when you discover a bug.
+* The test-first philosophy: always start by writing the tests, and then write the code that makes them pass.
+* Use `devtools::test_coverage()` to see which parts of your package are tested.
+
+# Website
+
+## pkgdown websites
+
+* `usethis::use_pkgdown()`
+  * Creates `_pkgdown.yml` to configure site.
+  * Updates `.Rbuildignore`
+  * Adds `docs` to `.gitignore`
+* `pkgdown::build_site()` to build the site.
+* `usethis::use_pkgdown_github_pages()` to publish the site via GitHub Actions and GitHub Pages.
+* Make a hex sticker with the `hexSticker` package.
+* Add it using `usethis::use_logo()`.
+
+# Continuous integration
+
+## Github Actions
+\vspace*{-0.4cm}
+
+* Some development tasks can be executed automatically on Github with a trigger (e.g., a push)
+* Run `R CMD check: `usethis::use_github_action("check_standard")`
+* Compute test coverage: `usethis::use_github_action("test-coverage")`
+* Build and deploy pkgdown site: `usethis::use_github_action("pkgdown")`
+* The `.github/workflows/` directory contains action \rlap{files.}
+* See [`https://github.com/r-lib/actions/`](https://github.com/r-lib/actions/) for more examples.
