@@ -19,6 +19,7 @@ contributes:
       fig-height: 4.5
       titlegraphic: _images/background/bg-12.png
       titlecolor: black
+      toc: true
       template-partials:
         - beamer/before-title.tex
         - beamer/toc.tex
