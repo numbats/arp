@@ -150,6 +150,7 @@ nicetry(2)
 ## Develop a **C++** function in a `nicetry.cpp` file
 
 A `*.cpp` file sample contents:
+
 ```{Rcpp rcpp_df}
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -173,15 +174,20 @@ nicetry(2)
 The script includes:
 
 * **Rcpp** library and `namespace` declarations (skip: `Rcpp::`)
+
 ```{Rcpp rcpp_df1, eval = FALSE}
 #include <Rcpp.h>
 using namespace Rcpp;
 ```
+
 * **Rcpp** marker to export the `nicetry` function to R
+
 ```{Rcpp rcpp_df2, eval = FALSE}
 // [[Rcpp::export]]
 ```
+
 * sample **R** script
+
 ```{Rcpp rcpp_df3, eval = FALSE}
 /*** R
 nicetry(2)
@@ -194,6 +200,7 @@ nicetry(2)
 The script includes:
 
 * the function definition
+
 ```{Rcpp rcpp_df4, eval = FALSE}
 List nicetry (                    // output type and function name
     int n                         // input type and name
@@ -246,6 +253,7 @@ List nicelist (int n) {
 ## Use a function from a `nicelist.cpp` file in **R**
 
 * **R** script using the function from `nicelist.cpp`:
+
 ```{r nicelist}
 Rcpp::sourceCpp("nicelist.cpp")
 nicelist(3)
