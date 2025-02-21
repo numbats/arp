@@ -13,11 +13,9 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
-* Introduction to R
-* Names and values
-* Vectors
+* Scalars and vectors
+* Lists and data frames
 * Subsetting
-* Control flow
 * Functions
 * Environments
 * Conditions
