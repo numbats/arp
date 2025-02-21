@@ -36,7 +36,7 @@ source(here::here("course_info.R"))
 ## GitHub
 
 * Use your monash edu address.
-* Apply to GitHub Global Campus as a student (https://github.com/education/students).
+* Apply to GitHub Global Campus as a student (<https://github.com/education/students>).
 * Gives you free access to private repos and GitHub Copilot.
 * Add GitHub Copilot to RStudio settings.
 
@@ -78,17 +78,17 @@ source(here::here("course_info.R"))
 
 ## Scalars
 
-* Logicals: `TRUE` or `FALSE`, or abbreviated (`T` or `F`).
+* **Logicals**: `TRUE` or `FALSE`, or abbreviated (`T` or `F`).
 
-* Doubles: decimal (`0.1234`), scientific (`1.23e4`), or hexadecimal (`0xcafe`). Special values: `Inf`, `-Inf`, and `NaN` (not a number).
+* **Doubles**: decimal (`0.1234`), scientific (`1.23e4`), or hexadecimal (`0xcafe`). Special values: `Inf`, `-Inf`, and `NaN` (not a number).
 
-* Integers: `1234L`, `1e4L`, or `0xcafeL`. Can not contain fractional values.
+* **Integers**: `1234L`, `1e4L`, or `0xcafeL`. Can not contain fractional values.
 
-* Strings: `"hi"` or `'bye'`. Special characters are escaped with `\`.
+* **Strings**: `"hi"` or `'bye'`. Special characters are escaped with `\`.
 
 ## Making longer vectors with `c()` {#atomic-constructing}
 
-Use `c()` to create longer vectors from shorter ones.
+Use `c()` to create vectors.
 
 ```{r}
 lgl_var <- c(TRUE, FALSE)
@@ -107,9 +107,9 @@ c(c(1, 2), c(3, 4))
 ## Atomic vectors
 \vspace*{-0.2cm}
 
-* Four primary types of atomic vectors: logical, integer, double, and character (which contains strings).
-* Two rare types: complex, raw.
-* Collectively integer and double vectors are known as numeric vectors
+* Four primary types of atomic vectors: `logical`, `double`, `integer`,  and `character` (which contains strings).
+* Two rare types: `complex`, `raw`.
+* Collectively `integer` and `double` vectors are known as `numeric` vectors
 * `NULL` is like a zero length vector
 * Scalars are just vectors of length 1
 * Every vector can also have __attributes__: a named list of arbitrary metadata.
@@ -682,9 +682,10 @@ is.null(x)
 ## Exercises
 
 19. How would you randomly permute the columns of a data frame?
-20. Can you simultaneously permute the rows and columns in one step?
-21. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
-22. How could you put the columns in a data frame in alphabetical order?
+
+20. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
+
+21. How could you put the columns in a data frame in alphabetical order?
 
 # Functions
 
@@ -958,29 +959,6 @@ h04()
 
 \pause\alert{Not recommended!}
 
-## Exercises
-
-23. In `hist()`, the default value of `xlim` is `range(breaks)`, the default
-    value for `breaks` is `"Sturges"`, and
-
-    ```{r}
-    range("Sturges")
-    ```
-
-    Explain how `hist()` works to get a correct `xlim` value.
-
-## Exercises
-
-24. Explain why this function works. Why is it confusing?
-
-    ```{r}
-    show_time <- function(x = stop("Error!")) {
-      stop <- function(...) Sys.time()
-      print(x)
-    }
-    show_time()
-    ```
-
 ## `...`  (dot-dot-dot) {#fun-dot-dot-dot}
 
 Allows for any number of additional arguments.
@@ -1030,7 +1008,7 @@ sum(1, 2, NA, na_rm = TRUE)
 
 ## Exercises
 
-25. Explain the following results: \fontsize{10}{10}\sf
+22. Explain the following results: \fontsize{10}{10}\sf
 
     ```{r}
     sum(1, 2, 3)
@@ -1196,7 +1174,7 @@ You can specify arguments in three ways:
 
 ## Exercises
 
-26. Clarify the following list of odd function calls:
+23. Clarify the following list of odd function calls:
 
     ```{r, eval = FALSE}
     x <- sample(replace = TRUE, 20, x = c(1:10, NA))
@@ -1508,7 +1486,7 @@ f4(-1)
 
 ## Exercise
 
-27. Explain the results of running the following code
+24. Explain the results of running the following code
 
 ```{r, eval = FALSE}
 show_condition <- function(code) {
