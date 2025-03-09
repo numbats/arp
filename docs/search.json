@@ -1,0 +1,499 @@
+[
+  {
+    "objectID": "week6/Qmd_example.html",
+    "href": "week6/Qmd_example.html",
+    "title": "Qmd_example",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Render button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "week6/Qmd_example.html#r-markdown",
+    "href": "week6/Qmd_example.html#r-markdown",
+    "title": "Qmd_example",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Render button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "week6/Qmd_example.html#including-plots",
+    "href": "week6/Qmd_example.html#including-plots",
+    "title": "Qmd_example",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo: false parameter was added to the code chunk to prevent printing of the R code that generated the plot."
+  },
+  {
+    "objectID": "week5/index.html",
+    "href": "week5/index.html",
+    "title": "Week 5: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#main-reference",
+    "href": "week5/index.html#main-reference",
+    "title": "Week 5: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#what-you-will-learn-this-week",
+    "href": "week5/index.html#what-you-will-learn-this-week",
+    "title": "Week 5: Functional programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nFunctions\nFunction arguments\nFunction factories"
+  },
+  {
+    "objectID": "week5/index.html#slides-for-week",
+    "href": "week5/index.html#slides-for-week",
+    "title": "Week 5: Functional programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week5/index.html#assignments",
+    "href": "week5/index.html#assignments",
+    "title": "Week 5: Functional programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April.\nAssignment 3 is due on Monday 28 April."
+  },
+  {
+    "objectID": "week4/index.html",
+    "href": "week4/index.html",
+    "title": "Week 4: Debugging and profiling",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week4/index.html#main-reference",
+    "href": "week4/index.html#main-reference",
+    "title": "Week 4: Debugging and profiling",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week4/index.html#what-you-will-learn-this-week",
+    "href": "week4/index.html#what-you-will-learn-this-week",
+    "title": "Week 4: Debugging and profiling",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDebugging\nMeasuring performance\nEfficient R programming"
+  },
+  {
+    "objectID": "week4/index.html#online-resources",
+    "href": "week4/index.html#online-resources",
+    "title": "Week 4: Debugging and profiling",
+    "section": "Online resources",
+    "text": "Online resources\n\nCreating a reprex\nAmanda Gadrow - Debugging in R\nJenny Bryan - Object of type ‘closure’ is not subsettable\nPosit Community\nStack Overflow\nEfficient R Programming"
+  },
+  {
+    "objectID": "week4/index.html#slides-for-week",
+    "href": "week4/index.html#slides-for-week",
+    "title": "Week 4: Debugging and profiling",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week4/index.html#assignments",
+    "href": "week4/index.html#assignments",
+    "title": "Week 4: Debugging and profiling",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+  },
+  {
+    "objectID": "week3/index.html",
+    "href": "week3/index.html",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#main-reference",
+    "href": "week3/index.html#main-reference",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#what-you-will-learn-this-week",
+    "href": "week3/index.html#what-you-will-learn-this-week",
+    "title": "Week 3: R package development",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
+  },
+  {
+    "objectID": "week3/index.html#slides-for-week",
+    "href": "week3/index.html#slides-for-week",
+    "title": "Week 3: R package development",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week3/index.html#assignments",
+    "href": "week3/index.html#assignments",
+    "title": "Week 3: R package development",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 3 is due on Monday 28 April."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "",
+    "text": "R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nbe familiar with the foundations of R programming\nunderstand a variety of programming paradigms, including functional programming and object-oriented programming\nutilise R’s functional and object-oriented programming systems\nintegrate the concept of metaprogramming to evaluate and construct new functions"
+  },
+  {
+    "objectID": "index.html#teachers",
+    "href": "index.html#teachers",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Teachers",
+    "text": "Teachers\n\nRob J Hyndman. Chief Examiner. Email: Rob.Hyndman@monash.edu\nMitchell O’Hara-Wild. Email: Mitch.OHara-Wild@monash.edu\nHadley Wickham, Week 2\nTomasz Wozniak, Week 11"
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "References",
+    "text": "References\n\nAdvanced R, 2e by Hadley Wickham.\nAdvanced R Solutions by Malte Grosser, Henning Bumann & Hadley Wickham.\nThe {targets} R package user manual by Will Landau.\nR packages, 2e by Hadley Wickham & Jenny Bryan."
+  },
+  {
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\n3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n06 Mar\nFoundations of R programming\n\n\n\n13 Mar\nTBD\n\n\n\n20 Mar\nR package development\nAssignment 1\n\n\n27 Mar\nDebugging and profiling\n\n\n\n03 Apr\nFunctional programming\n\n\n\n10 Apr\nLiterate programming with Quarto\nAssignment 2\n\n\n17 Apr\nReactive programming with targets and renv\n\n\n\n24 Apr\nMid-semester break\n\n\n\n01 May\nObject-oriented programming with S3\nAssignment 3\n\n\n08 May\nObject-oriented programming with vctrs\n\n\n\n15 May\nMetaprogramming\nGame package 1\n\n\n22 May\nRewriting R code in C++\n\n\n\n29 May\nPackage hackathon\n\n\n\n05 Jun\n\nGame package 2"
+  },
+  {
+    "objectID": "index.html#assessments",
+    "href": "index.html#assessments",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Assessments",
+    "text": "Assessments\n\nAssignment 1: 10%\nAssignment 2: 25%\nAssignment 3: 25%\nGame package 1: 10%\nGame package 2: 30%"
+  },
+  {
+    "objectID": "assignments/Game_package1.html",
+    "href": "assignments/Game_package1.html",
+    "title": "Game package 1 (10%)",
+    "section": "",
+    "text": "You need to work in allocated groups to write an R package to help score or simulate a multi-player game. For example:\n\nTen-pin bowling: Calculate the score of a game where the inputs are the number of pins knocked down in each throw.\nBlackjack: Calculate the score from a round where the inputs are the cards held by the player and the dealer at the end of the game.\nPoker: Calculate the winner from a game where the inputs are the cards held by each player at the end of the game. Start with a simple version of poker, and extend to more complex versions.\n500: Score a game of 500 where the inputs are the cards played by each player for each trick.\nSnakes & ladders: Simulate a game of snakes and ladders on a specified board.\nChess: Simulate a game of chess with random but correct moves by each player.\nUno: Simulate a game of uno with random draws.\n\nYou may also have your own ideas for a game. If you would like to do something else, please discuss it with Mitch and Rob first.\nThe package should have at least 3 user-facing functions, and a vignette that describes how to use the package. The package should be well-documented, with all user-facing functions having examples and unit tests.\nMarks will be awarded for clean and efficient code, and for good design.\n\n\nDue: 16 May 2025  GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A2.html",
+    "href": "assignments/A2.html",
+    "title": "Assignment 2 (25%)",
+    "section": "",
+    "text": "The ???? package is designed to ?????.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\n\nDue: 11 April 2025  GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A1.html",
+    "href": "assignments/A1.html",
+    "title": "Assignment 1 (10%)",
+    "section": "",
+    "text": "A supermarket has p checkouts and customers must choose one, forming a queue if it is already occupied. Customers always choose the shortest queue. The time between each new customer arriving at the checkouts has an exponential distribution with mean \\mu minutes. The time it takes for a checkout operator to process a customer has an independent exponential distribution with mean \\lambda minutes.\nWrite an R function to simulate the supermarket queues at each checkout, taking the arguments mu, lambda, p and n, and returning the total number of customers waiting to be served, n minutes after the supermarket opens. The argument p should have default value 3, while n should have default value 720 (the number of minutes in a 12 hour day). The other arguments should have no default values. Your function should be named remaining_customers.\nYour code should be as efficient as possible. Arguments should be checked for range and class.\n\n\nDue: 21 March 2025  GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A3.html",
+    "href": "assignments/A3.html",
+    "title": "Assignment 3 (25%)",
+    "section": "",
+    "text": "Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:\n\nOur World in Data\nHuman Mortality Database\nHuman Fertility Database\nUN Data\nIMF Data\nABS Census Data\nAustralian Electoral Commission data\nUS General Social Survey\nHILDA Survey\nJohns Hopkins COVID data\n\nThe source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.\nYour analysis should include the following elements:\n\nReading the raw data into R.\nCleaning and wrangling the data into a form suitable for analysis.\nAt least two plots highlighting interesting features of the data.\nAt least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity — you should use a model that is appropriate for the data.\nA discussion of the results of the model and how they relate to the plots.\n\nYou must use the targets package to manage the workflow, renv to manage the package environment, with the analysis described in a quarto report.\n\n\nDue: 28 April 2025  GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/Game_package2.html",
+    "href": "assignments/Game_package2.html",
+    "title": "Game package 2 (30%)",
+    "section": "",
+    "text": "You need to extend your game package to include: (a) a custom vctrs class’ (b) some element of metaprogramming; and (c) the use of C++.\nAll user-facing functions should have examples and unit tests.\nMarks will be awarded for clean and efficient code, and for good design."
+  },
+  {
+    "objectID": "assignments/Game_package2.html#snakes-and-ladders",
+    "href": "assignments/Game_package2.html#snakes-and-ladders",
+    "title": "Game package 2 (30%)",
+    "section": "Snakes and ladders:",
+    "text": "Snakes and ladders:\n\nRepresent the state of the board with vctrs, and create print methods to show the state of the game.\n\n\n\nDue: 6 June 2025  GitHub Classroom"
+  },
+  {
+    "objectID": "week1/index.html",
+    "href": "week1/index.html",
+    "title": "Week 1: Foundations of R programming",
+    "section": "",
+    "text": "1-8, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#main-reference",
+    "href": "week1/index.html#main-reference",
+    "title": "Week 1: Foundations of R programming",
+    "section": "",
+    "text": "1-8, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#what-you-will-learn-this-week",
+    "href": "week1/index.html#what-you-will-learn-this-week",
+    "title": "Week 1: Foundations of R programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nScalars and vectors\nLists and data frames\nSubsetting\nFunctions\nEnvironments\nConditions"
+  },
+  {
+    "objectID": "week1/index.html#slides-for-week",
+    "href": "week1/index.html#slides-for-week",
+    "title": "Week 1: Foundations of R programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week1/index.html#assignments",
+    "href": "week1/index.html#assignments",
+    "title": "Week 1: Foundations of R programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+  },
+  {
+    "objectID": "week10/index.html",
+    "href": "week10/index.html",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
+  },
+  {
+    "objectID": "week10/index.html#main-reference",
+    "href": "week10/index.html#main-reference",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
+  },
+  {
+    "objectID": "week10/index.html#slides-for-week",
+    "href": "week10/index.html#slides-for-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week10/index.html#assignments",
+    "href": "week10/index.html#assignments",
+    "title": "Week 10: Metaprogramming",
+    "section": "Assignments",
+    "text": "Assignments\n\nGame package 1 is due on Friday 16 May."
+  },
+  {
+    "objectID": "week11/index.html",
+    "href": "week11/index.html",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "",
+    "text": "Guest Lecturer: Tomasz Wozniak"
+  },
+  {
+    "objectID": "week11/index.html#main-reference",
+    "href": "week11/index.html#main-reference",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Main reference",
+    "text": "Main reference\n\n25. Advanced R"
+  },
+  {
+    "objectID": "week11/index.html#what-you-will-learn-this-week",
+    "href": "week11/index.html#what-you-will-learn-this-week",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nC++ for applications in R with Tomasz Woźniak\nThe first steps with Rcpp\nSome stats with RcppArmadillo\nHands-on coding with four exercises\nCreate an R package with compiled code in ten steps"
+  },
+  {
+    "objectID": "week11/index.html#other-references-used-during-the-session",
+    "href": "week11/index.html#other-references-used-during-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Other references used during the session",
+    "text": "Other references used during the session\n\nArmadillo library documentation\nTsuda, M., Rcpp for everyone"
+  },
+  {
+    "objectID": "week11/index.html#scripts-used-during-the-session",
+    "href": "week11/index.html#scripts-used-during-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Scripts used during the session",
+    "text": "Scripts used during the session\n\nSimple list creation nicetry.cpp\nSimple linear regression example nicelr.cpp\nSimple loop application nicelist.cpp\nSampling from inverted gamma 2 distribution nicerig2.cpp\nStep-by-step package creation nicepackage.R"
+  },
+  {
+    "objectID": "week11/index.html#slides-for-week",
+    "href": "week11/index.html#slides-for-week",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week12/index.html",
+    "href": "week12/index.html",
+    "title": "Week 12: Package hackathon",
+    "section": "",
+    "text": "This will be a time to work together on your game packages in groups. Rob and Mitch will be available for consultation."
+  },
+  {
+    "objectID": "week2/index.html",
+    "href": "week2/index.html",
+    "title": "Week 2: TBD",
+    "section": "",
+    "text": "Guest Lecturer: Hadley Wickham"
+  },
+  {
+    "objectID": "week2/index.html#main-reference",
+    "href": "week2/index.html#main-reference",
+    "title": "Week 2: TBD",
+    "section": "Main reference",
+    "text": "Main reference\n\nTBA"
+  },
+  {
+    "objectID": "week2/index.html#what-you-will-learn-this-week",
+    "href": "week2/index.html#what-you-will-learn-this-week",
+    "title": "Week 2: TBD",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nTBA"
+  },
+  {
+    "objectID": "week2/index.html#assignments",
+    "href": "week2/index.html#assignments",
+    "title": "Week 2: TBD",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+  },
+  {
+    "objectID": "week6/index.html",
+    "href": "week6/index.html",
+    "title": "Week 6: Literate programming with Quarto",
+    "section": "",
+    "text": "Quarto"
+  },
+  {
+    "objectID": "week6/index.html#what-you-will-learn-this-week",
+    "href": "week6/index.html#what-you-will-learn-this-week",
+    "title": "Week 6: Literate programming with Quarto",
+    "section": "",
+    "text": "Quarto"
+  },
+  {
+    "objectID": "week6/index.html#slides-for-week",
+    "href": "week6/index.html#slides-for-week",
+    "title": "Week 6: Literate programming with Quarto",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week6/index.html#other-resources",
+    "href": "week6/index.html#other-resources",
+    "title": "Week 6: Literate programming with Quarto",
+    "section": "Other resources",
+    "text": "Other resources\n\nQuarto extensions\nMonash quarto templates"
+  },
+  {
+    "objectID": "week6/index.html#assignments",
+    "href": "week6/index.html#assignments",
+    "title": "Week 6: Literate programming with Quarto",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+  },
+  {
+    "objectID": "week7/index.html",
+    "href": "week7/index.html",
+    "title": "Week 7: Reactive programming with targets and renv",
+    "section": "",
+    "text": "targets\nrenv"
+  },
+  {
+    "objectID": "week7/index.html#what-you-will-learn-this-week",
+    "href": "week7/index.html#what-you-will-learn-this-week",
+    "title": "Week 7: Reactive programming with targets and renv",
+    "section": "",
+    "text": "targets\nrenv"
+  },
+  {
+    "objectID": "week7/index.html#slides-for-week",
+    "href": "week7/index.html#slides-for-week",
+    "title": "Week 7: Reactive programming with targets and renv",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week7/index.html#assignments",
+    "href": "week7/index.html#assignments",
+    "title": "Week 7: Reactive programming with targets and renv",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+  },
+  {
+    "objectID": "week8/index.html",
+    "href": "week8/index.html",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "",
+    "text": "13 Advanced R"
+  },
+  {
+    "objectID": "week8/index.html#main-reference",
+    "href": "week8/index.html#main-reference",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "",
+    "text": "13 Advanced R"
+  },
+  {
+    "objectID": "week8/index.html#what-you-will-learn-this-week",
+    "href": "week8/index.html#what-you-will-learn-this-week",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\nObject-oriented programming using S3"
+  },
+  {
+    "objectID": "week8/index.html#slides-for-week",
+    "href": "week8/index.html#slides-for-week",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week8/index.html#assignments",
+    "href": "week8/index.html#assignments",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 3 is due on Monday 28 April.\nGame package 1 is due on Friday 16 May."
+  },
+  {
+    "objectID": "week8/index.html#online-resources",
+    "href": "week8/index.html#online-resources",
+    "title": "Week 8: Object-oriented programming (S3)",
+    "section": "Online resources",
+    "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4"
+  },
+  {
+    "objectID": "week9/index.html",
+    "href": "week9/index.html",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#main-references",
+    "href": "week9/index.html#main-references",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#what-you-will-learn-this-week",
+    "href": "week9/index.html#what-you-will-learn-this-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week"
+  },
+  {
+    "objectID": "week9/index.html#slides-for-week",
+    "href": "week9/index.html#slides-for-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week9/index.html#assignments",
+    "href": "week9/index.html#assignments",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Assignments",
+    "text": "Assignments\n\nGame package 1 is due on Friday 16 May."
+  }
+]
