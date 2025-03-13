@@ -336,18 +336,18 @@
     "text": "Guest Lecturer: Hadley Wickham"
   },
   {
-    "objectID": "week2/index.html#main-reference",
-    "href": "week2/index.html#main-reference",
+    "objectID": "week2/index.html#reference-material",
+    "href": "week2/index.html#reference-material",
     "title": "Week 2: TBD",
-    "section": "Main reference",
-    "text": "Main reference\n\nTBA"
+    "section": "Reference material",
+    "text": "Reference material\n\n[Ch 5 Control Flow] (https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3."
   },
   {
-    "objectID": "week2/index.html#what-you-will-learn-this-week",
-    "href": "week2/index.html#what-you-will-learn-this-week",
+    "objectID": "week2/index.html#hadleys-code-from-the-workshop",
+    "href": "week2/index.html#hadleys-code-from-the-workshop",
     "title": "Week 2: TBD",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nTBA"
+    "section": "Hadley’s code from the workshop",
+    "text": "Hadley’s code from the workshop\n\nlong-map.qmd"
   },
   {
     "objectID": "week2/index.html#assignments",

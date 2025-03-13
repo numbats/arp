@@ -1,0 +1,402 @@
+## For loops
+
+```{r}
+
+xs <- 1:10
+n <- length(xs)
+
+out <- rep(NA, n)
+for (i in seq_along(xs)) {
+  out[[i]] <- xs[[i]]^2
+  # out[i] <- xs[i] ^ 2
+}
+out
+
+out <- rep(list(NULL), n)
+
+
+mtcars_cyl <- split(mtcars, mtcars$cyl)
+str(mtcars_cyl)
+n <- length(mtcars_cyl)
+
+out <- rep(list(NULL), n)
+for (i in seq_along(mtcars_cyl)) {
+  out[[i]] <- lm(mpg ~ disp, data = mtcars_cyl[[i]])
+}
+out
+```
+
+## Map functions
+
+```{r}
+mymap <- function(x, f) {
+  n <- length(x)
+  out <- rep(list(NULL), n)
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]])
+  }
+  out
+}
+
+mymap(mtcars_cyl, function(df) lm(mpg ~ disp, data = df))
+```
+
+## Your turn
+
+Make this function work:
+```{r}
+mymap_numeric <- function(x, f) {
+  n <- length(x)
+  out <- rep(NA, n)
+  for (i in seq_along(x)) {
+    val <- f(x[[i]])
+    if (!is.numeric(val)) {
+      stop("val must be numeric")
+    }
+    out[[i]] <- val
+  }
+  out
+}
+
+
+mymap_numeric(1:10, function(x) x^2)
+mymap_numeric(1:10, function(x) paste0("Hello ", x))
+mymap_numeric(1:10, function(x) c(x, x * 2))
+
+purrr::map_dbl(1:10, function(x) x^2)
+purrr::map_dbl(1:10, function(x) paste0("Hello ", x))
+purrr::map_dbl(1:10, function(x) c(x, x * 2))
+
+purrr::map_dbl(1:10, \(x) x^2)
+purrr::map_dbl(1:10, \(x) paste0("Hello ", x))
+purrr::map_dbl(1:10, \(x) c(x, x * 2))
+
+library(purrr)
+1:10 |> map_dbl(\(x) x^2)
+
+mtcars |>
+  split(mtcars$cyl) |>
+  map(\(df) lm(mpg ~ disp, data = df)) |>
+  map(\(mod) summary(mod)) |>
+  map_dbl(\(summary) summary$r.squared)
+
+slow_lm <- function(formula, data) {
+  Sys.sleep(1)
+  lm(formula, data = data)
+}
+
+models <- mtcars |>
+  split(mtcars$cyl) |>
+  map(\(df) slow_lm(mpg ~ disp, data = df), .progress = TRUE)
+
+mirai::daemons(6)
+models <- mtcars |>
+  split(mtcars$cyl) |>
+  map(
+    \(df) {
+      Sys.sleep(1)
+      stats::lm(mpg ~ disp, data = df)
+    },
+    .parallel = TRUE
+  )
+```
+
+### `map2()`
+
+```{r}
+dfs <- mtcars |> split(mtcars$cyl)
+filenames <- paste0("cyl-", names(dfs), ".csv")
+
+for (i in seq_along(dfs)) {
+  write.csv(dfs[[i]], filenames[[i]])
+}
+
+walk2(dfs, filenames, \(df, name) write.csv(df, name))
+map2_dbl()
+pmap(list(dfs, filenames), ...)
+```
+
+###
+
+```{r}
+mymap_numeric <- function(x, f) {
+  n <- length(x)
+  out <- rep(NA, n)
+  for (i in seq_along(x)) {
+    val <- f(x[[i]])
+    if (!is.numeric(val)) {
+      stop("val must be numeric")
+    }
+    out[[i]] <- val
+  }
+  out
+}
+
+```
+
+## "Long" map
+
+```{r}
+# Assume this takes 24 hours to run
+result <- map(my_big_dataset_of_parameter, my_complex_simulation_function)
+saveRDS(result, "results.rds")
+```
+
+* RStudio crash
+* Run out of memory
+* Wrong
+* Unexpected error
+  * Stochastic failure
+  * Bad value
+  * Bad code
+* No intermediate results saved
+* No results at all saved (forgot to assign)
+* Can't use RStudio session
+* Can't use your computer - I can't help you here
+* Don't know when/if will finish?
+  * Something is wrong it's going to take 2 years to finish
+
+* Pausable/resumable,
+  * Ideally across sessions
+* Retriable
+* Progress bar
+* Background (or run on another computer)
+* Logs
+
+Back at 7:10pm
+
+```{r}
+library(purrr)
+
+out <- rep(NA, 10)
+for (i in 1:10) {
+  Sys.sleep(0.25)
+  out[[i]] <- i
+  cat(".")
+}
+
+out <- rep(NA, 10)
+out <- map(
+  1:10,
+  function(i) {
+    Sys.sleep(0.25)
+    i
+  },
+  .progress = TRUE
+)
+```
+
+
+```{r}
+mymap <- function(x, f) {
+  n <- length(x)
+  out <- rep(list(NULL), n)
+
+  tryCatch(
+    {
+      for (i in seq_along(x)) {
+        out[[i]] <- f(x[[i]])
+      }
+    },
+    interrupt = function(cnd) {
+      cat("Cancelling at iteration ", i, "\n", sep = "")
+    }
+  )
+  out
+}
+
+slow_f <- function(i) {
+  Sys.sleep(0.5)
+  i
+}
+
+x <- mymap(1:10, \(i) slow_f(i))
+```
+
+```{r}
+results <- long_map(x, f, path = "results.rds")
+results$run()
+results$how_many_left()
+results$retry()
+results$is_done()
+results$errors()
+results$retry()
+```
+
+```{r}
+long_map <- function(x, f) {
+  n <- length(x)
+  out <- rep(list(NULL), n)
+
+  done <- rep(FALSE, n)
+
+  list(
+    run = function() {
+      tryCatch(
+        {
+          for (i in which(!done)) {
+            out[[i]] <<- f(x[[i]])
+            done[[i]] <<- TRUE
+          }
+        },
+        interrupt = function(cnd) {
+          cat("Interrupting; ", sum(!done), " results remaing\n", sep = "")
+          cat("Use `$run()` to resume\n")
+        }
+      )
+    },
+    results = function() {
+      out
+    }
+  )
+}
+
+y <- long_map(1:10, slow_f)
+
+y$run()
+y$run()
+str(y$results())
+```
+
+
+```{r}
+results <- long_map(x, f, path = "results.rds")
+results$run()
+# CRASH
+
+results <- long_map(x, f, path = "results.rds")
+results$run()
+
+
+long_map <- function(x, f, path = NULL) {
+  n <- length(x)
+
+  if (!is.null(path) && dir.exists(path)) {
+    saved <- qs::qread(path)
+    if (!identical(saved$f, f) || !identical(saved$x, x)) {
+      stop("x and f don't matched saved, delete ", path, " to continue")
+    } else {
+      out <- saved$out
+      done <- saved$done
+      cat("Loading ", sum(done), " results.\n", sep = "")
+    }
+  } else {
+    out <- rep(list(NULL), n)
+    done <- rep(FALSE, n)
+    error <- rep(FALSE, n)
+  }
+
+  list(
+    run = function() {
+      tryCatch(
+        {
+          for (i in which(!done)) {
+            out[[i]] <<- tryCatch(
+              f(x[[i]]),
+              error = function(err) {
+                error[[i]] <<- TRUE
+                err
+              }
+            )
+            done[[i]] <<- TRUE
+            if (!is.null(path)) {
+              # saveRDS(out[[i]], file = file.path(path, paste0(i, "rds")))
+              qs::qsave(list(out = out, done = done, x = x, f = f), path)
+            }
+          }
+        },
+        interrupt = function(cnd) {
+          cat("Interrupting; ", sum(!done), " results remaing\n", sep = "")
+          cat("Use `$run()` to resume\n")
+        }
+      )
+    },
+    results = function() {
+      out
+    },
+    all_done = function() {
+      all(done)
+    }
+  )
+}
+
+bad_f <- function(i) {
+  if (sample(10, 1) == 1) {
+    stop("ERROR!")
+  } else {
+    i
+  }
+}
+
+y <- long_map(1:100, bad_f)
+y$run()
+#> Run completed
+#> * 75 successfully
+#> * 25 errored
+#> Use $retry() to retry failed items
+
+y$which_error()
+#> [1] 56 89 101
+y$which_success()
+#> ...
+
+y$results()[y$which_sucess()]
+
+#> Back at 8:20pm
+```
+
+### Your turn
+
+* Is `long_map()` a good name? Brainstorm some alternatives (best done in pairs).
+  You could ask claude/chatGPT to suggest some names. Make sure to tell it that
+  this is going to be a purrr function, briefly describe the aims of the
+  function, and explicitly ask it to give you many options.
+
+* Imagine a syntax for adding a progress bar.
+
+```R
+long_map(x, f, .progress = TRUE)
+# cli
+```
+
+* If this task did run for 24 hours, your R session would be locked up for 24 hours.
+  If you had a magic wand to make your code run on a separate computer, imagine
+  what how the syntax would need to change? (One thing to consider is how would you
+  stop it from running?)
+
+```{r}
+library(mirai)
+
+mirai::daemons(4)
+y <- long_map_background(x, f)
+y$run()
+
+y <- long_map(x, f, .background = TRUE)
+y$run() # in the background
+
+y <- long_map(x, f)
+y$run_background()
+
+y <- long_map(x, f)
+y$run(background = TRUE)
+
+y$check_on_progress()
+#> * 10 done
+#> * 5 errors
+#> * 15 remaining
+
+y$cancel()
+#> * do nothing
+#> * message("Nothing in background")/cat()
+#> * warning("Nothing in background")
+#> * stop("Nothing in background")
+```
+
+* How would the code need to change if we could execute individual jobs in
+  parallel? (Think about what might happen if two separate processes tried to
+  save the rds file at the same time.)
+
+```{r}
+y <- long_map(x, f)
+y$run(parallel = TRUE)
+```

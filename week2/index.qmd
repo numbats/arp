@@ -9,13 +9,14 @@ week <- 2
 source(here::here("course_info.R"))
 ```
 
-## Main reference
+## Reference material
 
- * TBA
+ * [Ch 5 Control Flow] (https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.
+ * [Ch 9 Functionals from *Advanced R*](https://adv-r.hadley.nz/functionals.html), especially sections 9.2 and 9.3.
 
-## What you will learn this week
+## Hadley's code from the workshop
 
-* TBA
+ * [long-map.qmd](long-map.qmd)
 
 
 ```{r}
