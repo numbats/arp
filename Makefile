@@ -1,7 +1,7 @@
 default: preview
 
 preview:
-	quarto preview --no-serve --no-browser
+	quarto preview
 
 build:
 	quarto render

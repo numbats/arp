@@ -165,7 +165,7 @@
     "href": "index.html#weekly-schedule",
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n06 Mar\nFoundations of R programming\n\n\n\n13 Mar\nTBD\n\n\n\n20 Mar\nR package development\nAssignment 1\n\n\n27 Mar\nDebugging and profiling\n\n\n\n03 Apr\nFunctional programming\n\n\n\n10 Apr\nLiterate programming with Quarto\nAssignment 2\n\n\n17 Apr\nReactive programming with targets and renv\n\n\n\n24 Apr\nMid-semester break\n\n\n\n01 May\nObject-oriented programming with S3\nAssignment 3\n\n\n08 May\nObject-oriented programming with vctrs\n\n\n\n15 May\nMetaprogramming\nGame package 1\n\n\n22 May\nRewriting R code in C++\n\n\n\n29 May\nPackage hackathon\n\n\n\n05 Jun\n\nGame package 2"
+    "text": "Weekly schedule\n\n3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n06 Mar\nFoundations of R programming\n\n\n\n13 Mar\nHadley Wickham guest lecture\n\n\n\n20 Mar\nR package development\nAssignment 1\n\n\n27 Mar\nDebugging and profiling\n\n\n\n03 Apr\nFunctional programming\n\n\n\n10 Apr\nLiterate programming with Quarto\nAssignment 2\n\n\n17 Apr\nReactive programming with targets and renv\n\n\n\n24 Apr\nMid-semester break\n\n\n\n01 May\nObject-oriented programming with S3\nAssignment 3\n\n\n08 May\nObject-oriented programming with vctrs\n\n\n\n15 May\nMetaprogramming\nGame package 1\n\n\n22 May\nRewriting R code in C++\n\n\n\n29 May\nPackage hackathon\n\n\n\n05 Jun\n\nGame package 2"
   },
   {
     "objectID": "index.html#assessments",
@@ -331,28 +331,28 @@
   {
     "objectID": "week2/index.html",
     "href": "week2/index.html",
-    "title": "Week 2: TBD",
+    "title": "Week 2: Hadley Wickham guest lecture",
     "section": "",
     "text": "Guest Lecturer: Hadley Wickham"
   },
   {
     "objectID": "week2/index.html#reference-material",
     "href": "week2/index.html#reference-material",
-    "title": "Week 2: TBD",
+    "title": "Week 2: Hadley Wickham guest lecture",
     "section": "Reference material",
-    "text": "Reference material\n\n[Ch 5 Control Flow] (https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3."
+    "text": "Reference material\n\nCh 5 Control Flow. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3."
   },
   {
     "objectID": "week2/index.html#hadleys-code-from-the-workshop",
     "href": "week2/index.html#hadleys-code-from-the-workshop",
-    "title": "Week 2: TBD",
+    "title": "Week 2: Hadley Wickham guest lecture",
     "section": "Hadley’s code from the workshop",
     "text": "Hadley’s code from the workshop\n\nlong-map.qmd"
   },
   {
     "objectID": "week2/index.html#assignments",
     "href": "week2/index.html#assignments",
-    "title": "Week 2: TBD",
+    "title": "Week 2: Hadley Wickham guest lecture",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
   },

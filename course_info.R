@@ -12,7 +12,7 @@ schedule <- tibble(
   Week = seq(12),
   Topic = c(
     "Foundations of R programming",
-    "TBD",
+    "Hadley Wickham guest lecture",
     "R package development",
     "Debugging and profiling",
     "Functional programming",
@@ -58,7 +58,7 @@ assignments <- readr::read_csv(here::here("assignments.csv")) |>
     File = paste0("assignments/", File)
   )
 
-  
+
 
 schedule <- schedule |>
   full_join(assignments, by = "Date")
