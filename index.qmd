@@ -40,6 +40,10 @@ source(here::here("course_info.R"))
 week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 ```
 
+## Recordings
+
+* [Recordings](https://learning.monash.edu/mod/lti/view.php?id=3661834)
+
 ## Weekly schedule
 
 * 3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.
