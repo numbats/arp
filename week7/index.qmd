@@ -3,7 +3,7 @@ title: "Week 7: Reactive programming with targets and renv"
 ---
 
 ```{r}
-week <- 5
+week <- 7
 source(here::here("course_info.R"))
 ```
 

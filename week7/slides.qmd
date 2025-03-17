@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 5: targets and renv -- efficient reproducible workflows"
+author: "Week 5: Reactive programming with targets and renv"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -23,12 +23,6 @@ format:
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
-
-## Outline
-
-\vspace*{0.4cm}
-\tableofcontents
-
 
 # targets
 

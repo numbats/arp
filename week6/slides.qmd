@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 4: Literate programming with Quarto"
+author: "Week 6: Literate programming with Quarto"
 format:
   presentation-beamer:
     fontsize: "14pt,t"

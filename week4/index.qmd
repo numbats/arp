@@ -3,7 +3,7 @@ title: "Week 4: Debugging and profiling"
 ---
 
 ```{r}
-week <- 3
+week <- 4
 source(here::here("course_info.R"))
 ```
 

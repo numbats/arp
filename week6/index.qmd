@@ -3,7 +3,7 @@ title: "Week 6: Literate programming with Quarto"
 ---
 
 ```{r}
-week <- 4
+week <- 6
 source(here::here("course_info.R"))
 ```
 
