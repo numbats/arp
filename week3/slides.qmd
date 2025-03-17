@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 7: R package development"
+author: "Week 3: R package development"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -21,12 +21,6 @@ format:
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
-
-## Outline
-
-\vspace*{0.4cm}
-\tableofcontents
-
 
 # Getting started
 
@@ -65,12 +59,11 @@ dev_sitrep()
 
 ## Package states
 
-\fullheight{../diagrams/install-load.png}
-
+\placefig{1}{1.1}{height = 7.9cm}{../diagrams/install-load.png}
 
 ## Package structure
 
-\placefig{3}{1.4}{width = 20cm, height=7.6cm, trim = 30 420 740 200, clip = true}{../diagrams/package-development.pdf}
+\placefig{3}{1.4}{height=7.6cm, trim = 30 420 740 200, clip = true}{../diagrams/package-development.pdf}
 
 ## Package name
 
@@ -85,18 +78,13 @@ dev_sitrep()
 * The `DESCRIPTION` file is the principal way to declare dependencies; we don’t do this via `library(somepackage)`.
 * Be explicit about which functions are user-facing and which are internal helpers. By default, functions are not exported.
 
-## Exercise: Start on your package
+## Exercise: Start on a package
 
-1.  Because we have already set up github repos for everyone, we need to first clone the repo to your local machine. Then we can start working on the package.
+We will create a package that doubles numbers.
 
-    ```{r}
-    #| eval: false
-    create_from_github("numbats/assignment-1-package-creation-robjhyndman")
-    ```
+1.  Create a new folder with package name and setup project file.
 
-2.  Rename folder and Rproj file to your package name
-
-3.  Create package skeleton
+2.  Create package skeleton
 
     ```{r}
     #| eval: false
@@ -105,7 +93,7 @@ dev_sitrep()
 
 ## Workflow
 
-\full{../diagrams/workflow.png}
+\placefig{1}{1.1}{height = 7.9cm}{../diagrams/workflow.png}
 
 ## Workflow shortcuts
 
@@ -362,8 +350,16 @@ library(yourpackage)
 \vspace*{-0.4cm}
 
 * Some development tasks can be executed automatically on Github with a trigger (e.g., a push)
-* Run `R CMD check: `usethis::use_github_action("check_standard")`
+* Run `R CMD check:` `usethis::use_github_action("check_standard")`
 * Compute test coverage: `usethis::use_github_action("test-coverage")`
 * Build and deploy pkgdown site: `usethis::use_github_action("pkgdown")`
 * The `.github/workflows/` directory contains action \rlap{files.}
 * See [`https://github.com/r-lib/actions/`](https://github.com/r-lib/actions/) for more examples.
+
+# Exercise
+
+## Exercise
+
+* If you haven't finished Assignment 1, do it now.
+
+* If you have finished Assignment 1, create an R package that includes `remaining_customers` as the only function. Add unit tests, a readme file, and a pkgdown website.

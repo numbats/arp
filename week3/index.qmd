@@ -3,7 +3,7 @@ title: "Week 3: R package development"
 ---
 
 ```{r}
-week <- 7
+week <- 3
 source(here::here("course_info.R"))
 ```
 
