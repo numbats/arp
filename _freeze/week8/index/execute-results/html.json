@@ -1,0 +1,15 @@
+{
+  "hash": "23ae4ebde6dfef622b25f6c6004cc567",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 8: Object-oriented programming (S3)\"\n---\n\n::: {.cell}\n\n:::\n\n## Main reference\n\n* [13 *Advanced R*](https://adv-r.hadley.nz/s3.html)\n\n## What you will learn this week\n\nObject-oriented programming using S3\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week8/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week8/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Monday 28 April.\n* [Game package 1](../assignments/Game_package1.qmd) is due on Friday 16 May.\n\n## Online resources\n\n* [A simple guide to S3 methods](https://www.njtierney.com/post/2016/11/06/simple-s3-post/)\n* [S4: a short guide for the perplexed](https://stuartlee.org/2019/07/09/s4-short-guide/)\n* [Comparing S3 and S4 on an example](https://faculty.washington.edu/kenrice/sisg-adv/sisg17-pack-03.pdf)\n* [S4](https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

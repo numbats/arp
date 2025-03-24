@@ -1,0 +1,26 @@
+---
+title: Assignment 2 (25%)
+---
+
+
+The **????** package is designed to ?????.
+
+In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.
+
+You will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:
+
+1. Create a reprex that demonstrates the problem as a comment in the issue.
+2. Fix the problem in the package code.
+3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
+4. Add unit test(s) to the package that confirms the problem is fixed.
+5. Close the issue.
+
+The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn't a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.
+
+In some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.
+
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "Assignment 2")
+```

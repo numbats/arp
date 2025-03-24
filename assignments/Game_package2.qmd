@@ -1,0 +1,41 @@
+---
+title: Game package 2 (30%)
+---
+
+You need to extend your game package to include: (a) a custom vctrs class' (b) some element of metaprogramming; and (c) the use of C++.
+
+* Create and document a function for creating your vector.
+* Define appropriate methods for using your vector, including `format()`, `vec_ptype2()`, and `vec_cast()`.
+* Create generic function(s) for identifying/extracting useful things from your vector (examples below, e.g. suit of the card).
+* Create methods for your custom generic function(s), including suitable defaults.
+
+All user-facing functions should have examples and unit tests.
+
+Marks will be awarded for clean and efficient code, and for good design.
+
+# Some suggestions
+
+Below are some ideas for how vctrs can be used with your package. We encourage you to be creative and come up with your own ideas for how object oriented programming best suits your game package.
+
+### Ten-pin bowling:
+
+* Create a vctr to neatly print out frames of a game, including formatting for strikes, spares and splits.
+* Create methods for useful calculations like score, and `frame_strike()`, `frame_spare()`, `frame_closed()`, etc.
+
+### Blackjack:
+
+* Represent the cards with vctrs and provide functions/methods for things like `card_is_face()`, `card_value()`, `card_suit()`, etc.
+
+### Poker:
+
+* Represent the cards with vctrs and provide functions/methods for things like `card_is_face()`, `card_value()`, `card_suit()`, etc.
+
+## Snakes and ladders:
+
+* Represent the state of the board with vctrs, and create print methods to show the state of the game.
+
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "Game package 2")
+```
