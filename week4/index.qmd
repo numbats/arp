@@ -31,3 +31,8 @@ source(here::here("course_info.R"))
 show_slides(week)
 show_assignments(week)
 ```
+
+## Workshop resources
+
+* [Survey data](survey_data.csv)
+* [Survey analysis](survey_dplyr_bug.R)

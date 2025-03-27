@@ -29,33 +29,37 @@ source(here::here("course_info.R"))
 
 # Debugging
 
+## What's a bug?
+
+An incorrect, unexpected, or unintended behaviour of code.
+
+:::{.callout-tip}
+## Why do we call it a bug?
+
+Why not a mistake? A glitch? An oopsie-daisy?
+:::
+
+## What's a bug?
+
+> On September 9, 1947, a real moth was found causing a malfunction in the Harvard Mark II computer. This incident was recorded in the logbook with the note "First actual case of bug being found."
+
+![](harvard_mark_ii.jpg){fig-height=1 fig-align="center"}
+
 ## Overall debugging strategy
 
-* Google
-* Stack Overflow
-* Posit Community
+**Ask for help**
+
+* Ask an LLM (OpenAI, Claude, ...)
+* Ask a search engine (Google, Bing, DuckDuckGo, ...)
+* Ask the community (Stack Overflow / Posit Community, ...)
+
+**Fix it yourself**
+
+* Update your software / R packages
 * Create a minimal reproducible example
-* Create a unit test
-* Figure out where the test fails
-* Fix it and test
-
-## Minimal reproducible examples
-
-* A minimal data set. Use a small built-in dataset, or make a small example.
-* If you must include your own data, use `dput()`, but subset where possible.
-* The *minimal* amount of code to reproduce the problem. Load only necessary packages.
-* If the example involves random numbers, set the seed with `set.seed()`.
-* Information about package versions, R version, OS. Use `sessioninfo::session_info()`.
-
-## reprex
-
-The **reprex** package helps create *minimal reproducible examples*.
-
-* Results are saved to clipboard in form that can be pasted into a GitHub issue, Stack Overflow question, or email.
-* `reprex::reprex()`: takes R code and outputs it in a markdown format.
-* Append session info via\newline `reprex(..., session_info = TRUE)`.
-* Use the RStudio addin.
-
+* Explore code to find where the error is
+* Create a unit tests with expected behaviour
+* Fix and test it
 
 ## Debugging tools in R
 \vspace*{-0.2cm}
@@ -116,9 +120,40 @@ traceback()
 
 ## Interactive debugging
 
+Debugging commands:
+
+1. **`n`**: Next line (step over).
+2. **`s`**: Step into function.
+3. **`c`**: Continue to next breakpoint.
+4. **`f`**: Finish the current function.
+5. **`Q`**: Quit debugging.
+6. **`where`**: Show the call stack.
+7. **`help`**: Help with these debugging commands.
+
+## Interactive debugging
+
 * `debug()` : inserts a `browser()` statement at start of function.
 * `undebug()` : removes `browser()` statement.
 * `debugonce()` : same as `debug()`, but removes `browser()` after first run.
+
+## Demo
+
+Let's fix a real, unsolved bug.
+
+[#mitchelloharawild/distributional/issues/133](https://github.com/mitchelloharawild/distributional/issues/133)
+
+``` r
+distributional::dist_normal() * 2
+#> Error in .mapply(get(op), list(x = vec_data(x), y = y)): argument "MoreArgs" is missing, with no default
+```
+
+## The debugging workflow
+
+1. Create a reprex that demonstrates the problem as a comment in the issue.
+2. Fix the problem in the package code.
+3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
+4. Add unit test(s) to the package that confirms the problem is fixed.
+5. Close the issue.
 
 ## Exercises
 
@@ -141,7 +176,7 @@ traceback()
 
 ## Example
 \vspace*{-0.15cm}
-\centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm, height=20cm]{../screenshots/Amanda_Gadrow.png}}}
+\centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm]{../screenshots/Amanda_Gadrow.png}}}
 
 ## Common error messages
 \fontsize{12}{13}\sf
@@ -169,6 +204,132 @@ traceback()
 * the condition has length > 1 and only the first element will be used
 * longer object length is not a multiple of shorter object length
 * package is not available for R version `xx`
+
+## Asking for help
+
+To get useful help, it is important that you ask a **good question**. Consider answering these two equivalent questions, which is easier to understand and why?
+
+## Asking for help
+
+::: {.callout-important}
+## urgent help needed with assignment error
+
+My code doesn't work. Please help i need it working for my assignment asap!
+
+data <- read.csv("C://Users/James/Downloads/project-a9j-2020a/files/survey_data.csv")
+data %>% filter(y == "A") %>% ggplot(aes(y = y, x = temperature)) + geom_line()
+:::
+
+## Asking for help
+
+::: {.callout-tip}
+## Error with dplyr `filter()`: "object not found"
+
+I'm trying to filter a dataset in `dplyr`, but I'm getting an error that I don't understand. Here's my code and error message:  
+
+```r
+survey <- data.frame(x = c(1, 2, 3), y = c("A", "B", "C"))
+survey %>% filter(y == "A")
+```
+Error: `Error in filter(y == "A") : object 'y' not found`
+
+I expected it to return rows where `y` is `"A"`. How should I fix this?
+:::
+
+
+## Minimal reproducible examples
+
+A minimal reproducible example (MRE) is essential for effectively communicating problems with code. 
+
+The process of creating a MRE might also help you resolve the problem yourself!
+
+## Minimal reproducible examples
+
+**Minimal**
+
+Minimising code and data makes it easier to find the problem.
+
+- **Remove unnecessary code**
+  
+  Include as little code as possible to show the problem.
+- **Use small datasets**
+  
+  Prefer built-in datasets or small example datasets.
+- **Avoid external dependencies**
+  
+  Remove unused packages or files irrelevant to the problem.
+
+
+## Minimal reproducible examples
+
+**Reproducible**
+
+- **Required packages**
+  
+  If external packages are needed, include loading the packages in your MRE.
+- **Used datasets**
+  
+  If you can't use built-in datasets, provide a minimal dataset with `data.frame()` or `dput()`.
+  
+- **Set random seeds**
+  
+  If your problem includes randomisation, include `set.seed()` with appropriate seed.
+
+
+## Minimal reproducible examples
+
+**Examples**
+
+- **Clearly state the issue**
+  
+  Explain what you expect versus what happens.
+- **Ensure clarity**
+  
+  Add code comments to highlight your intention and the problem.
+
+## reprex
+
+The **reprex** package helps create *minimal reproducible examples*.
+
+* Results are saved to clipboard in form that can be pasted into a GitHub issue, Stack Overflow question, or email.
+* `reprex::reprex()`: takes R code and outputs it in a markdown format.
+* Append session info with `reprex(..., session_info = TRUE)`.
+* Use the RStudio addin.
+
+## reprex as a debugging tool
+
+Creating increasingly minimal reproducible examples can be a useful debugging tool.
+
+Let's look at this bug:
+
+[#tidyverts/fabletools/issues/350](https://github.com/tidyverts/fabletools/issues/350)
+
+``` r
+library(fpp3)
+us_change %>%
+  pivot_longer(c(Consumption, Income), names_to = "Time Series") %>%
+  autoplot(value)
+#> Error in `not_tsibble()`:
+#> ! x is not a tsibble.
+```
+
+## Exercises
+
+Create a Minimal Reproducible Example (MRE) for this code:
+
+```r
+library(tidyverse)
+library(rainbow)
+
+survey_data <- read.csv("https://arp.numbat.space/week4/survey_data.csv", row.names = FALSE)
+
+survey_data |>
+  select(-RespondentID) |>
+  group_by(Gender) |>
+  count(Satisfaction)
+```
+<https://arp.numbat.space/week4/survey_dplyr_bug.R>
+
 
 ## Non-interactive debugging
 
@@ -207,7 +368,52 @@ traceback()
 * If R or RStudio crashes, it is probably a bug in compiled code.
 * Post minimal reproducible example to Posit Community or Stack Overflow.
 
-# Measuring performance
+# Styling
+
+## Style guides
+
+**Tidyverse**
+
+<https://style.tidyverse.org/>
+
+**Google**
+
+<https://google.github.io/styleguide/Rguide.html>
+
+## Indentation
+
+- Use **2 spaces** per indentation level.
+
+- Add spaces around operators: `x <- y + z`.
+
+## Naming (functions, arguments, objects)
+
+Be brief but descriptive with object names.
+
+Use a consistent naming convention:
+
+- camelCase
+- snake_case
+- PascalCase
+
+## Design
+
+- **Modularity**: Create re-usable parts for maintainability and scalability.
+- **Simplicity**: Keep the interface intuitive and easy to use with straightforward interactions.
+- **Flexibility**: Allow adaptability to different use cases and user preferences.
+- **Feedback**: Provide clear and timely feedback to inform users of actions, errors, and system states.
+
+
+## Automatic styling
+
+* styler: <https://styler.r-lib.org/>
+* air: <https://posit-dev.github.io/air/>
+
+These can be configured to automatically style your code when you save.
+
+You can also check your code for common problems with [lintr](https://lintr.r-lib.org/).
+
+# Profiling 
 
 ## Profiling functions
 
@@ -306,7 +512,7 @@ bench::mark(
 
     Repeat using `bench::mark()`. Why are they different?
 
-# Improving performance
+# Efficiency
 
 ## Vectorization
 
@@ -315,29 +521,9 @@ bench::mark(
 * Using `map()` or `apply()` is **not** vectorization.
 * Matrix operations are vectorized, and usually very fast.
 
-## Beware of over-vectorising
-
-* Change all missing values in a data frame to zero:
-
-  ```{r}
-  #| eval: false
-  x[is.na(x)] <- 0
-  ```
-
-  or
-
-  ```{r}
-  #| eval: false
-  for(i in seq(NCOL(x))) {
-    x[is.na(x[, i]), i] <- 0
-  }
-  ```
-
-  Why might the second approach be preferred?
-
 ## Exercises
 
-3. Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
+Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
 
 ### Monte Carlo Integration
    a. Initialise: `hits = 0`
