@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "week4/todo.html",
-    "href": "week4/todo.html",
-    "title": "ETC4500/ETC5450 Advanced R Programming",
+    "objectID": "weekly_plan.html",
+    "href": "weekly_plan.html",
+    "title": "Weekly plan",
     "section": "",
-    "text": "add small debugging and profiling exercises\nadd code style\ndiscuss debugging and unit testing of A1\nadd https://github.com/tidyverts/fabletools/issues/350 demo - walkthrough plan of incremental reprex\nadd A2 walkthrough\nadd callback to W2 Hadley’s talk about ‘long-map’\n\nARP A2 TODO * Add bugs * Add buggy code with PR for students to review? (and finish by adding NEWs, unit tests, etc.)"
+    "text": "Weekly plan\n\nWeek 1: Foundations Rob\nWeek 2: LLM Hadley\nWeek 3: R package development Rob\nWeek 4: Debugging Mitch\nWeek 5: Functional programming - Mitch\nWeek 6: Literate programming: Quarto Rob\nWeek 7: Reactive programming: targets, renv Rob\nWeek 8: OO S3 and others - Mitch\nWeek 9: OO vctrs - Mitch\nWeek 10: Meta programming - Mitch\nWeek 11: C++ - Tomasz Wozniak\nWeek 12: Package hackathon"
   },
   {
     "objectID": "week9/index.html",
@@ -109,7 +109,7 @@
     "href": "week7/index.html#assignments",
     "title": "Week 7: Reactive programming with targets and renv",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Monday 28 April."
   },
   {
     "objectID": "week6/index.html",
@@ -144,7 +144,7 @@
     "href": "week6/index.html#assignments",
     "title": "Week 6: Literate programming with Quarto",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Monday 28 April."
   },
   {
     "objectID": "week2/index.html",
@@ -319,7 +319,7 @@
     "href": "assignments/A2.html",
     "title": "Assignment 2 (25%)",
     "section": "",
-    "text": "The ???? package is designed to ?????.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\n\nDue: 11 April 2025  GitHub Classroom"
+    "text": "The ???? package is designed to ?????.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\n\nDue: 16 April 2025  GitHub Classroom"
   },
   {
     "objectID": "assignments/Game_package1.html",
@@ -368,7 +368,7 @@
     "href": "index.html#weekly-schedule",
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n06 Mar\nFoundations of R programming\n\n\n\n13 Mar\nHadley Wickham guest lecture\n\n\n\n20 Mar\nR package development\nAssignment 1\n\n\n27 Mar\nDebugging and profiling\n\n\n\n03 Apr\nFunctional programming\n\n\n\n10 Apr\nLiterate programming with Quarto\nAssignment 2\n\n\n17 Apr\nReactive programming with targets and renv\n\n\n\n24 Apr\nMid-semester break\n\n\n\n01 May\nObject-oriented programming with S3\nAssignment 3\n\n\n08 May\nObject-oriented programming with vctrs\n\n\n\n15 May\nMetaprogramming\nGame package 1\n\n\n22 May\nRewriting R code in C++\n\n\n\n29 May\nPackage hackathon\n\n\n\n05 Jun\n\nGame package 2"
+    "text": "Weekly schedule\n\n3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n06 Mar\nFoundations of R programming\n\n\n\n13 Mar\nHadley Wickham guest lecture\n\n\n\n20 Mar\nR package development\nAssignment 1\n\n\n27 Mar\nDebugging and profiling\n\n\n\n03 Apr\nFunctional programming\n\n\n\n10 Apr\nLiterate programming with Quarto\n\n\n\n17 Apr\nReactive programming with targets and renv\nAssignment 2\n\n\n24 Apr\nMid-semester break\n\n\n\n01 May\nObject-oriented programming with S3\nAssignment 3\n\n\n08 May\nObject-oriented programming with vctrs\n\n\n\n15 May\nMetaprogramming\nGame package 1\n\n\n22 May\nRewriting R code in C++\n\n\n\n29 May\nPackage hackathon\n\n\n\n05 Jun\n\nGame package 2"
   },
   {
     "objectID": "index.html#assessments",
@@ -452,14 +452,7 @@
     "href": "week4/index.html#assignments",
     "title": "Week 4: Debugging and profiling",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
-  },
-  {
-    "objectID": "week4/index.html#workshop-resources",
-    "href": "week4/index.html#workshop-resources",
-    "title": "Week 4: Debugging and profiling",
-    "section": "Workshop resources",
-    "text": "Workshop resources\n\nSurvey data\nSurvey analysis"
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April."
   },
   {
     "objectID": "week5/index.html",
@@ -494,7 +487,7 @@
     "href": "week5/index.html#assignments",
     "title": "Week 5: Functional programming",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April."
   },
   {
     "objectID": "week6/Qmd_example.html",
