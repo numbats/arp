@@ -4,7 +4,7 @@
     "href": "weekly_plan.html",
     "title": "Weekly plan",
     "section": "",
-    "text": "Weekly plan\n\nWeek 1: Foundations (Rob Hyndman)\nWeek 2: LLM (Hadley Wickham)\nWeek 3: R package development (Rob Hyndman)\nWeek 4: Debugging (Mitchell O’Hara-Wild)\nWeek 5: Functional programming (Mitchell O’Hara-Wild)\nWeek 6: Literate programming: Quarto (Rob Hyndman)\nWeek 7: Reactive programming: targets, renv (Rob Hyndman)\nWeek 8: OO S3 and others (Mitchell O’Hara-Wild)\nWeek 9: OO vctrs (Mitchell O’Hara-Wild)\nWeek 10: Meta programming (Mitchell O’Hara-Wild)\nWeek 11: C++ (Tomasz Wozniak)\nWeek 12: Package hackathon"
+    "text": "Weekly plan\n\nWeek 1: Foundations Rob\nWeek 2: LLM Hadley\nWeek 3: R package development Rob\nWeek 4: Debugging Mitch\nWeek 5: Functional programming - Mitch\nWeek 6: Literate programming: Quarto Rob\nWeek 7: Reactive programming: targets, renv Rob\nWeek 8: OO S3 and others - Mitch\nWeek 9: OO vctrs - Mitch\nWeek 10: Meta programming - Mitch\nWeek 11: C++ - Tomasz Wozniak\nWeek 12: Package hackathon"
   },
   {
     "objectID": "week9/index.html",
@@ -109,7 +109,7 @@
     "href": "week7/index.html#assignments",
     "title": "Week 7: Reactive programming with targets and renv",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 3 is due on Monday 28 April."
   },
   {
     "objectID": "week6/index.html",
@@ -144,7 +144,7 @@
     "href": "week6/index.html#assignments",
     "title": "Week 6: Literate programming with Quarto",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April.\nAssignment 3 is due on Monday 28 April."
   },
   {
     "objectID": "week2/index.html",
@@ -319,7 +319,7 @@
     "href": "assignments/A2.html",
     "title": "Assignment 2 (25%)",
     "section": "",
-    "text": "The ???? package is designed to ?????.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\n\nDue: 11 April 2025  GitHub Classroom"
+    "text": "The simulatoR package is designed to simulate dynamic and stochastic processes.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\n\nDue: 11 April 2025  GitHub Classroom"
   },
   {
     "objectID": "assignments/Game_package1.html",
@@ -453,13 +453,6 @@
     "title": "Week 4: Debugging and profiling",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
-  },
-  {
-    "objectID": "week4/index.html#workshop-resources",
-    "href": "week4/index.html#workshop-resources",
-    "title": "Week 4: Debugging and profiling",
-    "section": "Workshop resources",
-    "text": "Workshop resources\n\nSurvey data\nSurvey analysis"
   },
   {
     "objectID": "week5/index.html",
