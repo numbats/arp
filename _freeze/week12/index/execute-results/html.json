@@ -2,7 +2,7 @@
   "hash": "7b9f541df7239e85f7f71288f9e677dd",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 12: Package hackathon\"\n---\n\n::: {.cell}\n\n:::\n\nThis will be a time to work together on your game packages in groups. Rob and Mitch will be available for consultation.\n\n\n",
+    "markdown": "---\ntitle: \"Week 12: Package hackathon\"\n---\n\n\n::: {.cell}\n\n:::\n\n\nThis will be a time to work together on your game packages in groups. Rob and Mitch will be available for consultation.\n\n\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

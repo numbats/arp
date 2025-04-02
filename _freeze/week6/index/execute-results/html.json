@@ -2,7 +2,7 @@
   "hash": "1eb581ea7575f487d8f74a0f7fd902b7",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 6: Literate programming with Quarto\"\n---\n\n::: {.cell}\n\n:::\n\n## What you will learn this week\n\n* [Quarto](https://quarto.org)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week4/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week4/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Other resources\n\n* [Quarto extensions](https://quarto.org/docs/extensions/)\n* [Monash quarto templates](https://github.com/quarto-monash)\n\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 11 April.\n",
+    "markdown": "---\ntitle: \"Week 6: Literate programming with Quarto\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## What you will learn this week\n\n* [Quarto](https://quarto.org)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Other resources\n\n* [Quarto extensions](https://quarto.org/docs/extensions/)\n* [Monash quarto templates](https://github.com/quarto-monash)\n\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Friday 11 April.\n* [Assignment 3](../assignments/A3.qmd) is due on Monday 28 April.\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
