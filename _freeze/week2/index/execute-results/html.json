@@ -2,7 +2,7 @@
   "hash": "6034a13f7366f3e0c7e5bf6e37b56d2b",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 2: Hadley Wickham guest lecture\"\n---\n\nGuest Lecturer: [Hadley Wickham](https://hadley.nz)\n\n\n::: {.cell}\n\n:::\n\n\n## Reference material\n\n * [Ch 5 Control Flow](https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.\n * [Ch 9 Functionals from *Advanced R*](https://adv-r.hadley.nz/functionals.html), especially sections 9.2 and 9.3.\n\n## Hadley's code from the workshop\n\n * [long-map.qmd](long-map.qmd)\n\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Friday 21 March.\n",
+    "markdown": "---\ntitle: \"Week 2: Hadley Wickham guest lecture\"\n---\n\nGuest Lecturer: [Hadley Wickham](https://hadley.nz)\n\n::: {.cell}\n\n:::\n\n## Reference material\n\n * [Ch 5 Control Flow](https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.\n * [Ch 9 Functionals from *Advanced R*](https://adv-r.hadley.nz/functionals.html), especially sections 9.2 and 9.3.\n\n## Hadley's code from the workshop\n\n * [long-map.qmd](long-map.qmd)\n\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Friday 21 March.\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
