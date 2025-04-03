@@ -50,24 +50,24 @@ Often several paradigms used together to solve a problem.
 
 . . .
 
-::: {.callout-note icon=false title="Object-oriented programming (W6)"}
-* Functions are associated with object types.
-* Methods of the same 'function' produce object-specific output.
-:::
-
-## Programming paradigms
-
-::: {.callout-note icon=false title="Literate programming (W7)"}
+::: {.callout-note icon=false title="Literate programming (W6)"}
 * Natural language is interspersed with code.
 * Aimed at prioritising documentation/comments.
 * Now used to create reproducible reports/documents.
 :::
 
-. . .
+## Programming paradigms
 
 ::: {.callout-note icon=false title="Reactive programming (W7)"}
 * Objects are expressed using code based on inputs.
 * When inputs change, the object's value updates.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="Object-oriented programming (W8 - W9)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
 :::
 
 # Functional programming
@@ -144,7 +144,9 @@ square <- function(x) {
 
 . . .
 
-::: {.callout-tip title="Next class..."}
+::: {.callout-tip}
+## Later in the semester...
+
 We will see object-oriented programming, which handles different input types using different functions (methods)!
 :::
 
