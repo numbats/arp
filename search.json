@@ -4,7 +4,7 @@
     "href": "weekly_plan.html",
     "title": "Weekly plan",
     "section": "",
-    "text": "Weekly plan\n\nWeek 1: Foundations Rob\nWeek 2: LLM Hadley\nWeek 3: R package development Rob\nWeek 4: Debugging Mitch\nWeek 5: Functional programming - Mitch\nWeek 6: Literate programming: Quarto Rob\nWeek 7: Reactive programming: targets, renv Rob\nWeek 8: OO S3 and others - Mitch\nWeek 9: OO vctrs - Mitch\nWeek 10: Meta programming - Mitch\nWeek 11: C++ - Tomasz Wozniak\nWeek 12: Package hackathon"
+    "text": "Weekly plan\n\nWeek 1: Foundations (Rob Hyndman)\nWeek 2: LLM (Hadley Wickham)\nWeek 3: R package development (Rob Hyndman)\nWeek 4: Debugging (Mitchell O’Hara-Wild)\nWeek 5: Functional programming (Mitchell O’Hara-Wild)\nWeek 6: Literate programming: Quarto (Rob Hyndman)\nWeek 7: Reactive programming: targets, renv (Rob Hyndman)\nWeek 8: OO S3 and others (Mitchell O’Hara-Wild)\nWeek 9: OO vctrs (Mitchell O’Hara-Wild)\nWeek 10: Meta programming (Mitchell O’Hara-Wild)\nWeek 11: C++ (Tomasz Wozniak)\nWeek 12: Package hackathon"
   },
   {
     "objectID": "week9/index.html",
@@ -452,7 +452,14 @@
     "href": "week4/index.html#assignments",
     "title": "Week 4: Debugging and profiling",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Friday 11 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April."
+  },
+  {
+    "objectID": "week4/index.html#workshop-resources",
+    "href": "week4/index.html#workshop-resources",
+    "title": "Week 4: Debugging and profiling",
+    "section": "Workshop resources",
+    "text": "Workshop resources\n\nSurvey data\nSurvey analysis"
   },
   {
     "objectID": "week5/index.html",
