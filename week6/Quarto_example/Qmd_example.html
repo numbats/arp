@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rob Hyndman">
+<meta name="dcterms.date" content="2025-04-10">
 
-<title>Week 4: Debugging and profiling – ETC4500/ETC5450 Advanced R Programming</title>
+<title>Quarto example – ETC4500/ETC5450 Advanced R Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d99268af8155c9ce3dbaf286a28eb677.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cf250bb6417278e38eb86e775d902598.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d99268af8155c9ce3dbaf286a28eb677.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cf250bb6417278e38eb86e775d902598.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ETC4500/ETC5450 Advanced R Programming</span>
     </a>
   </div>
@@ -91,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link" href="../../index.html"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -103,51 +140,51 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-schedule">    
         <li>
-    <a class="dropdown-item" href="../week1/index.html">
+    <a class="dropdown-item" href="../../week1/index.html">
  <span class="dropdown-text">Week 1: Foundations of R programming</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week2/index.html">
+    <a class="dropdown-item" href="../../week2/index.html">
  <span class="dropdown-text">Week 2: Hadley Wickham guest lecture</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week3/index.html">
+    <a class="dropdown-item" href="../../week3/index.html">
  <span class="dropdown-text">Week 3: R package development</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week4/index.html">
+    <a class="dropdown-item" href="../../week4/index.html">
  <span class="dropdown-text">Week 4: Debugging and profiling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week5/index.html">
+    <a class="dropdown-item" href="../../week5/index.html">
  <span class="dropdown-text">Week 5: Functional programming</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week6/index.html">
+    <a class="dropdown-item" href="../../week6/index.html">
  <span class="dropdown-text">Week 6: Literate programming with Quarto</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week7/index.html">
+    <a class="dropdown-item" href="../../week7/index.html">
  <span class="dropdown-text">Week 7: Reactive programming with targets and renv</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week8/index.html">
+    <a class="dropdown-item" href="../../week8/index.html">
  <span class="dropdown-text">Week 8: Object-oriented programming (S3)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week9/index.html">
+    <a class="dropdown-item" href="../../week9/index.html">
  <span class="dropdown-text">Week 9: Object-oriented programming (vctrs)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week10/index.html">
+    <a class="dropdown-item" href="../../week10/index.html">
  <span class="dropdown-text">Week 10: Metaprogramming</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week11/index.html">
+    <a class="dropdown-item" href="../../week11/index.html">
  <span class="dropdown-text">Week 11: Rewriting R code in C++</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../week12/index.html">
+    <a class="dropdown-item" href="../../week12/index.html">
  <span class="dropdown-text">Week 12: Package hackathon</span></a>
   </li>  
     </ul>
@@ -185,12 +222,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#main-reference" id="toc-main-reference" class="nav-link active" data-scroll-target="#main-reference">Main reference</a></li>
-  <li><a href="#what-you-will-learn-this-week" id="toc-what-you-will-learn-this-week" class="nav-link" data-scroll-target="#what-you-will-learn-this-week">What you will learn this week</a></li>
-  <li><a href="#online-resources" id="toc-online-resources" class="nav-link" data-scroll-target="#online-resources">Online resources</a></li>
-  <li><a href="#slides-for-week" id="toc-slides-for-week" class="nav-link" data-scroll-target="#slides-for-week">Slides for week</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#workshop-resources" id="toc-workshop-resources" class="nav-link" data-scroll-target="#workshop-resources">Workshop resources</a></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link active" data-scroll-target="#r-markdown">R Markdown</a></li>
+  <li><a href="#including-plots" id="toc-including-plots" class="nav-link" data-scroll-target="#including-plots">Including Plots</a></li>
+  <li><a href="#child-documents" id="toc-child-documents" class="nav-link" data-scroll-target="#child-documents">Child documents</a></li>
   </ul>
 </nav>
     </div>
@@ -199,14 +233,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 4: Debugging and profiling</h1>
+<h1 class="title">Quarto example</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rob Hyndman </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">10 April 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -216,49 +262,88 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="main-reference" class="level2">
-<h2 class="anchored" data-anchor-id="main-reference">Main reference</h2>
-<ul>
-<li><a href="https://adv-r.hadley.nz/debugging.html">22 <em>Advanced R</em></a></li>
-</ul>
+<section id="r-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdown">R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mpg             cyl             disp             hp       
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+      drat             wt             qsec             vs        
+ Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+ 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+ Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+ Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+ 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+ Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+       am              gear            carb      
+ Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+ 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+ Median :0.0000   Median :4.000   Median :2.000  
+ Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :1.0000   Max.   :5.000   Max.   :8.000  </code></pre>
+</div>
+</div>
 </section>
-<section id="what-you-will-learn-this-week" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-will-learn-this-week">What you will learn this week</h2>
-<ul>
-<li>Debugging</li>
-<li>Measuring performance</li>
-<li>Efficient R programming</li>
-</ul>
+<section id="including-plots" class="level2">
+<h2 class="anchored" data-anchor-id="including-plots">Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Qmd_example_files/figure-html/fig-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Fuel efficiency plotted against vehicle weight. Heavier cars use more fuel than lighter cars.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the <code>echo: false</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot shown in <a href="#fig-plot" class="quarto-xref">Figure&nbsp;1</a>.</p>
 </section>
-<section id="online-resources" class="level2">
-<h2 class="anchored" data-anchor-id="online-resources">Online resources</h2>
-<ul>
-<li><a href="https://www.tidyverse.org/help/#reprex">Creating a reprex</a></li>
-<li><a href="https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/">Amanda Gadrow - Debugging in R</a></li>
-<li><a href="https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r">Jenny Bryan - Object of type ‘closure’ is not subsettable</a></li>
-<li><a href="https://community.rstudio.com">Posit Community</a></li>
-<li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
-<li><a href="https://csgillespie.github.io/efficientR/">Efficient R Programming</a></li>
-</ul>
-</section>
-<section id="slides-for-week" class="level2">
-<h2 class="anchored" data-anchor-id="slides-for-week">Slides for week</h2>
-<iframe src="https://docs.google.com/gview?url=https://arp.numbat.space/week4/slides.pdf&amp;embedded=true" width="100%" height="465">
-</iframe>
-<p><a href="https://arp.numbat.space/week4/slides.pdf" class="badge badge-small badge-red">Download pdf</a></p>
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<ul>
-<li><a href="../assignments/A2.html">Assignment 2</a> is due on Wednesday 16 April.</li>
-</ul>
-</section>
-<section id="workshop-resources" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-resources">Workshop resources</h2>
-<ul>
-<li><a href="survey_data.csv">Survey data</a></li>
-<li><a href="survey_dplyr_bug.R">Survey analysis</a></li>
-</ul>
+<section id="child-documents" class="level1">
+<h1>Child documents</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fu">rexp</span>(<span class="dv">200</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Qmd_example_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Qmd_example_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Qmd_example_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

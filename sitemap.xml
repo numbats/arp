@@ -2,82 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arp.numbat.space/weekly_plan.html</loc>
-    <lastmod>2025-04-03T06:32:36.241Z</lastmod>
+    <lastmod>2025-04-04T01:20:01.249Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week9/index.html</loc>
-    <lastmod>2025-02-07T00:34:14.446Z</lastmod>
+    <lastmod>2025-01-30T05:09:57.263Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week8/index.html</loc>
-    <lastmod>2025-02-07T00:34:14.445Z</lastmod>
+    <lastmod>2025-01-30T05:09:09.491Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week7/index.html</loc>
-    <lastmod>2025-03-20T00:00:54.786Z</lastmod>
+    <lastmod>2025-03-17T03:11:03.656Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week6/index.html</loc>
-    <lastmod>2025-03-20T00:00:54.785Z</lastmod>
+    <lastmod>2025-03-17T03:10:57.038Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arp.numbat.space/week6/Quarto_example/file1.html</loc>
+    <lastmod>2025-04-04T03:56:49.483Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week2/index.html</loc>
-    <lastmod>2025-03-13T22:57:19.809Z</lastmod>
+    <lastmod>2025-03-17T03:01:48.293Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week12/index.html</loc>
-    <lastmod>2025-02-21T01:07:50.303Z</lastmod>
+    <lastmod>2025-02-17T06:59:21.320Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week11/index.html</loc>
-    <lastmod>2025-02-21T01:07:50.303Z</lastmod>
+    <lastmod>2025-02-17T07:00:36.778Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week10/index.html</loc>
-    <lastmod>2025-02-07T00:34:14.424Z</lastmod>
+    <lastmod>2025-01-30T05:10:58.850Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week1/index.html</loc>
-    <lastmod>2025-02-21T03:36:24.256Z</lastmod>
+    <lastmod>2025-02-21T22:44:10.254Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/assignments/Game_package2.html</loc>
-    <lastmod>2025-02-21T01:07:50.302Z</lastmod>
+    <lastmod>2025-02-17T06:41:20.622Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/assignments/A3.html</loc>
-    <lastmod>2025-02-07T00:34:14.422Z</lastmod>
+    <lastmod>2025-02-03T03:25:04.230Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/assignments/A1.html</loc>
-    <lastmod>2025-03-06T01:40:22.157Z</lastmod>
+    <lastmod>2025-02-21T05:11:40.592Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/assignments/A2.html</loc>
-    <lastmod>2025-04-03T06:32:36.237Z</lastmod>
+    <lastmod>2025-04-02T02:01:20.134Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/assignments/Game_package1.html</loc>
-    <lastmod>2025-02-07T00:34:14.422Z</lastmod>
+    <lastmod>2025-02-03T03:25:44.781Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/index.html</loc>
-    <lastmod>2025-03-14T00:21:16.878Z</lastmod>
+    <lastmod>2025-03-17T03:01:48.293Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week3/index.html</loc>
-    <lastmod>2025-03-20T00:00:54.785Z</lastmod>
+    <lastmod>2025-03-17T03:10:23.831Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week4/index.html</loc>
-    <lastmod>2025-04-03T06:32:36.239Z</lastmod>
+    <lastmod>2025-04-04T01:20:01.244Z</lastmod>
   </url>
   <url>
     <loc>https://arp.numbat.space/week5/index.html</loc>
-    <lastmod>2025-03-20T00:00:54.785Z</lastmod>
+    <lastmod>2025-03-17T03:10:49.359Z</lastmod>
   </url>
   <url>
-    <loc>https://arp.numbat.space/week6/Qmd_example.html</loc>
-    <lastmod>2025-02-21T01:07:50.305Z</lastmod>
+    <loc>https://arp.numbat.space/week6/Quarto_example/Qmd_example.html</loc>
+    <lastmod>2025-04-04T04:00:43.987Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arp.numbat.space/week6/Quarto_example/file2.html</loc>
+    <lastmod>2025-04-04T03:56:35.951Z</lastmod>
   </url>
 </urlset>
