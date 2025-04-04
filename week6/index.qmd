@@ -20,6 +20,7 @@ show_slides(week)
 ## Other resources
 
 * [Quarto extensions](https://quarto.org/docs/extensions/)
+* [Journal templates](https://quarto.org/docs/extensions/listing-journals.html)
 * [Monash quarto templates](https://github.com/quarto-monash)
 
 
