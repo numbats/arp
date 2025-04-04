@@ -401,10 +401,20 @@ format: memo-pdf
 ---
 ```
 
-## Exercise
+## Activity 1
 
 * Set up a new project.
 * Create a quarto document using an html format.
 * Add a code chunk to generate a figure with a caption.
 * Reference the figure in the text using `@fig-chunklabel`.
 * Add the monash memo extension and generate a pdf output.
+
+## Activity 2
+
+* Create a thesis using the `quarto-monash/thesis` template, and add your name and details to the front page.
+
+## Activity 3
+
+* Work on your Assignment 2.
+* Ask for help if you need it.
+
