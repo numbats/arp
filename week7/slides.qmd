@@ -24,6 +24,354 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
+# Reactive programming
+
+## Regular (imperative) programming
+
+Consider how code is usually evaluated...
+
+```{r, eval = FALSE}
+a <- 1
+b <- 2
+x <- a + b
+x
+```
+
+What is `x`?
+
+```{r, eval = FALSE}
+a <- -1
+x
+```
+
+What is `x` now?
+
+## Regular (imperative) programming
+
+::: {.callout-tip title="Predictable programming"}
+All programming we've seen so far evaluates code in sequential order, line by line.
+
+\hspace{1em}
+
+Since `x` was not re-evaluated, its value stays the same even when its inputs have changed.
+:::
+
+<!-- . . . -->
+
+<!-- *Note: this is why it's especially important to ensure code works when ran from top to bottom, since when doing a data analysis we often write and run code more freely!* -->
+
+## Reactive programming
+
+Within a reactive programming paradigm, objects *react* to changes in their inputs and automatically update their value!
+
+. . .
+
+::: {.callout-warning title="Disclaimer"}
+Reactive programming is a broad and diverse paradigm, we'll focus only on the basic concepts and how they apply in shiny applications.
+:::
+
+## Reactive programming
+
+We can implement *reactivity* with functions & environments.
+
+```{r}
+library(rlang)
+react <- function(e) new_function(alist(), expr(eval(!!enexpr(e))))
+```
+
+We'll learn how this function works later (metaprogramming).
+
+Reactive programming is also smarter about *'invalidation'*, results are **cached and reused** if the inputs aren't changed.
+
+## Reactive programming
+
+How does reactive programming differ?
+
+```{r, eval = FALSE}
+a <- 1
+b <- 2
+y <- react(a + b)
+y()
+```
+
+What is `y`?
+
+```{r, eval = FALSE}
+a <- -1
+y()
+```
+
+What is `y` now?
+
+## Reactive programming
+
+::: {.callout-tip title="(Un)predictable programming?"}
+Reactive programming can be disorienting!
+
+\hspace{1em}
+
+Reactive objects *invalidate* whenever their inputs change, and so its value will be recalculated and stay up-to-date.
+:::
+
+## Reactive programming
+
+::: {.callout-caution title="Your turn!"}
+<!-- Experiment with using `react()` in R. -->
+
+<!-- ```{r} -->
+<!-- library(rlang) -->
+<!-- react <- function(e) new_function(alist(), expr(eval(!!enexpr(e)))) -->
+<!-- ``` -->
+
+```{r, eval = FALSE}
+a <- 1
+b <- 2
+y <- react(a + b)
+y()
+```
+
+When was `a + b` evaluated?
+
+\vspace{1em}
+
+How does this differ from ordinary (imperative) code?
+:::
+
+## Imperative and declarative programming
+
+\fontsize{13}{13}\sf
+::: {.callout-note icon=false title="Imperative programming"}
+* Specific commands are carried out immediately.
+* Usually direct and exact instructions.
+* e.g. read in data from this file.
+:::
+
+::: {.callout-note icon=false title="Declarative programming"}
+* Specific commands are carried out when needed.
+* Expresses higher order goals / constraints.
+* e.g. make sure this dataset is up to date every time I see it.
+:::
+
+## Imperative and declarative programming
+
+::: {.callout-note icon=false title="Mastering Shiny: Chapter 3 (Basic Reactivity)"}
+With imperative code you say “Make me a sandwich”.
+
+\hspace{1em}
+
+With declarative code you say “Ensure there is a sandwich in the refrigerator whenever I look inside of it”.
+
+\hspace{1em}
+
+*Imperative code is **assertive**; *
+
+*declarative code is **passive-aggressive**.*
+:::
+
+
+
+## Use cases for reactive programming
+
+\fontsize{13}{13}\sf
+::: {.callout-important title="Use-less cases"}
+This paradigm is rarely needed or used in R for data analysis.
+:::
+
+::: {.callout-tip title="Useful cases"}
+Reactive programming is useful for developing user applications (including web apps!).
+
+\vspace{1em}
+
+In R, the shiny package uses reactive programming for writing app interactivity.
+:::
+
+<!-- ## Invalidation -->
+
+<!-- ## Laziness -->
+
+<!-- ## Debugging -->
+
+# Shiny
+
+## A shiny app
+
+Most shiny apps are organised into several files.
+
+* `ui.R`: The specification of the user interface
+* `server.R`: The reactive code that defines app behaviour
+* `global.R`: Static global objects used across app
+* `www/`: Folder for your web data (images, css, js, etc.)
+
+Simple apps can consist of only an `app.R` script.
+
+## Hello *shiny*!
+
+::: {.callout-caution title="Follow along!"}
+Create a shiny app. Save this code as `app.R`.
+
+```r
+library(shiny)
+ui <- fluidPage(
+  textInput("name", "Enter your name: "),
+  textOutput("greeting")
+)
+server <- function(input, output, session) {
+  output$greeting <- renderText({
+    sprintf("Hello %s", input$name)
+  })
+}
+shinyApp(ui, server)
+```
+:::
+
+## Hello *shiny*!
+
+::: {.callout-caution title="Follow along!"}
+Launch the app by clicking **Run App**.
+
+\vspace{1em}
+
+Use the text input field and see how the webpage changes.
+
+\vspace{1em}
+
+Look at the server code to see how it 'reacts'.
+:::
+
+
+## Shiny reactivity
+
+Reactivity in shiny comprises of:
+
+* Reactive **sources** (inputs):
+
+  UI inputs `input*()` and values `reactiveValues()`
+
+* Reactive **conductors** (intermediates):
+
+  Expressions `reactive()` and events `eventReactive()`
+
+* Reactive **endpoints** (results):
+
+  UI outputs `render*()` and side-effects `observe()`
+
+## Reactive graphs
+
+![](../diagrams/reactive/react-graph.png)
+
+The reactivity of an app can be visualised with a graph.
+
+## Reactive graphs
+
+![](../diagrams/reactive/reactlog-components.png)
+
+The graph shows relationships between reactive elements.
+
+## reactlog
+
+\fontsize{12}{12}\sf
+
+The [reactlog package](https://rstudio.github.io/reactlog/) allows you to visualise an app's **reactive graph**.
+
+To **enable logging** of an app's behaviour, run:
+
+```{r, eval = FALSE}
+reactlog::reactlog_enable()
+```
+
+Then **start, use, and stop your app** to fill the log.
+
+View the log with:
+
+```{r, eval = FALSE}
+shiny::reactlogShow()
+```
+
+Or while your Shiny app is running, press the key combination Ctrl+F3 (Mac: Cmd+F3) to see the reactive log.
+
+## Hello *reactlog*!
+
+::: {.callout-caution title="Follow along!"}
+Create a reactive log of the *hello shiny* app.
+
+\vspace{1em}
+
+Start reactlog, then open the app and enter your name.
+
+\vspace{1em}
+
+Close the app and view the log, see how the app reacts to changes to the input text.
+:::
+
+## Reactive expressions
+
+Reactive expressions are used in the shiny server as intermediate calculations.
+
+They are expressions wrapped with `reactive()`.
+
+For example:
+
+```{r, eval = FALSE}
+simulation <- reactive(rnorm(input$n_samples))
+```
+
+. . .
+
+The up-to-date value is obtained with `simulation()`.
+
+Whenever the input ID `n_samples` changes, the reactive expression `simulation` *invalidates*.
+
+## Reactive expressions
+
+::: {.callout-caution title="Follow along!"}
+Use a reactive expression to convert the name to ALLCAPS.
+
+\vspace{1em}
+
+Look at the reactive graph and see how it changes.
+:::
+
+## Preventing reactivity
+
+Equally important to telling shiny **how** to react to changes, is describing **when** reactions should (not) occur.
+
+\
+
+. . .
+
+The most useful way to prevent reactivity is with `req()`.
+
+It is similar to `stop()`, silently ending the reactive chain.
+
+`req()` *'requires'* inputs to be 'truthy' (not FALSE or empty).
+
+<!-- This is useful for preventing code from running when no input is given, or if an invalid input is given. -->
+
+## Preventing reactivity
+
+::: {.callout-caution title="Follow along!"}
+Use `req()` to prevent reactivity until text is entered.
+
+\vspace{1em}
+
+Update `req()` to require at least 3 characters inputted.
+:::
+
+## Preventing reactivity
+
+Other ways reactivity might be prevented include:
+
+* Event reactivity
+
+  * `eventReactive(rnorm(input$n_samples), input$go)`
+  * `observeEvent(input$go, message("Go!"))`
+
+* Rate limiting
+
+  * `throttle(reactive())`: limits update frequency
+  * `debounce(reactive())`: waits for changes to stop
+
+
 # targets
 
 ## targets: reproducible computation at scale
