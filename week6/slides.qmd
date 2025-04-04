@@ -129,8 +129,6 @@ Markdown: a "markup" language for formatting text.
   * distill (to html)
   * flexdashboard (to html)
 
-
-
 # Quarto
 
 ## Quarto
@@ -162,9 +160,7 @@ jupyter: python3
 ---
 ````
 
-
 **Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
-
 
 ## Code chunks 
 
@@ -302,7 +298,6 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 
 Build automatic dependencies among chunks
 
-
 ````{verbatim}
 ```
 execute:
@@ -311,12 +306,11 @@ execute:
 ```
 ````
 
-
 ## Child documents
 
 ````{verbatim}
 ```{r}
-#| child: 'file1.qmd', 'file2.qmd'
+#| child: file1.qmd, file2.qmd
 ```
 ````
 
@@ -329,7 +323,6 @@ execute:
 ````
 
 \pause\alert{R Script files}
-
 
 ````{verbatim}
 ```{r}
@@ -356,15 +349,12 @@ summarize
 
 * Python and Stata need to be installed with executables on `PATH`
 
-
 ## Other language engines
 
 ```{r}
 #| echo: true
 names(knitr::knit_engines$get())
 ```
-
-
 
 ## Extensions and templates
 \fontsize{13}{17}\sf
