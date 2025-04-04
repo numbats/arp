@@ -24,12 +24,6 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-## Outline
-
-\vspace*{0.4cm}
-\tableofcontents
-
-
 # Literate programming
 
 ## Literate programming
@@ -135,197 +129,6 @@ Markdown: a "markup" language for formatting text.
   * distill (to html)
   * flexdashboard (to html)
 
-## Some chunk options
-\fontsize{14}{16}\sf
-
-* `eval`: whether to evaluate the code chunk
-* `echo`: whether to display the code chunk
-* `include`: whether to include the code chunk in the output
-* `results = 'hide'` hides printed output.
-* `results = 'asis'` includes the output as is.
-* `message`: whether to display messages
-* `warning`: whether to display warnings
-* `error = TRUE`: continue even if code returns an error.
-* `fig.cap`: caption for the figure
-* `fig.width`, `fig.height`: width and height of the figure
-* `cache`: whether to cache the code chunk
-
-## Global chunk options
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  echo = FALSE,
-  message = FALSE,
-  warning = FALSE
-)
-```
-````
-
-* The chunk named `setup` will be run before any other chunks.
-
-## Debugging
-
-* The Rmarkdown document is compiled in a different environment from your R console.
-* If you get an error, try running all chunks (Ctrl+Alt+R).
-* If you can't reproduce the error, check the working directory (add `getwd()` in a chunk).
-* Try setting `error = TRUE` on problem chunk to help you diagnose what happens. (But change it back!)
-* Look at the intermediate files (`.md` or `.tex`) to see what is happening.
-
-## Caching
-
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE)
-```
-````
-
-or by chunk:
-
-````{verbatim}
-```{r, cache = TRUE}
-```
-````
-
-
-## Caching
-
-* When evaluating code chunks, knitr will save the results of chunks with caching to files to be reloaded in subsequent runs.
-* Caching is useful when a chunk takes a long time to run.
-* It will re-run if the code in the chunk changes in any way (even comments or spacing).
-* Beware of inherited objects from earlier chunks. A chunk will not re-run if inherited objects change without explicit dependencies.
-* Beware of dependence on external files.
-
-## Caching
-
-````{verbatim}
-```{r chunk1, cache = TRUE}
-x <- 1
-```
-
-```{r chunk2, cache = TRUE, dependson = "chunk1"}
-y <- x*3
-```
-````
-
-\pause
-
-````{verbatim}
-```{r chunk1, cache = TRUE}
-x <- 1
-```
-
-```{r chunk2, cache = TRUE, cache.extra = x}
-y <- x*3
-```
-````
-
-
-## Caching
-
-Cache will be rebuilt if:
-
-* Chunk options change except `include`
-* Any change in the code, even a space or comment
-* An explicit dependency changes
-
-Do not cache if:
-
- * setting R options like `options('width')`
- * setting knitr options like `opts_chunk$set()`
- * loading packages via `library()` if those packages are used by uncached chunks
-
-## Caching with random numbers
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-```
-````
-
-* `rand_seed` is an unevaluated expression.
-* Each chunk will check if `.Random.seed` has been changed since the last run.
-* If it has, the chunk will be re-run.
-
-## Some caching options
-\fontsize{14}{15}\sf
-
-* `cache.comments` If `FALSE`, changing comments does not invalidate the cache.
-* `cache.rebuild` If `TRUE`, the cache will be rebuilt even if the code has not changed. e.g.,\newline `cache.rebuild = !file.exists("some-file")`
-* `dependson` A character vector of labels of chunks that this chunk depends on.
-* `my_new_option` A new option that you can use in your code to invalidate the cache. e.g., `my_new_option = c(x,y)`
-* `autodep` If `TRUE`, the dependencies are automatically determined. (May not be reliable.)
-
-## Caching
-
-Build automatic dependencies among chunks
-
-````{verbatim}
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, autodep = TRUE)
-```
-````
-
-Make later chunks depend on previous chunks
-
-````{verbatim}
-```{r setup, include=FALSE}
-dep_prev() # Don't use with `autodep = TRUE`
-```
-````
-
-## Child documents
-
-````{verbatim}
-```{r, child=c('one.Rmd', 'two.Rmd')}
-```
-````
-
-\pause\alert{Conditional inclusion}
-
-````{verbatim}
-```{r, child = if(condition) 'file1.Rmd' else 'file2.Rmd'}
-```
-````
-
-\pause\alert{R Script files}
-
-
-````{verbatim}
-```{r, file = c("Rscript1.R", "Rscript2.R")}
-```
-````
-
-* Better than `source("Rscript1.R")` because output of script included and dependencies tracked.
-
-## Other language engines
-
-````{verbatim}
-```{python}
-print("Hello Python!")
-```
-````
-
-````{verbatim}
-```{stata}
-sysuse auto
-summarize
-```
-````
-
-* Python and Stata need to be installed with executables on `PATH`
-
-
-## Other language engines
-\fontsize{12}{12}\sf
-
-```{r}
-#| echo: true
-names(knitr::knit_engines$get())
-```
 
 
 # Quarto
@@ -363,24 +166,9 @@ jupyter: python3
 **Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
 
 
-## Execute options
+## Code chunks 
 
-*   `execute` option in yaml header can be used instead of a `setup` chunk:
-
-    ````{verbatim}
-    execute:
-      cache: true
-      echo: false
-      warning: false
-    ````
-
-* `setup` chunk still allowed.
-
-## Chunk options
-
-Rmarkdown syntax recognized for R chunks.
-
-More consistent chunk options use the hash-pipe `#|`
+Chunk options use the hash-pipe `#|`
 
 ````{verbatim}
 ```{r}
@@ -408,6 +196,176 @@ Reference the figure using `@fig-chunklabel`.
   ```
   ````
 
+## Execute options
+
+*   `execute` option in yaml header can be used instead of a `setup` chunk:
+
+    ````{verbatim}
+    execute:
+      cache: true
+      echo: false
+      warning: false
+    ````
+
+## Some chunk options
+\fontsize{14}{15}\sf\vspace*{-0.2cm}
+
+* `label`: name of chunk. Useful for cross-references
+* `eval`: whether to evaluate the code chunk
+* `echo`: whether to display the code chunk
+* `output`: whether to show chunk output
+* `results: 'asis'` includes the output without markup
+* `message`: whether to display messages
+* `warning`: whether to display warnings
+* `error: true`: continue even if code returns an error.
+* `fig-cap`: caption for the figure
+* `fig-width`, `fig-height`: width and height of the figure
+* `cache`: whether to cache the code chunk
+* `dependson`: cache dependencies
+
+## Debugging
+
+* The Quarto document is compiled in a different environment from your R console.
+* If you get an error, try running all chunks (Ctrl+Alt+R).
+* If you can't reproduce the error, check the working directory (add `getwd()` in a chunk).
+* Try setting `error: true` on problem chunk to help you diagnose what happens. (But change it back!)
+* Look at the intermediate files (`.md` or `.tex`) to see what is happening.
+
+## Caching
+\fontsize{14}{15}\sf
+
+````{verbatim}
+```{r}
+#| cache: true
+```
+````
+
+* When evaluating code chunks, knitr will save the results of chunks with caching to files to be reloaded in subsequent runs.
+* Caching is useful when a chunk takes a long time to run.
+* It will re-run if the code in the chunk changes in any way (even comments or spacing).
+* Beware of inherited objects from earlier chunks. Without explicit dependencies, a chunk will not re-run if inherited objects change.
+* Beware of dependence on external files.
+
+## Caching
+
+````{verbatim}
+```{r}
+#| label: chunk1
+#| cache = TRUE
+x <- 1
+```
+
+```{r}
+#| label: chunk2
+#| cache: true
+#| dependson: "chunk1"
+y <- x*3
+```
+````
+
+## Caching
+
+Cache will be rebuilt if:
+
+* Chunk options change except `include`
+* Any change in the code, even a space or comment
+* An explicit dependency changes
+
+Do not cache if:
+
+ * setting R options like `options('width')`
+ * setting knitr options like `opts_chunk$set()`
+ * loading packages via `library()` if those packages are used by uncached chunks
+
+## Caching with random numbers
+
+````{verbatim}
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+````
+
+* `rand_seed` is an unevaluated expression.
+* Each chunk will check if `.Random.seed` has been changed since the last run.
+* If it has, the chunk will be re-run.
+
+## Some caching options
+
+* `cache-comments` If `false`, changing comments does not invalidate the cache.
+* `cache-rebuild` Force rebuild of cache.
+* `dependson` A character vector of labels of chunks that this chunk depends on.
+* `autodep` If `true`, the dependencies are automatically determined. (May not be reliable.)
+
+## Caching
+
+Build automatic dependencies among chunks
+
+
+````{verbatim}
+```
+execute:
+  cache: true
+  autodep: true
+```
+````
+
+
+## Child documents
+
+````{verbatim}
+```{r}
+#| child: 'file1.qmd', 'file2.qmd'
+```
+````
+
+\pause\alert{Conditional inclusion}
+
+````{verbatim}
+```{r}
+#| child: !expr if(condition) 'file1.qmd' else 'file2.qmd'
+```
+````
+
+\pause\alert{R Script files}
+
+
+````{verbatim}
+```{r}
+#| file: "Rscript1.R"
+```
+````
+
+* Better than `source("Rscript1.R")` because output of script included and dependencies tracked.
+
+## Other language engines
+
+````{verbatim}
+```{python}
+print("Hello Python!")
+```
+````
+
+````{verbatim}
+```{stata}
+sysuse auto
+summarize
+```
+````
+
+* Python and Stata need to be installed with executables on `PATH`
+
+
+## Other language engines
+
+```{r}
+#| echo: true
+names(knitr::knit_engines$get())
+```
+
+
+
 ## Extensions and templates
 \fontsize{13}{17}\sf
 
@@ -416,7 +374,7 @@ Reference the figure using `@fig-chunklabel`.
 * See <https://quarto.org/docs/extensions/> for a list.
 * Templates are extensions used to define new output formats.
 * Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
-* Monash templates at\newline <https://robjhyndman.com/hyndsight/quarto_templates.html>
+* Monash templates at\newline <https://github.com/quarto-monash>
 
 ## quarto on the command line
 \fontsize{14}{14.5}\sf\vspace*{-0.4cm}
@@ -431,13 +389,13 @@ Reference the figure using `@fig-chunklabel`.
 
 ## Add a custom format
 
-From the CLI:\qquad  `quarto add numbats/monash-quarto-memo`\pause
+From the CLI:\qquad  `quarto add quarto-monash/memo`\pause
 
 New folder/files added
 
 ```{verbatim}
 ├── _extensions
-│   └── numbats
+│   └── quarto-monash
 │       └── memo
 │           └── ...
 ```
@@ -448,7 +406,7 @@ Update YAML
 
 ```{verbatim}
 ---
-title: "My new file using the `memo-pdf` format"
+title: "My new file using the Monash memo format"
 format: memo-pdf
 ---
 ```
