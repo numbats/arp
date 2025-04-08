@@ -14,3 +14,5 @@ Your code should be as efficient as possible. Arguments should be checked for ra
 source(here::here("course_info.R"))
 submit(schedule, "Assignment 1")
 ```
+
+The suggested solutions for this assignment are can be found here: [`A1_solution.R`](A1_solution.R).
