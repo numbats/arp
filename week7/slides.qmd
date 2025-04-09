@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 5: Reactive programming with targets and renv"
+author: "Week 7: Reactive programming with targets and renv"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -152,24 +152,6 @@ How does this differ from ordinary (imperative) code?
 * e.g. make sure this dataset is up to date every time I see it.
 :::
 
-## Imperative and declarative programming
-
-::: {.callout-note icon=false title="Mastering Shiny: Chapter 3 (Basic Reactivity)"}
-With imperative code you say “Make me a sandwich”.
-
-\hspace{1em}
-
-With declarative code you say “Ensure there is a sandwich in the refrigerator whenever I look inside of it”.
-
-\hspace{1em}
-
-*Imperative code is **assertive**; *
-
-*declarative code is **passive-aggressive**.*
-:::
-
-
-
 ## Use cases for reactive programming
 
 \fontsize{13}{13}\sf
@@ -185,192 +167,114 @@ Reactive programming is useful for developing user applications (including web a
 In R, the shiny package uses reactive programming for writing app interactivity.
 :::
 
-<!-- ## Invalidation -->
+# Caching
 
-<!-- ## Laziness -->
+## Caching: using rds
 
-<!-- ## Debugging -->
-
-# Shiny
-
-## A shiny app
-
-Most shiny apps are organised into several files.
-
-* `ui.R`: The specification of the user interface
-* `server.R`: The reactive code that defines app behaviour
-* `global.R`: Static global objects used across app
-* `www/`: Folder for your web data (images, css, js, etc.)
-
-Simple apps can consist of only an `app.R` script.
-
-## Hello *shiny*!
-
-::: {.callout-caution title="Follow along!"}
-Create a shiny app. Save this code as `app.R`.
-
-```r
-library(shiny)
-ui <- fluidPage(
-  textInput("name", "Enter your name: "),
-  textOutput("greeting")
-)
-server <- function(input, output, session) {
-  output$greeting <- renderText({
-    sprintf("Hello %s", input$name)
-  })
+```{r}
+#| eval: false
+if (file.exists("results.rds")) {
+  res <- readRDS("results.rds")
+} else {
+  res <- compute_it()  # a time-consuming function
+  saveRDS(res, "results.rds")
 }
-shinyApp(ui, server)
-```
-:::
-
-## Hello *shiny*!
-
-::: {.callout-caution title="Follow along!"}
-Launch the app by clicking **Run App**.
-
-\vspace{1em}
-
-Use the text input field and see how the webpage changes.
-
-\vspace{1em}
-
-Look at the server code to see how it 'reacts'.
-:::
-
-
-## Shiny reactivity
-
-Reactivity in shiny comprises of:
-
-* Reactive **sources** (inputs):
-
-  UI inputs `input*()` and values `reactiveValues()`
-
-* Reactive **conductors** (intermediates):
-
-  Expressions `reactive()` and events `eventReactive()`
-
-* Reactive **endpoints** (results):
-
-  UI outputs `render*()` and side-effects `observe()`
-
-## Reactive graphs
-
-![](../diagrams/reactive/react-graph.png)
-
-The reactivity of an app can be visualised with a graph.
-
-## Reactive graphs
-
-![](../diagrams/reactive/reactlog-components.png)
-
-The graph shows relationships between reactive elements.
-
-## reactlog
-
-\fontsize{12}{12}\sf
-
-The [reactlog package](https://rstudio.github.io/reactlog/) allows you to visualise an app's **reactive graph**.
-
-To **enable logging** of an app's behaviour, run:
-
-```{r, eval = FALSE}
-reactlog::reactlog_enable()
 ```
 
-Then **start, use, and stop your app** to fill the log.
+\pause\vspace*{1cm}
 
-View the log with:
+\alert{Equivalently\dots}
 
-```{r, eval = FALSE}
-shiny::reactlogShow()
+```{r}
+#| eval: false
+res <- xfun::cache_rds(
+  compute_it(), # a time-consuming function
+  file = "results.rds"
+)
 ```
 
-Or while your Shiny app is running, press the key combination Ctrl+F3 (Mac: Cmd+F3) to see the reactive log.
+## Caching: using rds
+\fontsize{10}{10}\sf
 
-## Hello *reactlog*!
-
-::: {.callout-caution title="Follow along!"}
-Create a reactive log of the *hello shiny* app.
-
-\vspace{1em}
-
-Start reactlog, then open the app and enter your name.
-
-\vspace{1em}
-
-Close the app and view the log, see how the app reacts to changes to the input text.
-:::
-
-## Reactive expressions
-
-Reactive expressions are used in the shiny server as intermediate calculations.
-
-They are expressions wrapped with `reactive()`.
-
-For example:
-
-```{r, eval = FALSE}
-simulation <- reactive(rnorm(input$n_samples))
+```{r}
+#| label: cache1
+#| cache: false
+#| freeze: false
+compute <- function(...) {
+    xfun::cache_rds(rnorm(6), file = "results.rds", ...)
+}
+compute()
+compute()
 ```
 
-. . .
+```{r}
+#| include: false
+#| cache: false
+# Need to explicitly remove results.rds for some reason when doing this in quarto
+file.remove(here::here("cache/results.rds"))
+```
 
-The up-to-date value is obtained with `simulation()`.
+```{r}
+#| label: cache2
+#| cache: false
+#| freeze: false
+compute(rerun = TRUE)
+compute()
+```
 
-Whenever the input ID `n_samples` changes, the reactive expression `simulation` *invalidates*.
+## Caching: Rmarkdown
 
-## Reactive expressions
+````{verbatim}
+```{r import-data, cache=TRUE}
+d <- read.csv('my-precious.csv')
+```
 
-::: {.callout-caution title="Follow along!"}
-Use a reactive expression to convert the name to ALLCAPS.
+```{r analysis, dependson='import-data', cache=TRUE}
+summary(d)
+```
+````
 
-\vspace{1em}
+* Requires explicit dependencies or changes not detected.
+* Changes to functions or packages not detected.
+* Good practice to frequently clear cache to avoid problems.
+* targets is a better solution: Week 8
 
-Look at the reactive graph and see how it changes.
-:::
+## Caching: Quarto
 
-## Preventing reactivity
+````{verbatim}
+```{r}
+#| label: import-data
+#| cache: true
+d <- read.csv('my-precious.csv')
+```
 
-Equally important to telling shiny **how** to react to changes, is describing **when** reactions should (not) occur.
+```{r}
+#| label: analysis
+#| dependson: import-data
+#| cache: true
+summary(d)
+```
+````
 
-\
+* Same problems as Rmarkdown
+* targets is a better solution: Week 8
 
-. . .
+## Caching: memoise
 
-The most useful way to prevent reactivity is with `req()`.
+Caching stores results of computations so they can be reused.
 
-It is similar to `stop()`, silently ending the reactive chain.
+\fontsize{10}{10}\sf
 
-`req()` *'requires'* inputs to be 'truthy' (not FALSE or empty).
-
-<!-- This is useful for preventing code from running when no input is given, or if an invalid input is given. -->
-
-## Preventing reactivity
-
-::: {.callout-caution title="Follow along!"}
-Use `req()` to prevent reactivity until text is entered.
-
-\vspace{1em}
-
-Update `req()` to require at least 3 characters inputted.
-:::
-
-## Preventing reactivity
-
-Other ways reactivity might be prevented include:
-
-* Event reactivity
-
-  * `eventReactive(rnorm(input$n_samples), input$go)`
-  * `observeEvent(input$go, message("Go!"))`
-
-* Rate limiting
-
-  * `throttle(reactive())`: limits update frequency
-  * `debounce(reactive())`: waits for changes to stop
-
+```{r}
+library(memoise)
+sq <- function(x) {
+  print("Computing square of 'x'")
+  x**2
+}
+memo_sq <- memoise(sq)
+memo_sq(2)
+memo_sq(2)
+```
 
 # targets
 
@@ -442,7 +346,6 @@ library(targets)
 tar_script()
 ```
 
-
 ## Useful targets commands
 
 * `tar_make()` to run the pipeline.
@@ -496,7 +399,6 @@ tar_meta(fields = warnings, complete_only = TRUE)
   - `tar_option_set(workspace_on_error = TRUE)`
   - `tar_workspaces()`
   - `tar_workspace(target_name)`
-
 
 ## Random numbers
 
