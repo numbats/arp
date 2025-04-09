@@ -222,6 +222,44 @@ compute(rerun = TRUE)
 compute()
 ```
 
+## Caching downloads
+
+You often want to prevent downloads of the same data multiple times.
+
+```{r}
+#| eval: false
+download_data <- function(url) {
+  dest_folder <- tempdir()
+  sanitized_url <- stringr::str_replace_all(url, "/", "_")
+  dest_file <- file.path(dest_folder, paste0(sanitized_url, ".rds"))
+  if (file.exists(dest_file)) {
+    data <- readRDS(dest_file)
+  } else {
+    data <- read_tsv(url, show_col_types = FALSE)
+    saveRDS(data, dest_file)
+  }
+  data
+}
+bulldozers <- download_data("https://robjhyndman.com/data/Bulldozers.csv")
+```
+
+## Caching: memoise
+
+Caching stores results of computations so they can be reused.
+
+\fontsize{10}{10}\sf
+
+```{r}
+library(memoise)
+sq <- function(x) {
+  print("Computing square of 'x'")
+  x**2
+}
+memo_sq <- memoise(sq)
+memo_sq(2)
+memo_sq(2)
+```
+
 ## Caching: Rmarkdown
 
 ````{verbatim}
@@ -237,7 +275,7 @@ summary(d)
 * Requires explicit dependencies or changes not detected.
 * Changes to functions or packages not detected.
 * Good practice to frequently clear cache to avoid problems.
-* targets is a better solution: Week 8
+* targets is a better solution
 
 ## Caching: Quarto
 
@@ -257,24 +295,7 @@ summary(d)
 ````
 
 * Same problems as Rmarkdown
-* targets is a better solution: Week 8
-
-## Caching: memoise
-
-Caching stores results of computations so they can be reused.
-
-\fontsize{10}{10}\sf
-
-```{r}
-library(memoise)
-sq <- function(x) {
-  print("Computing square of 'x'")
-  x**2
-}
-memo_sq <- memoise(sq)
-memo_sq(2)
-memo_sq(2)
-```
+* targets is a better solution
 
 # targets
 
@@ -353,6 +374,16 @@ list(
 library(targets)
 tar_script()
 ```
+
+## Activity
+
+* Set up a project using targets: `tar_script()`
+
+* Add targets to generate a plot from the mtcars dataset, and fit a linear regression model.
+
+* Make the project using `tar_make()`
+
+* Visualize the pipeline using `tar_visnetwork()`
 
 ## Useful targets commands
 
@@ -482,8 +513,8 @@ tar_read(my_plot)
 
 ## Exercise
 
-* Add a targets workflow to your quarto document.
-* Create a visualization of the pipeline network using `tar_visnetwork()`.
+Add a quarto document to your targets project that includes the plot and the output from the linear regression model.
+
 
 # Reproducible environments
 
@@ -535,6 +566,9 @@ tar_read(my_plot)
 * `renv::update()` gets latest versions of all dependencies from wherever they were installed from.
 * `renv::deactivate(clean = TRUE)` will remove the renv environment.
 
+## Activity
+
+Add renv to your targets project.
 
 ## Example paper
 
