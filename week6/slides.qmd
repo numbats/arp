@@ -10,7 +10,9 @@ format:
         dev: "cairo_pdf"
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: ../header.tex
+    include-in-header: 
+      - ../header.tex
+      - preamble.tex
     colorlinks: true
     urlcolor: MonashBlue
     linkcolor: burntorange
@@ -401,6 +403,7 @@ format: memo-pdf
 ---
 ```
 
+
 ## Activity 1
 
 * Set up a new project.
@@ -412,6 +415,229 @@ format: memo-pdf
 ## Activity 2
 
 * Create a thesis using the `quarto-monash/thesis` template, and add your name and details to the front page.
+
+# Monash Quarto Templates
+
+## Letter template {.fragile}
+
+\showtemplate{letter.pdf}
+\only<2>{\begin{textblock}{9}(6.5,1)
+\showyaml{letter.yml}
+\end{textblock}}
+
+## Memo template
+
+\showtemplate{memo2.pdf}
+\only<2>{\begin{textblock}{9}(6.5,1)
+\showyaml{memo2.yml}
+\end{textblock}}
+
+## Memo template
+
+\showtemplate{memo.pdf}
+\begin{textblock}{9}(6.5,1)
+\showyaml{memo.yml}
+\end{textblock}
+
+## Report template
+
+\only<1-2>{\showtemplate{report.pdf}}
+\only<3>{\showtemplate{report.pdf}[2]}
+\only<2-3>{\begin{textblock}{9}(6.5,1)
+\showyaml{report.yml}
+\end{textblock}}
+
+## Exam template
+
+\only<1-2>{\showtemplate{exam.pdf}}
+\only<3>{\showtemplate{exam.pdf}[2]}
+\only<4>{\showtemplate{exam.pdf}[3]}
+\only<2-4>{\begin{textblock}{9}(6.5,1)
+\showyaml{exam.yml}
+\end{textblock}}
+
+## Presentation template
+
+\only<2-3>{\showtemplate{pdfpresentation.pdf}}
+\only<1>{\showtemplate{htmltemplate.png}}
+\only<3>{\begin{textblock}{8.5}(7,.1)
+\showyaml{presentation.yml}
+\end{textblock}}
+\only<4>{\begin{textblock}{8.5}(7,.1)
+\showyaml{presentation2.yml}
+\end{textblock}}
+\only<4-5>{\showtemplate{presentation12.pdf}}
+\only<6>{\showtemplate{presentation13.pdf}}
+
+## Working paper template
+
+\only<1-2>{\showtemplate{workingpaper.pdf}}
+\only<3-4>{\showtemplate{workingpaper.pdf}[2]}
+\only<5-6>{\showtemplate{workingpaper.pdf}[3]}
+
+\only<2-3>{\begin{textblock}{9}(6.5,1)
+\showyaml{workingpaper.yml}
+\end{textblock}}
+\only<4-6>{\begin{textblock}{9}(6.5,1)
+\showyaml{workingpaper2.yml}
+\end{textblock}}
+
+\only<6>{\begin{textblock}{5.7}(10,6.5)
+\begin{alertblock}{}\fontsize{10}{10}\sf
+Add formats:
+\begin{itemize}\tightlist
+\item  \texttt{arxiv-pdf} for arXiv
+\item a quarto journal format when submitting.
+\end{itemize}
+\end{alertblock}
+\end{textblock}}
+
+## Journal articles
+
+\only<1>{\showtemplate{workingpaper.pdf}[3]}
+\only<1>{\begin{textblock}{9}(6.5,1)
+\showyaml{workingpaper3.yml}
+\end{textblock}}
+\only<2-3>{\showtemplate{ijf.pdf}}
+\only<2-3>{\begin{textblock}{9}(6.5,1)
+\showyaml{ijf.yml}
+\end{textblock}}
+\only<3>{\begin{textblock}{9}(6.5,7.2)
+\begin{alertblock}{}\fontsize{12}{12}\sf
+Add \texttt{+wp} to allow two pdf output files.
+\end{alertblock}
+\end{textblock}}
+
+## Thesis template
+
+\only<1-2>{\showtemplate{thesis.pdf}}
+\only<3>{\showtemplate{thesis.pdf}[2]}
+\only<4>{\showtemplate{thesis.pdf}[3]}
+\only<5>{\showtemplate{thesis.pdf}[4]}
+\only<6>{\showtemplate{thesis.pdf}[5]}
+\only<7>{\showtemplate{thesis.pdf}[6]}
+\only<8>{\showtemplate{thesis.pdf}[7]}
+\only<9>{\showtemplate{thesis.pdf}[8]}
+\only<10>{\showtemplate{thesis.pdf}[9]}
+\only<11>{\showtemplate{thesis.pdf}[10]}
+\only<12>{\showtemplate{thesis.pdf}[11]}
+\only<13>{\showtemplate{thesis.pdf}[12]}
+\only<14>{\showtemplate{thesis.pdf}[13]}
+\only<15>{\showtemplate{thesis.pdf}[14]}
+\only<16>{\showtemplate{thesis.pdf}[15]}
+
+\begin{textblock}{9}(6.5,1)
+\only<2-16>{\showyaml{thesis.yml}}
+\end{textblock}}
+
+## Thesis template
+
+\centerline{\includegraphics[height=9cm]{thesis_html}}
+
+## Design choices: Fonts
+
+  * All templates use Fira Sans for headings.
+
+  * All templates use `Source Code Pro` for code which has good disambiguation: `LIli1!| oO0 4AH 5S 7T`
+
+  * All but presentation use Bitstream Vera for the body with a matching mathematical font:
+
+\begin{block}{}
+\centerline{\includegraphics[width=14cm]{sample_bera.pdf}}
+\end{block}
+
+## Design choices: Citations
+
+All templates use biblatex with an author-year style consistent with most statistical journals.
+
+\begin{block}{}
+\centerline{\includegraphics[page=15, trim = 0 410 0 235, clip=true, width=16.3cm]{thesis.pdf}}
+\end{block}
+
+## Github repos: github.com/quarto-monash {.fragile}
+
+\hspace*{-1cm}{\includegraphics[height=8cm]{github_repo}}
+
+\only<2-3>{\begin{textblock}{6.9}(8.75,1.4)
+\begin{block}{From a terminal}\fontsize{9.5}{10}\ttfamily
+quarto use template quarto-monash/\rlap{$<$name$>$}
+\begin{itemize}\tightlist
+\item letter
+\item memo
+\item presentation
+\item report
+\item thesis
+\item workingpaper
+\item exam
+\end{itemize}
+\end{block}
+\end{textblock}}
+
+\only<3>{\begin{textblock}{6.9}(8.75,7)
+\begin{block}{From the R console}\fontsize{9.5}{10}\ttfamily
+monash::quarto\_template\_install(\inch$<$name$>$\inch)
+\end{block}
+\end{textblock}
+}
+
+## Structure of a template {.fragile}
+
+\begin{textblock}{6}(0.2,1.3)\fontsize{10}{11}\ttfamily
+\begin{Verbatim}
+├── _extensions
+│   │   └── quarto-monash
+│   │       └── letter
+│   │           ├── _extension.yml
+│   │           ├── after-body.tex
+│   │           ├── before-body.tex
+│   │           ├── before-title.tex
+│   │           ├── AACSB.png
+│   │           ├── AMBA.png
+│   │           ├── EQUIS.png
+│   │           ├── MBSportrait.jpg
+│   │           ├── monash2.png
+│   │           └── sigfile.png
+└── template.qmd
+\end{Verbatim}
+\end{textblock}
+
+\only<2>{\begin{textblock}{7.3}(8,1.1)
+\begin{block}{}\fontsize{13}{13}\sf
+\begin{itemize}\tightlist
+\item \texttt{template.qmd}: template for user to edit.
+\item \texttt{extension.yml}: default yaml
+\item \texttt{*.tex}: pandoc partials
+\item Everything else: graphical files needed for the template
+\end{itemize}
+\end{block}
+\end{textblock}}
+
+\only<3>{\showfile{template.qmd}}
+\only<4>{\showfile{extension.yml}}
+\only<5>{\showfile{before-body.tex}}
+\only<6>{\showfile{after-body.tex}}
+\only<7>{\showfile{before-title.tex}}
+
+
+## Pandoc partial templates
+\fontsize{14}{15}\sf
+
+* **doc-class.tex**: document class and options
+* **before-title.tex**: preamble before title block.
+* **title.tex**: create title block.
+* **before-body.tex**: frontmatter, title page, abstract.
+* **after-body.tex**: content at the end of the body.
+* **toc.tex**: table of contents, lists of figures and tables.
+* **before-bib.tex**: after content but before bibliography.
+* **biblio.tex**: creates bibliography
+
+###
+\fontsize{13}{13}\sf
+
+* **Details:** \url{https://quarto.org/docs/journals/templates.html}
+* **Defaults:** \url{https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/pdf/pandoc}
+
+# Assignment 2
 
 ## Activity 3
 

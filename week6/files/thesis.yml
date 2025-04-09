@@ -1,0 +1,21 @@
+project:
+  type: book
+book:
+  title: "This is my thesis"
+  author: "Susan Su"
+  chapters:
+    - index.qmd
+    - "01-chap1.qmd"
+    - "02-chap2.qmd"
+    - "refs.qmd"
+  sidebar:
+    style: "docked"
+bibliography: thesisrefs.bib
+csl: american-statistical-association.csl
+degreetype: Doctor of Philosophy
+submitted: 2024
+affiliation: Department of Econometrics & Business Statistics
+degrees: 'B.Sc. (Hons), University of Tangambalanga'
+format:
+  monashthesis-html: default
+  monashthesis-pdf: default

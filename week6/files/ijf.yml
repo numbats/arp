@@ -1,0 +1,17 @@
+abstract: |
+  A brief summary of our ideas
+keywords: [blah, blah]
+bibliography: references.bib
+wpnumber: no/yr
+jelcodes: C10,C14,C22
+blind: false
+cover: true
+linestretch: 1.5
+format:
+  wp-pdf+wp: default
+  elsevier-pdf: 
+    journal:
+      name: International Journal of Forecasting
+      model: 3p
+      cite-style: authoryear
+---

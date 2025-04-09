@@ -1,0 +1,14 @@
+---
+title: "Expert advice from experts"
+author:
+- name: Professor Marie Curie
+  degrees: Nobel Prize, PhD
+  email: mcurie.notreal@gmail.com
+- name: Dr Pierre Curie
+  degrees: Nobel Prize, PhD
+phone: (03) 9905 2478
+email: BusEco-Econometrics@monash.edu
+organization: Acme Corporation
+bibliography: references.bib
+format: report-pdf
+---

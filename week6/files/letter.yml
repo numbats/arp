@@ -1,0 +1,19 @@
+---
+author: Pierre Curie
+qualifications: Nobel Prize, PhD
+position: Professor
+www: curie.com
+email: Pierre.Curie@monash.edu
+phone: +61 3 9905 5555
+signature: sigfile.png
+address:
+  - Hypatia
+  - University of Alexandria
+  - Egypt
+opening: "Dear Hypatia"
+closing: "Sincerely"
+linestretch: 1.4
+ps: "PS. Lorem ipsum dolor sit amet, *consectetur*
+     adipiscing elit."
+format: letter-pdf
+---
