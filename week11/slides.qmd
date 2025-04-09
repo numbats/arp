@@ -39,7 +39,6 @@ source(here::here("course_info.R"))
 * Loves cycling, yoga, books, volunteering, contemporary theatre, music, and art
 * I am nice!
 
-
 ## About me
 
 [Tomasz Woźniak](https://github.com/donotdespair)
@@ -48,7 +47,6 @@ source(here::here("course_info.R"))
 * [**bsvars**](https://cran.r-project.org/package=bsvars) package author (more coming up)
 
 \vspace{0.3cm}\centerline{\includegraphics[width = 3.5cm]{bsvars.png}}
-
 
 
 # Motivation
@@ -114,8 +112,6 @@ source(here::here("course_info.R"))
 
 
 
-
-
 # The first steps with Rcpp
 
 ## The first steps with Rcpp
@@ -146,7 +142,6 @@ Rcpp::cppFunction('
 nicetry(2)
 ```
 
-
 ## Develop a **C++** function in a `nicetry.cpp` file
 
 A `*.cpp` file sample contents:
@@ -167,7 +162,6 @@ List nicetry (int n) {
 nicetry(2)
 */
 ```
-
 
 ## Develop a **C++** function in a `nicetry.cpp` file
 
@@ -193,7 +187,6 @@ using namespace Rcpp;
 nicetry(2)
 */
 ```
-
 
 ## Develop a **C++** function in a `nicetry.cpp` file
 
@@ -229,7 +222,6 @@ where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.
 Get some help [HERE](https://teuder.github.io/rcpp4everyone_en/080_vector.html).
 :::
 
-
 ## Use a function from a `nicelist.cpp` file in **R**
 
 * `nicelist.cpp` file contents:
@@ -249,7 +241,6 @@ List nicelist (int n) {
 }
 ```
 
-
 ## Use a function from a `nicelist.cpp` file in **R**
 
 * **R** script using the function from `nicelist.cpp`:
@@ -258,7 +249,6 @@ List nicelist (int n) {
 Rcpp::sourceCpp("nicelist.cpp")
 nicelist(3)
 ```
-
 
 
 ## Develop a **C++** function in a `.cpp` file
@@ -273,7 +263,6 @@ Develop a **C++** function that:
 * has an integer `T` as the only argument
 * returns a `T`-vector with Gaussian random walk
 :::
-
 
 
 # Some stats with RcppArmadillo
@@ -313,7 +302,6 @@ nicelr(y, x)
 ```
 
 
-
 ## Some stats with RcppArmadillo: linear regression
 
 ::: {.callout-caution title="Your turn!"}
@@ -329,7 +317,6 @@ Get some help [HERE](http://arma.sourceforge.net/docs.html).
 :::
 
 
-
 ## Some stats with RcppArmadillo: IG2 distribution
 
 Sampling random draws from an inverted gamma 2 distribution.
@@ -341,7 +328,6 @@ $$
 
 1. Generate random draw $x$ from $\chi^2(\nu)$
 2. Return $\frac{s}{x}$
-
 
 ## Some stats with RcppArmadillo: IG2 distribution
 
@@ -362,7 +348,6 @@ vec nicerig2 (const int n, const double s, const double nu) {
 nicerig2(2, 1, 1)
 */
 ```
-
 
 ## Some stats with RcppArmadillo: NIG2 distribution
 
@@ -385,7 +370,6 @@ p\left(\mathbf{x}, \sigma^2\right) &= p\left(\mathbf{x} \mid \sigma^2\right)p\le
 \mathbf{x} \mid \sigma^2 &\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
 \end{align*}
 
-
 ## Some stats with RcppArmadillo: NIG2 distribution
 
 To generate $n$ random draws from the normal-inverted gamma 2 distribution:
@@ -393,7 +377,6 @@ To generate $n$ random draws from the normal-inverted gamma 2 distribution:
 1. Generate $n$ independent random draws of $\sigma^{2(j)}$ from $IG2(s, \nu)$ for $j=1,\dots,n$
 2. For each $j$, generate the corresponding random draw of $\mathbf{x}^{(j)}$ from $N\left(\boldsymbol\mu, \sigma^{2(j)}\boldsymbol\Sigma\right)$
 3. Return the collection of pairs $\left\{\mathbf{x}^{(j)}, \sigma^{2(j)}\right\}_{j=1}^n$
-
 
 ## Some stats with RcppArmadillo: NIG2 distribution
 
@@ -414,7 +397,6 @@ Get some help [HERE](http://arma.sourceforge.net/docs.html).
 ::: {.callout-caution title="Additional resources!"}
 Have a look at my article on [*Simulation Smoother using RcppArmadillo*](https://gallery.rcpp.org/articles/simulation-smoother-using-rcpparmadillo/) at *Rcpp Gallery*.
 :::
-
 
 
 # Create an R package with compiled code in ten steps
@@ -454,7 +436,6 @@ RcppArmadillo::RcppArmadillo.package.skeleton("nicepackage")
   * remove the `NAMESPACE` file
   * run `roxygen2::roxygenise()` again
 <!-- 5. Run `usethis::use_rcpp_armadillo()` -->
-
 
 ## Step 5: edit the `DESCRIPTION` file
 
@@ -496,8 +477,6 @@ TADA! Your package is ready!
 
 
 ## What's next?
-
-$$ $$
 
 \begin{center}
 \LARGE\textbf{Rewrite all your code in Rcpp!\\[1ex] Nice!}

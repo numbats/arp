@@ -3,7 +3,6 @@ parse_expr("seq(1,10,       by = 0.5)")
 parse_expr("data |> mutate()")
 parse_expr("data %>% mutate()")
 
-
 myseq <- parse_expr("seq(1,10,       by = 0.5)")
 class(myseq)
 new_function(list(), myseq)
@@ -14,7 +13,6 @@ mycalc <- parse_expr("5 + 3 * 7")
 as.list(mycalc)
 
 5 + (3 * 7)
-
 
 as.list(mycalc[[3]])
 
@@ -29,7 +27,6 @@ mycalc
 lobstr::ast(mycalc)
 lobstr::ast(5 + 3 * 7)
 as.list(mycalc)
-
 
 lobstr::ast(
   mtcars |>
@@ -52,11 +49,9 @@ lobstr::ast((-2)^2)
 
 lobstr::ast(!countries %in% c("Australia", "China"))
 
-
 as.list(myseq)
 call2("seq", 1L, 10, by = 0.5)
 parse_expr(sprintf("seq(%i,%i, by = %f)", 1L, 10, 0.5))
-
 
 x / y
 x <- expr(3 + 6)
@@ -64,7 +59,6 @@ y <- expr(1 + 2)
 
 call2("/", x, y)
 parse_expr(sprintf("%s / %s", "3 + 6", "1 + 2"))
-
 
 with(
   list(
@@ -90,7 +84,6 @@ purrr::map(
 ) |>
   purrr::map(eval)
 
-
 library("ggplot2")
 
 mtcars |> select(cyl)
@@ -107,7 +100,6 @@ wt
 
 mtcars |>
   mutate(wt/hp)
-
 
 mtcars |>
   left_join(mpg, by = c("model" = "car"))
@@ -130,7 +122,6 @@ function(expr) {
   expr <- enexpr(expr)
 }
 
-
 call2(sym("mutate"), sym("mtcars"),  expr(wt/sym("hp")))
 
 "mutate"()
@@ -145,7 +136,6 @@ expr(2 * pi)
 lobstr::ast(2*pi)
 
 quo(2 * pi)
-
 
 capture_expr <- function(x) {
   x <- enquo(x)
@@ -190,7 +180,6 @@ var_summaries <- function(data, ...) {
 mtcars |>
   group_by(cyl) |>
   var_summaries(mpg, wt)
-
 
 
 cyl <- 4

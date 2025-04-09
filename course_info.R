@@ -59,7 +59,6 @@ assignments <- readr::read_csv(here::here("assignments.csv")) |>
   )
 
 
-
 schedule <- schedule |>
   full_join(assignments, by = "Date")
 
@@ -79,7 +78,6 @@ show_assignments <- function(week) {
     }
   }
 }
-
 
 submit <- function(schedule, assignment) {
   ass <- schedule  |>

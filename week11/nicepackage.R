@@ -10,7 +10,6 @@ Rcpp::compileAttributes()
 devtools::document()
 devtools::check()
 
-
 devtools::load_all()
 hist(nicerig2(10000, 1, 10), breaks = 100)
 ?nicerig2

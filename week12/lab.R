@@ -27,7 +27,6 @@ r_to_py(list(1))
 r_to_py(1:10)
 r_to_py(as.list(1:10))
 
-
 r_to_py(mtcars)
 
 library(dplyr)
@@ -40,7 +39,6 @@ DBI::dbListTables(con)
 
 db_mtcars <- tbl(con, "mtcars")
 class(db_mtcars)
-
 
 db_mtcars |>
   filter(cyl == 4) |>

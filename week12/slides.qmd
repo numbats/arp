@@ -201,7 +201,6 @@ It is also a good technique for working with data that is too large to fit in me
 library(dbplyr)
 ```
 
-
 The dbplyr package allows you to use dplyr code to manipulate tables from databases.
 
 It achieves this using non-standard evaluation to convert dplyr and R code into suitable database code for a connected database.

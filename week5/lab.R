@@ -15,7 +15,6 @@ environment(square) <- emptyenv()
 square
 square()
 
-
 MAE <- function(e, ...) mean(abs(e), ...)
 RMSE <- function(e, ...) sqrt(mean(e^2, ...))
 
@@ -33,14 +32,12 @@ accuracy(residuals[!is.na(residuals)], measure = RMSE)
 
 accuracy(residuals, measure = RMSE, na.rm = TRUE)
 
-
 colorRamp()
 
 redgreen_ramp <- colorRamp(c("red", "green"))
 redgreen_ramp(0)
 redgreen_ramp(1)
 redgreen_ramp(0.3421348)
-
 
 colorRamp(c("red", "green"))(0.312381247)
 
@@ -62,7 +59,6 @@ cube(8)
 
 ls(envir = environment(cube))
 environment(cube)$exp
-
 
 breakpoints <- function(x, n.breaks) {
   seq(min(x), max(x), length.out = n.breaks)
@@ -109,7 +105,6 @@ mpg_by_cyl <- split(mtcars$mpg, mtcars$cyl)
 map(mpg_by_cyl, mean)
 map_vec(mpg_by_cyl, mean)
 
-
 mtcars_by_cyl <- split(mtcars, mtcars$cyl)
 mtcars_by_cyl
 
@@ -118,9 +113,7 @@ lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4,])
 map(mtcars_by_cyl, lm, mpg ~ disp + hp + drat + wt)
 lm(mtcars[mtcars$cyl == 4,], mpg ~ disp + hp + drat + wt)
 
-
 map(mtcars_by_cyl, ~ lm(mpg ~ disp + hp + drat + wt, data = .))
-
 
 purrr::as_mapper(~ lm(mpg ~ disp + hp + drat + wt, data = .))
 

@@ -5,8 +5,11 @@ project:
     - "CNAME"
   render:
   - "*.qmd"
-  - "!long-map.qmd"
   - "*.md"
+  - "!long-map.qmd"
+  - "!week6/Quarto_example/"
+  - "!week6/files/"
+  - "!week11/slides.qmd"
 
 website:
   title: "ETC4500/ETC5450 Advanced R Programming"

@@ -40,7 +40,6 @@ remaining_customers_count <- function(mu, lambda, p = 3, n = 720) {
   sum(pmax(0, lengths(queue) - 1))
 }
 
-
 remaining_customers_time <- function(mu, lambda, p = 3, n = 720) {
   # Argument validation
   if (!is.numeric(mu) || mu <= 0) stop("mu must be a positive number.")

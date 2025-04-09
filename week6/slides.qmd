@@ -403,7 +403,6 @@ format: memo-pdf
 ---
 ```
 
-
 ## Activity 1
 
 * Set up a new project.
@@ -617,7 +616,6 @@ monash::quarto\_template\_install(\inch$<$name$>$\inch)
 \only<5>{\showfile{before-body.tex}}
 \only<6>{\showfile{after-body.tex}}
 \only<7>{\showfile{before-title.tex}}
-
 
 ## Pandoc partial templates
 \fontsize{14}{15}\sf

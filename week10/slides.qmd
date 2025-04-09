@@ -76,7 +76,6 @@ The parser reads unstructured text (your written code) and interprets it as an e
 parse_expr("seq(1, 10, by = 0.5)")
 ```
 
-
 ## Deparsing code
 
 Deparsing takes an expression and converts it back to text.
@@ -108,7 +107,6 @@ class(my_seq)
 ```{r}
 eval(my_seq)
 ```
-
 
 ## Inspecting code
 
@@ -196,7 +194,6 @@ Bonus: does `-2^2` yield 4 or -4? Why?
 
 How would you programmatically analyse code from hundreds of packages?
 
-
 * Regular expressions on the source code? Maybe...
 * Traverse the parsed source code's AST? Yes!
 
@@ -205,7 +202,6 @@ How would you programmatically analyse code from hundreds of packages?
 <!-- We could use regular expressions to explore the source code, however it is better to parse the code and explore the AST. -->
 
 This however can be tricky, requiring recursive algorithms that explore the AST using breadth/depth first search (BFS/DFS).
-
 
 ## Coding code
 
@@ -222,7 +218,6 @@ call2("seq", 1, 10, by = 0.5)
 You might be tempted to `parse()` code that you `paste()` together, but this is unsafe and unreliable! Why?
 :::
 
-
 ## Coding code
 
 ::: {.callout-note title="After the break..."}
@@ -234,7 +229,6 @@ react <- function(e) new_function(alist(), expr(eval(!!enexpr(e))))
 
 Next we'll learn how it uses NSE to change how code runs.
 :::
-
 
 
 # (Non-)standard evaluation
@@ -252,7 +246,6 @@ Next we'll learn how it uses NSE to change how code runs.
 * The code and/or the environment is changed.
 * Leading to the evaluated result changing.
 :::
-
 
 ## Standard or non-standard evaluation?
 
@@ -409,7 +402,6 @@ mtcars |>
 
 What's the problem? How can unquoting help?
 
-
 <!-- ```{r} -->
 <!-- #| eval: false -->
 <!-- power <- 2 -->
@@ -417,7 +409,6 @@ What's the problem? How can unquoting help?
 <!-- tibble(power = c(3923, 4436, 4806, 4418), error = c(-477, 36, 406, 18)) |> -->
 <!--   summarise(rmse = mean(error^power)^(1/power)) -->
 <!-- ``` -->
-
 
 ## Embracing inputs ({{curly-curly}})
 
@@ -583,7 +574,6 @@ eval_select(x, mtcars)
 
 This function returns the column numbers that were selected.
 
-
 ## tidyselect
 
 Putting it all together, we can create our own `dplyr::select()` function variant.
@@ -600,7 +590,6 @@ my_select(mtcars, c(mpg, wt, vs:carb))
 ::: {.callout-caution title="Your turn!"}
 Modify this function to instead accept the selected columns via the dots (`...`), just like `dplyr::select()` does.
 :::
-
 
 ## Software design
 
@@ -623,7 +612,6 @@ Notice how little NSE the tidyverse uses to great effect.
 A lot of thought has gone into designing the tidyverse, which mostly uses standard evaluation: https://design.tidyverse.org/
 
 . . .
-
 
 ::: {.callout-tip title="A design compromise"}
 While very appreciated by users, NSE introduces a lot of complexity when programming with tidyverse packages.

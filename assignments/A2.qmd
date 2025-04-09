@@ -2,7 +2,6 @@
 title: Assignment 2 (25%)
 ---
 
-
 The **simulatoR** package is designed to simulate dynamic and stochastic processes.
 
 In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.

@@ -14,7 +14,6 @@ out
 
 out <- rep(list(NULL), n)
 
-
 mtcars_cyl <- split(mtcars, mtcars$cyl)
 str(mtcars_cyl)
 n <- length(mtcars_cyl)
@@ -57,7 +56,6 @@ mymap_numeric <- function(x, f) {
   }
   out
 }
-
 
 mymap_numeric(1:10, function(x) x^2)
 mymap_numeric(1:10, function(x) paste0("Hello ", x))
@@ -266,7 +264,6 @@ results$run()
 
 results <- long_map(x, f, path = "results.rds")
 results$run()
-
 
 long_map <- function(x, f, path = NULL) {
   n <- length(x)
