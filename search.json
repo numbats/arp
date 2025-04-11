@@ -74,7 +74,7 @@
     "href": "week8/index.html#assignments",
     "title": "Week 8: Object-oriented programming (S3)",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 3 is due on Monday 28 April.\nGame package 1 is due on Friday 16 May."
+    "text": "Assignments\n\nAssignment 3 is due on Friday 02 May.\nGame package 1 is due on Friday 16 May."
   },
   {
     "objectID": "week8/index.html#online-resources",
@@ -109,7 +109,7 @@
     "href": "week7/index.html#assignments",
     "title": "Week 7: Reactive programming with targets and renv",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Monday 28 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Friday 02 May."
   },
   {
     "objectID": "week6/index.html",
@@ -144,7 +144,7 @@
     "href": "week6/index.html#assignments",
     "title": "Week 6: Literate programming with Quarto",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Monday 28 April."
+    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Friday 02 May."
   },
   {
     "objectID": "week5/index.html",
@@ -396,7 +396,7 @@
     "href": "assignments/A3.html",
     "title": "Assignment 3 (25%)",
     "section": "",
-    "text": "Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:\n\nOur World in Data\nHuman Mortality Database\nHuman Fertility Database\nUN Data\nIMF Data\nABS Census Data\nAustralian Electoral Commission data\nUS General Social Survey\nHILDA Survey\nJohns Hopkins COVID data\n\nThe source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.\nYour analysis should include the following elements:\n\nReading the raw data into R.\nCleaning and wrangling the data into a form suitable for analysis.\nAt least two plots highlighting interesting features of the data.\nAt least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity — you should use a model that is appropriate for the data.\nA discussion of the results of the model and how they relate to the plots.\n\nYou must use the targets package to manage the workflow, renv to manage the package environment, with the analysis described in a quarto report.\n\n\nDue: 28 April 2025  GitHub Classroom"
+    "text": "Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:\n\nOur World in Data\nHuman Mortality Database\nHuman Fertility Database\nUN Data\nIMF Data\nABS Census Data\nAustralian Electoral Commission data\nUS General Social Survey\nHILDA Survey\nJohns Hopkins COVID data\n\nThe source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.\nYour analysis should include the following elements:\n\nReading the raw data into R.\nCleaning and wrangling the data into a form suitable for analysis.\nAt least two plots highlighting interesting features of the data.\nAt least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity — you should use a model that is appropriate for the data.\nA discussion of the results of the model and how they relate to the plots.\n\nYou must use the targets package to manage the workflow, renv to manage the package environment, with the analysis described in a quarto report.\n\n\nDue: 2 May 2025  GitHub Classroom"
   },
   {
     "objectID": "assignments/A1.html",
