@@ -474,7 +474,7 @@ tar_option_set(packages = c("tidyverse", "fable"))
 list(
   tar_target(my_file, "data/my_data.csv", format = "file"),
   tar_target(my_data, read_csv(my_file)),
-  tar_target(my_model, model_function(my_data))
+  tar_target(my_model, model_function(my_data)),
   tar_quarto(report, "file.qmd", extra_files = "references.bib")     # <2>
   )
 ```
