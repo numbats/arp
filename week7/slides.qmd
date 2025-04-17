@@ -176,7 +176,7 @@ In R, the shiny package uses reactive programming for writing app interactivity.
 if (file.exists("results.rds")) {
   res <- readRDS("results.rds")
 } else {
-  res <- compute_it()  # a time-consuming function
+  res <- compute_it() # a time-consuming function
   saveRDS(res, "results.rds")
 }
 ```
@@ -201,7 +201,7 @@ res <- xfun::cache_rds(
 #| cache: false
 #| freeze: false
 compute <- function(...) {
-    xfun::cache_rds(rnorm(6), file = "results.rds", ...)
+  xfun::cache_rds(rnorm(6), file = "results.rds", ...)
 }
 compute()
 compute()
