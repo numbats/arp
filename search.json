@@ -44,44 +44,44 @@
   {
     "objectID": "week8/index.html",
     "href": "week8/index.html",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "",
     "text": "13 Advanced R"
   },
   {
     "objectID": "week8/index.html#main-reference",
     "href": "week8/index.html#main-reference",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "",
     "text": "13 Advanced R"
   },
   {
     "objectID": "week8/index.html#what-you-will-learn-this-week",
     "href": "week8/index.html#what-you-will-learn-this-week",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\nObject-oriented programming using S3"
+    "text": "What you will learn this week\nOverview of object-oriented programming in R, focusing on S3."
   },
   {
     "objectID": "week8/index.html#slides-for-week",
     "href": "week8/index.html#slides-for-week",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "Slides for week",
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
     "objectID": "week8/index.html#assignments",
     "href": "week8/index.html#assignments",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 3 is due on Friday 02 May.\nGame package 1 is due on Friday 16 May."
   },
   {
     "objectID": "week8/index.html#online-resources",
     "href": "week8/index.html#online-resources",
-    "title": "Week 8: Object-oriented programming (S3)",
+    "title": "Week 8: Object-oriented programming",
     "section": "Online resources",
-    "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4"
+    "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4\nR6\nS7"
   },
   {
     "objectID": "week7/index.html",
