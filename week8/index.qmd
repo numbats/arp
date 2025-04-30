@@ -1,5 +1,5 @@
 ---
-title: "Week 8: Object-oriented programming (S3)"
+title: "Week 8: Object-oriented programming"
 ---
 
 ```{r}
@@ -13,7 +13,7 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
-Object-oriented programming using S3
+Overview of object-oriented programming in R, focusing on S3.
 
 ```{r}
 #| output: asis
@@ -27,3 +27,5 @@ show_assignments(week)
 * [S4: a short guide for the perplexed](https://stuartlee.org/2019/07/09/s4-short-guide/)
 * [Comparing S3 and S4 on an example](https://faculty.washington.edu/kenrice/sisg-adv/sisg17-pack-03.pdf)
 * [S4](https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html)
+* [R6](https://r6.r-lib.org/)
+* [S7](https://rconsortium.github.io/S7/)

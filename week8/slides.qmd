@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 8: Object-oriented Programming (S3)"
+author: "Week 8: Object-oriented Programming"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -27,27 +27,71 @@ source(here::here("course_info.R"))
 \vspace*{0.4cm}
 \tableofcontents
 
+# Programming paradigms
+
+## Programming paradigms
+
+::: {.callout-note icon=false title="Functional programming (W5)"}
+* Functions are created and used like any other object.
+* Output should only depend on the function's inputs.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="Literate programming (W6)"}
+* Natural language is interspersed with code.
+* Aimed at prioritising documentation/comments.
+* Now used to create reproducible reports/documents.
+:::
+
+## Programming paradigms
+
+::: {.callout-note icon=false title="Reactive programming (W7)"}
+* Objects are expressed using code based on inputs.
+* When inputs change, the object's value updates.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="Object-oriented programming (W8-W9)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
+
 # Object oriented programming
 
 ## Object oriented programming
 
-- **Encapsulation**: objects have secret internals that you don't need to understand
-- **Polymorphism**: the same function can do different things to different data as appropriate
-- **Inheritance**: you can take an existing kind of object and make a new, more specialised one
 
-Inheritance turns out to be useful mostly for data infrastructure, but encapsulation and polymorphism are generally valuable
+- **Encapsulation**: Bundles data and methods in a class, restricting access to internal details.
+
+- **Abstraction**: Simplifies complexity by exposing only essential features of an object.
+
+- **Polymorphism**: Allows the same function to operate differently on different object types.
+
+- **Inheritance**: Enables a new class to inherit properties and behaviors from an existing class.
+
+## Object oriented programming
+
+**Inheritance** is primarily useful for structuring data infrastructure by allowing reuse and extension of existing classes.
+
+**Encapsulation** helps protect object integrity by restricting access to internal states.
+
+**Polymorphism** enables flexibility by allowing a single interface to operate on various data types. 
+
+**Abstraction** simplifies complexity by highlighting essential features, making systems easier to understand and use.
 
 ## Generic functions and methods
 
 A simple example: `plot`
 
----
+## Generic functions and methods
 
 ```{r}
 plot(trees)
 ```
 
----
+## Generic functions and methods
 
 ```{r}
 m<-lm(log(Volume)~log(Girth)+log(Height),
@@ -56,27 +100,30 @@ par(mfrow=c(2,2),mar=c(3,1,1,1))
 plot(m)
 ```
 
----
+## Generic functions and methods
 
 ```{r}
 plot(.leap.seconds)
 ```
 
----
+## Generic functions and methods
 
 ```{r}
 plot(nhtemp)
 ```
 
----
+## Generic functions and methods
 
-### How?
+### How does `plot()` work?
 
 * Giant `switch` statement...
-* ...that gets updated every time you load a package...
+* Lots of `if` statements...
+* How does the behaviour update when you load packages?
 * ???
 
-Generic functions and methods!
+. . .
+
+S3 generic functions and methods!
 
 ## Object systems
 
@@ -86,68 +133,107 @@ R has **a lot** of object systems
 - [S3 `vctrs`]
 - S4
 - R6
-- R.oo, proto, R7
+- R.oo, proto, ggproto,
+- R7
+- S7
 
----
 
-### S3
+## Object oriented programming
+
+::: {.callout-note icon=false title="S3"}
+* The OO system used by most of CRAN.
+* Very simple (and 'limited') compared to other systems.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="vctrs"}
+* Builds upon S3 to make creating vectors easier.
+* Good practices inherited by default.
+:::
+
+## Object oriented programming
+
+::: {.callout-note icon=false title="S4"}
+* Formal class definitions with validation.
+* Supports multiple inheritance and method dispatch.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="S7"}
+* Planned to be the successor of S3 and S4.
+* More general than S3, but still easy to use.
+:::
+
+
+## Object oriented programming
+
+::: {.callout-note icon=false title="R6"}
+* Provides reference semantics for mutable objects.
+* Simple and efficient compared to reference classes.
+:::
+
+. . .
+
+::: {.callout-note icon=false title="ggproto"}
+* Used in ggplot2 for extensibility.
+* Supports inheritance and method overloading.
+:::
+
+# S3
+
+## S3
 
 Main topic for today
 
 - easy to start writing
 - no safeguards
-- especially good for single-person, small to medium projects
+- especially good for simple, small-medium projects
 - can be used for large projects with a lot of attention to documentation and communication
 - limited use of inheritance
 - basis of tidyverse and most of CRAN
 
----
+## S3 with `vctrs`
 
-### S3 `vctrs`
-
-A tidyverse package for making different sorts of vectors
+A helpful package for making different sorts of S3 vectors
 
 - handles a lot of formatting and subsetting details
 - allows for binary operators
 - useful if you want your vectors in a tibble
 - enforces some safeguards
 
----
+We'll learn more about `vctrs` next week!
 
-### S4
+<!-- ## S4 -->
 
-- more work to start writing
-- objects know their structure
-- enforces object structure
-- better for large-scale collaborative programming
-- better at inheritance
-- basis of Bioconductor
+<!-- - more work to start writing -->
+<!-- - objects know their structure -->
+<!-- - enforces object structure -->
+<!-- - better for large-scale collaborative programming -->
+<!-- - better at inheritance -->
+<!-- - basis of Bioconductor -->
 
----
+<!-- ## R6 -->
 
-### R6
+<!-- - Supports modifiable (mutable) objects -->
+<!--    * database connections, files, etc -->
+<!--    * large data objects we don't want to copy -->
+<!--    * interfacing to eg tensorflow -->
+<!--    * shared state between copies of an object -->
+<!-- - not widely used otherwise -->
+<!-- - more similar to other languages -->
 
-- Supports modifiable (mutable) objects
-   * database connections, files, etc
-   * large data objects we don't want to copy
-   * interfacing to eg tensorflow
-   * shared state between copies of an object
-- not widely used otherwise
-- more similar to other languages
-
-# S3
 ## S3
 
-### Back to `plot`
+Back to the `plot` function...
 
 * `plot()` doesn't *do* anything
-* All the work is done by *methods* for different types of object
+* All the work is done by *methods* for different *classes*
 * Methods are just ordinary functions
 * When you call `plot`, R calls the appropriate `plot` method
 
----
-
-### Generic functions
+## S3: Generic functions
 
 * Generic functions don't *do* anything
 * All the work is done by *methods* for different types of object
@@ -157,11 +243,12 @@ A tidyverse package for making different sorts of vectors
 
 When you call the generic function R calls the appropriate  method
 
----
+## S3: Generics and methods
 
-### Try these
+::: {.callout-caution title="Your turn!"}
+Investigate these functions.
 
-```
+```r
 print
 methods("print")
 stats:::print.acf
@@ -172,57 +259,138 @@ plot.ts
 stats:::plot.lm
 ```
 
-Also, try `methods("plot")` after loading another package
+How do generic functions relate to methods?
 
----
+Also, try `methods("plot")` after loading another package.
+:::
 
-### What do we notice?
+<!-- ### What do we notice? -->
 
-- `print` functions are all different
-- names start with `print.`, then the sort of thing they print
-- mostly aren't visible just by name
--
--
+<!-- - `print` functions are all different -->
+<!-- - names start with `print.`, then the sort of thing they print -->
+<!-- - mostly aren't visible just by name -->
 
----
 
-### Generic functions
+## S3: Classes
+
+* S3 classes are attributes that specify which method to use
+
+* The `class()` function can access (and modify) an object's class
+
+* Classed S3 objects are typically produced with `structure()`
+
+
+For example,
+
+```{r}
+x <- structure(83, class = "grade")
+class(x)
+x
+```
+
+
+## S3: Methods
 
 * *methods* that actually do the work 'belong to' *generic functions*
 
-* This is unusual: most popular OOP systems (Java, C++, Python) have methods belonging to data objects
+* This is unusual: most other OOP systems (Java, C++, Python) have methods belonging to data objects
 
 * Important in R because functions are first-class objects (Week 5)
 
 * Useful for functional programming with objects
 
----
+## S3: Creating a method
 
-### Classes
-
-- S3 classes are the things that specify which method to use
-- Use `class` to attach a class to an object like a Post-It note
-- That's all
-
-```
-x<-1
-class(x)<-"numbat"
-```
-
----
-
-#### Try it
-
-```
-print.numbat <- function(x,...){
-  cat(x,"numbats\n")
+```{r}
+print.grade <- function(x, ...){
+  letter <- if (x < 50) "N"
+  else if (x < 60) "P"
+  else if (x < 70) "C"
+  else if (x < 80) "D"
+  else "HD"
+  cat(x," [", letter, "]", sep = "")
   invisible(x)
+}
+x
+```
+
+## Creating an S3 generic
+
+S3 generics are work like any ordinary function, but they include `UseMethod()` which calls the appropriate method.
+
+::: {.callout-caution title="Your turn!"}
+Create an S3 generic called "reverse".
+
+This function will reverse objects. For example,
+
+* `reverse("stressed")` becomes `"desserts"`,
+* `reverse(7919)` becomes `9197`,
+* `reverse(1.9599)` becomes `9959.1`.
+:::
+
+## Writing S3 methods
+
+An S3 method is an ordinary function with some constraints:
+
+* The function's name is of the form `<generic>.<class>`,
+* The function's arguments match the generic's arguments,
+* The function is registered as an S3 method (for packages).
+
+This looks like:
+
+```r
+#' Documentation for the method
+#' @method <generic> <class>
+<generic>.<class> <- function(<generic args>, <method args>, ...) {
+  # The code for the method
 }
 ```
 
----
+## Writing S3 methods
 
-#### Defining classes
+::: {.callout-caution title="Your turn!"}
+Write methods for reversing `character`, `integer`, and `double` objects.
+
+* `reverse("stressed")` becomes `"desserts"`,
+* `reverse(7919L)` becomes `9197L`,
+* `reverse(1.9599)` becomes `9959.1`.
+
+*Hint: `stringi::stri_reverse()` will reverse a string.*
+
+*The `integer` and `double` methods should return an integer and double respectively.*
+:::
+
+## S3: `.default` methods
+
+Default methods are called when there is no specific method for the object (no class, or no matching class).
+
+Some examples include:
+
+- `mean.default`
+- `summary.default`
+- `head.default`
+
+## Writing S3 defaults
+
+What if we tried to reverse the current date; `reverse(Sys.Date())`?
+
+. . .
+
+::: {.callout-caution title="Your turn!"}
+
+Question: what should the default behaviour be?
+
+:::
+
+. . .
+
+* Raise an error?
+* Return a reversed string?
+* Something else entirely?
+
+## S3: Defining classes
+
+The S3 class system is simple!
 
 - R doesn't care what `class` you attach to an object
 - **You** have to care
@@ -231,85 +399,172 @@ print.numbat <- function(x,...){
 - Documentation is important
 - No real enforcement of encapsulation
 
----
+## S3: Classed objects
 
-#### Ways to set up classes
+You can class any object, including:
 
 - vectors plus attributes (`ts`, `POSIXct`, matrix)
 - lists plus attributes (`lm`, `data.frame`)
 - environments plus attributes
 
-#### Try it
+::: {.callout-caution title="Your turn!"}
+Use `unclass()` and `str()` to explore classed objects, e.g.:
 
-```
+```r
 unclass(.leap.seconds)
 unclass(nhtemp)
 unclass(trees)
 m<-lm(log(Volume)~log(Girth)+log(Height),data=trees)
 str(m)
 ```
+:::
 
----
+<!-- ### Defining classes safely -->
 
-### Defining classes safely
+<!-- - Document what all is in a valid object of your class -->
+<!-- - Have a limited set of places where one is created -->
+<!-- - Consider having a pure constructor function (ARP 13.3.1) -->
+<!-- - Consider having a validator function (ARP 13.3.1) -->
+<!-- - Have a user-friendly function to make valid objects -->
 
-- Document what all is in a valid object of your class
-- Have a limited set of places where one is created
-- Consider having a pure constructor function (ARP 13.3.1)
-- Consider having a validator function (ARP 13.3.1)
-- Have a user-friendly function to make valid objects
+<!-- This is more important if *someone else* might want to make an object from your class -->
 
-This is more important if *someone else* might want to make an object from your class
+## S3: Constructors functions
 
----
+These functions return classed S3 objects. They should handle input validation and be user-friendly.
 
-### Constructors
+Constructor functions typically come in two forms:
 
-- user-friendly: `tibble`, `lm`, `acf`, `svydesign`
-- pure: `new_factor`, `new_difftime` (ARP 13.3.1)
+- complex: `tibble`, `lm`, `acf`, `svydesign`
+- pure: `new_factor`, `new_difftime`
 
-Makes a new object and ensures that it is valid. Stops users creating the object themselves.
+Pure constructor functions simply validate inputs and produce the classed object, while complex constructor functions involve calculations.
 
----
+<!-- ## Creating your own S3 objects -->
 
-### Defining methods
+<!-- S3 methods are *(mostly)* dispatched based on the `class()`. -->
 
-- A method should have **the same** arguments as the generic (plus maybe more)
-- The name of the method is `paste(generic,class,sep=".")`
-- Less ambiguous: use a package and declare the functions
-    * `S3method(generic, class)` in `NAMESPACE`
-    * `@method generic class` with `devtools`
-- `sloop::ftype` tells you about the type of a function
-- `sloop::s3_get_method` or `getAnywhere` finds methods even if they're hidden
+<!-- ```{r} -->
+<!-- class("stressed") -->
+<!-- class(7919L) -->
+<!-- class(1.9599) -->
+<!-- ``` -->
 
----
+<!-- ## Creating your own S3 objects -->
 
-### `default` methods
+<!-- To create an S3 object, we add a class to an object. -->
 
-Called when there is no specific method for the object (no class, or no matching class)
+<!-- This is usually done with `structure()`, for example: -->
 
-- `mean.default`
-- `summary.default`
-- `head.default`
+<!-- \fontsize{10}{10}\sf -->
+<!-- ```{r} -->
+<!-- e <- structure(list(numerator = 2721, denominator = 1001), class = "fraction") -->
+<!-- e -->
+<!-- ``` -->
 
----
+## Creating your own S3 objects
 
-### Adding methods to your class
+The `structure()` function is usually used within packages.
 
-No *rules* on which methods, but informal standards
+* `lm()` returns a list with class `"lm"`, and
+* `tibble()` returns a list classed `"tbl_df"`, `"tbl"`, and `"data.frame"`.
 
-- Start with `print`, `[`
-- `summary` for more information
-- `plot` or `image` if possible (`ggplot` methods take more work)
-- `coef`, `vcov`, maybe `logLik` and `AIC` for models
-- `resid` for models with residuals
+. . .
 
----
+::: {.callout-caution title="Your turn!"}
 
-### Base S3 classes
+Create `fraction()`, which returns `fraction` objects.
 
-- The class for method choice isn't just `class(x)` for base types
-- Use `sloop::s3_class` to be sure
+The underlying data type is a list containing two vectors for the two arguments: `numerator` and `denominator`.
+
+This function should check that the inputs are suitable.
+:::
+
+## Creating your own S3 objects
+
+```{r}
+fraction <- function(numerator, denominator) {
+  if (!is.numeric(numerator) || !is.numeric(denominator)) {
+    stop("Both numerator and denominator must be numeric.")
+  }
+  if (denominator == 0) {
+    stop("Denominator cannot be zero.")
+  }
+  
+  structure(
+    list(numerator = numerator, denominator = denominator),
+    class = "fraction"
+  )
+}
+```
+
+
+## Creating your own S3 objects
+
+The `fraction` class doesn't yet have any methods, so it inherits methods from its list type.
+
+```{r}
+e <- fraction(numerator = 2721, denominator = 1001)
+print(e)
+```
+
+## Creating your own S3 objects
+
+Usually we would create a method for printing S3 objects.
+
+```{r}
+print.fraction <- function(x, ...) {
+  paste(x$numerator, x$denominator, sep = "/")
+}
+print(e)
+```
+
+## Creating your own S3 objects
+
+::: {.callout-caution title="Your turn!"}
+Create a `reverse()` method for the `fraction` object class, which inverts the numerator and denominator.
+
+\vspace{1em}
+
+*Finished early?*
+
+Write a method for converting a `fraction` into a number.
+:::
+
+```{r, include = FALSE}
+as.double.fraction <- function(x, ...) {
+  x$numerator / x$denominator
+}
+```
+
+
+<!-- ### Defining methods -->
+
+<!-- - A method should have **the same** arguments as the generic (plus maybe more) -->
+<!-- - The name of the method is `paste(generic,class,sep=".")` -->
+<!-- - Less ambiguous: use a package and declare the functions -->
+<!--     * `S3method(generic, class)` in `NAMESPACE` -->
+<!--     * `@method generic class` with `devtools` -->
+<!-- - `sloop::ftype` tells you about the type of a function -->
+<!-- - `sloop::s3_get_method` or `getAnywhere` finds methods even if they're hidden -->
+
+<!-- --- -->
+
+<!-- ### Adding methods to your class -->
+
+<!-- No *rules* on which methods, but informal standards -->
+
+<!-- - Start with `print`, `[` -->
+<!-- - `summary` for more information -->
+<!-- - `plot` or `image` if possible (`ggplot` methods take more work) -->
+<!-- - `coef`, `vcov`, maybe `logLik` and `AIC` for models -->
+<!-- - `resid` for models with residuals -->
+
+## S3: Method dispatch
+
+Method dispatch describes the process of calling the appropriate method for the object's class.
+
+This mostly matches `class()`, but not always for some primitive R object types. `sloop::s3_class()` shows the extra s3 dispatch classes.
 
 ```
 > s3_class(1)
@@ -322,9 +577,7 @@ No *rules* on which methods, but informal standards
 [1] "matrix" "array"
 ```
 
----
-
-### Ambiguous cases
+## S3: Naming ambiguity
 
 - `t` is a generic
 - `t.test` is a generic
@@ -333,147 +586,48 @@ No *rules* on which methods, but informal standards
 - `list` is not generic
 - `list.files` isn't a method
 
-Avoid using `.` as a word separator in function names that aren't methods. Use `camelCase` or `snake_case` or some other consistent approach
+Avoid using `.` as a word separator in function names that aren't methods.
 
----
+Use `camelCase` or `snake_case` or some other consistent approach
 
-### Defining generics
+<!-- --- -->
 
-A typical generic function includes **only** a call to `UseMethod`
+<!-- ### Defining generics -->
 
-```{r}
-print
-```
+<!-- A typical generic function includes **only** a call to `UseMethod` -->
 
----
+<!-- ```{r} -->
+<!-- print -->
+<!-- ``` -->
 
-### Dispatch on another argument
+<!-- --- -->
 
-Specify which argument to use for choosing the method (default is the first)
+<!-- ### Dispatch on another argument -->
 
-```
-> survey:::svymean
-function (x, design, na.rm = FALSE, ...)
-{
-    .svycheck(design)
-    UseMethod("svymean", design)
-}
-```
+<!-- Specify which argument to use for choosing the method (default is the first) -->
 
----
+<!-- ``` -->
+<!-- > survey:::svymean -->
+<!-- function (x, design, na.rm = FALSE, ...) -->
+<!-- { -->
+<!--     .svycheck(design) -->
+<!--     UseMethod("svymean", design) -->
+<!-- } -->
+<!-- ``` -->
 
-### Inheritance
+## S3: Inheritance
 
 The `class` attribute of an object can have multiple elements
 
 - `UseMethod()` uses the first method that matches, or `default`
 - `NextMethod()` uses the next method that matches
 
----
-
-### Polite conduct
+## S3: Polite conduct
 
 - if you define a new generic, you can define methods for new and existing classes
 - if you define a new class, you can define methods for new and existing generics
 - don't define methods for someone else's class and generic (ask them)
 - try not to define a generic with the same name as an existing one
-
-# S3 `vctrs`
-
-## S3 `vctrs`
-
-A package for defining new S3 vectors
-
-- makes it easy to have them as `tibble` columns
-- requires a *pure constructor* to make new objects, so they will all be valid
-- supports *double dispatch* for binary operators (eg: +,-)
-- has a complicated but reliable system for type conversion
-- requires a lot of method definitions to get started
-
-[vctrs.r-lib.org](https://vctrs.r-lib.org)
-
----
-
-## An example: S3 and `vctrs`
-
-The `rimu` package represents multiple-response questions
-
-```
-remotes::install_github("tslumley/rimu")
-```
----
-
-```
-data(usethnicity)
-race<-as.mr(strsplit(as.character(usethnicity$Q5),""))
-race<-mr_drop(race," ")
-mtable(race)
-hispanic<-as.mr(usethnicity$Q4==1,"Hispanic")
-ethnicity<-mr_union(race,hispanic)
-plot(ethnicity)
-e_S3<-ethnicity[101:120]
-e_vctrs<-as.vmr(e_S3,na.rm=TRUE)
-```
-
----
-
-#### Inheritance
-
-```
-mr_union<-function(x,y,...) UseMethod("mr_union")
-
-mr_union.default<-function(x,y,...){
-  x<-as.mr(x)
-  y<-as.mr(y)
-  if (length(x)!=length(y))
-    stop("different numbers of observations in x and y")
-
-.....
-}
-```
-
----
-
-```
-mr_union.vmr<-function(x,y,...) {
-    r<-NextMethod()
-    as.vmr(r)
-}
-```
-
----
-
-#### Encapsulation
-
-- base S3 version is matrix of logical, plus levels attribute
-    * works in `data.frame`
-- vctrs S3 version is list of vectors of strings
-    * works in `tibble`
-
----
-
-#### Pure constructor
-
-```
-new_vmr <- function(x,levels=unique(do.call(c,x))) {
-  vctrs::new_list_of(x, ptype = character(),
-  class = "vmr", levs=levels)
-}
-```
-
----
-
-#### 'helper' functions
-
-```
-> methods("as.mr")
-[1] as.mr.character*  as.mr.data.frame* as.mr.default*
-[4] as.mr.factor*     as.mr.list*       as.mr.logical*
-[7] as.mr.mr*         as.mr.ms*         as.mr.vmr*
-
-> methods("as.vmr")
-[1] as.vmr.default* as.vmr.mr*
-```
 
 # S4
 ## S4
@@ -488,9 +642,7 @@ It's possible to ask an object what methods it supports and get a reliable respo
 
 S4 also allows multiple inheritance and multiple dispatch
 
----
-
-### Bioconductor
+## S4: Bioconductor
 
 - Package system for high-throughput molecular biology
 - Large data
@@ -502,9 +654,7 @@ It needs consistent infrastructure and large-scale collaboration: S4
 
 [bioconductor.org](https://bioconductor.org)
 
----
-
-### Multiple dispatch
+## S4: Multiple dispatch
 
 Choosing a method based on the class of more than one argument
 
@@ -512,9 +662,7 @@ Choosing a method based on the class of more than one argument
 - important for matrices
 - can be useful for plots
 
----
-
-### Multiple inheritance
+## S4: Multiple inheritance
 
 `AnnDbObjBimap` is a class for storing look-up tables between different genomic identifiers (eg from different manufacturers)
 
@@ -525,29 +673,179 @@ It is
 
 so it inherits generic functions from both these parents
 
-# R6
+## S4: Creating a class
 
-## R6
+The structure of your S4 class is defined with `setClass()`.
 
-Remember function factories from last week?
+```{r}
+setClass(
+  "StudentGrades",
+  slots = list(
+    name = "character",
+    grades = "numeric"
+  )
+)
+```
 
-- Create a function closure with useful variables in its environment
-- These variables are visible inside the function
+## S4: Creating S4 objects
 
-Now do this with
+S4 objects are created with the `new()` function.
 
-- multiple variables in the shared environment
-- multiple functions inheriting this environment
-- allow the shared variables to be modified
+```{r}
+studentGrades <- function(name, grades) {
+  if (!is.character(name) || length(name) != 1) {
+    stop("Name must be a single string.")
+  }
+  if (!is.numeric(grades)) {
+    stop("Grades must be numeric.")
+  }
+  
+  new("StudentGrades", name = name, grades = grades)
+}
+```
 
----
+## S4: Creating methods
 
-#### R6 is good for...
+Methods are registered to S4 classes with `setGeneric()` and `setMethod()`.
 
-- large data objects, to reduce copying
-- external objects that R can't just copy (database connections, files,... )
-- shared state such as games
+```{r}
+setGeneric("averageGrade", function(object) {
+  standardGeneric("averageGrade")
+})
 
-R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming
+setMethod("averageGrade", "StudentGrades", function(object) {
+  mean(object@grades)
+})
+```
 
-[R6.r-lib.org](https://r6.r-lib.org/articles/Introduction.html)
+## S4: Using S4 objects
+
+```{r}
+student <- studentGrades("Alice", c(85, 90, 78))
+print(student)
+
+average <- averageGrade(student)
+print(paste("Average Grade:", average))
+```
+
+## S4: Accessing S4 slots
+
+Contents of an S4 object are extracted with `@`.
+
+For example, the student's name can be obtained with:
+
+```{r}
+student@name
+```
+
+# S7
+
+## S7
+
+S7 = S3 + S4
+
+It aims to maintain the simplicity of S3, while adding useful features from S4.
+
+(and unify CRAN and Bioconductor packages!)
+
+It's not yet in R-Core, but it can be used via the `S7` package.
+
+```{r}
+library(S7)
+```
+
+## S7: Creating a class
+
+Like S4, S7 starts by defining the data structure.
+
+```{r}
+student <- new_class(
+  name = "student",
+  properties = list(
+    name = class_character,
+    grades = class_double
+  )
+)
+```
+
+## S7: Self-validation
+
+S7 additionally supports property validation
+
+```{r}
+student <- new_class(
+  name = "student",
+  properties = list(
+    name = class_character,
+    grades = class_double
+  ),
+  validator = function(self) {
+    if (any(self@grades < 0 | self@grades > 100)) {
+      "@grades must be between 0 and 100"
+    }
+  }
+)
+```
+
+## S7: S7 classes are also constructors
+
+The S7 class `student` is also a (pure) constructor function.
+
+```{r}
+x <- student(name = "Alice", grades = c(85, 90, 78))
+x
+```
+
+The `validator` prevents invalid grades.
+
+```{r}
+student(name = "Mitch", grades = c(-10, 140))
+```
+
+## S7: Creating generics
+
+S7 generics are created with `new_generic()`.
+
+```{r}
+best_grade <- new_generic("best_grade", dispatch_args = "x")
+```
+
+Here we explicitly specify which argument(s) are used in finding the appropriate method. Double (or multiple) dispatch is supported!
+
+## S7: Creating methods
+
+S7 methods are created with `method<-`:
+
+```{r}
+method(best_grade, student) <- function(x) {
+  max(x@grades)
+}
+best_grade(x)
+```
+
+<!-- # R6 -->
+
+<!-- ## R6 -->
+
+<!-- Remember function factories from last week? -->
+
+<!-- - Create a function closure with useful variables in its environment -->
+<!-- - These variables are visible inside the function -->
+
+<!-- Now do this with -->
+
+<!-- - multiple variables in the shared environment -->
+<!-- - multiple functions inheriting this environment -->
+<!-- - allow the shared variables to be modified -->
+
+<!-- --- -->
+
+<!-- #### R6 is good for... -->
+
+<!-- - large data objects, to reduce copying -->
+<!-- - external objects that R can't just copy (database connections, files,... ) -->
+<!-- - shared state such as games -->
+
+<!-- R6 is more similar to C++/Java/Python OOP. It doesn't really support functional programming -->
+
+<!-- [R6.r-lib.org](https://r6.r-lib.org/articles/Introduction.html) -->
