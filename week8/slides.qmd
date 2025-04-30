@@ -799,6 +799,7 @@ x
 The `validator` prevents invalid grades.
 
 ```{r}
+#| error: true
 student(name = "Mitch", grades = c(-10, 140))
 ```
 
