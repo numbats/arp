@@ -38,30 +38,30 @@ source(here::here("course_info.R"))
 
 . . .
 
-::: {.callout-note icon=false title="Object-oriented programming (W6-W7)"}
-* Functions are associated with object types.
-* Methods of the same 'function' produce object-specific output.
-:::
-
-## Programming paradigms
-
-::: {.callout-note icon=false title="Literate programming (W7)"}
+::: {.callout-note icon=false title="Literate programming (W6)"}
 * Natural language is interspersed with code.
 * Aimed at prioritising documentation/comments.
 * Now used to create reproducible reports/documents.
 :::
 
-. . .
+## Programming paradigms
 
-::: {.callout-note icon=false title="Reactive programming (W8)"}
+::: {.callout-note icon=false title="Reactive programming (W7)"}
 * Objects are expressed using code based on inputs.
 * When inputs change, the object's value updates.
 :::
 
+. . .
 
-# Object oriented programming
+::: {.callout-note icon=false title="Object-oriented programming (W8-W9)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
 
-## Object oriented programming
+
+# S3 Recap
+
+## Comparing S3 and vctrs
 
 ::: {.callout-note icon=false title="S3"}
 * The OO system used by most of CRAN.
@@ -117,21 +117,22 @@ If there isn't a registered method for the object, the default method for the ge
 graphics:::plot.default
 ```
 
-## Creating an S3 generic
+## S3 Recap: Generic functions
 
 S3 generics are work like any ordinary function, but they include `UseMethod()` which calls the appropriate method.
 
-::: {.callout-caution title="Your turn!"}
-Create an S3 generic called "reverse".
+::: {.callout-caution title="Last week..."}
+Last week we wrote a generic function `reverse()`.
 
-This function will reverse objects. For example,
+```{r}
+reverse <- function(x, ...) {
+  UseMethod("")
+}
+```
 
-* `reverse("stressed")` becomes `"desserts"`,
-* `reverse(7919)` becomes `9197`,
-* `reverse(1.9599)` becomes `9959.1`.
 :::
 
-## Writing S3 methods
+## S3 Recap: S3 methods
 
 An S3 method is an ordinary function with some constraints:
 
@@ -149,49 +150,34 @@ This looks like:
 }
 ```
 
-## Writing S3 methods
+## S3 Recap: S3 methods
 
-::: {.callout-caution title="Your turn!"}
-Write methods for reversing `character`, `integer`, and `double` objects.
+::: {.callout-caution title="Last week..."}
+We wrote methods for reversing `character`, `integer`, and `double` objects.
 
-* `reverse("stressed")` becomes `"desserts"`,
-* `reverse(7919L)` becomes `9197L`,
-* `reverse(1.9599)` becomes `9959.1`.
-
-*Hint: `stringi::stri_reverse()` will reverse a string.*
-
-*The `integer` and `double` methods should return an integer and double respectively.*
-:::
-
-## Writing S3 defaults
-
-What if we tried to reverse the current date; `reverse(Sys.Date())`?
-
-. . .
-
-::: {.callout-caution title="Your turn!"}
-
-Question: what should the default behaviour be?
-
-:::
-
-. . .
-
-* Raise an error?
-* Return a reversed string?
-* Something else entirely?
-
-## Creating your own S3 objects
-
-S3 methods are *(mostly)* dispatched based on the `class()`.
+Some solutions were very creative (and I promised honey!)
 
 ```{r}
-class("stressed")
-class(7919L)
-class(1.9599)
+reverse.integer <- function(x) {
+  ndigits <- floor(log10(x))
+  digits <- seq(floor(log10(x)))
+  x*(10^ndigits) - (99*sum(floor(x*10^-digits)*(10^(ndigits-digits))))
+}
 ```
+:::
 
-## Creating your own S3 objects
+## S3 Recap: default methods
+
+Default methods are called when there is no specific method for the object (no class, or no matching class).
+
+Some examples include:
+
+- `mean.default`
+- `summary.default`
+- `head.default`
+
+
+## S3 Recap: S3 objects
 
 To create an S3 object, we add a class to an object.
 
@@ -203,53 +189,36 @@ e <- structure(list(numerator = 2721, denominator = 1001), class = "fraction")
 e
 ```
 
-## Creating your own S3 objects
 
-The `structure()` function is usually only used within other functions made for end-users. For example,
+## S3 Recap: Constructor functions
 
-* `lm()` returns a list with class `"lm"`, and
-* `tibble()` returns a data.frame (list) with classes `"tbl_df"`, `"tbl"`, and `"data.frame"`.
+These functions return classed S3 objects. They should handle input validation and be user-friendly.
 
-. . .
+Constructor functions typically come in two forms:
 
-::: {.callout-caution title="Your turn!"}
+- complex: `tibble`, `lm`, `acf`, `svydesign`
+- pure: `new_factor`, `new_difftime`
 
-Create `fraction()`, which returns `fraction` objects.
+Pure constructor functions simply validate inputs and produce the classed object, while complex constructor functions involve calculations.
 
-This function should check that the inputs are suitable
-:::
-
-## Creating your own S3 objects
-
-The `fraction` class doesn't yet have any methods, so it inherits methods from its list type.
-
-Usually we would create a method for printing S3 objects.
+## S3 Recap: Constructor functions
 
 ```{r}
-print.fraction <- function(x, ...) {
-  paste(x$numerator, x$denominator, sep = "/")
-}
-e
-```
+fraction <- function(numerator, denominator) {
+  # Validate inputs
+  stopifnot(is.numeric(numerator))
+  stopifnot(is.numeric(denominator))
+  if (any(denominator == 0)) stop("I won't let you divide by 0.")
 
-## Creating your own S3 objects
+  # Create the data structure (list)
+  x <- list(numerator = numerator, denominator = denominator)
 
-::: {.callout-caution title="Your turn!"}
-Create a `reverse()` method for the `fraction` object class, which inverts the numerator and denominator.
-
-\vspace{1em}
-
-*Finished early?*
-
-Write a method for converting a `fraction` into a number.
-:::
-
-```{r, include = FALSE}
-as.double.fraction <- function(x, ...) {
-  x$numerator / x$denominator
+  # Return a classed S3 object
+  structure(x, class = "fraction")
 }
 ```
 
+# vctrs
 
 ## Creating your own S3 vectors (with vctrs)
 
