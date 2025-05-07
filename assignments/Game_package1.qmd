@@ -18,6 +18,8 @@ The package should have at least 3 user-facing functions, and a vignette that de
 
 Marks will be awarded for clean and efficient code, and for good design.
 
+Please use the team names [allocated on Ed](https://edstem.org/au/courses/21222/discussion/2648997). If you are the first person on your team to accept the assignment, you will need to create the team. Otherwise, you should be able to join the team.
+
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))
