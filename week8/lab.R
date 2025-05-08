@@ -102,9 +102,9 @@ revint_stri <- function(x) {
 
 options(scipen = 102938)
 bench::mark(
-  revint_base10(7653187221304L),
-  revint_math(7653187221304L),
-  revint_stri(7653187221304L),
+  revint_base10(7653187221304),
+  revint_math(7653187221304),
+  revint_stri(7653187221304),
   max_iterations = 100000
 )
 
