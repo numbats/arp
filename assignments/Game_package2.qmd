@@ -11,6 +11,8 @@ You need to extend your game package to include: (a) a custom vctrs class'; and 
 
 All user-facing functions should have examples and unit tests.
 
+There should be at least two vignettes: one describing how to use the package (which you should have written as part of Game package 1); and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.
+
 Marks will be awarded for clean and efficient code, and for good design.
 
 # Some suggestions
