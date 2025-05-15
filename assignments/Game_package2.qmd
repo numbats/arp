@@ -2,7 +2,7 @@
 title: Game package 2 (30%)
 ---
 
-You need to extend your game package to include: (a) a custom vctrs class' (b) some element of metaprogramming; and (c) the use of C++.
+You need to extend your game package to include: (a) a custom vctrs class'; and (b) the use of C++. You can also consider adding some element of metaprogramming if you think it is appropriate. 
 
 * Create and document a function for creating your vector.
 * Define appropriate methods for using your vector, including `format()`, `vec_ptype2()`, and `vec_cast()`.
