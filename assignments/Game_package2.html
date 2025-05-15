@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c1a70322e27d077f7ea372d73b2c9463.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-70dbdbf3e2c4ba93797768058031c380.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0b4256e2a80d8fd867afd5872c09b56a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-faf0dd275a27e560e075d41e7ee9088c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -215,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You need to extend your game package to include: (a) a custom vctrs class’ (b) some element of metaprogramming; and (c) the use of C++.</p>
+<p>You need to extend your game package to include: (a) a custom vctrs class’; and (b) the use of C++. You can also consider adding some element of metaprogramming if you think it is appropriate.</p>
 <ul>
 <li>Create and document a function for creating your vector.</li>
 <li>Define appropriate methods for using your vector, including <code>format()</code>, <code>vec_ptype2()</code>, and <code>vec_cast()</code>.</li>
@@ -223,6 +223,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Create methods for your custom generic function(s), including suitable defaults.</li>
 </ul>
 <p>All user-facing functions should have examples and unit tests.</p>
+<p>There should be at least two vignettes: one describing how to use the package (which you should have written as part of Game package 1); and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.</p>
 <p>Marks will be awarded for clean and efficient code, and for good design.</p>
 <section id="some-suggestions" class="level1">
 <h1>Some suggestions</h1>
