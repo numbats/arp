@@ -18,6 +18,15 @@ Marks will be awarded for clean and efficient code, and for good design.
 
 Please use the team names [allocated on Ed](https://edstem.org/au/courses/21222/discussion/2648997). If you are the first person on your team to accept the assignment, you will need to create the team. Otherwise, you should be able to join the team.
 
+
+> **AI & Generative AI tools** may be used in *guided* ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence)). Any work submitted for a mark must:
+>
+>  1. represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.
+>  2. adhere to the guidelines for AI use set for the assessment task.
+>  3. reflect the University’s commitment to academic integrity and ethical behaviour.
+>
+> Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.
+
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))

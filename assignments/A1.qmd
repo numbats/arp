@@ -8,6 +8,13 @@ Write an R function to simulate the supermarket queues at each checkout, taking 
 
 Your code should be as efficient as possible. Arguments should be checked for range and class.
 
+> **AI & Generative AI tools** may be used in *guided* ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence)). Any work submitted for a mark must:
+>
+>  1. represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.
+>  2. adhere to the guidelines for AI use set for the assessment task.
+>  3. reflect the University’s commitment to academic integrity and ethical behaviour.
+>
+> Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.
 
 ```{r}
 #| output: asis
