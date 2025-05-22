@@ -29,30 +29,34 @@ source(here::here("course_info.R"))
 \tableofcontents
 ```
 
+
 ## About me
 
 [Tomasz Woźniak](https://github.com/donotdespair)
 
-* Senior Lecturer in Econometrics at the unimelb
-* Econometrician: Bayesian time series analyst
-* Develops methods for applied macro research
-* Loves cycling, yoga, books, volunteering, contemporary theatre, music, and art
+* senior lecturer in econometrics at the unimelb
+* econometrician: Bayesian time series analyst
+* develops methods for applied macro research
+* loves cycling, yoga, books, volunteering, contemporary theatre, music, and arts
 * I am nice!
 
 ## About me
 
 [Tomasz Woźniak](https://github.com/donotdespair)
 
-* **R** enthusiast and specialised user for 16 years
-* [**bsvars**](https://cran.r-project.org/package=bsvars) package author (more coming up)
+* **R** enthusiast and specialised user for 17 years
+* associate editor of the [R Journal](https://journal.r-project.org/)
+* author of **R** packages [**bsvars**](https://bsvars.org/bsvars/) and [**bsvarSIGNs**](https://bsvars.org/bsvarSIGNs/)
+* more info at [bsvars.org](https://bsvars.org/)
 
-\vspace{0.3cm}\centerline{\includegraphics[width = 3.5cm]{bsvars.png}}
+\vspace{0.3cm}\centerline{\includegraphics[width = 3.5cm]{bsvars.org.png}\includegraphics[width = 3.5cm]{bsvars.png}\includegraphics[width = 3.5cm]{bsvarSIGNs.png}}
 
 
 # Motivation
 
 ## Motivations
 
+* Compiled code written in **C++** runs much faster than interpreted code in **R**
 * Coding in **C++** for **R** applications has always been possible
 * It requires:
   * writing **C++** code
@@ -65,7 +69,7 @@ source(here::here("course_info.R"))
 
 ## Motivations
 
-* **Rcpp** is a family of packages by Dirk Eddelbuetel et al. facilitating the application of **C++** to **R**
+* **Rcpp** is a family of packages by Dirk Eddelbuetel et al. facilitating the application of **C++** in **R**
 * An interface for communication between **R** and **C++**
 * Greatly simplifies the workflow
 * Easier to benefit from the best of the two worlds:
@@ -76,7 +80,7 @@ source(here::here("course_info.R"))
 
 ## Objectives for this session
 
-* to facilitate working with **C++** for **R** applications
+* to facilitate working with **C++** in **R** applications
 * to perform a sequence of exercises
 * to focus on:
   * basic programming structures
@@ -94,10 +98,8 @@ source(here::here("course_info.R"))
   * [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
   * [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
   * [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
-* **R** scripts:
-  * [`nicepackage.R`](https://github.com/numbats/arp/blob/main/week12/nicepackage.R)
 
-## learning resources
+## Learning resources
 
 * This session!
 * vignettes: for packages [**Rcpp**](https://cran.r-project.org/package=Rcpp) and [**RcppArmadillo**](https://cran.r-project.org/package=RcppArmadillo)
@@ -213,11 +215,16 @@ List nicetry (                    // output type and function name
 Develop a **C++** function that creates a `Tx3` matrix with:
 
 * an integer `T` as the only argument
-* a constant term column
+* a constant term column: `NumericVector i(n, 1.0);`
 * a linear trend $t - \bar{t}$ column
 * a quadratic trend $(t - \bar{t})^2$ column
 
-where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.
+where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.\
+
+Hints: 
+
+* specify individual columns as `NumericVector` and put them together in a `NumericMatrix` object
+* use functions `cumsum`, `mean`, `pow`, and `cbind`.\
 
 Get some help [HERE](https://teuder.github.io/rcpp4everyone_en/080_vector.html).
 :::
@@ -261,7 +268,9 @@ $$
 Develop a **C++** function that:
 
 * has an integer `T` as the only argument
-* returns a `T`-vector with Gaussian random walk
+* returns a `T`-vector with Gaussian random walk\
+
+Hint: use functions `rnorm` and `cumsum`.
 :::
 
 
@@ -269,16 +278,73 @@ Develop a **C++** function that:
 
 ## Some stats with RcppArmadillo
 
-* Data objects from **Rcpp** have limited functionality
+* Data objects from **Rcpp** have limited functionality\
 * **Armadillo** is a **C++** library for linear algebra that
   * provides a rich set of functions
   * has a simple and intuitive syntax
   * includes fast linear algebra routines, and
   * fast random number generators
-  * has fantastic [documentation](http://arma.sourceforge.net/docs.html)
+  * has fantastic [documentation](http://arma.sourceforge.net/docs.html)\
+  
 * **RcppArmadillo** is a simplified interface with **Armadillo**
   * allows seamless integration with **Rcpp**
   * easily passes data between **R** and **C++**
+
+
+
+## Some stats with RcppArmadillo: IG2 distribution
+
+Sampling random draws from an inverted gamma 2 distribution.
+
+A positive random variable $\sigma^2$ following an inverted gamma 2 distribution with positive scale $s$ and shape $\nu$ parameters is denoted by:
+$$
+\sigma^2 \sim IG2\left(s, \nu\right)
+$$
+
+1. Generate random draw $x$ from $\chi^2(\nu)$
+2. Return $\frac{s}{x}$
+
+## Some stats with RcppArmadillo: IG2 distribution
+
+Contents of a `nicerig2.cpp` file:
+
+```{Rcpp nicerig2}
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+using namespace arma;
+
+// [[Rcpp::export]]
+vec nicerig2 (
+  const int n, 
+  const double s, 
+  const double nu
+) {
+  vec rig2 = s / chi2rnd( nu, n );
+  return rig2;
+}
+
+/*** R
+nicerig2(2, 1, 1)
+*/
+```
+
+## Develop a **C++** function in a `.cpp` file
+
+::: {.callout-caution title="Your turn!"}
+Consider a Gaussian random walk:
+$$
+y_t = y_{t-1} + \varepsilon_t, \qquad \varepsilon_t \sim N(0,1), \qquad y_0 = 0
+$$
+Develop a **C++** function using **RcppArmadillo** that:
+
+* has an integer `T` as the only argument
+* returns a `T`-vector of type `vec` with Gaussian random walk\
+
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
+:::
+
+
+
 
 ## Some stats with RcppArmadillo: linear regression
 
@@ -313,84 +379,13 @@ $$
 * don't adjust the arguments
 * return `beta_hat` and `cov_beta_hat` in a list
 
-Get some help [HERE](http://arma.sourceforge.net/docs.html).
+Get some help [HERE](http://arma.sourceforge.net/docs.html).\
+
+Hint: use functions `inv_sympd` and `.n_elem`.
 :::
 
 
-## Some stats with RcppArmadillo: IG2 distribution
 
-Sampling random draws from an inverted gamma 2 distribution.
-
-A positive random variable $\sigma^2$ following an inverted gamma 2 distribution with positive scale $s$ and shape $\nu$ parameters is denoted by:
-$$
-\sigma^2 \sim IG2\left(s, \nu\right)
-$$
-
-1. Generate random draw $x$ from $\chi^2(\nu)$
-2. Return $\frac{s}{x}$
-
-## Some stats with RcppArmadillo: IG2 distribution
-
-Contents of a `nicerig2.cpp` file:
-
-```{Rcpp nicerig2}
-#include <RcppArmadillo.h>
-// [[Rcpp::depends(RcppArmadillo)]]
-using namespace arma;
-
-// [[Rcpp::export]]
-vec nicerig2 (const int n, const double s, const double nu) {
-  vec rig2 = s / chi2rnd( nu, n );
-  return rig2;
-}
-
-/*** R
-nicerig2(2, 1, 1)
-*/
-```
-
-## Some stats with RcppArmadillo: NIG2 distribution
-
-**Normal-inverted gamma 2 distribution.**
-
-Random variables, an $N$-vector $\mathbf{x}$ and a positive scalar, $\sigma^2$, following the normal-inverted gamma 2 distribution with
-
-* an $N$-vector of the mean $\boldsymbol\mu$
-* a positive definite $N\times N$ covariance matrix $\boldsymbol\Sigma$
-* a positive scale $s$
-* a positive shape $\nu$
-
-## Some stats with RcppArmadillo: NIG2 distribution
-
-**Normal-inverted gamma 2 distribution.**
-\begin{align*}
-\left(\mathbf{x}, \sigma^2\right) &\sim NIG2\left(\boldsymbol\mu, \boldsymbol\Sigma, s, \nu\right)\\[2ex]
-p\left(\mathbf{x}, \sigma^2\right) &= p\left(\mathbf{x} \mid \sigma^2\right)p\left(\sigma^2\right)\\[2ex]
-\sigma^2 &\sim IG2\left(s, \nu\right)\\
-\mathbf{x} \mid \sigma^2 &\sim N\left(\boldsymbol\mu, \sigma^2\boldsymbol\Sigma\right)
-\end{align*}
-
-## Some stats with RcppArmadillo: NIG2 distribution
-
-To generate $n$ random draws from the normal-inverted gamma 2 distribution:
-
-1. Generate $n$ independent random draws of $\sigma^{2(j)}$ from $IG2(s, \nu)$ for $j=1,\dots,n$
-2. For each $j$, generate the corresponding random draw of $\mathbf{x}^{(j)}$ from $N\left(\boldsymbol\mu, \sigma^{2(j)}\boldsymbol\Sigma\right)$
-3. Return the collection of pairs $\left\{\mathbf{x}^{(j)}, \sigma^{2(j)}\right\}_{j=1}^n$
-
-## Some stats with RcppArmadillo: NIG2 distribution
-
-
-::: {.callout-caution title="Your turn!"}
-Complement the `niceig2` function with another one that provides $n$ random draws from the normal-inverted gamma 2 distribution.
-
-* adjust the arguments
-* return a list containing
-  * an $n$-vector of $\sigma^2$ draws
-  * an $n\times N$ matrix of $\mathbf{x}$ draws
-
-Get some help [HERE](http://arma.sourceforge.net/docs.html).
-:::
 
 ## Some stats with RcppArmadillo: Simulation smoother
 
@@ -399,9 +394,9 @@ Have a look at my article on [*Simulation Smoother using RcppArmadillo*](https:/
 :::
 
 
-# Create an R package with compiled code in ten steps
+# An R package with compiled code
 
-## Step 1: create a package
+## An R package with compiled code
 
 Run the following code in **R**:
 
@@ -409,72 +404,54 @@ Run the following code in **R**:
 RcppArmadillo::RcppArmadillo.package.skeleton("nicepackage")
 ```
 
-* **C++** code lives in `src/`
+Note: this function has a different effect if package **pkgKitten** is installed.
+
+
+## An R package with compiled code
+
 * `DESCRIPTION` includes necessary dependencies
-* `NAMESPACE` includes `useDynLib(nicepackage)`
-* **R** functions in `R/` refer to **C++** functions via `.Call()`
-* File `R/RcppExports.R` contains all **C++** functions exported to **R**
+```
+Imports: Rcpp (>= 1.0.14)
+LinkingTo: Rcpp, RcppArmadillo
+```
 
-## Step 2: create R project and open it
+* `NAMESPACE` includes dynamic library definition and inports
+```
+useDynLib(nicepackage, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+```
 
-* you know what to do
 
-## Step 3: some cleaning
 
-* remove files:
-  * `Read-and-delete-me`
-  * `src/HelloWorld.cpp`
-  * `man/*`
+## An R package with compiled code
 
-## Step 4: include useful elements
+* **C++** code lives in `src/`
+  * `src/Makevars` files specify compilation flags
+  * `src/Makevars.win` files specify compilation flags for Windows
+  * analyse sample `src/*.cpp` file
+  * files `src/RcppExports.cpp` and `R/RcppExports.R` are generated automatically by running `Rcpp::compileAttributes()`
+  * analyse **R** wrappers to **C++** functions in `R/RcppExports.R`
+  
 
-1. Set **git** `usethis::use_git()`
-2. Set licencing `usethis::use_gpl3_license()`
-3. Set package doc `usethis::use_package_doc()`
-4. Set **roxy** `roxygen2::roxygenise()`
-  * copy `Encoding: UTC-8` to `DESCRIPTION`
-  * remove the `NAMESPACE` file
-  * run `roxygen2::roxygenise()` again
-<!-- 5. Run `usethis::use_rcpp_armadillo()` -->
 
-## Step 5: edit the `DESCRIPTION` file
+## An R package with compiled code
 
-* you know what to do!
 
-## Step 6: include compiled code
+::: {.callout-caution title="Your turn!"}
+Create an **R** package with compiled code following the steps from repository [donotdespair/15steps2nicepackage](https://github.com/donotdespair/15steps2nicepackage)\
 
-1. copy the `nicerig2.cpp` file to `src/` directory
-2. edit it
-3. include the header file `nicerig2.h` in the `src/` directory
-4. edit it
+* Read the `README` file
+* download file `nicepackage.R`
+* follow the instructions in **R**
+:::
 
-## Step 7: compile the code the first time
+## What's next?
 
-1. Run `Rcpp::compileAttributes()` to update the `R/RcppExports.R` file
-<!-- 2. Run `devtools::check()` -->
-
-## Step 8: include R wrapper for C++ function
-
-1. Create an `R/nicerig2.R` file
-2. Copy/paste the corresponding function from the `R/RcppExports.R` file
-3. Include argument check
-4. Include documentation
-5. Implement further adjustments
-
-## Step 9: some final touches
-
-1. Run `Rcpp::compileAttributes()`
-2. Run `devtools::document()` to generate documentation
-3. Run `devtools::check()` to check the package
-
-TADA! Your package is ready!
-
-## Step 10: use the package for the first time
-
-1. Run `devtools::load_all()` to load the package
-2. Run `hist(nicerig2(1e4), breaks = 100)` to test the function
-3. Run `?nicerig2` and `?nicepackage` to check the documentation
-
+* Keep programming in **C++** for **R** applications
+* Reach out for help
+* Read the documentation of the **C++** libraries you're about to use
+* Study the **Rcpp** family of packages
+* Study **openMP** to facilitate parallel computing
 
 ## What's next?
 
