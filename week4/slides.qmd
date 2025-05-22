@@ -22,11 +22,6 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-## Outline
-
-\vspace*{0.4cm}
-\tableofcontents
-
 # Debugging
 
 ## What's a bug?

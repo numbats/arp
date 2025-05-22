@@ -22,14 +22,6 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-## Outline
-
-```{=tex}
-\vspace*{0.4cm}
-\tableofcontents
-```
-
-
 ## About me
 
 [Tomasz Woźniak](https://github.com/donotdespair)
