@@ -284,7 +284,14 @@
     "href": "week11/index.html#what-you-will-learn-this-week",
     "title": "Week 11: Rewriting R code in C++",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nC++ for applications in R with Tomasz Woźniak\nThe first steps with Rcpp\nSome stats with RcppArmadillo\nHands-on coding with four exercises\nCreate an R package with compiled code in ten steps"
+    "text": "What you will learn this week\n\nC++ for applications in R with Tomasz Woźniak\nThe first steps with Rcpp\nSome stats with RcppArmadillo\nHands-on coding with four exercises\nAn R package with compiled code"
+  },
+  {
+    "objectID": "week11/index.html#preparation-to-the-session",
+    "href": "week11/index.html#preparation-to-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Preparation to the session",
+    "text": "Preparation to the session\nYou must have a cpp compiler installed on your computer. Follow the instructions from Section 1.3. by Eddelbuettel & François (2023). In short:\n\nWindows: install RTools\nmacOS: install Xcode Command Line Tools\nLinux: install the standard development packages"
   },
   {
     "objectID": "week11/index.html#other-references-used-during-the-session",
