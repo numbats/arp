@@ -462,6 +462,13 @@
     "text": "Scripts used during the session\n\nSimple list creation nicetry.cpp\nSimple linear regression example nicelr.cpp\nSimple loop application nicelist.cpp\nSampling from inverted gamma 2 distribution nicerig2.cpp\nStep-by-step package creation nicepackage.R"
   },
   {
+    "objectID": "week11/index.html#slides-for-week",
+    "href": "week11/index.html#slides-for-week",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
     "objectID": "week11/index.html#assignments",
     "href": "week11/index.html#assignments",
     "title": "Week 11: Rewriting R code in C++",
