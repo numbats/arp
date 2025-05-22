@@ -5,26 +5,18 @@ using namespace Rcpp;
 using namespace arma;
 
 // [[Rcpp::export]]
-List nicernig2 (
-    const int n, 
-    const vec mu,
-    const mat Sigma,
-    const double s, 
-    const double nu
-) {
-  
-  vec rig2 = s / chi2rnd( nu, n );
-  mat X(n, mu.n_elem);
-  for (int i=0; i<n; i++) {
-    X.row(i) = trans(mvnrnd( mu, Sigma ));
-  }
-  
+List nicelr (vec y, mat x) {
+  mat xx_inv = inv_sympd(x.t() * x);
+  vec beta_hat = xx_inv * x.t() * y;
+  double sigma2 = as_scalar( (y - x * beta_hat).t() * (y - x * beta_hat) / y.n_elem );
+  mat cov_beta_hat = sigma2 * xx_inv;
   return List::create(
-    _["x"] = X,
-    _["sigma2"] = rig2
+    _["beta_hat"] = beta_hat,
+    _["cov_beta_hat"] = cov_beta_hat
   );
 }
 
 /*** R
-nicernig2(4, rep(0,2), diag(2), 1, 1)
+x = cbind(rep(1,5),1:5); y = x %*% c(1,2) + rnorm(5)
+nicelr(y, x)
 */
