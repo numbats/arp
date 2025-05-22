@@ -19,7 +19,16 @@ source(here::here("course_info.R"))
 * The first steps with **Rcpp**
 * Some stats with **RcppArmadillo**
 * Hands-on coding with four exercises
-* Create an **R** package with compiled code in ten steps
+* An **R** package with compiled code
+
+## Preparation to the session
+
+You must have a **cpp** compiler installed on your computer. Follow the instructions from [Section 1.3. by Eddelbuettel & François (2023)](https://cran.r-project.org/package=Rcpp/vignettes/Rcpp-FAQ.pdf). In short: 
+
+* **Windows:** install [RTools](https://CRAN.R-project.org/bin/windows/Rtools/)
+* **macOS:** install [Xcode Command Line Tools](https://www.freecodecamp.org/news/install-xcode-command-line-tools/)
+* **Linux:** install the standard development packages
+
 
 ## Other references used during the session
 
@@ -28,11 +37,11 @@ source(here::here("course_info.R"))
 
 ## Scripts used during the session
 
-* Simple list creation [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week12/nicetry.cpp)
-* Simple linear regression example [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
-* Simple loop application [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
-* Sampling from inverted gamma 2 distribution [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
-* Step-by-step package creation [`nicepackage.R`](https://github.com/numbats/arp/blob/main/week12/nicepackage.R)
+* Simple list creation [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week11/nicetry.cpp)
+* Simple linear regression example [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week11/nicelr.cpp)
+* Simple loop application [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week11/nicelist.cpp)
+* Sampling from inverted gamma 2 distribution [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week11/nicerig2.cpp)
+* Step-by-step package creation [`nicepackage.R`](https://github.com/donotdespair/15steps2nicepackage)
 
 ```{r}
 #| output: asis
