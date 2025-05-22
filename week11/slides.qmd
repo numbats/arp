@@ -85,10 +85,10 @@ source(here::here("course_info.R"))
 
 * Lecture slides
 * **C++** scripts:
-  * [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week12/nicetry.cpp)
-  * [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelr.cpp)
-  * [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week12/nicelist.cpp)
-  * [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week12/nicerig2.cpp)
+  * [`nicetry.cpp`](nicetry.cpp)
+  * [`nicelr.cpp`](nicelr.cpp)
+  * [`nicelist.cpp`](nicelist.cpp)
+  * [`nicerig2.cpp`](nicerig2.cpp)
 
 ## Learning resources
 

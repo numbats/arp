@@ -37,10 +37,10 @@ You must have a **cpp** compiler installed on your computer. Follow the instruct
 
 ## Scripts used during the session
 
-* Simple list creation [`nicetry.cpp`](https://github.com/numbats/arp/blob/main/week11/nicetry.cpp)
-* Simple linear regression example [`nicelr.cpp`](https://github.com/numbats/arp/blob/main/week11/nicelr.cpp)
-* Simple loop application [`nicelist.cpp`](https://github.com/numbats/arp/blob/main/week11/nicelist.cpp)
-* Sampling from inverted gamma 2 distribution [`nicerig2.cpp`](https://github.com/numbats/arp/blob/main/week11/nicerig2.cpp)
+* Simple list creation [`nicetry.cpp`](nicetry.cpp)
+* Simple linear regression example [`nicelr.cpp`](nicelr.cpp)
+* Simple loop application [`nicelist.cpp`](nicelist.cpp)
+* Sampling from inverted gamma 2 distribution [`nicerig2.cpp`](nicerig2.cpp)
 * Step-by-step package creation [`nicepackage.R`](https://github.com/donotdespair/15steps2nicepackage)
 
 ```{r}
