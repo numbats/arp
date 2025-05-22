@@ -201,6 +201,7 @@ List nicetry (                    // output type and function name
 ```
 
 ## Develop a **C++** function in a `.cpp` file
+\fontsize{14}{16}\sf
 
 ::: {.callout-caution title="Your turn!"}
 Develop a **C++** function that creates a `Tx3` matrix with:
@@ -294,6 +295,7 @@ $$
 2. Return $\frac{s}{x}$
 
 ## Some stats with RcppArmadillo: IG2 distribution
+\vspace*{-0.3cm}
 
 Contents of a `nicerig2.cpp` file:
 
@@ -318,6 +320,7 @@ nicerig2(2, 1, 1)
 ```
 
 ## Develop a **C++** function in a `.cpp` file
+\fontsize{14}{16}\sf
 
 ::: {.callout-caution title="Your turn!"}
 Consider a Gaussian random walk:
