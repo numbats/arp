@@ -47,9 +47,8 @@ source(here::here("course_info.R"))
 * **R** enthusiast and specialised user for 17 years
 * associate editor of the [R Journal](https://journal.r-project.org/)
 * author of **R** packages [**bsvars**](https://bsvars.org/bsvars/) and [**bsvarSIGNs**](https://bsvars.org/bsvarSIGNs/)
-* more info at [bsvars.org](https://bsvars.org/)
 
-\vspace{0.3cm}\centerline{\includegraphics[width = 3.5cm]{bsvars.org.png}\includegraphics[width = 3.5cm]{bsvars.png}\includegraphics[width = 3.5cm]{bsvarSIGNs.png}}
+\vspace{0.2cm}\centerline{\includegraphics[width = 3cm]{bsvars.org.png}\includegraphics[width = 3cm]{bsvars.png}\includegraphics[width = 3cm]{bsvarSIGNs.png}}
 
 
 # Motivation
@@ -219,12 +218,10 @@ Develop a **C++** function that creates a `Tx3` matrix with:
 * a linear trend $t - \bar{t}$ column
 * a quadratic trend $(t - \bar{t})^2$ column
 
-where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.\
+where $t$ goes from $1$ to $T$, and $\bar{t}$ is the mean of sequence $t$.
 
-Hints: 
-
-* specify individual columns as `NumericVector` and put them together in a `NumericMatrix` object
-* use functions `cumsum`, `mean`, `pow`, and `cbind`.\
+* create `NumericVector`s and assemble as `NumericMatrix`
+* use functions `cumsum`, `mean`, `pow`, and `cbind`.
 
 Get some help [HERE](https://teuder.github.io/rcpp4everyone_en/080_vector.html).
 :::
@@ -371,15 +368,15 @@ nicelr(y, x)
 ## Some stats with RcppArmadillo: linear regression
 
 ::: {.callout-caution title="Your turn!"}
-Extend the `nicelr` function to return also the covariance of $\hat{\beta}$:
+Extend the `nicelr` function to return the covariance:
 $$
-\widehat{Cov}\left[\hat\beta\right] = \hat\sigma^2 \left(X'X\right)^{-1}, \qquad \hat\sigma^2 = \frac{1}{T} \left( Y - \hat\beta X \right)'\left( Y - \hat\beta X \right)
+\widehat{Cov}\left[\hat\beta\right] = \hat\sigma^2 \left(X'X\right)^{-1}, \text{ where } \hat\sigma^2 = \frac{1}{T} \left( Y - \hat\beta X \right)'\left( Y - \hat\beta X \right)
 $$
 
 * don't adjust the arguments
 * return `beta_hat` and `cov_beta_hat` in a list
 
-Get some help [HERE](http://arma.sourceforge.net/docs.html).\
+Get some help [HERE](http://arma.sourceforge.net/docs.html).
 
 Hint: use functions `inv_sympd` and `.n_elem`.
 :::
