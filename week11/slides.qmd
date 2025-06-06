@@ -407,7 +407,7 @@ Imports: Rcpp (>= 1.0.14)
 LinkingTo: Rcpp, RcppArmadillo
 ```
 
-* `NAMESPACE` includes dynamic library definition and inports
+* `NAMESPACE` includes dynamic library definition and imports
 ```
 useDynLib(nicepackage, .registration=TRUE)
 importFrom(Rcpp, evalCpp)
