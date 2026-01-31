@@ -16,15 +16,12 @@ R is widely used as a tool for data analysis and one of the most popular program
 ## Teachers
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
-* [**Mitchell O'Hara-Wild**](https://mitchelloharawild.com). Email: [Mitch.OHara-Wild@monash.edu](mailto:Mitch.OHara-Wild@monash.edu)
-* [**Hadley Wickham**](https://hadley.nz), Week 2
 * [**Tomasz Wozniak**](https://github.com/donotdespair), Week 11
 
 ## References
 
 * [*Advanced R*, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
 * [*Advanced R Solutions*](https://advanced-r-solutions.rbind.io/) by Malte Grosser, Henning Bumann & Hadley Wickham.
-* [*The {targets} R package user manual*](https://books.ropensci.org/targets/) by Will Landau.
 * [*R packages*, 2e](http://r-pkgs.org/) by Hadley Wickham & Jenny Bryan.
 
 ```{r}
@@ -42,11 +39,12 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Recordings
 
-* [Recordings](https://learning.monash.edu/mod/lti/view.php?id=3661834)
+* [Recordings](https://learning.monash.edu/mod/lti/view.php?id=5219874)
 
 ## Weekly schedule
 
-* 3 hour workshop, Thursdays 6pm-9pm each week, in Woodside G16.
+* 1 hour pre-recorded material, to be viewed before each workshop.
+* 2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.
 
 ```{r}
 #| label: schedule2

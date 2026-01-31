@@ -9,3 +9,5 @@
 *_files/
 slides.tex
 /site_libs/
+
+**/*.quarto_ipynb

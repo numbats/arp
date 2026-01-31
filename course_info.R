@@ -2,10 +2,10 @@
 library(dplyr)
 
 # Start of semester
-start_semester <- "2025-03-03"
+start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2025-04-21"
+mid_semester_break <- "2025-04-06"
 
 # Schedule
 schedule <- tibble(
