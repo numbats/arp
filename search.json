@@ -39,7 +39,7 @@
     "href": "week9/index.html#assignments",
     "title": "Week 9: Object-oriented programming (vctrs)",
     "section": "Assignments",
-    "text": "Assignments\n\nGame package 1 is due on Tuesday 20 May."
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
   },
   {
     "objectID": "week8/index.html",
@@ -74,7 +74,7 @@
     "href": "week8/index.html#assignments",
     "title": "Week 8: Object-oriented programming",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 3 is due on Friday 02 May."
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
   },
   {
     "objectID": "week8/index.html#online-resources",
@@ -86,58 +86,142 @@
   {
     "objectID": "week7/index.html",
     "href": "week7/index.html",
-    "title": "Week 7: Reactive programming with targets and renv",
+    "title": "Week 7: Measuring and improving performance",
     "section": "",
-    "text": "targets\nrenv"
+    "text": "Efficient R Programming"
   },
   {
     "objectID": "week7/index.html#what-you-will-learn-this-week",
     "href": "week7/index.html#what-you-will-learn-this-week",
-    "title": "Week 7: Reactive programming with targets and renv",
+    "title": "Week 7: Measuring and improving performance",
     "section": "",
-    "text": "targets\nrenv"
+    "text": "Efficient R Programming"
   },
   {
     "objectID": "week7/index.html#slides-for-week",
     "href": "week7/index.html#slides-for-week",
-    "title": "Week 7: Reactive programming with targets and renv",
+    "title": "Week 7: Measuring and improving performance",
     "section": "Slides for week",
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
     "objectID": "week7/index.html#assignments",
     "href": "week7/index.html#assignments",
-    "title": "Week 7: Reactive programming with targets and renv",
+    "title": "Week 7: Measuring and improving performance",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Friday 02 May."
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week6/index.html",
+    "href": "week6/index.html",
+    "title": "Week 6: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week6/index.html#main-reference",
+    "href": "week6/index.html#main-reference",
+    "title": "Week 6: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week6/index.html#what-you-will-learn-this-week",
+    "href": "week6/index.html#what-you-will-learn-this-week",
+    "title": "Week 6: Functional programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nFunctions\nFunction arguments\nFunction factories"
+  },
+  {
+    "objectID": "week6/index.html#slides-for-week",
+    "href": "week6/index.html#slides-for-week",
+    "title": "Week 6: Functional programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week6/index.html#assignments",
+    "href": "week6/index.html#assignments",
+    "title": "Week 6: Functional programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week5/index.html",
+    "href": "week5/index.html",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#main-reference",
+    "href": "week5/index.html#main-reference",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#what-you-will-learn-this-week",
+    "href": "week5/index.html#what-you-will-learn-this-week",
+    "title": "Week 5: Debugging",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDebugging"
+  },
+  {
+    "objectID": "week5/index.html#online-resources",
+    "href": "week5/index.html#online-resources",
+    "title": "Week 5: Debugging",
+    "section": "Online resources",
+    "text": "Online resources\n\nCreating a reprex\nAmanda Gadrow - Debugging in R\nJenny Bryan - Object of type ‘closure’ is not subsettable\nPosit Community\nStack Overflow"
+  },
+  {
+    "objectID": "week5/index.html#workshop-resources",
+    "href": "week5/index.html#workshop-resources",
+    "title": "Week 5: Debugging",
+    "section": "Workshop resources",
+    "text": "Workshop resources\n\nSurvey data\nSurvey analysis"
+  },
+  {
+    "objectID": "week5/index.html#slides-for-week",
+    "href": "week5/index.html#slides-for-week",
+    "title": "Week 5: Debugging",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week5/index.html#assignments",
+    "href": "week5/index.html#assignments",
+    "title": "Week 5: Debugging",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
     "objectID": "week2/index.html",
     "href": "week2/index.html",
-    "title": "Week 2: Hadley Wickham guest lecture",
+    "title": "Week 2: Foundations of R Programming",
     "section": "",
-    "text": "Guest Lecturer: Hadley Wickham"
+    "text": "4-8, Advanced R"
   },
   {
-    "objectID": "week2/index.html#reference-material",
-    "href": "week2/index.html#reference-material",
-    "title": "Week 2: Hadley Wickham guest lecture",
-    "section": "Reference material",
-    "text": "Reference material\n\nCh 5 Control Flow. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3."
+    "objectID": "week2/index.html#main-reference",
+    "href": "week2/index.html#main-reference",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "",
+    "text": "4-8, Advanced R"
   },
   {
-    "objectID": "week2/index.html#hadleys-code-from-the-workshop",
-    "href": "week2/index.html#hadleys-code-from-the-workshop",
-    "title": "Week 2: Hadley Wickham guest lecture",
-    "section": "Hadley’s code from the workshop",
-    "text": "Hadley’s code from the workshop\n\nlong-map.qmd"
+    "objectID": "week2/index.html#what-you-will-learn-this-week",
+    "href": "week2/index.html#what-you-will-learn-this-week",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
   },
   {
     "objectID": "week2/index.html#assignments",
     "href": "week2/index.html#assignments",
-    "title": "Week 2: Hadley Wickham guest lecture",
+    "title": "Week 2: Foundations of R Programming",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
     "objectID": "week12/index.html",
@@ -196,13 +280,6 @@
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
-    "objectID": "week11/index.html#assignments",
-    "href": "week11/index.html#assignments",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Assignments",
-    "text": "Assignments\n\nGame package 1 is due on Tuesday 20 May."
-  },
-  {
     "objectID": "week10/index.html",
     "href": "week10/index.html",
     "title": "Week 10: Metaprogramming",
@@ -231,81 +308,67 @@
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
-    "objectID": "week10/index.html#assignments",
-    "href": "week10/index.html#assignments",
-    "title": "Week 10: Metaprogramming",
-    "section": "Assignments",
-    "text": "Assignments\n\nGame package 1 is due on Tuesday 20 May."
-  },
-  {
     "objectID": "week1/index.html",
     "href": "week1/index.html",
-    "title": "Week 1: Foundations of R programming",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "",
-    "text": "1-8, Advanced R"
+    "text": "1-3, Advanced R"
   },
   {
     "objectID": "week1/index.html#main-reference",
     "href": "week1/index.html#main-reference",
-    "title": "Week 1: Foundations of R programming",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "",
-    "text": "1-8, Advanced R"
+    "text": "1-3, Advanced R"
   },
   {
     "objectID": "week1/index.html#what-you-will-learn-this-week",
     "href": "week1/index.html#what-you-will-learn-this-week",
-    "title": "Week 1: Foundations of R programming",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nScalars and vectors\nLists and data frames\nSubsetting\nFunctions\nEnvironments\nConditions"
+    "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
   },
   {
     "objectID": "week1/index.html#slides-for-week",
     "href": "week1/index.html#slides-for-week",
-    "title": "Week 1: Foundations of R programming",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "Slides for week",
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
     "objectID": "week1/index.html#assignments",
     "href": "week1/index.html#assignments",
-    "title": "Week 1: Foundations of R programming",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "assignments/Game_package2.html",
-    "href": "assignments/Game_package2.html",
-    "title": "Game package 2 (30%)",
+    "objectID": "assignments/discussion.html",
+    "href": "assignments/discussion.html",
+    "title": "Discussion (10%)",
     "section": "",
-    "text": "You need to extend your game package to include: (a) a custom vctrs class’; and (b) the use of C++. You can also consider adding some element of metaprogramming if you think it is appropriate.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector (examples below, e.g. suit of the card).\nCreate methods for your custom generic function(s), including suitable defaults.\n\nAll user-facing functions should have examples and unit tests.\nThere should be at least two vignettes: one describing how to use the package (which you should have written as part of Game package 1); and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nSome suggestions\nBelow are some ideas for how vctrs can be used with your package. We encourage you to be creative and come up with your own ideas for how object oriented programming best suits your game package.\n\nBlackjack:\n\nRepresent the cards with vctrs and provide functions/methods for things like card_is_face(), card_value(), card_suit(), etc.\n\n\n\nPoker:\n\nRepresent the cards with vctrs and provide functions/methods for things like card_is_face(), card_value(), card_suit(), etc.\n\n\nAI & Generative AI tools may be used in guided ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see Learn HQ). Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.\nadhere to the guidelines for AI use set for the assessment task.\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.\n\n\n\nDue: 9 June 2025  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A3.html",
-    "href": "assignments/A3.html",
-    "title": "Assignment 3 (25%)",
-    "section": "",
-    "text": "Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:\n\nOur World in Data\nHuman Mortality Database\nHuman Fertility Database\nUN Data\nIMF Data\nABS Census Data\nAustralian Electoral Commission data\nUS General Social Survey\nHILDA Survey\nJohns Hopkins COVID data\n\nThe source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.\nYour analysis should include the following elements:\n\nReading the raw data into R.\nCleaning and wrangling the data into a form suitable for analysis.\nAt least two plots highlighting interesting features of the data.\nAt least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity — you should use a model that is appropriate for the data.\nA discussion of the results of the model and how they relate to the plots.\n\nYou must use the targets package to manage the workflow, renv to manage the package environment, with the analysis described in a quarto report.\n\nAI & Generative AI tools may be used in guided ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see Learn HQ). Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.\nadhere to the guidelines for AI use set for the assessment task.\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.\n\n\n\nDue: 2 May 2025  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A1.html",
-    "href": "assignments/A1.html",
-    "title": "Assignment 1 (10%)",
-    "section": "",
-    "text": "A supermarket has p checkouts and customers must choose one, forming a queue if it is already occupied. Customers always choose the shortest queue. The time between each new customer arriving at the checkouts has an exponential distribution with mean \\mu minutes. The time it takes for a checkout operator to process a customer has an independent exponential distribution with mean \\lambda minutes.\nWrite an R function to simulate the supermarket queues at each checkout, taking the arguments mu, lambda, p and n, and returning the total number of customers waiting to be served, n minutes after the supermarket opens. The argument p should have default value 3, while n should have default value 720 (the number of minutes in a 12 hour day). The other arguments should have no default values. Your function should be named remaining_customers.\nYour code should be as efficient as possible. Arguments should be checked for range and class.\n\nAI & Generative AI tools may be used in guided ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see Learn HQ). Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.\nadhere to the guidelines for AI use set for the assessment task.\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.\n\n\n\nDue: 21 March 2025  Join GitHub Classroom  \nThe suggested solutions for this assignment are can be found here: A1_solution.R."
+    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
   },
   {
     "objectID": "assignments/A2.html",
     "href": "assignments/A2.html",
-    "title": "Assignment 2 (25%)",
+    "title": "Assignment 2 (30%)",
     "section": "",
-    "text": "The simulatoR package is designed to simulate dynamic and stochastic processes.\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a github repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nAI & Generative AI tools may be used in guided ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see Learn HQ). Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.\nadhere to the guidelines for AI use set for the assessment task.\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.\n\n\n\nDue: 16 April 2025  Join GitHub Classroom"
+    "text": "The ?? package is designed to ??\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
   },
   {
-    "objectID": "assignments/Game_package1.html",
-    "href": "assignments/Game_package1.html",
-    "title": "Game package 1 (10%)",
+    "objectID": "assignments/A1.html",
+    "href": "assignments/A1.html",
+    "title": "Assignment 1 (30%)",
     "section": "",
-    "text": "You need to work in allocated groups to write an R package to help score or simulate a multi-player game. For example:\n\nBlackjack: Calculate the score from a round where the inputs are the cards held by the player and the dealer at the end of the game.\nPoker: Calculate the winner from a game where the inputs are the cards held by each player at the end of the game. Start with a simple version of poker, and extend to more complex versions.\n500: Score a game of 500 where the inputs are the cards played by each player for each trick.\nChess: Simulate a game of chess with random but correct moves by each player.\nUno: Simulate a game of uno with random draws.\n\nYou may also have your own ideas for a game. If you would like to do something else, please discuss it with Mitch and Rob first.\nThe package should have at least 3 user-facing functions, and a vignette that describes how to use the package. The package should be well-documented, with all user-facing functions having examples and unit tests.\nMarks will be awarded for clean and efficient code, and for good design.\nPlease use the team names allocated on Ed. If you are the first person on your team to accept the assignment, you will need to create the team. Otherwise, you should be able to join the team.\n\nAI & Generative AI tools may be used in guided ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see Learn HQ). Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.\nadhere to the guidelines for AI use set for the assessment task.\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.\n\n\n\nDue: 20 May 2025  Join GitHub Classroom"
+    "text": "This is a group assignment. You will be assigned to a group of 4 students. You must work together to complete the assignment, and submit a single solution for the group.\nWrite a package to do ?????\nYour code should demonstrate:\n\nModular functions\nDefault arguments\nPassing package checks\nUnit tests\nA short vignette explaining how to use the package\nAll user-facing functions should have examples and unit tests.\n\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A3.html",
+    "href": "assignments/A3.html",
+    "title": "Assignment 3 (30%)",
+    "section": "",
+    "text": "You need to extend the ??? package to include:\n\nS3 methods (e.g., print and plot methods) for an appropriate class in the package.\nA custom vctrs class for an appropriate data structure in the package.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector\nCreate methods for your custom generic function(s), including suitable defaults.\n\nIntegration of C++ code via Rcpp for an appropriate function in your package.\n\nYou can also consider adding some element of metaprogramming if you think it is appropriate.\nThere should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
   },
   {
     "objectID": "index.html",
@@ -347,14 +410,14 @@
     "href": "index.html#weekly-schedule",
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nHadley Wickham guest lecture\n\n\n\n26 Mar\nR package development\n\n\n\n02 Apr\nDebugging and profiling\n\n\n\n09 Apr\nFunctional programming\n\n\n\n16 Apr\nLiterate programming with Quarto\n\n\n\n23 Apr\nReactive programming with targets and renv\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\n\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n20 Mar\n\nAssignment 1\n\n\n17 Apr\n\nAssignment 2\n\n\n01 May\n\nAssignment 3\n\n\n22 May\n\nGame package 1\n\n\n12 Jun\n\nGame package 2"
+    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR IDEs, and workflow tools\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
   },
   {
     "objectID": "index.html#assessments",
     "href": "index.html#assessments",
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Assessments",
-    "text": "Assessments\n\nAssignment 1: 10%\nAssignment 2: 25%\nAssignment 3: 25%\nGame package 1: 10%\nGame package 2: 30%"
+    "text": "Assessments\n\nAssignment 1: 30%\nAssignment 2: 30%\nAssignment 3: 30%\nDiscussion: 10%"
   },
   {
     "objectID": "week3/index.html",
@@ -389,125 +452,41 @@
     "href": "week3/index.html#assignments",
     "title": "Week 3: R package development",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Friday 21 March."
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
     "objectID": "week4/index.html",
     "href": "week4/index.html",
-    "title": "Week 4: Debugging and profiling",
+    "title": "Week 4: R programming with LLMs",
     "section": "",
-    "text": "22 Advanced R"
+    "text": "Hadley Wickham guest lecture 2025\nHadley’s code from 2025\nCh 5 Control Flow from Advanced R. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3.\nellmer"
   },
   {
     "objectID": "week4/index.html#main-reference",
     "href": "week4/index.html#main-reference",
-    "title": "Week 4: Debugging and profiling",
+    "title": "Week 4: R programming with LLMs",
     "section": "",
-    "text": "22 Advanced R"
+    "text": "Hadley Wickham guest lecture 2025\nHadley’s code from 2025\nCh 5 Control Flow from Advanced R. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3.\nellmer"
   },
   {
     "objectID": "week4/index.html#what-you-will-learn-this-week",
     "href": "week4/index.html#what-you-will-learn-this-week",
-    "title": "Week 4: Debugging and profiling",
+    "title": "Week 4: R programming with LLMs",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDebugging\nMeasuring performance\nEfficient R programming"
+    "text": "What you will learn this week\n\nUsing LLMs to assist with R programming"
   },
   {
     "objectID": "week4/index.html#online-resources",
     "href": "week4/index.html#online-resources",
-    "title": "Week 4: Debugging and profiling",
+    "title": "Week 4: R programming with LLMs",
     "section": "Online resources",
-    "text": "Online resources\n\nCreating a reprex\nAmanda Gadrow - Debugging in R\nJenny Bryan - Object of type ‘closure’ is not subsettable\nPosit Community\nStack Overflow\nEfficient R Programming"
-  },
-  {
-    "objectID": "week4/index.html#slides-for-week",
-    "href": "week4/index.html#slides-for-week",
-    "title": "Week 4: Debugging and profiling",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
+    "text": "Online resources"
   },
   {
     "objectID": "week4/index.html#assignments",
     "href": "week4/index.html#assignments",
-    "title": "Week 4: Debugging and profiling",
+    "title": "Week 4: R programming with LLMs",
     "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April."
-  },
-  {
-    "objectID": "week4/index.html#workshop-resources",
-    "href": "week4/index.html#workshop-resources",
-    "title": "Week 4: Debugging and profiling",
-    "section": "Workshop resources",
-    "text": "Workshop resources\n\nSurvey data\nSurvey analysis"
-  },
-  {
-    "objectID": "week5/index.html",
-    "href": "week5/index.html",
-    "title": "Week 5: Functional programming",
-    "section": "",
-    "text": "9-11. Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#main-reference",
-    "href": "week5/index.html#main-reference",
-    "title": "Week 5: Functional programming",
-    "section": "",
-    "text": "9-11. Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#what-you-will-learn-this-week",
-    "href": "week5/index.html#what-you-will-learn-this-week",
-    "title": "Week 5: Functional programming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nFunctions\nFunction arguments\nFunction factories"
-  },
-  {
-    "objectID": "week5/index.html#slides-for-week",
-    "href": "week5/index.html#slides-for-week",
-    "title": "Week 5: Functional programming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week5/index.html#assignments",
-    "href": "week5/index.html#assignments",
-    "title": "Week 5: Functional programming",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April."
-  },
-  {
-    "objectID": "week6/index.html",
-    "href": "week6/index.html",
-    "title": "Week 6: Literate programming with Quarto",
-    "section": "",
-    "text": "Quarto"
-  },
-  {
-    "objectID": "week6/index.html#what-you-will-learn-this-week",
-    "href": "week6/index.html#what-you-will-learn-this-week",
-    "title": "Week 6: Literate programming with Quarto",
-    "section": "",
-    "text": "Quarto"
-  },
-  {
-    "objectID": "week6/index.html#slides-for-week",
-    "href": "week6/index.html#slides-for-week",
-    "title": "Week 6: Literate programming with Quarto",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week6/index.html#other-resources",
-    "href": "week6/index.html#other-resources",
-    "title": "Week 6: Literate programming with Quarto",
-    "section": "Other resources",
-    "text": "Other resources\n\nQuarto extensions\nJournal templates\nMonash quarto templates"
-  },
-  {
-    "objectID": "week6/index.html#assignments",
-    "href": "week6/index.html#assignments",
-    "title": "Week 6: Literate programming with Quarto",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Wednesday 16 April.\nAssignment 3 is due on Friday 02 May."
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   }
 ]

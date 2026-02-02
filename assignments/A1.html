@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 1 (10%) – ETC4500/ETC5450 Advanced R Programming</title>
+<title>Assignment 1 (30%) – ETC4500/ETC5450 Advanced R Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,49 +71,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -148,51 +105,7 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-schedule">    
         <li>
     <a class="dropdown-item" href="../week1/index.html">
- <span class="dropdown-text">Week 1: Foundations of R programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week2/index.html">
- <span class="dropdown-text">Week 2: Hadley Wickham guest lecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week3/index.html">
- <span class="dropdown-text">Week 3: R package development</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week4/index.html">
- <span class="dropdown-text">Week 4: Debugging and profiling</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week5/index.html">
- <span class="dropdown-text">Week 5: Functional programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week6/index.html">
- <span class="dropdown-text">Week 6: Literate programming with Quarto</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week7/index.html">
- <span class="dropdown-text">Week 7: Reactive programming with targets and renv</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week8/index.html">
- <span class="dropdown-text">Week 8: Object-oriented programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week9/index.html">
- <span class="dropdown-text">Week 9: Object-oriented programming (vctrs)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week10/index.html">
- <span class="dropdown-text">Week 10: Metaprogramming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week11/index.html">
- <span class="dropdown-text">Week 11: Rewriting R code in C++</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week12/index.html">
- <span class="dropdown-text">Week 12: Package hackathon</span></a>
+ <span class="dropdown-text">Week 1: R IDEs, and workflow tools</span></a>
   </li>  
     </ul>
   </li>
@@ -224,15 +137,21 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 1 (10%)</h1>
+<h1 class="title">Assignment 1 (30%)</h1>
 </div>
 
 
@@ -249,24 +168,36 @@ window.Quarto = {
 </header>
 
 
-<p>A supermarket has <code>p</code> checkouts and customers must choose one, forming a queue if it is already occupied. Customers always choose the shortest queue. The time between each new customer arriving at the checkouts has an exponential distribution with mean <span class="math inline">\mu</span> minutes. The time it takes for a checkout operator to process a customer has an independent exponential distribution with mean <span class="math inline">\lambda</span> minutes.</p>
-<p>Write an R function to simulate the supermarket queues at each checkout, taking the arguments <code>mu</code>, <code>lambda</code>, <code>p</code> and <code>n</code>, and returning the total number of customers waiting to be served, <code>n</code> minutes after the supermarket opens. The argument <code>p</code> should have default value 3, while <code>n</code> should have default value <code>720</code> (the number of minutes in a 12 hour day). The other arguments should have no default values. Your function should be named <code>remaining_customers</code>.</p>
-<p>Your code should be as efficient as possible. Arguments should be checked for range and class.</p>
-<blockquote class="blockquote">
-<p><strong>AI &amp; Generative AI tools</strong> may be used in <em>guided</em> ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see <a href="https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence">Learn HQ</a>). Any work submitted for a mark must:</p>
+<p>This is a group assignment. You will be assigned to a group of 4 students. You must work together to complete the assignment, and submit a single solution for the group.</p>
+<p>Write a package to do ?????</p>
+<p>Your code should demonstrate:</p>
+<ul>
+<li>Modular functions</li>
+<li>Default arguments</li>
+<li>Passing package checks</li>
+<li>Unit tests</li>
+<li>A short vignette explaining how to use the package</li>
+<li>All user-facing functions should have examples and unit tests.</li>
+</ul>
+<section id="notes" class="level3">
+<h3 class="anchored" data-anchor-id="notes">Notes</h3>
 <ol type="1">
-<li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.</li>
-<li>adhere to the guidelines for AI use set for the assessment task.</li>
+<li><p>The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.</p></li>
+<li><p>Each team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.</p></li>
+<li><p>Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:</p>
+<ol type="a">
+<li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;</li>
+<li>adhere to the guidelines for AI use set for the assessment task;</li>
 <li>reflect the University’s commitment to academic integrity and ethical behaviour.</li>
 </ol>
-<p>Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.</p>
-</blockquote>
+<p>Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See <a href="https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence">Learn HQ</a> for more information.</p></li>
+</ol>
 <br><br>
 <hr>
-<p><b>Due: 21 March 2025</b><br><a href="https://learning.monash.edu/mod/assign/view.php?id=3444076" class="badge badge-large badge-blue"><font size="+2">&nbsp;&nbsp;<b>Join GitHub Classroom</b>&nbsp;&nbsp;</font><br></a></p>
-<p>The suggested solutions for this assignment are can be found here: <a href="A1_solution.R"><code>A1_solution.R</code></a>.</p>
+<p><b>Due: 31 March 2026</b><br><a href="https://learning.monash.edu/mod/assign/view.php?id=3444076" class="badge badge-large badge-blue"><font size="+2">&nbsp;&nbsp;<b>Join GitHub Classroom</b>&nbsp;&nbsp;</font><br></a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

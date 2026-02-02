@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Game package 2 (30%) – ETC4500/ETC5450 Advanced R Programming</title>
+<title>Discussion (10%) – ETC4500/ETC5450 Advanced R Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,51 +105,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-schedule">    
         <li>
     <a class="dropdown-item" href="../week1/index.html">
- <span class="dropdown-text">Week 1: Foundations of R programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week2/index.html">
- <span class="dropdown-text">Week 2: Hadley Wickham guest lecture</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week3/index.html">
- <span class="dropdown-text">Week 3: R package development</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week4/index.html">
- <span class="dropdown-text">Week 4: Debugging and profiling</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week5/index.html">
- <span class="dropdown-text">Week 5: Functional programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week6/index.html">
- <span class="dropdown-text">Week 6: Literate programming with Quarto</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week7/index.html">
- <span class="dropdown-text">Week 7: Reactive programming with targets and renv</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week8/index.html">
- <span class="dropdown-text">Week 8: Object-oriented programming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week9/index.html">
- <span class="dropdown-text">Week 9: Object-oriented programming (vctrs)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week10/index.html">
- <span class="dropdown-text">Week 10: Metaprogramming</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week11/index.html">
- <span class="dropdown-text">Week 11: Rewriting R code in C++</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../week12/index.html">
- <span class="dropdown-text">Week 12: Package hackathon</span></a>
+ <span class="dropdown-text">Week 1: R IDEs, and workflow tools</span></a>
   </li>  
     </ul>
   </li>
@@ -181,25 +137,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#some-suggestions" id="toc-some-suggestions" class="nav-link active" data-scroll-target="#some-suggestions">Some suggestions</a>
-  <ul class="collapse">
-  <li><a href="#blackjack" id="toc-blackjack" class="nav-link" data-scroll-target="#blackjack">Blackjack:</a></li>
-  <li><a href="#poker" id="toc-poker" class="nav-link" data-scroll-target="#poker">Poker:</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Game package 2 (30%)</h1>
+<h1 class="title">Discussion (10%)</h1>
 </div>
 
 
@@ -216,46 +162,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You need to extend your game package to include: (a) a custom vctrs class’; and (b) the use of C++. You can also consider adding some element of metaprogramming if you think it is appropriate.</p>
+<p>All students are expected to participate in class discussion, and in the online discussion forum.</p>
+<p>Participation may include:</p>
 <ul>
-<li>Create and document a function for creating your vector.</li>
-<li>Define appropriate methods for using your vector, including <code>format()</code>, <code>vec_ptype2()</code>, and <code>vec_cast()</code>.</li>
-<li>Create generic function(s) for identifying/extracting useful things from your vector (examples below, e.g.&nbsp;suit of the card).</li>
-<li>Create methods for your custom generic function(s), including suitable defaults.</li>
+<li>Asking questions during class</li>
+<li>Answering questions during class</li>
+<li>Posting questions on the discussion forum</li>
+<li>Answering questions on the discussion forum</li>
 </ul>
-<p>All user-facing functions should have examples and unit tests.</p>
-<p>There should be at least two vignettes: one describing how to use the package (which you should have written as part of Game package 1); and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.</p>
-<p>Marks will be awarded for clean and efficient code, and for good design.</p>
-<section id="some-suggestions" class="level1">
-<h1>Some suggestions</h1>
-<p>Below are some ideas for how vctrs can be used with your package. We encourage you to be creative and come up with your own ideas for how object oriented programming best suits your game package.</p>
-<section id="blackjack" class="level3">
-<h3 class="anchored" data-anchor-id="blackjack">Blackjack:</h3>
-<ul>
-<li>Represent the cards with vctrs and provide functions/methods for things like <code>card_is_face()</code>, <code>card_value()</code>, <code>card_suit()</code>, etc.</li>
-</ul>
-</section>
-<section id="poker" class="level3">
-<h3 class="anchored" data-anchor-id="poker">Poker:</h3>
-<ul>
-<li>Represent the cards with vctrs and provide functions/methods for things like <code>card_is_face()</code>, <code>card_value()</code>, <code>card_suit()</code>, etc.</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>AI &amp; Generative AI tools</strong> may be used in <em>guided</em> ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see <a href="https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence">Learn HQ</a>). Any work submitted for a mark must:</p>
-<ol type="1">
-<li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.</li>
-<li>adhere to the guidelines for AI use set for the assessment task.</li>
-<li>reflect the University’s commitment to academic integrity and ethical behaviour.</li>
-</ol>
-<p>Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.</p>
-</blockquote>
-<br><br>
-<hr>
-<p><b>Due: 9 June 2025</b><br><a href="https://learning.monash.edu/mod/assign/view.php?id=3873208" class="badge badge-large badge-blue"><font size="+2">&nbsp;&nbsp;<b>Join GitHub Classroom</b>&nbsp;&nbsp;</font><br></a></p>
+<p>Participation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
