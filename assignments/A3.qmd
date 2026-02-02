@@ -1,39 +1,39 @@
 ---
-title: Assignment 3 (25%)
+title: Assignment 3 (30%)
 ---
 
-Your task is to produce a short report analysing some data using a quarto template with a targets workflow and a renv environment. You may use any data set you choose provided it includes at least 1000 observations. Possible sources of data include:
+You need to extend the ??? package to include:
 
-* [Our World in Data](https://ourworldindata.org)
-* [Human Mortality Database](https://mortality.org)
-* [Human Fertility Database](https://humanfertility.org)
-* [UN Data](https://data.un.org)
-* [IMF Data](https://data.imf.org)
-* [ABS Census Data](https://www.abs.gov.au/census/find-census-data/datapacks?release=2021)
-* [Australian Electoral Commission data](https://www.aec.gov.au/election/downloads.htm)
-* [US General Social Survey](https://gss.norc.org/get-the-data/)
-* [HILDA Survey](https://melbourneinstitute.unimelb.edu.au/hilda)
-* [Johns Hopkins COVID data](https://github.com/CSSEGISandData/COVID-19)
+1. S3 methods (e.g., print and plot methods) for an appropriate class in the package.
+2. A custom vctrs class for an appropriate data structure in the package.
 
-The source data must be in as close to raw form as possible. e.g., csv or xlsx files obtained from the data custodians. You are not to use data that is already in an R package.
+   * Create and document a function for creating your vector.
+   * Define appropriate methods for using your vector, including `format()`, `vec_ptype2()`, and `vec_cast()`.
+   * Create generic function(s) for identifying/extracting useful things from your vector
+   * Create methods for your custom generic function(s), including suitable defaults.
 
-Your analysis should include the following elements:
+3. Integration of C++ code via Rcpp for an appropriate function in your package.
 
-* Reading the raw data into R.
-* Cleaning and wrangling the data into a form suitable for analysis.
-* At least two plots highlighting interesting features of the data.
-* At least one statistical model fitted to the data (or a subset of the data). This could be a linear model, a GLM, a GAM, a GAMM, a time series model, or any other model you think is appropriate. There are no marks awarded for model complexity --- you should use a model that is appropriate for the data.
-* A discussion of the results of the model and how they relate to the plots.
+You can also consider adding some element of metaprogramming if you think it is appropriate.
 
-You must use the [targets](https://books.ropensci.org/targets/) package to manage the workflow, [renv](https://rstudio.github.io/renv/) to manage the package environment, with the analysis described in a [quarto](https://quarto.org) report.
+There should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.
 
-> **AI & Generative AI tools** may be used in *guided* ways within this assessment. If you used AI in completing this assignment, please explain how it was used, including any prompts. Where used, AI must be used responsibly, clearly documented and appropriately acknowledged (see [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence)). Any work submitted for a mark must:
->
->  1. represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for.
->  2. adhere to the guidelines for AI use set for the assessment task.
->  3. reflect the University’s commitment to academic integrity and ethical behaviour.
->
-> Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity.
+Marks will be awarded for clean and efficient code, and for good design.
+
+### Notes
+
+1. The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.
+
+2. Each team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.
+
+3. Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:
+
+    a. represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;
+    b. adhere to the guidelines for AI use set for the assessment task;
+    c. reflect the University’s commitment to academic integrity and ethical behaviour.
+
+   Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence) for more information.
+
 
 ```{r}
 #| output: asis

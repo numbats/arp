@@ -65,8 +65,7 @@ schedule |>
 
 ## Assessments
 
-* [Assignment 1](assignments/A1.qmd): 10%
-* [Assignment 2](assignments/A2.qmd): 25%
-* [Assignment 3](assignments/A3.qmd): 25%
-* [Game package 1](assignments/Game_package1.qmd): 10%
-* [Game package 2](assignments/Game_package2.qmd): 30%
+* [Assignment 1](assignments/A1.qmd): 30%
+* [Assignment 2](assignments/A2.qmd): 30%
+* [Assignment 3](assignments/A3.qmd): 30%
+* [Discussion](assignments/discussion.qmd): 10%
