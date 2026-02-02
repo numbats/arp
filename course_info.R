@@ -5,19 +5,19 @@ library(dplyr)
 start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2025-04-06"
+mid_semester_break <- "2026-04-06"
 
 # Schedule
 schedule <- tibble(
   Week = seq(12),
   Topic = c(
+    "R IDEs, and workflow tools",
     "Foundations of R programming",
-    "Hadley Wickham guest lecture",
     "R package development",
-    "Debugging and profiling",
+    "R programming with LLMs",
+    "Debugging",
     "Functional programming",
-    "Literate programming with Quarto",
-    "Reactive programming with targets and renv",
+    "Measuring and improving performance",
     "Object-oriented programming with S3",
     "Object-oriented programming with vctrs",
     "Metaprogramming",

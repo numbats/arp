@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 6: Literate programming with Quarto"
+author: "Week 5: Functional programming"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -10,12 +10,8 @@ format:
         dev: "cairo_pdf"
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: 
-      - ../header.tex
-      - preamble.tex
-    colorlinks: true
-    urlcolor: MonashBlue
-    linkcolor: burntorange
+    include-in-header: ../header.tex
+    keep-tex: true
 ---
 
 ```{r}
@@ -26,619 +22,676 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-# Literate programming
 
-## Literate programming
 
- * Due to Donald Knuth (Stanford), 1984
- * A script or document that contains an explanation of the program logic in a natural language (e.g. English), interspersed with snippets of source code, which can be compiled and rerun.
- * Generates two representations\newline from a source file: formatted\newline documentation and "tangled" code.
 
-\placefig{10.5}{4.6}{width = 6cm}{WEB.png}
+# Programming paradigms
 
-## Literate programming
+## Programming paradigms
 
-* As a programming approach, it never quite caught on.
-* But it has become the standard approach for reproducible documents.
+R code is typically structured using these paradigms:
 
-## Literate programming examples
+* Functional programming
+* Object-oriented programming
+* Literate programming
+* Reactive programming
 
-* WEB (combining Pascal and TeX)
-* roxygen2 comments
-  * technically documentation generation rather than literate programming
-  * documentation embedded in code, rather than code embedded in documentation
-* Sweave documents
-* Jupyter notebooks
-* Rmarkdown documents
-* Quarto documents
+Often several paradigms used together to solve a problem.
 
-# roxygen2
-## roxygen2
+## Programming paradigms
 
-* roxygen2 documentation are just comments to R.
-* roxygen2::roxygenize():
-  * generates documentation from these comments in the form of Rd files
-  * adds relevant lines to the NAMESPACE file.
-* roxygen2::roxygenize() is called by devtools::document().
-* Advantage: keeps documentation with the code. More readable, less chance for errors.
+::: {.callout-note icon=false title="Functional programming (W5; today!)"}
+* Functions are created and used like any other object.
+* Output should only depend on the function's inputs.
+:::
 
-# Rmarkdown
+. . .
 
-## Markdown syntax
-\fontsize{14}{16}\sf
-Markdown: a "markup" language for formatting text.
+::: {.callout-note icon=false title="Literate programming (W6)"}
+* Natural language is interspersed with code.
+* Aimed at prioritising documentation/comments.
+* Now used to create reproducible reports/documents.
+:::
 
-* Headings:
+## Programming paradigms
 
-    `# Heading 1`\newline
-    `## Heading 2`
+::: {.callout-note icon=false title="Reactive programming (W7)"}
+* Objects are expressed using code based on inputs.
+* When inputs change, the object's value updates.
+:::
 
-* **Bold**: `**bold**`.
-* *Italic*: `*italic*`.
-* Blockquotes:
+. . .
 
-    `> blockquote`.
+::: {.callout-note icon=false title="Object-oriented programming (W8 - W9)"}
+* Functions are associated with object types.
+* Methods of the same 'function' produce object-specific output.
+:::
 
-## Markdown and Rmarkdown
+# Functional programming
 
-* Markdown (markup language):
-  * Extension either `.md` or `.markdown`.
-  * Used in many places on the web, in note-taking apps, etc.
+## Functional programming
 
-* Rmarkdown (markup language):
-  * an extension of markdown that allows for embedded R code chunks.
-  * Extension `.Rmd`.
-
-* Rmarkdown (package):
-  * an R package that allows for the conversion of `.Rmd` files to other formats.
-
-## Rmarkdown files
-
-* Structure:
-  1. YAML header
-  2. Markdown content
-  3. R code chunks surrounded by `` ```{r} `` and `` ``` ``
-  4. Inline R surrounded by `` `r `` and `` ` ``
-
-* Rmarkdown documents can be compiled to HTML, PDF, Word, and other formats
-* Compile with `rmarkdown::render("file.Rmd")`
-
-## Rmarkdown, knitr and pandoc
-
-* `rmarkdown::render()`
-  * Uses `knitr` to run all code chunks, and "knit" the results into a markdown file (replacing R chunks with output).
-  * Uses `pandoc` to convert the markdown file to the desired output format.
-  * If PDF output is desired, LaTeX then converts the tex file (from pandoc output) to pdf.
-
-\centerline{\includegraphics[width = 10cm]{rmd.png}}
-
-## knitr functions
-
-* `knitr::knit()`: knits a single Rmd file --- runs all code chunks and replaces them with output in a markdown file.
-* `knitr::purl()`: extracts all R code from an Rmd file and saves it to a new file.
-* `knitr::spin()`: knits a specially formatted R script file into an Rmd file.
-
-## Rmarkdown packages
-
-  * rmarkdown (to html, pdf, docx, odt, rtf, md, etc.)
-  * bookdown (to html, pdf, epub)
-  * blogdown (to html) -- uses hugo rather than pandoc
-  * xaringan (to html) -- uses remark.js rather than pandoc
-  * beamer (to pdf)
-  * rticles (to pdf)
-  * tufte (to html, pdf)
-  * vitae (to pdf)
-  * distill (to html)
-  * flexdashboard (to html)
-
-# Quarto
-
-## Quarto
-\fontsize{14}{16}\sf
-
-* Generalization of Rmarkdown (not dependent on R)
-* Supports R, Python, Javascript and Julia chunks by using either `knitr`, `jupyter` or `ObservableJS` engines.
-* More consistent yaml header and chunk options.
-* Many more output formats, and many more options for customizing format.
-* Heavier reliance on pandoc Lua filters
-* Uses pandoc templates for extensions
-
-\centerline{\includegraphics[width = 10cm]{images/qmd.png}}
-
-## Choose your engine
-
-Specify the engine in the yaml header:
-
-````{verbatim}
----
-engine: knitr
----
-````
-
-````{verbatim}
----
-engine: jupyter
-jupyter: python3
----
-````
-
-**Default:** If any `{r}` blocks found, use `knitr` engine; otherwise use `jupyter` (with kernel determined by first block).
-
-## Code chunks 
-
-Chunk options use the hash-pipe `#|`
-
-````{verbatim}
-```{r}
-#| label: fig-chunklabel
-#| fig-caption: My figure
-#| fig-width: 6
-#| fig-height: 4
-mtcars |>
-  ggplot(aes(x = mpg, y = wt)) +
-  geom_point()
-```
-````
-
-Reference the figure using `@fig-chunklabel`.
-
-## Chunk options
-
-* Quarto consistently uses hyphenated options (`fig-width` rather than `fig.width`)
-* The Rmarkdown `knitr` options are recognized for backwards compatibility.
-* Options that are R expressions need to be prefaced by `!expr`
-
-  ````{verbatim}
-  ```{r}
-  #| fig-cap: !expr paste("My figure", 1+1)
-  ```
-  ````
-
-## Execute options
-
-*   `execute` option in yaml header can be used instead of a `setup` chunk:
-
-    ````{verbatim}
-    execute:
-      cache: true
-      echo: false
-      warning: false
-    ````
-
-## Some chunk options
-\fontsize{14}{15}\sf\vspace*{-0.2cm}
-
-* `label`: name of chunk. Useful for cross-references
-* `eval`: whether to evaluate the code chunk
-* `echo`: whether to display the code chunk
-* `output`: whether to show chunk output
-* `results: 'asis'` includes the output without markup
-* `message`: whether to display messages
-* `warning`: whether to display warnings
-* `error: true`: continue even if code returns an error.
-* `fig-cap`: caption for the figure
-* `fig-width`, `fig-height`: width and height of the figure
-* `cache`: whether to cache the code chunk
-* `dependson`: cache dependencies
-
-## Debugging
-
-* The Quarto document is compiled in a different environment from your R console.
-* If you get an error, try running all chunks (Ctrl+Alt+R).
-* If you can't reproduce the error, check the working directory (add `getwd()` in a chunk).
-* Try setting `error: true` on problem chunk to help you diagnose what happens. (But change it back!)
-* Look at the intermediate files (`.md` or `.tex`) to see what is happening.
-
-## Caching
-\fontsize{14}{15}\sf
-
-````{verbatim}
-```{r}
-#| cache: true
-```
-````
-
-* When evaluating code chunks, knitr will save the results of chunks with caching to files to be reloaded in subsequent runs.
-* Caching is useful when a chunk takes a long time to run.
-* It will re-run if the code in the chunk changes in any way (even comments or spacing).
-* Beware of inherited objects from earlier chunks. Without explicit dependencies, a chunk will not re-run if inherited objects change.
-* Beware of dependence on external files.
-
-## Caching
-
-````{verbatim}
-```{r}
-#| label: chunk1
-#| cache = TRUE
-x <- 1
-```
+R is commonly considered a 'functional' programming language - and so far we have used functional programming.
 
 ```{r}
-#| label: chunk2
-#| cache: true
-#| dependson: "chunk1"
-y <- x*3
-```
-````
-
-## Caching
-
-Cache will be rebuilt if:
-
-* Chunk options change except `include`
-* Any change in the code, even a space or comment
-* An explicit dependency changes
-
-Do not cache if:
-
- * setting R options like `options('width')`
- * setting knitr options like `opts_chunk$set()`
- * loading packages via `library()` if those packages are used by uncached chunks
-
-## Caching with random numbers
-
-````{verbatim}
-```{r}
-#| label: setup
-#| include: false
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-```
-````
-
-* `rand_seed` is an unevaluated expression.
-* Each chunk will check if `.Random.seed` has been changed since the last run.
-* If it has, the chunk will be re-run.
-
-## Some caching options
-
-* `cache-comments` If `false`, changing comments does not invalidate the cache.
-* `cache-rebuild` Force rebuild of cache.
-* `dependson` A character vector of labels of chunks that this chunk depends on.
-* `autodep` If `true`, the dependencies are automatically determined. (May not be reliable.)
-
-## Caching
-
-Build automatic dependencies among chunks
-
-````{verbatim}
-```
-execute:
-  cache: true
-  autodep: true
-```
-````
-
-## Child documents
-
-````{verbatim}
-```{r}
-#| child: file1.qmd, file2.qmd
-```
-````
-
-\pause\alert{Conditional inclusion}
-
-````{verbatim}
-```{r}
-#| child: !expr if(condition) 'file1.qmd' else 'file2.qmd'
-```
-````
-
-\pause\alert{R Script files}
-
-````{verbatim}
-```{r}
-#| file: "Rscript1.R"
-```
-````
-
-* Better than `source("Rscript1.R")` because output of script included and dependencies tracked.
-
-## Other language engines
-
-````{verbatim}
-```{python}
-print("Hello Python!")
-```
-````
-
-````{verbatim}
-```{stata}
-sysuse auto
-summarize
-```
-````
-
-* Python and Stata need to be installed with executables on `PATH`
-
-## Other language engines
-
-```{r}
-#| echo: true
-names(knitr::knit_engines$get())
-```
-
-## Extensions and templates
-\fontsize{13}{17}\sf
-
-* Quarto extensions modify and extend functionality.
-* They are stored locally, in the `_extensions` folder alongside the qmd document.
-* See <https://quarto.org/docs/extensions/> for a list.
-* Templates are extensions used to define new output formats.
-* Journal templates at\newline <https://quarto.org/docs/extensions/listing-journals.html>
-* Monash templates at\newline <https://github.com/quarto-monash>
-
-## quarto on the command line
-\fontsize{14}{14.5}\sf\vspace*{-0.4cm}
-
-* `quarto render` to render a quarto or Rmarkdown document.
-* `quarto preview` to preview a quarto or Rmarkdown document.
-* `quarto add <gh-org>/<gh-repo>` to add an extension from a github repository.
-* `quarto update <gh-org>/<gh-repo>` to update an extension
-* `quarto remove <gh-org>/<gh-repo>` to remove an extension
-* `quarto list extensions installed`
-* `quarto use template <gh-org>/<gh-repo>` to use existing repo as starter template.
-
-## Add a custom format
-
-From the CLI:\qquad  `quarto add quarto-monash/memo`\pause
-
-New folder/files added
-
-```{verbatim}
-├── _extensions
-│   └── quarto-monash
-│       └── memo
-│           └── ...
-```
-
-\pause
-
-Update YAML
-
-```{verbatim}
----
-title: "My new file using the Monash memo format"
-format: memo-pdf
----
-```
-
-## Activity 1
-
-* Set up a new project.
-* Create a quarto document using an html format.
-* Add a code chunk to generate a figure with a caption.
-* Reference the figure in the text using `@fig-chunklabel`.
-* Add the monash memo extension and generate a pdf output.
-
-## Activity 2
-
-* Create a thesis using the `quarto-monash/thesis` template, and add your name and details to the front page.
-
-# Monash Quarto Templates
-
-## Letter template {.fragile}
-
-\showtemplate{letter.pdf}
-\only<2>{\begin{textblock}{9}(6.5,1)
-\showyaml{letter.yml}
-\end{textblock}}
-
-## Memo template
-
-\showtemplate{memo2.pdf}
-\only<2>{\begin{textblock}{9}(6.5,1)
-\showyaml{memo2.yml}
-\end{textblock}}
-
-## Memo template
-
-\showtemplate{memo.pdf}
-\begin{textblock}{9}(6.5,1)
-\showyaml{memo.yml}
-\end{textblock}
-
-## Report template
-
-\only<1-2>{\showtemplate{report.pdf}}
-\only<3>{\showtemplate{report.pdf}[2]}
-\only<2-3>{\begin{textblock}{9}(6.5,1)
-\showyaml{report.yml}
-\end{textblock}}
-
-## Exam template
-
-\only<1-2>{\showtemplate{exam.pdf}}
-\only<3>{\showtemplate{exam.pdf}[2]}
-\only<4>{\showtemplate{exam.pdf}[3]}
-\only<2-4>{\begin{textblock}{9}(6.5,1)
-\showyaml{exam.yml}
-\end{textblock}}
-
-## Presentation template
-
-\only<2-3>{\showtemplate{pdfpresentation.pdf}}
-\only<1>{\showtemplate{htmltemplate.png}}
-\only<3>{\begin{textblock}{8.5}(7,.1)
-\showyaml{presentation.yml}
-\end{textblock}}
-\only<4>{\begin{textblock}{8.5}(7,.1)
-\showyaml{presentation2.yml}
-\end{textblock}}
-\only<4-5>{\showtemplate{presentation12.pdf}}
-\only<6>{\showtemplate{presentation13.pdf}}
-
-## Working paper template
-
-\only<1-2>{\showtemplate{workingpaper.pdf}}
-\only<3-4>{\showtemplate{workingpaper.pdf}[2]}
-\only<5-6>{\showtemplate{workingpaper.pdf}[3]}
-
-\only<2-3>{\begin{textblock}{9}(6.5,1)
-\showyaml{workingpaper.yml}
-\end{textblock}}
-\only<4-6>{\begin{textblock}{9}(6.5,1)
-\showyaml{workingpaper2.yml}
-\end{textblock}}
-
-\only<6>{\begin{textblock}{5.7}(10,6.5)
-\begin{alertblock}{}\fontsize{10}{10}\sf
-Add formats:
-\begin{itemize}\tightlist
-\item  \texttt{arxiv-pdf} for arXiv
-\item a quarto journal format when submitting.
-\end{itemize}
-\end{alertblock}
-\end{textblock}}
-
-## Journal articles
-
-\only<1>{\showtemplate{workingpaper.pdf}[3]}
-\only<1>{\begin{textblock}{9}(6.5,1)
-\showyaml{workingpaper3.yml}
-\end{textblock}}
-\only<2-3>{\showtemplate{ijf.pdf}}
-\only<2-3>{\begin{textblock}{9}(6.5,1)
-\showyaml{ijf.yml}
-\end{textblock}}
-\only<3>{\begin{textblock}{9}(6.5,7.2)
-\begin{alertblock}{}\fontsize{12}{12}\sf
-Add \texttt{+wp} to allow two pdf output files.
-\end{alertblock}
-\end{textblock}}
-
-## Thesis template
-
-\only<1-2>{\showtemplate{thesis.pdf}}
-\only<3>{\showtemplate{thesis.pdf}[2]}
-\only<4>{\showtemplate{thesis.pdf}[3]}
-\only<5>{\showtemplate{thesis.pdf}[4]}
-\only<6>{\showtemplate{thesis.pdf}[5]}
-\only<7>{\showtemplate{thesis.pdf}[6]}
-\only<8>{\showtemplate{thesis.pdf}[7]}
-\only<9>{\showtemplate{thesis.pdf}[8]}
-\only<10>{\showtemplate{thesis.pdf}[9]}
-\only<11>{\showtemplate{thesis.pdf}[10]}
-\only<12>{\showtemplate{thesis.pdf}[11]}
-\only<13>{\showtemplate{thesis.pdf}[12]}
-\only<14>{\showtemplate{thesis.pdf}[13]}
-\only<15>{\showtemplate{thesis.pdf}[14]}
-\only<16>{\showtemplate{thesis.pdf}[15]}
-
-\begin{textblock}{9}(6.5,1)
-\only<2-16>{\showyaml{thesis.yml}}
-\end{textblock}}
-
-## Thesis template
-
-\centerline{\includegraphics[height=9cm]{thesis_html}}
-
-## Design choices: Fonts
-
-  * All templates use Fira Sans for headings.
-
-  * All templates use `Source Code Pro` for code which has good disambiguation: `LIli1!| oO0 4AH 5S 7T`
-
-  * All but presentation use Bitstream Vera for the body with a matching mathematical font:
-
-\begin{block}{}
-\centerline{\includegraphics[width=14cm]{sample_bera.pdf}}
-\end{block}
-
-## Design choices: Citations
-
-All templates use biblatex with an author-year style consistent with most statistical journals.
-
-\begin{block}{}
-\centerline{\includegraphics[page=15, trim = 0 410 0 235, clip=true, width=16.3cm]{thesis.pdf}}
-\end{block}
-
-## Github repos: github.com/quarto-monash {.fragile}
-
-\hspace*{-1cm}{\includegraphics[height=8cm]{github_repo}}
-
-\only<2-3>{\begin{textblock}{6.9}(8.75,1.4)
-\begin{block}{From a terminal}\fontsize{9.5}{10}\ttfamily
-quarto use template quarto-monash/\rlap{$<$name$>$}
-\begin{itemize}\tightlist
-\item letter
-\item memo
-\item presentation
-\item report
-\item thesis
-\item workingpaper
-\item exam
-\end{itemize}
-\end{block}
-\end{textblock}}
-
-\only<3>{\begin{textblock}{6.9}(8.75,7)
-\begin{block}{From the R console}\fontsize{9.5}{10}\ttfamily
-monash::quarto\_template\_install(\inch$<$name$>$\inch)
-\end{block}
-\end{textblock}
+square <- function(x) {
+  return(x^2)
 }
+square(8)
+```
 
-## Structure of a template {.fragile}
+The `square` function is an object like any other in R.
 
-\begin{textblock}{6}(0.2,1.3)\fontsize{10}{11}\ttfamily
-\begin{Verbatim}
-├── _extensions
-│   │   └── quarto-monash
-│   │       └── letter
-│   │           ├── _extension.yml
-│   │           ├── after-body.tex
-│   │           ├── before-body.tex
-│   │           ├── before-title.tex
-│   │           ├── AACSB.png
-│   │           ├── AMBA.png
-│   │           ├── EQUIS.png
-│   │           ├── MBSportrait.jpg
-│   │           ├── monash2.png
-│   │           └── sigfile.png
-└── template.qmd
-\end{Verbatim}
-\end{textblock}
+## Functions are objects
 
-\only<2>{\begin{textblock}{7.3}(8,1.1)
-\begin{block}{}\fontsize{13}{13}\sf
-\begin{itemize}\tightlist
-\item \texttt{template.qmd}: template for user to edit.
-\item \texttt{extension.yml}: default yaml
-\item \texttt{*.tex}: pandoc partials
-\item Everything else: graphical files needed for the template
-\end{itemize}
-\end{block}
-\end{textblock}}
+R functions can be printed,
 
-\only<3>{\showfile{template.qmd}}
-\only<4>{\showfile{extension.yml}}
-\only<5>{\showfile{before-body.tex}}
-\only<6>{\showfile{after-body.tex}}
-\only<7>{\showfile{before-title.tex}}
+```{r}
+print(square)
+```
 
-## Pandoc partial templates
-\fontsize{14}{15}\sf
+. . .
 
-* **doc-class.tex**: document class and options
-* **before-title.tex**: preamble before title block.
-* **title.tex**: create title block.
-* **before-body.tex**: frontmatter, title page, abstract.
-* **after-body.tex**: content at the end of the body.
-* **toc.tex**: table of contents, lists of figures and tables.
-* **before-bib.tex**: after content but before bibliography.
-* **biblio.tex**: creates bibliography
+inspected,
 
-###
-\fontsize{13}{13}\sf
+```{r}
+formals(square)
+```
 
-* **Details:** \url{https://quarto.org/docs/journals/templates.html}
-* **Defaults:** \url{https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/pdf/pandoc}
+## Functions are objects
 
-# Assignment 2
+put in a list,
 
-## Activity 3
+\fontsize{10}{10}\sf
+```{r}
+my_functions <- list(square, sum, min, max)
+my_functions
+```
 
-* Work on your Assignment 2.
-* Ask for help if you need it.
+## Functions are objects
 
+used within lists,
+
+```{r}
+my_functions[[1]](8)
+```
+
+. . .
+
+but they can't be subsetted!
+
+\fontsize{10}{10}\sf
+
+```{r, error = TRUE}
+square$x
+```
+
+## Handling input types
+
+Functional programming handles different input types using control flow. The same code is ran regardless of object type.
+
+```{r}
+square <- function(x) {
+  if(!is.numeric(x)) {
+    stop("`x` needs to be numeric")
+  }
+  return(x^2)
+}
+```
+
+. . .
+
+::: {.callout-tip}
+## Later in the semester...
+
+We will see object-oriented programming, which handles different input types using different functions (methods)!
+:::
+
+## What are functions?
+
+A function is comprised of three components:
+
+* The arguments/inputs (`formals()`)
+* The body/code (`body()`)
+* The environment (`environment()`)
+
+. . .
+
+::: {.callout-caution title="Your turn!"}
+Use these functions to take a closer look at `square()`.
+
+Try modifying the function's formals/body/env with `<-`.
+:::
+
+## Functional programming
+
+Since functions are like any other object, they can also be:
+
+* **inputs** to functions
+
+::: {.callout-tip title="Extensible design with function inputs"}
+Using function inputs can improve your package's design!
+
+Rather than limiting users to a few specific methods, allow them to use and write any method with functions.
+:::
+
+
+## Function arguments
+
+Consider a function which calculates accuracy measures:
+
+```{r}
+accuracy <- function(e, measure, ...) {
+  if (measure == "mae") {
+    mean(abs(e), ...)
+  } else if (measure == "rmse") {
+    sqrt(mean(e^2, ...))
+  } else {
+    stop("Unknown accuracy measure")
+  }
+}
+```
+
+::: {.callout-tip title="Improving the design"}
+This function is limited to only computing MAE and RMSE.
+:::
+
+## Function arguments
+
+Using function operators allows any measure to be used.
+
+```{r, eval = FALSE}
+MAE <- function(e, ...) mean(abs(e), ...)
+RMSE <- function(e, ...) sqrt(mean(e^2, ...))
+accuracy <- function(e, measure, ...) {
+  ???
+}
+accuracy(rnorm(100), measure = RMSE)
+```
+
+::: {.callout-caution title="Your turn!"}
+Complete the accuracy function to calculate accuracy statistics based on the function passed in to `measure`.
+:::
+
+## Functional programming
+
+Since functions are like any other object, they can also be:
+
+* **inputs** to functions
+
+* **outputs** of functions
+
+::: {.callout-tip title="Functions making functions?"}
+These functions are known as *function factories*.
+
+Where have you seen a function that creates a function?
+:::
+
+## Function factories
+
+Let's generalise `square()` to raise numbers to any power.
+
+\fontsize{10}{10}\sf
+
+```{r}
+power <- function(x, exp) {
+  x^exp
+}
+power(8, exp = 2)
+power(8, exp = 3)
+```
+
+::: {.callout-tip title="Starting a factory"}
+What if the function returned a function instead?
+:::
+
+## Function factories
+
+\fontsize{10}{10}\sf
+
+```{r}
+power_factory <- function(exp) {
+  # R is lazy and won't look at exp unless we ask it to
+  force(exp)
+  # Return a function, which finds exp from this environment
+  function(x) {
+    x^exp
+  }
+}
+square <- power_factory(exp = 2)
+square(8)
+```
+
+. . .
+
+```{r}
+cube <- power_factory(exp = 3)
+cube(8)
+```
+
+## Function factories
+
+Consider this function to calculate plot breakpoints of vectors.
+
+```{r}
+breakpoints <- function(x, n.breaks) {
+  seq(min(x), max(x), length.out = n.breaks)
+}
+```
+
+::: {.callout-caution title="Your turn!"}
+Convert this function into a function factory.
+
+Is it better to create functions via `x` or `n.breaks`?
+:::
+
+# Functional problem solving
+
+## Split, apply, combine
+
+Many problems can be simplified/solved using this process:
+
+* split (break the problem into smaller parts)
+* apply (solve the smaller problems)
+* combine (join solved parts to solve original problem)
+
+. . .
+
+This technique applies to both
+
+* writing functions (rewriting a function into sub-functions)
+* working with data (same function across groups or files)
+
+<!-- ## Functionals -->
+
+<!-- ::: {.callout-note title="Functionals"} -->
+<!-- *Functionals* use function inputs and returns vectors.  -->
+<!-- ::: -->
+
+<!-- ```{r} -->
+<!-- randomise <- function(f) f(runif(1e3)) -->
+<!-- randomise(mean) -->
+<!-- randomise(sum) -->
+<!-- ``` -->
+
+## data |> group_by() |> summarise()
+
+An example of split-apply-combine being used to work with data is when `group_by()` and `summarise()` are used together.
+
+. . .
+
+* split: `group_by()` splits up the data into groups
+* apply: your `summarise()` code calculates a single value
+* combine: `summarise()` combines the results into a vector
+
+. . .
+
+\fontsize{10}{10}\sf
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, eval = FALSE}
+library(dplyr)
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo = FALSE}
+library(dplyr)
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
+```
+:::
+
+::::
+
+
+## Split-apply-combine for vectors and lists
+
+The same idea can be used for calculations on vectors.
+
+. . .
+
+There are two main implementations we consider:
+
+* base R: The `*apply()` functions
+* purrr: The `map*()` functions
+
+. . .
+
+We will use purrr and but I'll also share the base R equivalent.
+
+## for or map?
+
+Let's `square()` a vector of numbers with a for loop.
+
+\fontsize{10}{10}\sf
+```{r}
+x <- c(1, 3, 8)
+x2 <- numeric(length(x))
+for (i in seq_along(x)) {
+  x2[i] <- square(x[i])
+}
+x2
+```
+
+. . .
+
+\fontsize{13}{14}\sf
+::: {.callout-tip title="Vectorisation?"}
+Of course `square()` is vectorised, so we should use `square(x)`. Other functions like `lm()` or `read.csv()` are not!
+:::
+
+## for or map?
+
+Instead using `map()` we get...
+
+\fontsize{13}{14}\sf
+```{r}
+library(purrr)
+x <- c(1, 3, 8)
+map(x, square) # lapply(x, square)
+```
+
+## Mapping vectors
+
+The same result, but it has been combined differently!
+
+![](../diagrams/functionals/map.png){fig-align="center"}
+
+## Mapping vectors
+
+To combine the results into a vector rather than a list, we instead use `map_vec()` to combine results into a vector.
+
+```{r}
+library(purrr)
+x <- c(1, 3, 8)
+map_vec(x, square) # vapply(x, square, numeric(1L))
+```
+
+## for or map
+
+::: {.callout-tip title="Advantages of map"}
+* Less coding (less bugs!)
+* Easier to read and understand.
+:::
+
+. . .
+
+::: {.callout-important title="Disadvantages of map"}
+* Less control over loop
+* Cannot solve sequential problems
+:::
+
+## Functional mapping
+
+Recall `group_by()` and `summarise()` from dplyr:
+
+```{r, eval = FALSE}
+mtcars |>
+  group_by(cyl) |>
+  summarise(mean(mpg))
+```
+
+::: {.callout-caution title="Your turn!"}
+Use `split()` and `map_vec()` to achieve a similar result.
+
+*Hint: `split(mtcars$mpg, mtcars$cyl)` creates a list that splits `mtcars$mpg` by each value of `mtcars$cyl`.*
+:::
+
+## Anonymous mapper functions
+
+<!-- Often the function that you map is more complicated than `mean`, and you might need to specify where the mapped vector is used. -->
+
+Suppose we want to separately model `mpg` for each `cyl`.
+
+```{r, eval = FALSE}
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4,])
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 6,])
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 8,])
+```
+
+## Anonymous mapper functions
+
+We can split the data by `cyl` with `split()`,
+
+```{r}
+mtcars_cyl <- split(mtcars, mtcars$cyl)
+```
+
+but `map(mtcars_cyl, lm, mpg ~ disp + hp + drat + wt)` won't work - why?
+
+. . .
+
+::: {.callout-important title="Difficult to map"}
+Using `map(mtcars_cyl, lm)` will apply `lm(mtcars_cyl[i])`.
+
+The mapped vector is always used as the first argument!
+:::
+
+## Anonymous mapper functions
+
+We can write our own functions!
+
+\fontsize{10}{10}\sf
+```{r}
+mtcars_lm <- function(.) lm(mpg ~ disp + hp + drat + wt, data = .)
+map(mtcars_cyl, mtcars_lm)
+```
+
+## Anonymous mapper functions
+
+Or use `~ body` to create anonymous functions.
+
+\fontsize{10}{10}\sf
+```{r}
+# lapply(mtcars_cyl, \(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+map(mtcars_cyl, ~ lm(mpg ~ disp + hp + drat + wt, data = .))
+```
+
+## Mapping mapping mapping
+
+How would you then get the coefficients from all 3 models?
+
+```{r, eval = FALSE}
+# mtcars_cyl |> lapply(\(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+mtcars_cyl |>
+  map(~ lm(mpg ~ disp + hp + drat + wt, data = .))
+```
+
+. . .
+
+::: {.callout-tip title="Solution"}
+
+\fontsize{10}{10}\sf
+```{r, eval = TRUE}
+# lapply(mtcars_cyl, \(.) lm(mpg ~ disp + hp + drat + wt, data = .))
+mtcars_cyl |>
+  map(~ lm(mpg ~ disp + hp + drat + wt, data = .)) |>
+  map(coef)
+```
+:::
+
+
+## Mapping arguments
+
+Any arguments after your function are passed to all functions.
+
+![](../diagrams/functionals/map-arg.png){fig-align="center"}
+
+## Mapping arguments
+
+This works by passing through `...` to the function.
+
+```{r}
+x <- list(1:5, c(1:10, NA))
+map_dbl(x, ~ mean(.x, na.rm = TRUE))
+map_dbl(x, mean, na.rm = TRUE)
+```
+
+## Mapping arguments
+
+These additional arguments are not decomposed / mapped.
+
+![](../diagrams/functionals/map-arg-recycle.png){fig-align="center"}
+
+## Mapping multiple arguments
+
+It is often useful to map multiple arguments.
+
+![](../diagrams/functionals/map2.png){fig-align="center"}
+
+## Mapping multiple arguments
+
+```{r}
+xs <- map(1:8, ~ ifelse(runif(10) > 0.8, NA, runif(10)))
+map_vec(xs, mean, na.rm = TRUE)
+```
+
+. . .
+
+```{r}
+ws <- map(1:8, ~ rpois(10, 5) + 1)
+map2_vec(xs, ws, weighted.mean, na.rm = TRUE)
+```
+
+
+## Mapping multiple arguments
+
+![](../diagrams/functionals/map2-arg.png){fig-align="center"}
+
+## Mapping many arguments
+
+It is also possible to map any number of inputs with `pmap`.
+
+\fontsize{10}{10}\sf
+```{r}
+n <- 1:3
+min <- c(0, 10, 100)
+max <- c(1, 100, 1000)
+pmap(list(n, min, max), runif) # .mapply(runif, list(n, min, max), list())
+```
+
+## Mapping many arguments
+
+![](../diagrams/functionals/pmap-3.png){fig-align="center"}
+
+## Parallel mapping
+
+Split-apply-combine problems are *embarrassingly parallel*.
+
+. . .
+
+The furrr package (future + purrr) makes it easy to use `map()` in parallel, providing `future_map()` variants.
+
+```{r}
+library(furrr)
+plan(multisession, workers = 4)
+future_map_dbl(xs, mean, na.rm = TRUE)
+future_map2_dbl(xs, ws, weighted.mean, na.rm = TRUE)
+```
+
+## Reduce vectors to single values
+
+Sometimes you want to collapse a vector, reducing it to a single value. `reduce()` always returns a vector of length 1.
+
+\fontsize{10}{10}\sf
+```{r}
+x <- sample(1:100, 10)
+x
+sum(x)
+# Alternative to sum()
+reduce(x, `+`) # Reduce(`+`, x)
+```
+
+## Reduce vectors to single values
+
+The result from the function is re-used as the first argument.
+
+![](../diagrams/functionals/reduce.png){fig-align="center"}
+
+## Reduce vectors to single values
+
+::: {.callout-caution title="Your turn!"}
+We're studying the letters in 3 bowls of alphabet soup.
+
+![](../diagrams/alphabet-soup.jpg){height=50%}
+:::
+
+
+## Reduce vectors to single values
+
+::: {.callout-caution title="Your turn!"}
+We're studying the letters in 3 bowls of alphabet soup.
+
+Use `reduce()` to find the letters were in all bowls of soup!
+
+Are all letters found in the soups?
+
+\fontsize{10}{10}\sf
+```{r}
+alphabet_soup <- map(c(10,24,13), sample, x=letters, replace=TRUE)
+alphabet_soup
+```
+
+:::
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-note icon=false title="Capturing conditions"}
+* `possibly(.f, otherwise)`: If the function errors, it will return `otherwise` instead.
+* `safely(.f)`: The function now returns a list with 'result' and 'error', preventing errors.
+* `quietly(.f)`: Any conditions (messages, warnings, printed output) are now captured into a list.
+:::
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-note icon=false title="Changing results"}
+* `negate(.f)` will return `!result`.
+:::
+
+::: {.callout-note icon=false title="Chaining functions"}
+* `compose(...)` will chain functions together like a chain of piped functions.
+:::
+
+
+## Functional adverbs
+
+purrr also offers many *adverbs*, which modify a function.
+
+::: {.callout-tip title="Functions modifying functions?"}
+These functions are all *function factories*!
+
+More specifically they are known as *function operators* since both the input and output is a function.
+
+`memoise::memoise()` is also a *function operator*.
+:::
+
+
+<!-- These are function factories! -->
+
+<!-- ## How does it work? -->
+
+<!-- ```{r, eval = FALSE} -->
+<!-- simple_map <- function(x, f, ...) { -->
+<!--   out <- vector("list", length(x)) -->
+<!--   for(i in seq_along(x)) { -->
+<!--     out[[i]] <- f(x[[i]], ...) -->
+<!--   } -->
+<!--   out -->
+<!-- } -->
+<!-- ``` -->
+
+
+<!-- 1. purrr/furrr -->
+<!-- 2. functional arguments -->
+<!-- 3. functional outputs -->

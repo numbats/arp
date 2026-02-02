@@ -1,23 +1,24 @@
 ---
-title: "Week 2: Hadley Wickham guest lecture"
+title: "Week 2: Foundations of R Programming"
 ---
-
-Guest Lecturer: [Hadley Wickham](https://hadley.nz)
 
 ```{r}
 week <- 2
 source(here::here("course_info.R"))
 ```
 
-## Reference material
+## Main reference
 
- * [Ch 5 Control Flow](https://adv-r.hadley.nz/control-flow.html#loops). See Sec 5.3 on Loops.
- * [Ch 9 Functionals from *Advanced R*](https://adv-r.hadley.nz/functionals.html), especially sections 9.2 and 9.3.
+ * [4-8, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)
 
-## Hadley's code from the workshop
 
- * [long-map.qmd](long-map.qmd)
+## What you will learn this week
 
+* Subsetting
+* Control flow
+* Functions
+* Environments
+* Conditions
 
 ```{r}
 #| output: asis

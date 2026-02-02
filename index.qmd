@@ -54,8 +54,8 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 #| output: asis
 schedule |>
   transmute(
-    Date = format(Date + 3, "%d %b"),
-    Show = !is.na(Week) & Week <= 12,
+    Date = format(Date + 3, "%d %b"), # Thursday of each week
+    Show = !is.na(Week) & Week <= 1, # Only link to past and current weeks
     Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
     Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
   ) |>

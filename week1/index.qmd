@@ -1,5 +1,5 @@
 ---
-title: "Week 1: Foundations of R programming"
+title: "Week 1: R IDEs, and workflow tools"
 ---
 
 ```{r}
@@ -9,16 +9,17 @@ source(here::here("course_info.R"))
 
 ## Main reference
 
- * [1-8, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)
+ * [1-3, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)
 
 ## What you will learn this week
 
+* What makes R different from other programming languages
+* Differences between RStudio and Positron
+* Integration of GitHub and version control in R IDEs
+* Integration of AI tools in R IDEs
+* Sources of R packages: CRAN, Bioconductor, GitHub
 * Scalars and vectors
 * Lists and data frames
-* Subsetting
-* Functions
-* Environments
-* Conditions
 
 ```{r}
 #| output: asis
