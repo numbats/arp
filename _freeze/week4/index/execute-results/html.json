@@ -3,9 +3,7 @@
   "result": {
     "engine": "knitr",
     "markdown": "---\ntitle: \"Week 4: R programming with LLMs\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n* [Hadley Wickham guest lecture 2025](https://youtu.be/AiHR-kzfD7I?si=9uYTp17GSeM7MOAK)\n* [Hadley's code from 2025](https://arp.numbat.space/week4/long-map.qmd)\n* [Ch 5 Control Flow from *Advanced R*](https://adv-r.hadley.nz/control-flow.html). See Sec 5.3 on Loops.\n* [Ch 9 Functionals from *Advanced R*](https://adv-r.hadley.nz/functionals.html), especially sections 9.2 and 9.3.\n* [ellmer](https://ellmer.tidyverse.org/)\n\n## What you will learn this week\n\n* Using LLMs to assist with R programming\n\n## Online resources\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
-    "supporting": [
-      "index_files"
-    ],
+    "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
