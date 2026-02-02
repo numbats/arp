@@ -16,6 +16,7 @@ R is widely used as a tool for data analysis and one of the most popular program
 ## Teachers
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
+* [**Krisanat Anukarnsakulchularp**](https://krisanata.github.io/personal-website/), Tutor
 * [**Tomasz Wozniak**](https://github.com/donotdespair), Week 11
 
 ## References
