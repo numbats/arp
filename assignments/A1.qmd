@@ -2,26 +2,41 @@
 title: Assignment 1 (30%)
 ---
 
-This is a group assignment. You will be assigned to a group of 4 students. You must work together to complete the assignment, and submit a single solution for the group.
+This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.
 
-Write a package to do ?????
+## Task
+
+Write a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:
+
+  * Play several rounds of Rock, Paper, Scissors against the computer using a function `play_rps()`. The function should take the user's sequence of choices as the first argument (e.g., `c("rock", "scissors", "rock", "paper")`), and return the results of the games (a vector of `"win"`, `"lose"`, or `"draw"` values of the same length as the first argument).
+  * Choose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user's previous choices.
+
+There is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be `play_rps()`. All other functions should be internal to the package, and not exported.
+
+You may use `usethis` functions (e.g., `create_package()`, `use_testthat()`, `use_roxygen_md()`, etc.) to help set up your package structure.
 
 Your code should demonstrate:
 
-  * Modular functions
-  * Default arguments
-  * Passing package checks
-  * Unit tests
-  * A short vignette explaining how to use the package
-  * All user-facing functions should have examples and unit tests.
+  * Default argument handling
+  * Input validation
+  * Use of appropriate data structures
+  * Efficient vectorized operations where possible
+  * Modular code design
+  * Documentation using roxygen2 with examples
+  * Unit tests using testthat
+  * Your package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.
+  * A README file that explains how to install and use the package
+  * There is no need to include a vignette.
 
-### Notes
+## Notes
 
 1. The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.
 
-2. Each team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.
+2. Marks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).
 
-3. Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:
+3. Each team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.
+
+4. Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:
 
     a. represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;
     b. adhere to the guidelines for AI use set for the assessment task;
@@ -30,7 +45,54 @@ Your code should demonstrate:
    Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence) for more information.
 
 
+## Marking rubric
 
+**Total: 100 marks (scaled to 30%)**
+
+#### 1. Does your `play_rps()` function work correctly? (20 marks)
+
+- produces correct win/lose/draw results
+- handles multiple rounds
+- supports all strategies (including random, and one that uses previous user choices)
+- behaves correctly in edge cases and invalid inputs
+
+#### 2. Is your code clean, modular, and efficient? (20 marks)
+
+- good use of helper functions
+- clear organisation
+- vectorised operations where sensible
+- appropriate data structures
+- no seed-setting in the main code
+
+#### 3. Is your documentation helpful? (15 marks)
+
+- clear documentation for `play_rps()` with examples
+- good README explaining installation and usage
+- examples that run successfully
+
+#### 4. Do you have good unit tests? (15 marks)
+
+- tests that cover the main logic
+- tests for strategies and edge cases
+- tests using seeds so results are reproducible
+
+#### 5. Does your package build cleanly? (10 marks)
+
+- whether the package installs
+- whether it passes `R CMD check` without warnings or errors
+- whether the structure follows normal R package conventions
+
+#### 6. Did the group use GitHub properly? (10 marks)
+
+- regular, meaningful commits
+- good commit messages
+- evidence that all members participated
+
+#### 7. Did you include a proper AI use statement? (5 marks)
+
+- explain how you used AI (if at all)
+- include prompts/examples
+- ensure all AI‑generated content is acknowledged
 
 ```{r}
 #| output: asis
