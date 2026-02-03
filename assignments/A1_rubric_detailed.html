@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 1 (30%) – ETC4500/ETC5450 Advanced R Programming</title>
+<title>a1_rubric_detailed – ETC4500/ETC5450 Advanced R Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,137 +142,89 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#task" id="toc-task" class="nav-link active" data-scroll-target="#task">Task</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#marking-rubric" id="toc-marking-rubric" class="nav-link" data-scroll-target="#marking-rubric">Marking rubric</a></li>
+  <li><a href="#assignment-1-marking-rubric" id="toc-assignment-1-marking-rubric" class="nav-link active" data-scroll-target="#assignment-1-marking-rubric">Assignment 1 Marking Rubric</a>
+  <ul class="collapse">
+  <li><a href="#functionality-of-play_rps-20-marks" id="toc-functionality-of-play_rps-20-marks" class="nav-link" data-scroll-target="#functionality-of-play_rps-20-marks">1. Functionality of <code>play_rps()</code> (20 marks)</a></li>
+  <li><a href="#code-quality-and-design-20-marks" id="toc-code-quality-and-design-20-marks" class="nav-link" data-scroll-target="#code-quality-and-design-20-marks">2. Code Quality and Design (20 marks)</a></li>
+  <li><a href="#documentation-roxygen2-readme-15-marks" id="toc-documentation-roxygen2-readme-15-marks" class="nav-link" data-scroll-target="#documentation-roxygen2-readme-15-marks">3. Documentation (roxygen2 + README) (15 marks)</a></li>
+  <li><a href="#unit-testing-15-marks" id="toc-unit-testing-15-marks" class="nav-link" data-scroll-target="#unit-testing-15-marks">4. Unit Testing (15 marks)</a></li>
+  <li><a href="#package-structure-and-build-quality-10-marks" id="toc-package-structure-and-build-quality-10-marks" class="nav-link" data-scroll-target="#package-structure-and-build-quality-10-marks">5. Package Structure and Build Quality (10 marks)</a></li>
+  <li><a href="#github-usage-and-commit-practices-10-marks" id="toc-github-usage-and-commit-practices-10-marks" class="nav-link" data-scroll-target="#github-usage-and-commit-practices-10-marks">6. GitHub Usage and Commit Practices (10 marks)</a></li>
+  <li><a href="#ai-use-statement-5-marks" id="toc-ai-use-statement-5-marks" class="nav-link" data-scroll-target="#ai-use-statement-5-marks">7. AI Use Statement (5 marks)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Assignment 1 (30%)</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.</p>
-<section id="task" class="level2">
-<h2 class="anchored" data-anchor-id="task">Task</h2>
-<p>Write a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:</p>
-<ul>
-<li>Play several rounds of Rock, Paper, Scissors against the computer using a function <code>play_rps()</code>. The function should take the user’s sequence of choices as the first argument (e.g., <code>c("rock", "scissors", "rock", "paper")</code>), and return the results of the games (a vector of <code>"win"</code>, <code>"lose"</code>, or <code>"draw"</code> values of the same length as the first argument).</li>
-<li>Choose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.</li>
-</ul>
-<p>There is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be <code>play_rps()</code>. All other functions should be internal to the package, and not exported.</p>
-<p>You may use <code>usethis</code> functions (e.g., <code>create_package()</code>, <code>use_testthat()</code>, <code>use_roxygen_md()</code>, etc.) to help set up your package structure.</p>
-<p>Your code should demonstrate:</p>
-<ul>
-<li>Default argument handling</li>
-<li>Input validation</li>
-<li>Use of appropriate data structures</li>
-<li>Efficient vectorized operations where possible</li>
-<li>Modular code design</li>
-<li>Documentation using roxygen2 with examples</li>
-<li>Unit tests using testthat</li>
-<li>Your package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.</li>
-<li>A README file that explains how to install and use the package</li>
-<li>There is no need to include a vignette.</li>
-</ul>
-</section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ol type="1">
-<li><p>The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.</p></li>
-<li><p>Marks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).</p></li>
-<li><p>Each team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.</p></li>
-<li><p>Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:</p>
-<ol type="a">
-<li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;</li>
-<li>adhere to the guidelines for AI use set for the assessment task;</li>
-<li>reflect the University’s commitment to academic integrity and ethical behaviour.</li>
-</ol>
-<p>Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See <a href="https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence">Learn HQ</a> for more information.</p></li>
-</ol>
-</section>
-<section id="marking-rubric" class="level2">
-<h2 class="anchored" data-anchor-id="marking-rubric">Marking rubric</h2>
-<p><strong>Total: 100 marks (scaled to 30%)</strong></p>
-<section id="does-your-play_rps-function-work-correctly-20-marks" class="level4">
-<h4 class="anchored" data-anchor-id="does-your-play_rps-function-work-correctly-20-marks">1. Does your <code>play_rps()</code> function work correctly? (20 marks)</h4>
-<ul>
-<li>produces correct win/lose/draw results</li>
-<li>handles multiple rounds</li>
-<li>supports all strategies (including random, and one that uses previous user choices)</li>
-<li>behaves correctly in edge cases and invalid inputs</li>
-</ul>
-</section>
-<section id="is-your-code-clean-modular-and-efficient-20-marks" class="level4">
-<h4 class="anchored" data-anchor-id="is-your-code-clean-modular-and-efficient-20-marks">2. Is your code clean, modular, and efficient? (20 marks)</h4>
-<ul>
-<li>good use of helper functions</li>
-<li>clear organisation</li>
-<li>vectorised operations where sensible</li>
-<li>appropriate data structures</li>
-<li>no seed-setting in the main code</li>
-</ul>
-</section>
-<section id="is-your-documentation-helpful-15-marks" class="level4">
-<h4 class="anchored" data-anchor-id="is-your-documentation-helpful-15-marks">3. Is your documentation helpful? (15 marks)</h4>
-<ul>
-<li>clear documentation for <code>play_rps()</code> with examples</li>
-<li>good README explaining installation and usage</li>
-<li>examples that run successfully</li>
-</ul>
-</section>
-<section id="do-you-have-good-unit-tests-15-marks" class="level4">
-<h4 class="anchored" data-anchor-id="do-you-have-good-unit-tests-15-marks">4. Do you have good unit tests? (15 marks)</h4>
-<ul>
-<li>tests that cover the main logic</li>
-<li>tests for strategies and edge cases</li>
-<li>tests using seeds so results are reproducible</li>
-</ul>
-</section>
-<section id="does-your-package-build-cleanly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="does-your-package-build-cleanly-10-marks">5. Does your package build cleanly? (10 marks)</h4>
-<ul>
-<li>whether the package installs</li>
-<li>whether it passes <code>R CMD check</code> without warnings or errors</li>
-<li>whether the structure follows normal R package conventions</li>
-</ul>
-</section>
-<section id="did-the-group-use-github-properly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="did-the-group-use-github-properly-10-marks">6. Did the group use GitHub properly? (10 marks)</h4>
-<ul>
-<li>regular, meaningful commits</li>
-<li>good commit messages</li>
-<li>evidence that all members participated</li>
-</ul>
-</section>
-<section id="did-you-include-a-proper-ai-use-statement-5-marks" class="level4">
-<h4 class="anchored" data-anchor-id="did-you-include-a-proper-ai-use-statement-5-marks">7. Did you include a proper AI use statement? (5 marks)</h4>
-<ul>
-<li>explain how you used AI (if at all)</li>
-<li>include prompts/examples</li>
-<li>ensure all AI‑generated content is acknowledged</li>
-</ul>
-<br><br>
+<section id="assignment-1-marking-rubric" class="level1">
+<h1>Assignment 1 Marking Rubric</h1>
+<p><strong>Total: 100 marks (scaled to 30% of unit grade)</strong> <strong>Group Project: R Package Development – Rock, Paper, Scissors</strong></p>
 <hr>
-<p><b>Due: 31 March 2026</b><br><a href="https://learning.monash.edu/mod/assign/view.php?id=5219879" class="badge badge-large badge-blue"><font size="+2">&nbsp;&nbsp;<b>Join GitHub Classroom</b>&nbsp;&nbsp;</font><br></a></p>
+<section id="functionality-of-play_rps-20-marks" class="level2">
+<h2 class="anchored" data-anchor-id="functionality-of-play_rps-20-marks">1. Functionality of <code>play_rps()</code> (20 marks)</h2>
+<p><strong>Excellent (17–20)</strong> - All requirements satisfied. - Correct logic for win/lose/draw across multiple rounds. - All strategies implemented correctly, including at least one stateful strategy. - Fully robust to edge cases; input/output exactly matches specification.</p>
+<p><strong>Good (13–16)</strong> - Gameplay correct for typical inputs; minor inconsistencies. - Strategies implemented but one may be incomplete.</p>
+<p><strong>Satisfactory (9–12)</strong> - Basic gameplay works but fails for some edge or mixed cases. - Limited strategy robustness.</p>
+<p><strong>Poor (1–8)</strong> - Incorrect outcomes or broken logic. - Strategies malfunction or missing.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful implementation.</p>
+<hr>
+</section>
+<section id="code-quality-and-design-20-marks" class="level2">
+<h2 class="anchored" data-anchor-id="code-quality-and-design-20-marks">2. Code Quality and Design (20 marks)</h2>
+<p><strong>Excellent (17–20)</strong> - Clean, modular, readable code with appropriate helper functions. - Good separation of concerns. - Efficient vectorisation where appropriate. - Sensible data structures. - No seed-setting in package code; randomness handled properly.</p>
+<p><strong>Good (13–16)</strong> - Mostly modular; occasional duplication. - Some vectorisation.</p>
+<p><strong>Satisfactory (9–12)</strong> - Limited modularity; large blocks of logic embedded in one place. - Overuse of loops where vectorisation is feasible.</p>
+<p><strong>Poor (1–8)</strong> - Monolithic, unstructured, or hard-to-follow code.</p>
+<p><strong>Not attempted (0)</strong> - No coherent code submitted.</p>
+<hr>
+</section>
+<section id="documentation-roxygen2-readme-15-marks" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-roxygen2-readme-15-marks">3. Documentation (roxygen2 + README) (15 marks)</h2>
+<p><strong>Excellent (13–15)</strong> - <code>play_rps()</code> clearly documented with running examples. - README well-written and explains installation and usage. - Examples run without errors.</p>
+<p><strong>Good (10–12)</strong> - Documentation mostly clear; minor missing details.</p>
+<p><strong>Satisfactory (7–9)</strong> - Documentation incomplete, unclear, or inaccurate.</p>
+<p><strong>Poor (1–6)</strong> - Minimal documentation; examples missing or broken.</p>
+<p><strong>Not attempted (0)</strong> - No documentation provided.</p>
+<hr>
+</section>
+<section id="unit-testing-15-marks" class="level2">
+<h2 class="anchored" data-anchor-id="unit-testing-15-marks">4. Unit Testing (15 marks)</h2>
+<p><strong>Excellent (13–15)</strong> - Comprehensive test coverage for gameplay logic, strategies, and edge cases. - Tests deterministic via setting seeds <em>in tests only</em>. - Clear organisation.</p>
+<p><strong>Good (10–12)</strong> - Several important behaviours tested; moderate coverage.</p>
+<p><strong>Satisfactory (7–9)</strong> - Limited or superficial tests; some randomness issues.</p>
+<p><strong>Poor (1–6)</strong> - Very little testing; major logic untested.</p>
+<p><strong>Not attempted (0)</strong> - No tests.</p>
+<hr>
+</section>
+<section id="package-structure-and-build-quality-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="package-structure-and-build-quality-10-marks">5. Package Structure and Build Quality (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - Package builds and installs without error or significant warnings. - Passes <code>R CMD check</code> with zero errors and warnings - Proper structure, DESCRIPTION, and NAMESPACE.</p>
+<p><strong>Good (7–8)</strong> - Minor notes or warnings.</p>
+<p><strong>Satisfactory (5–6)</strong> - Noticeable structural issues; multiple notes/warnings.</p>
+<p><strong>Poor (1–4)</strong> - Package fails check or builds incorrectly.</p>
+<p><strong>Not attempted (0)</strong> - Package does not build.</p>
+<hr>
+</section>
+<section id="github-usage-and-commit-practices-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="github-usage-and-commit-practices-10-marks">6. GitHub Usage and Commit Practices (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - Regular, meaningful commits from all members. - Clear, accurate commit messages. - Evidence of collaboration.</p>
+<p><strong>Good (7–8)</strong> - Mostly regular commits; messages acceptable.</p>
+<p><strong>Satisfactory (5–6)</strong> - Irregular commits; vague or mixed-quality messages.</p>
+<p><strong>Poor (1–4)</strong> - Sparse commits; poor documentation of work.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful commit history.</p>
+<p><em>(Individual commit‑based penalties applied separately as per assignment instructions.)</em></p>
+<hr>
+</section>
+<section id="ai-use-statement-5-marks" class="level2">
+<h2 class="anchored" data-anchor-id="ai-use-statement-5-marks">7. AI Use Statement (5 marks)</h2>
+<p><strong>Full marks (5)</strong> - Clear, honest explanation of AI use, including prompts/examples. - No evidence of unacknowledged use.</p>
+<p><strong>Partial (2–4)</strong> - Statement present but incomplete or unclear.</p>
+<p><strong>Zero (0)</strong> - No statement OR unacknowledged AI use detected.</p>
 
 
 </section>
