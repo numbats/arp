@@ -77,165 +77,39 @@
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ETC4500/5450 Advanced R Programming",
+    "objectID": "week2/index.html",
+    "href": "week2/index.html",
+    "title": "Week 2: Foundations of R Programming",
     "section": "",
-    "text": "R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language."
+    "text": "4-8, Advanced R"
   },
   {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nbe familiar with the foundations of R programming\nunderstand a variety of programming paradigms, including functional programming and object-oriented programming\nutilise R’s functional and object-oriented programming systems\nintegrate the concept of metaprogramming to evaluate and construct new functions"
-  },
-  {
-    "objectID": "index.html#teachers",
-    "href": "index.html#teachers",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Teachers",
-    "text": "Teachers\n\nRob J Hyndman. Chief Examiner. Email: Rob.Hyndman@monash.edu\nKrisanat Anukarnsakulchularp, Tutor\nTomasz Wozniak, Week 11"
-  },
-  {
-    "objectID": "index.html#references",
-    "href": "index.html#references",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "References",
-    "text": "References\n\nAdvanced R, 2e by Hadley Wickham.\nAdvanced R Solutions by Malte Grosser, Henning Bumann & Hadley Wickham.\nR packages, 2e by Hadley Wickham & Jenny Bryan."
-  },
-  {
-    "objectID": "index.html#recordings",
-    "href": "index.html#recordings",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Recordings",
-    "text": "Recordings\n\nRecordings"
-  },
-  {
-    "objectID": "index.html#weekly-schedule",
-    "href": "index.html#weekly-schedule",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR IDEs, and workflow tools\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
-  },
-  {
-    "objectID": "index.html#assessments",
-    "href": "index.html#assessments",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Assessments",
-    "text": "Assessments\n\nAssignment 1: 30%\nAssignment 2: 30%\nAssignment 3: 30%\nDiscussion: 10%"
-  },
-  {
-    "objectID": "assignments/A3.html",
-    "href": "assignments/A3.html",
-    "title": "Assignment 3 (30%)",
+    "objectID": "week2/index.html#main-reference",
+    "href": "week2/index.html#main-reference",
+    "title": "Week 2: Foundations of R Programming",
     "section": "",
-    "text": "You need to extend the ??? package to include:\n\nS3 methods (e.g., print and plot methods) for an appropriate class in the package.\nA custom vctrs class for an appropriate data structure in the package.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector\nCreate methods for your custom generic function(s), including suitable defaults.\n\nIntegration of C++ code via Rcpp for an appropriate function in your package.\n\nYou can also consider adding some element of metaprogramming if you think it is appropriate.\nThere should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
+    "text": "4-8, Advanced R"
   },
   {
-    "objectID": "assignments/A1.html",
-    "href": "assignments/A1.html",
-    "title": "Assignment 1 (30%)",
-    "section": "",
-    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
-  },
-  {
-    "objectID": "assignments/A1.html#task",
-    "href": "assignments/A1.html#task",
-    "title": "Assignment 1 (30%)",
-    "section": "Task",
-    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), use_roxygen_md(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
-  },
-  {
-    "objectID": "assignments/A1.html#notes",
-    "href": "assignments/A1.html#notes",
-    "title": "Assignment 1 (30%)",
-    "section": "Notes",
-    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
-  },
-  {
-    "objectID": "assignments/A1.html#marking-rubric",
-    "href": "assignments/A1.html#marking-rubric",
-    "title": "Assignment 1 (30%)",
-    "section": "Marking rubric",
-    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A2.html",
-    "href": "assignments/A2.html",
-    "title": "Assignment 2 (30%)",
-    "section": "",
-    "text": "The ?? package is designed to ??\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/discussion.html",
-    "href": "assignments/discussion.html",
-    "title": "Discussion (10%)",
-    "section": "",
-    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
-  },
-  {
-    "objectID": "week1/index.html",
-    "href": "week1/index.html",
-    "title": "Week 1: R IDEs, and workflow tools",
-    "section": "",
-    "text": "1-3, Advanced R"
-  },
-  {
-    "objectID": "week1/index.html#main-reference",
-    "href": "week1/index.html#main-reference",
-    "title": "Week 1: R IDEs, and workflow tools",
-    "section": "",
-    "text": "1-3, Advanced R"
-  },
-  {
-    "objectID": "week1/index.html#what-you-will-learn-this-week",
-    "href": "week1/index.html#what-you-will-learn-this-week",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "objectID": "week2/index.html#what-you-will-learn-this-week",
+    "href": "week2/index.html#what-you-will-learn-this-week",
+    "title": "Week 2: Foundations of R Programming",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
+    "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
   },
   {
-    "objectID": "week1/index.html#slides-for-week",
-    "href": "week1/index.html#slides-for-week",
-    "title": "Week 1: R IDEs, and workflow tools",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week1/index.html#assignments",
-    "href": "week1/index.html#assignments",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "objectID": "week2/index.html#assignments",
+    "href": "week2/index.html#assignments",
+    "title": "Week 2: Foundations of R Programming",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "week10/index.html",
-    "href": "week10/index.html",
-    "title": "Week 10: Metaprogramming",
+    "objectID": "week12/index.html",
+    "href": "week12/index.html",
+    "title": "Week 12: Package hackathon",
     "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#main-reference",
-    "href": "week10/index.html#main-reference",
-    "title": "Week 10: Metaprogramming",
-    "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#what-you-will-learn-this-week",
-    "href": "week10/index.html#what-you-will-learn-this-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
-  },
-  {
-    "objectID": "week10/index.html#slides-for-week",
-    "href": "week10/index.html#slides-for-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
+    "text": "This will be a time to work together on your game packages in groups. Rob and Mitch will be available for consultation."
   },
   {
     "objectID": "week11/index.html",
@@ -287,39 +161,165 @@
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
-    "objectID": "week12/index.html",
-    "href": "week12/index.html",
-    "title": "Week 12: Package hackathon",
+    "objectID": "week10/index.html",
+    "href": "week10/index.html",
+    "title": "Week 10: Metaprogramming",
     "section": "",
-    "text": "This will be a time to work together on your game packages in groups. Rob and Mitch will be available for consultation."
+    "text": "17-20 Advanced R"
   },
   {
-    "objectID": "week2/index.html",
-    "href": "week2/index.html",
-    "title": "Week 2: Foundations of R Programming",
+    "objectID": "week10/index.html#main-reference",
+    "href": "week10/index.html#main-reference",
+    "title": "Week 10: Metaprogramming",
     "section": "",
-    "text": "4-8, Advanced R"
+    "text": "17-20 Advanced R"
   },
   {
-    "objectID": "week2/index.html#main-reference",
-    "href": "week2/index.html#main-reference",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "",
-    "text": "4-8, Advanced R"
-  },
-  {
-    "objectID": "week2/index.html#what-you-will-learn-this-week",
-    "href": "week2/index.html#what-you-will-learn-this-week",
-    "title": "Week 2: Foundations of R Programming",
+    "objectID": "week10/index.html#what-you-will-learn-this-week",
+    "href": "week10/index.html#what-you-will-learn-this-week",
+    "title": "Week 10: Metaprogramming",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
+    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
   },
   {
-    "objectID": "week2/index.html#assignments",
-    "href": "week2/index.html#assignments",
-    "title": "Week 2: Foundations of R Programming",
+    "objectID": "week10/index.html#slides-for-week",
+    "href": "week10/index.html#slides-for-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week1/index.html",
+    "href": "week1/index.html",
+    "title": "Week 1: R IDEs, and workflow tools",
+    "section": "",
+    "text": "1-3, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#main-reference",
+    "href": "week1/index.html#main-reference",
+    "title": "Week 1: R IDEs, and workflow tools",
+    "section": "",
+    "text": "1-3, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#what-you-will-learn-this-week",
+    "href": "week1/index.html#what-you-will-learn-this-week",
+    "title": "Week 1: R IDEs, and workflow tools",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
+  },
+  {
+    "objectID": "week1/index.html#slides-for-week",
+    "href": "week1/index.html#slides-for-week",
+    "title": "Week 1: R IDEs, and workflow tools",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week1/index.html#assignments",
+    "href": "week1/index.html#assignments",
+    "title": "Week 1: R IDEs, and workflow tools",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "assignments/discussion.html",
+    "href": "assignments/discussion.html",
+    "title": "Discussion (10%)",
+    "section": "",
+    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
+  },
+  {
+    "objectID": "assignments/A2.html",
+    "href": "assignments/A2.html",
+    "title": "Assignment 2 (30%)",
+    "section": "",
+    "text": "The ?? package is designed to ??\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A1.html",
+    "href": "assignments/A1.html",
+    "title": "Assignment 1 (30%)",
+    "section": "",
+    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
+  },
+  {
+    "objectID": "assignments/A1.html#task",
+    "href": "assignments/A1.html#task",
+    "title": "Assignment 1 (30%)",
+    "section": "Task",
+    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), use_roxygen_md(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
+  },
+  {
+    "objectID": "assignments/A1.html#notes",
+    "href": "assignments/A1.html#notes",
+    "title": "Assignment 1 (30%)",
+    "section": "Notes",
+    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
+  },
+  {
+    "objectID": "assignments/A1.html#marking-rubric",
+    "href": "assignments/A1.html#marking-rubric",
+    "title": "Assignment 1 (30%)",
+    "section": "Marking rubric",
+    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A3.html",
+    "href": "assignments/A3.html",
+    "title": "Assignment 3 (30%)",
+    "section": "",
+    "text": "You need to extend the ??? package to include:\n\nS3 methods (e.g., print and plot methods) for an appropriate class in the package.\nA custom vctrs class for an appropriate data structure in the package.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector\nCreate methods for your custom generic function(s), including suitable defaults.\n\nIntegration of C++ code via Rcpp for an appropriate function in your package.\n\nYou can also consider adding some element of metaprogramming if you think it is appropriate.\nThere should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "",
+    "text": "R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nbe familiar with the foundations of R programming\nunderstand a variety of programming paradigms, including functional programming and object-oriented programming\nutilise R’s functional and object-oriented programming systems\nintegrate the concept of metaprogramming to evaluate and construct new functions"
+  },
+  {
+    "objectID": "index.html#teachers",
+    "href": "index.html#teachers",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Teachers",
+    "text": "Teachers\n\nRob J Hyndman. Chief Examiner. Email: Rob.Hyndman@monash.edu\nKrisanat Anukarnsakulchularp, Tutor\nTomasz Wozniak, Week 11"
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "References",
+    "text": "References\n\nAdvanced R, 2e by Hadley Wickham.\nAdvanced R Solutions by Malte Grosser, Henning Bumann & Hadley Wickham.\nR packages, 2e by Hadley Wickham & Jenny Bryan."
+  },
+  {
+    "objectID": "index.html#recordings",
+    "href": "index.html#recordings",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Recordings",
+    "text": "Recordings\n\nRecordings"
+  },
+  {
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR IDEs, and workflow tools\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
+  },
+  {
+    "objectID": "index.html#assessments",
+    "href": "index.html#assessments",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Assessments",
+    "text": "Assessments\n\nAssignment 1: 30%\nAssignment 2: 30%\nAssignment 3: 30%\nDiscussion: 10%"
   },
   {
     "objectID": "week5/index.html",
