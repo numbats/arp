@@ -191,35 +191,42 @@
   {
     "objectID": "week1/index.html",
     "href": "week1/index.html",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "title": "Week 1: R tools and data structures",
     "section": "",
     "text": "1-3, Advanced R"
   },
   {
     "objectID": "week1/index.html#main-reference",
     "href": "week1/index.html#main-reference",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "title": "Week 1: R tools and data structures",
     "section": "",
     "text": "1-3, Advanced R"
   },
   {
     "objectID": "week1/index.html#what-you-will-learn-this-week",
     "href": "week1/index.html#what-you-will-learn-this-week",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "title": "Week 1: R tools and data structures",
     "section": "What you will learn this week",
     "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
   },
   {
+    "objectID": "week1/index.html#pre-class-activities",
+    "href": "week1/index.html#pre-class-activities",
+    "title": "Week 1: R tools and data structures",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nInstall Positron\nWork through the quick tour\nWatch “From RStudio to Positron”: video\nWatch “Exploratory data analysis with R in Positron”: video"
+  },
+  {
     "objectID": "week1/index.html#slides-for-week",
     "href": "week1/index.html#slides-for-week",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "title": "Week 1: R tools and data structures",
     "section": "Slides for week",
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
     "objectID": "week1/index.html#assignments",
     "href": "week1/index.html#assignments",
-    "title": "Week 1: R IDEs, and workflow tools",
+    "title": "Week 1: R tools and data structures",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
@@ -312,7 +319,7 @@
     "href": "index.html#weekly-schedule",
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR IDEs, and workflow tools\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
+    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR tools and data structures\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
   },
   {
     "objectID": "index.html#assessments",
