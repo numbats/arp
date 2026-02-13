@@ -11,7 +11,7 @@ mid_semester_break <- "2026-04-06"
 schedule <- tibble(
   Week = seq(12),
   Topic = c(
-    "R IDEs, and workflow tools",
+    "R tools and data structures",
     "Foundations of R programming",
     "R package development",
     "R programming with LLMs",

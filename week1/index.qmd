@@ -1,5 +1,5 @@
 ---
-title: "Week 1: R IDEs, and workflow tools"
+title: "Week 1: R tools and data structures"
 ---
 
 ```{r}
@@ -20,6 +20,13 @@ source(here::here("course_info.R"))
 * Sources of R packages: CRAN, Bioconductor, GitHub
 * Scalars and vectors
 * Lists and data frames
+
+## Pre-class activities
+
+  * Install [Positron](https://positron.posit.co/download.html)
+  * Work through the [quick tour](https://posit.co/blog/a-quick-tour-of-positron/)
+  * Watch "From RStudio to Positron": [video](https://www.youtube.com/watch?v=tvm4bJf1xzI)
+  * Watch "Exploratory data analysis with R in Positron": [video](https://www.youtube.com/watch?v=ndq2Mm3Dju8)
 
 ```{r}
 #| output: asis

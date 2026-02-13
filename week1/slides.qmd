@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 1: Foundations of R programming"
+author: "Week 1: R tools and data structures"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -29,22 +29,27 @@ source(here::here("course_info.R"))
 * You have a basic understanding of programming (for loops, if statements, functions)
 * You can use Git and GitHub (https://happygitwithr.com)
 
+\pause
+
 ### Unit resources
 
 * Everything on **https://arp.numbat.space**
-* Assignments submitted on Github Classroom
+* Assignments submitted on GitHub Classroom
 * Discussion on Ed
 
 ## Introduction
+\fontsize{14}{15}\sf
 
 ### Assessment
 
 * Three group assignments building or fixing packages: 30% each
 * Individual discussion participation: 10%
 
+\pause
+
 ### GitHub
 
-* Use your monash edu address.
+* Use your `monash.edu` address.
 * Apply to GitHub Education as a student (<https://github.com/education/students>).
 * Gives you free access to private repos and GitHub Copilot.
 * Add GitHub Copilot to RStudio settings, or sign into GitHub in Positron.
@@ -70,7 +75,7 @@ source(here::here("course_info.R"))
 * Free, open source, and on every major platform.
 * A diverse and welcoming community
 * A massive set of packages, often cutting-edge.
-* Powerful communication tools (Shiny, Rmarkdown, \rlap{quarto)}
+* Powerful communication tools \rlap{(Shiny, Rmarkdown, quarto)}
 * RStudio and Positron IDEs
 * Deep-seated language support for data analysis.
 * A strong foundation of functional programming.
@@ -85,11 +90,17 @@ source(here::here("course_info.R"))
 * R can be slow.
 
 ## RStudio and Positron
+\fontsize{14}{15}\sf
 
 * Integrated development environments (IDEs) for R.
-* Provide a user-friendly interface for writing and running R code, managing files, and visualizing data.
+* Provide a user-friendly interface for writing and running R code, managing files, and visualising data.
 * RStudio is the most popular IDE for R, but Positron is a newer alternative that offers some additional features and is designed to also work with Python.
-* GitHub integration is available in both IDEs.
+* Choose one and set it up:
+
+  * GitHub integration
+  * A coding font with ligatures
+  * A theme you like
+  * Positron extensions
 
 ## CRAN, Bioconductor, and GitHub
 
@@ -124,7 +135,7 @@ int_var <- c(1L, 6L, 10L)
 dbl_var <- c(1, 2.5, 4.5)
 chr_var <- c("these are", "some strings")
 ```
-When the inputs are atomic vectors,\newline `c()` always flattens.
+When the inputs are atomic vectors, \newline `c()` always flattens.
 
 ```{r}
 c(c(1, 2), c(3, 4))
@@ -135,7 +146,7 @@ c(c(1, 2), c(3, 4))
 ## Atomic vectors
 \vspace*{-0.2cm}
 
-* Four primary types of atomic vectors: `logical`, `double`, `integer`,  and `character` (which contains strings).
+* Four primary types of atomic vectors: `logical`, `double`, `integer`, and `character` (which contains strings).
 * Two rare types: `complex`, `raw`.
 * Collectively `integer` and `double` vectors are known as `numeric` vectors
 * `NULL` is like a zero length vector
@@ -198,7 +209,7 @@ is.na(x)
 
 \fontsize{13}{14}\sf
 
-There are actually four missing values:  `NA` (logical), `NA_integer_` (integer), `NA_real_` (double), and `NA_character_` (character).
+There are actually four missing values: `NA` (logical), `NA_integer_` (integer), `NA_real_` (double), and `NA_character_` (character).
 
 ## Coercion
 \fontsize{13}{14}\sf\vspace*{-0.25cm}
@@ -293,7 +304,7 @@ x
 
 ## Dimensions {#attr-dims}
 
-* Adding a `dim` attribute to a vector allows it to behave like a 2-dimensional __matrix__ or a multi-dimensional __array__.
+* Adding a `dim` attribute to a vector allows it to behave like a 2-dimensional __matrix__ or a multidimensional __array__.
 * You can create matrices and arrays with `matrix()` and `array()`, or by using the assignment form of `dim()`:
 
 ```{r}
@@ -474,7 +485,7 @@ str(l1)
 
 ## Lists
 
-* Lists can be recursive:  a list can contain other lists.
+* Lists can be recursive: a list can contain other lists.
 
 ```{r}
 l3 <- list(list(list(1)))
@@ -537,7 +548,7 @@ attributes(df1)
 * A data frame has `nrow()` rows and `ncol()` columns. The `length()` of a
   data frame gives the number of columns.
 
-## Tibbles
+## tibbles
 \fontsize{13}{14}\sf
 
 * Modern reimagining of the data frame.
@@ -618,7 +629,7 @@ dplyr::starwars
 
 ## Printing
 
-* Tibbles only show first 10 rows and all columns that fit on
+* tibbles only show first 10 rows and all columns that fit on
   screen. Additional columns shown at bottom.
 * Each column labelled with its type, abbreviated to 3--4 letters.
 * Wide columns truncated.
@@ -658,7 +669,7 @@ str(dfm)
 
 ## Exercises
 
-10.  What happens if you attempt to set rownames that are not unique?
+10.  What happens if you attempt to set `rownames` that are not unique?
 11.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
     Perform some experiments, making sure to try different column types.
 12.  What does `as.matrix()` do when applied to a data frame with
@@ -677,4 +688,3 @@ x <- NULL
 x == NULL
 is.null(x)
 ```
-
