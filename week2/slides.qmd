@@ -1,10 +1,11 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 1: Foundations of R programming"
+author: "Week 2: Foundations of R programming"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
+    toc: true
     knitr:
       opts_chunk:
         dev: "cairo_pdf"
@@ -19,674 +20,49 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-## Introduction
-
-### Expectations
-
-* You know R and RStudio
-* You have a basic understanding of programming (for loops, if statements, functions)
-* You can use Git and GitHub (https://happygitwithr.com)
-
-### Unit resources
-
-* Everything on **https://arp.numbat.space**
-* Assignments submitted on Github Classroom
-* Discussion on Ed
-
-## GitHub
-
-* Use your monash edu address.
-* Apply to GitHub Education as a student (<https://github.com/education/students>).
-* Gives you free access to private repos and GitHub Copilot.
-* Add GitHub Copilot to RStudio settings, or sign into GitHub in Positron.
-
-## R history
-
-* S (1976, Chambers, Becker and Wilks; Bell Labs, USA)
-* S-PLUS (1988, Doug Martin; Uni of Washington, USA)
-* R (1993, Ihaka and Gentleman; Uni of Auckland, NZ)
-
-\pause\vspace*{0.4cm}
-
-### R influenced by
-
-* Lisp (functional programming, environments, dynamic typing)
-* Scheme (functional programming, lexical scoping)
-* S and S-PLUS (syntax)
-
-## Why R?
-
-* Free, open source, and on every major platform.
-* A diverse and welcoming community
-* A massive set of packages, often cutting-edge.
-* Powerful communication tools (Shiny, Rmarkdown, \rlap{quarto)}
-* RStudio and Positron IDEs
-* Deep-seated language support for data analysis.
-* A strong foundation of functional programming.
-* Posit
-* Easy connection to high-performance programming languages like C, Fortran, and C++.
-
-## R challenges
-
-* R users are not usually programmers. Most R code by ordinary users is not very elegant, fast, or easy to understand.
-* R users more focused on results than good software practices.
-* R packages are inconsistent in design.
-* R can be slow.
-
-# Scalars and vectors
-
-## Scalars
-
-* **Logicals**: `TRUE` or `FALSE`, or abbreviated (`T` or `F`).
-
-* **Doubles**: decimal (`0.1234`), scientific (`1.23e4`), or hexadecimal (`0xcafe`). Special values: `Inf`, `-Inf`, and `NaN` (not a number).
-
-* **Integers**: `1234L`, `1e4L`, or `0xcafeL`. Can not contain fractional values.
-
-* **Strings**: `"hi"` or `'bye'`. Special characters are escaped with `\`.
-
-## Making longer vectors with `c()` {#atomic-constructing}
-
-Use `c()` to create vectors.
-
-```{r}
-lgl_var <- c(TRUE, FALSE)
-int_var <- c(1L, 6L, 10L)
-dbl_var <- c(1, 2.5, 4.5)
-chr_var <- c("these are", "some strings")
-```
-When the inputs are atomic vectors,\newline `c()` always flattens.
-
-```{r}
-c(c(1, 2), c(3, 4))
-```
-
-\placefig{9.8}{2.5}{width=6cm}{../diagrams/vectors/atomic.png}
-
-## Atomic vectors
-\vspace*{-0.2cm}
-
-* Four primary types of atomic vectors: `logical`, `double`, `integer`,  and `character` (which contains strings).
-* Two rare types: `complex`, `raw`.
-* Collectively `integer` and `double` vectors are known as `numeric` vectors
-* `NULL` is like a zero length vector
-* Scalars are just vectors of length 1
-* Every vector can also have __attributes__: a named list of arbitrary metadata.
-* The __dimension__ attribute turns vectors into matrices and arrays.
-* The __class__ attribute powers the S3 object system.
-
-
-## Types and length
-\fontsize{13}{13}\sf
-
-You can determine the type of a vector with `typeof()` and its length with `length()`.
-
-\fontsize{10}{10}\sf
-
-
-```{r}
-typeof(lgl_var)
-typeof(int_var)
-typeof(dbl_var)
-typeof(chr_var)
-```
-
-## Missing values
-
-Most computations involving a missing value will return another missing value.
-
-\fontsize{10}{10}\sf
-
-```{r}
-NA > 5
-10 * NA
-!NA
-```
-
-## Missing values
-
-Exceptions:
-
-\fontsize{10}{10}\sf
-
-```{r}
-NA ^ 0
-NA | TRUE
-NA & FALSE
-```
-
-## Missing values
-
-Use `is.na()` to check for missingness
-
-\fontsize{10}{10}\sf
-
-```{r}
-x <- c(NA, 5, NA, 10)
-x == NA
-is.na(x)
-```
-
-\fontsize{13}{14}\sf
-
-There are actually four missing values:  `NA` (logical), `NA_integer_` (integer), `NA_real_` (double), and `NA_character_` (character).
-
-## Coercion
-\fontsize{13}{14}\sf\vspace*{-0.25cm}
-
-* For atomic vectors, all elements must be the same type.
-* When you combine different types they are __coerced__ in a fixed order: logical → integer → double → character.
-
-\fontsize{10}{4}\sf
-
-```{r}
-str(c("a", 1))
-x <- c(FALSE, FALSE, TRUE)
-as.numeric(x)
-sum(x)
-as.integer(c("1", "1.5", "a"))
-```
-
-## Exercises
-
-1.  Predict the output of the following:
-
-    ```{r, eval=FALSE}
-    c(1, FALSE)
-    c("a", 1)
-    c(TRUE, 1L)
-    ```
-
-2. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
-
-3. Why is the default missing value, `NA`, a logical vector? What's special
-   about logical vectors? (Hint: think about `c(FALSE, NA_character_)`.)
-
-## Getting and setting attributes
-
-* You can think of attributes as name-value pairs that attach metadata to an object.
-* Individual attributes can be retrieved and modified with `attr()`, or retrieved en masse with `attributes()`, and set en masse with `structure()`.
-
-\fontsize{10}{10}\sf
-
-```{r}
-a <- 1:3
-attr(a, "x") <- "abcdef"
-a
-```
-
-## Getting and setting attributes
-\fontsize{10}{10}\sf
-
-```{r}
-attr(a, "y") <- 4:6
-str(attributes(a))
-
-# Or equivalently
-a <- structure(
-  1:3,
-  x = "abcdef",
-  y = 4:6
-)
-str(attributes(a))
-```
-
-\placefig{10}{1}{width=3.5cm}{../diagrams/vectors/attr.png}
-
-## Names {#attr-names}
-
-* Names are a type of attribute.
-* You can name a vector in three ways:
-
-\fontsize{10}{10}\sf
-
-```{r}
-# When creating it:
-x <- c(a = 1, b = 2, c = 3)
-
-# By assigning a character vector to names()
-x <- 1:3
-names(x) <- c("a", "b", "c")
-
-# Inline, with setNames():
-x <- setNames(1:3, c("a", "b", "c"))
-```
-
-```{r}
-x
-```
-
-## Names
-
-* Avoid using `attr(x, "names")` as it requires more typing and is less readable than `names(x)`.
-* You can remove names from a vector by using\newline `x <- unname(x)` or `names(x) <- NULL`.
-
-
-## Dimensions {#attr-dims}
-
-* Adding a `dim` attribute to a vector allows it to behave like a 2-dimensional __matrix__ or a multi-dimensional __array__.
-* You can create matrices and arrays with `matrix()` and `array()`, or by using the assignment form of `dim()`:
-
-```{r}
-# Two scalar arguments specify row and column sizes
-x <- matrix(1:6, nrow = 2, ncol = 3)
-x
-```
-
-## Dimensions
-
-```{r}
-# One vector argument to describe all dimensions
-y <- array(1:12, c(2, 3, 2))
-y
-```
-
-## Dimensions
-
-```{r}
-# You can also modify an object in place by setting dim()
-z <- 1:6
-dim(z) <- c(3, 2)
-z
-```
-
-## Exercises
-
-4. What does `dim()` return when applied to a 1-dimensional vector?
-5. When might you use `NROW()` or `NCOL()`?
-6. How would you describe the following three objects? What makes them different from `1:5`?
-
-   ```{r}
-   x1 <- array(1:5, c(1, 1, 5))
-   x2 <- array(1:5, c(1, 5, 1))
-   x3 <- array(1:5, c(5, 1, 1))
-   ```
-
-## S3 atomic vectors
-
-* `class` is a vector attribute.
-* It turns object into __S3 object__.
-* Four important S3 vectors:
-
-  * **factor** vectors.
-  * **Date** vectors with day resolution.
-  * **POSIXct** vectors for date-times.
-  * **difftime** vectors for durations.
-
-\placefig{10}{2}{width=6cm}{../diagrams/vectors/summary-tree-s3-1.png}
-
-## Factors
-
-* A vector that can contain only predefined values.
-* Used to store categorical data.
-* Built on top of an integer vector with two attributes: a `class`, "factor", and `levels`, which defines the set of allowed values.
-
-```{r}
-x <- factor(c("a", "b", "b", "a"))
-x
-```
-
-## Factors
-
-```{r}
-typeof(x)
-attributes(x)
-```
-
-\placefig{10}{2}{width=5cm}{../diagrams/vectors/factor.png}
-
-## Factors
-
-```{r}
-sex_char <- c("m", "m", "m")
-sex_factor <- factor(sex_char, levels = c("m", "f"))
-
-table(sex_char)
-table(sex_factor)
-```
-
-## Factors
-
-* Be careful: some functions convert factors to integers!
-* ggplot preserves ordering of levels in graphs -- useful to reorder panels or legends.
-* Ordered factors are useful when the order of levels is meaningful.
-
-```{r}
-grade <- ordered(c("b", "b", "a", "c"), levels = c("c", "b", "a"))
-grade
-```
-
-## Dates
-
-* Date vectors are built on top of double vectors.
-* Class "Date" with no other attributes:
-
-```{r}
-today <- Sys.Date()
-
-typeof(today)
-attributes(today)
-```
-
-## Dates
-
-The value of the double (which can be seen by stripping the class), represents the number of days since 1970-01-01 (the "Unix Epoch").
-
-```{r}
-date <- as.Date("1970-02-01")
-unclass(date)
-```
-
-## Date-times
-
-* Base R provides two ways of storing date-time information, POSIXct, and POSIXlt.
-* "POSIX" is short for Portable Operating System Interface
-* "ct" stands for calendar time; "lt" for local time
-* POSIXct vectors are built on top of double vectors, where the value represents the number of seconds since 1970-01-01.
-
-```{r}
-now_ct <- as.POSIXct("2018-08-01 22:00", tz = "UTC")
-now_ct
-
-typeof(now_ct)
-attributes(now_ct)
-```
-
-## Date-times
-
-The `tzone` attribute controls only how the date-time is formatted; it does not control the instant of time represented by the vector. Note that the time is not printed if it is midnight.
-
-\fontsize{10}{10}\sf
-
-```{r}
-structure(now_ct, tzone = "Asia/Tokyo")
-structure(now_ct, tzone = "America/New_York")
-structure(now_ct, tzone = "Australia/Lord_Howe")
-```
-
-
-## Exercises
-
-7. What sort of object does `table()` return? What is its type? What
-    attributes does it have? How does the dimensionality change as you
-    tabulate more variables?
-
-8. What happens to a factor when you modify its levels?
-
-   ```{r, results = FALSE}
-   f1 <- factor(letters)
-   levels(f1) <- rev(levels(f1))
-   ```
-
-9. What does this code do? How do `f2` and `f3` differ from `f1`?
-
-   ```{r, results = FALSE}
-   f2 <- rev(factor(letters))
-   f3 <- factor(letters, levels = rev(letters))
-   ```
-
-# Lists and data frames
-## Lists
-
-* More complex than atomic vectors
-* Elements are *references* to objects of any type
-
-\fontsize{10}{10}\sf
-
-```{r}
-l1 <- list(
-  1:3, "a", c(TRUE, FALSE, TRUE), c(2.3, 5.9)
-)
-typeof(l1)
-str(l1)
-```
-
-\placefig{10}{3.5}{width=5cm}{../diagrams/vectors/list.png}
-
-## Lists
-
-* Lists can be recursive:  a list can contain other lists.
-
-```{r}
-l3 <- list(list(list(1)))
-str(l3)
-```
-
-\placefig{10}{4}{width=5cm}{../diagrams/vectors/list-recursive.png}
-
-## Lists
-
-* `c()` will combine several lists into one.
-
-\fontsize{9}{9}\sf
-
-```{r}
-l4 <- list(list(1, 2), c(3, 4))
-l5 <- c(list(1, 2), c(3, 4))
-str(l4)
-str(l5)
-```
-
-\placefig{10}{3}{width=5cm}{../diagrams/vectors/list-c.png}
-
-## Testing and coercion {#list-types}
-
-\fontsize{9}{9}\sf
-
-```{r}
-list(1:3)
-as.list(1:3)
-```
-
-\fontsize{13}{14}\sf
-
-* You can turn a list into an atomic vector with `unlist()`.
-
-## Data frames and tibbles {#tibble}
-\vspace*{-0.2cm}
-\placefig{12.2}{0.35}{width=3cm}{../diagrams/vectors/summary-tree-s3-2.png}
-
-* Most important S3 vectors built on lists:\newline data frames and tibbles.
-
-\fontsize{10}{8}\sf
-
-```{r}
-df1 <- data.frame(x = 1:3, y = letters[1:3])
-typeof(df1)
-attributes(df1)
-```
-
-
-\placefig{5.5}{5.5}{width=2.5cm}{../diagrams/vectors/data-frame-2.png}
-
-
-## Data frames and tibbles
-
-* A data frame has a constraint: the length of each of its vectors must be the same.
-* A data frame has `rownames()` and `colnames()`. The `names()`
-  of a data frame are the column names.
-* A data frame has `nrow()` rows and `ncol()` columns. The `length()` of a
-  data frame gives the number of columns.
-
-## Tibbles
-\fontsize{13}{14}\sf
-
-* Modern reimagining of the data frame.
-* tibbles are "lazy and surly": they do less and complain more.
-
-\fontsize{10}{8}\sf
-
-```{r}
-library(tibble)
-df2 <- tibble(x = 1:3, y = letters[1:3])
-typeof(df2)
-attributes(df2)
-```
-
-
-## Creating data frames and tibbles
-
-```{r}
-names(data.frame(`1` = 1))
-
-names(tibble(`1` = 1))
-```
-
-## Creating data frames and tibbles
-
-\fontsize{10}{10}\sf
-
-```{r, error = TRUE}
-data.frame(x = 1:4, y = 1:2)
-tibble(x = 1:4, y = 1:2)
-```
-
-## Creating data frames and tibbles
-\fontsize{10}{10}\sf
-
-```{r}
-tibble(
-  x = 1:3,
-  y = x * 2,
-  z = 5
-)
-```
-
-
-## Row names {#rownames}
-
-Data frames allow you to label each row with a name, a character vector containing only unique values:
-
-\fontsize{10}{10}\sf
-
-```{r}
-df3 <- data.frame(
-  age = c(35, 27, 18),
-  hair = c("blond", "brown", "black"),
-  row.names = c("Bob", "Susan", "Sam")
-)
-df3
-```
-
-## Row names
-
-* tibbles do not support row names
-* convert row names into a regular column with either `rownames_to_column()`, or the `rownames` argument:
-
-\fontsize{10}{10}\sf
-
-```{r}
-as_tibble(df3, rownames = "name")
-```
-
-## Printing
-
-\fontsize{10}{9.5}\sf
-
-```{r}
-dplyr::starwars
-```
-
-## Printing
-
-* Tibbles only show first 10 rows and all columns that fit on
-  screen. Additional columns shown at bottom.
-* Each column labelled with its type, abbreviated to 3--4 letters.
-* Wide columns truncated.
-
-## List columns
-
-\fontsize{10}{10}\sf
-
-```{r}
-df <- data.frame(x = 1:3)
-df$y <- list(1:2, 1:3, 1:4)
-df
-```
-
-\placefig{10}{1.5}{width=5cm}{../diagrams/vectors/data-frame-list.png}
-
-
-```{r}
-tibble(
-  x = 1:3,
-  y = list(1:2, 1:3, 1:4)
-)
-```
-
-## Matrix and data frame columns
-
-```{r}
-dfm <- tibble(
-  x = 1:3 * 10,
-  y = matrix(1:9, nrow = 3),
-  z = data.frame(a = 3:1, b = letters[1:3])
-)
-str(dfm)
-```
-
-\placefig{10}{1.25}{width=5cm}{../diagrams/vectors/data-frame-matrix.png}
-
-## Exercises
-
-10.  What happens if you attempt to set rownames that are not unique?
-11.  If `df` is a data frame, what can you say about `t(df)`, and `t(t(df))`?
-    Perform some experiments, making sure to try different column types.
-12.  What does `as.matrix()` do when applied to a data frame with
-    columns of different types? How does it differ from `data.matrix()`?
-
-## `NULL`
-
-```{r, error = TRUE}
-length(NULL)
-```
-
-You can test for `NULL`s with `is.null()`:
-
-```{r}
-x <- NULL
-x == NULL
-is.null(x)
-```
 
 # Subsetting
 
 ## Exercises
 
-13. What is the result of subsetting a vector with positive integers, negative integers, a logical vector, or a character vector?
-14. What's the difference between `[`, `[[`, and `$` when applied to a list?
-15. When should you use `drop = FALSE`?
+1. What is the result of subsetting a vector with positive integers, negative integers, a logical vector, or a character vector?
+2. What's the difference between `[`, `[[`, and `$` when applied to a list?
+3. When should you use `drop = FALSE`?
 
 ## Exercises
 \fontsize{13}{14}\sf
 
-16. Fix each of the following common data frame subsetting errors:
+4. Fix each of the following common data frame subsetting errors:
 
-    ```{r, eval = FALSE}
-    mtcars[mtcars$cyl = 4, ]
-    mtcars[-1:4, ]
-    mtcars[mtcars$cyl <= 5]
-    mtcars[mtcars$cyl == 4 | 6, ]
-    ```
+   ```{r, eval = FALSE}
+   mtcars[mtcars$cyl = 4, ]
+   mtcars[-1:4, ]
+   mtcars[mtcars$cyl <= 5]
+   mtcars[mtcars$cyl == 4 | 6, ]
+   ```
 
-17. Extract the residual degrees of freedom from `mod`
+5. Extract the residual degrees of freedom from `mod`
 
-    ```{r}
-    #| eval: false
-    mod <- lm(mpg ~ wt, data = mtcars)
-    ```
+   ```{r}
+   #| eval: false
+   mod <- lm(mpg ~ wt, data = mtcars)
+   ```
 
-18. Extract the R squared from the model summary (`summary(mod)`)
+6. Extract the R squared from the model summary (`summary(mod)`)
 
 ## Exercises
 
-19. How would you randomly permute the columns of a data frame?
+7. How would you randomly permute the columns of a data frame?
 
-20. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
+8. How would you select a random sample of m rows from a data frame? What if the sample had to be contiguous (i.e., with an initial row, a final row, and every row in between)?
 
-21. How could you put the columns in a data frame in alphabetical order?
+9. How could you put the columns in a data frame in alphabetical order?
 
 # Functions
+
+## Pre-class Exercise
+
+Write a function `linear`, that takes arguments `x`, `a` and `b`, and returns `a + b * x`. Give default values `a=1` and `b=0`, and make sure your function has sensible error messages when the inputs are not as expected. Your function should work when `x` is a numerical scalar, vector, or matrix.
 
 ## Function fundamentals
 
@@ -702,13 +78,46 @@ is.null(x)
 \fontsize{10}{5}\sf
 
 ```{r}
-f02 <- function(x, y) {
-  # A comment
-  x + y
+linear <- function(x, a = 0, b = 1) {
+  stopifnot(is.numeric(x), is.numeric(a), is.numeric(b))
+  stopifnot(length(a) == 1, length(b) == 1)
+  a + b * x
 }
-formals(f02)
-body(f02)
-environment(f02)
+```
+
+```{r}
+formals(linear)
+```
+
+
+## Function components
+\fontsize{10}{5}\sf
+
+```{r}
+linear <- function(x, a = 0, b = 1) {
+  stopifnot(is.numeric(x), is.numeric(a), is.numeric(b))
+  stopifnot(length(a) == 1, length(b) == 1)
+  a + b * x
+}
+```
+
+```{r}
+body(linear)
+```
+
+## Function components
+\fontsize{10}{5}\sf
+
+```{r}
+linear <- function(x, a = 0, b = 1) {
+  stopifnot(is.numeric(x), is.numeric(a), is.numeric(b))
+  stopifnot(length(a) == 1, length(b) == 1)
+  a + b * x
+}
+```
+
+```{r}
+environment(linear)
 ```
 
 ## Invoking a function
@@ -1007,7 +416,7 @@ sum(1, 2, NA, na_rm = TRUE)
 
 ## Exercises
 
-22. Explain the following results: \fontsize{10}{10}\sf
+10. Explain the following results: \fontsize{10}{10}\sf
 
     ```{r}
     sum(1, 2, 3)
@@ -1173,7 +582,7 @@ You can specify arguments in three ways:
 
 ## Exercises
 
-23. Clarify the following list of odd function calls:
+11. Clarify the following list of odd function calls:
 
     ```{r, eval = FALSE}
     x <- sample(replace = TRUE, 20, x = c(1:10, NA))
@@ -1320,18 +729,6 @@ f <- function(x) {
 f(2)
 ```
 
-## Namespaces
-\fontsize{13}{14}\sf
-
-* Package environment: how an R user finds a function in an attached package (only includes exports)
-* Namespace environment: how a package finds its own objects (includes non-exports as well)
-* Each namespace environment has an imports environment (controlled via NAMESPACE file).
-
-```{r}
-#| echo: false
-knitr::include_graphics("../diagrams/environments/namespace-env.png")
-```
-
 ## Caller environments
 \fontsize{10}{10}\sf
 
@@ -1373,7 +770,6 @@ traceback()
 #> 3: c(x) at #1
 #> 2: b(x) at #1
 #> 1: a(f())
-unused argument (clas
 ```
 
 
@@ -1413,10 +809,14 @@ f1 <- function(x) {
   log(x)
   10
 }
+
 f1("x")
 ```
 
 :::
+
+\pause
+
 ::: {.column width="50%"}
 
 ```{r, error = TRUE}
@@ -1483,27 +883,6 @@ f4(-1)
 ```
 
 
-## Exercise
-
-24. Explain the results of running the following code
-
-```{r, eval = FALSE}
-show_condition <- function(code) {
-  tryCatch(
-    error = function(cnd) "error",
-    warning = function(cnd) "warning",
-    message = function(cnd) "message",
-    {
-      code
-      5
-    }
-  )
-}
-show_condition(stop("!"))
-show_condition(10)
-show_condition(warning("?!"))
-```
-
 ## Activity
 
 Write a function to take a single integer input and return:
@@ -1514,4 +893,3 @@ Write a function to take a single integer input and return:
 * the number otherwise
 
 Your function should contain a `stop()` if the input is not an integer.
-

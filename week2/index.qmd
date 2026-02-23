@@ -20,7 +20,21 @@ source(here::here("course_info.R"))
 * Environments
 * Conditions
 
+## Pre-class activities
+
+* Watch the following series of short videos on **subsetting in R**:
+
+  * [Subsetting R objects: Basics](https://www.youtube.com/watch?v=Plcy3qM8wEE)
+  * [Subsetting R objects: Lists](https://www.youtube.com/watch?v=7j6C1w9x9hw)
+  * [Subsetting R objects: Matrices](https://www.youtube.com/watch?v=83NSymr6pPw)
+  * [Subsetting R objects: Partial matching](https://www.youtube.com/watch?v=Kb4lXR6Z-Hc)
+  * [Subsetting R objects: Removing missing values](https://www.youtube.com/watch?v=PYpIVFS6xwU)
+
+* Write a function `linear`, that takes arguments `x`, `a` and `b`, and returns `a + b * x`. Give default values `a=1` and `b=0`, and make sure your function has sensible error messages when the inputs are not as expected. Your function should work when `x` is a numerical scalar, vector, or matrix.
+
+
 ```{r}
 #| output: asis
+show_slides(week)
 show_assignments(week)
 ```
