@@ -1,9 +1,11 @@
 {
-  "hash": "53c66d14693933f27c46f1b542bbf412",
+  "hash": "5adefda67f5357f5b26545a30d2eb912",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 3: R package development\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n * [*R Packages (2e)*](https://r-pkgs.org)\n\n## What you will learn this week\n\n* Package metadata\n* Package documentation\n* Package checks and tests\n* Package website\n* Continuous integration via GitHub Actions\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week3/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week3/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 3: R package development\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n * [*R Packages (2e)*](https://r-pkgs.org)\n\n## What you will learn this week\n\n* Package metadata\n* Package documentation\n* Package checks and tests\n* Package website\n* Continuous integration via GitHub Actions\n\n## Pre-class activities\n\n* Watch [Building R packages with devtools and usethis](https://www.youtube.com/watch?v=EpTkT6Rkgbs)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week3/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week3/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

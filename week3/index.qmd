@@ -19,6 +19,10 @@ source(here::here("course_info.R"))
 * Package website
 * Continuous integration via GitHub Actions
 
+## Pre-class activities
+
+* Watch [Building R packages with devtools and usethis](https://www.youtube.com/watch?v=EpTkT6Rkgbs)
+
 ```{r}
 #| output: asis
 show_slides(week)

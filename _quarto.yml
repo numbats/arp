@@ -21,8 +21,8 @@ website:
         icon: calendar2-fill
         menu:
           - week1/index.qmd
-          #- week3/index.qmd
           - week2/index.qmd
+          - week3/index.qmd
           #- week4/index.qmd
           #- week5/index.qmd
           #- week6/index.qmd
