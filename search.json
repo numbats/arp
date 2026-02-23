@@ -63,6 +63,13 @@
     "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
   },
   {
+    "objectID": "week3/index.html#pre-class-activities",
+    "href": "week3/index.html#pre-class-activities",
+    "title": "Week 3: R package development",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Building R packages with devtools and usethis"
+  },
+  {
     "objectID": "week3/index.html#slides-for-week",
     "href": "week3/index.html#slides-for-week",
     "title": "Week 3: R package development",
@@ -96,6 +103,20 @@
     "title": "Week 2: Foundations of R Programming",
     "section": "What you will learn this week",
     "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
+  },
+  {
+    "objectID": "week2/index.html#pre-class-activities",
+    "href": "week2/index.html#pre-class-activities",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch the following series of short videos on subsetting in R:\n\nSubsetting R objects: Basics\nSubsetting R objects: Lists\nSubsetting R objects: Matrices\nSubsetting R objects: Partial matching\nSubsetting R objects: Removing missing values\n\nWrite a function linear, that takes arguments x, a and b, and returns a + b * x. Give default values a=1 and b=0, and make sure your function has sensible error messages when the inputs are not as expected. Your function should work when x is a numerical scalar, vector, or matrix."
+  },
+  {
+    "objectID": "week2/index.html#slides-for-week",
+    "href": "week2/index.html#slides-for-week",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
   },
   {
     "objectID": "week2/index.html#assignments",
