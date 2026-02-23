@@ -5,6 +5,7 @@ format:
   presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
+    toc: true
     knitr:
       opts_chunk:
         dev: "cairo_pdf"

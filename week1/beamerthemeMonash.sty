@@ -8,8 +8,8 @@
 
 % Fonts
 \ifPDFTeX
-  \usepackage[scaled=0.85]{sourcecodepro}
-  \usepackage[sfdefault,lf]{FiraSans}
+  \usepackage[scaled=0.85]{beramono}
+  \usepackage[sfdefault,lf,t]{FiraSans}
   \usepackage{etoolbox}
   \patchcmd{\@verbatim}
     {\verbatim@font}
@@ -20,6 +20,7 @@
   \setmonofont[Scale=0.85]{SourceCodePro-Regular.otf}
   \def\verbatim@font{\fontsize{10}{10}\tt}%
 \fi
+\usepackage{mathrsfs}
 
 %% Colors
 \definecolor{DarkGrey}{RGB}{100,100,100}
@@ -111,9 +112,9 @@
 \setlength{\TPHorizModule}{1cm}
 \setlength{\TPVertModule}{1cm}
 \def\placefig#1#2#3#4{\begin{textblock}{.1}(#1,#2)\rlap{\includegraphics[#3]{#4}}\end{textblock}}
-\def\full#1{\vspace*{-0.06cm}\centerline{\includegraphics[width=16cm,height=8.5cm,keepaspectratio=true]{#1}}}
+\def\full#1{\vspace*{-0.06cm}\centerline{\includegraphics[width=16cm,height=8.8cm,keepaspectratio=true]{#1}}}
 \def\fullwidth#1{\vspace*{-0.06cm}\centerline{\includegraphics[width=16cm,height=20cm,keepaspectratio=true]{#1}}}
-\def\fullheight#1{\vspace*{-0.06cm}\centerline{\includegraphics[width=20cm,height=8.5cm,keepaspectratio=true]{#1}}}
+\def\fullheight#1{\vspace*{-0.06cm}\centerline{\includegraphics[width=20cm,height=8.8cm,keepaspectratio=true]{#1}}}
 
 % Tighter table of contents
 \usepackage{etoolbox}
