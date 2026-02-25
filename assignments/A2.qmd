@@ -20,9 +20,9 @@ In some cases, the problem reported may highlight a weakness in the package beyo
 
 ### Notes
 
-1. The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.
+1. The package will be developed on GitHub Classroom. Each person will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.
 
-2. Each team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.
+2. No commit should address more than one bug. Each bug may be addressed in multiple commits. The GitHub issue should be used to link the commits that address the bug, and to explain the bug and the fix.
 
 3. Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:
 

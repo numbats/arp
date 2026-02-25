@@ -43,7 +43,8 @@ source(here::here("course_info.R"))
 
 ### Assessment
 
-* Three group assignments building or fixing packages: 30% each
+* Two group assignments building packages: 30% each
+* One individual assignment fixing an R package: 30%
 * Individual discussion participation: 10%
 
 \pause
