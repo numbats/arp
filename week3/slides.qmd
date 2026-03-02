@@ -59,11 +59,11 @@ dev_sitrep()
 
 ## Package states
 
-\placefig{1}{1.1}{height = 7.9cm}{../diagrams/install-load.png}
+\placefig{1}{1.1}{height=7.9cm}{../diagrams/install-load.png}
 
 ## Package structure
 
-\placefig{3}{1.4}{height=7.6cm, trim = 30 420 740 200, clip = true}{../diagrams/package-development.pdf}
+\placefig{3}{1.4}{height=7.6cm, trim=30 420 740 200, clip=true}{../diagrams/package-development.pdf}
 
 ## Package name
 
@@ -93,7 +93,7 @@ We will create a package that doubles numbers.
 
 ## Workflow
 
-\placefig{1}{1.1}{height = 7.9cm}{../diagrams/workflow.png}
+\placefig{1}{1.1}{height=7.9cm}{../diagrams/workflow.png}
 
 ## Workflow shortcuts
 
@@ -360,6 +360,11 @@ library(yourpackage)
 
 ## Exercise
 
-* If you haven't finished Assignment 1, do it now.
-
-* If you have finished Assignment 1, create an R package that includes `remaining_customers` as the only function. Add unit tests, a readme file, and a pkgdown website.
+* Create a package `fizzbuz` that implements the `fizzbuzz` function that you wrote last week.
+* Add unit tests
+* Add examples in the documentation
+* Add a readme
+* Add a vignette
+* Add a pkgdown website
+* Add a hex sticker
+* Put it on GitHub and set up GitHub Actions to check the package and build the pkgdown site.
