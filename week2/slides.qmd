@@ -894,6 +894,7 @@ f4(-1)
 
 
 ## Activity
+\fontsize{13}{15}\sf
 
 Write a function to take a single integer input and return:
 
@@ -903,3 +904,7 @@ Write a function to take a single integer input and return:
 * the number otherwise
 
 Your function should contain a `stop()` if the input is not an integer.
+
+### Extension
+
+Modify your function to allow a vector of integers as input, and return a vector of the same length as output.
