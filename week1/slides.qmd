@@ -15,7 +15,9 @@ format:
     keep-tex: false
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label: setup
+#| include: false
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
@@ -233,7 +235,8 @@ as.integer(c("1", "1.5", "a"))
 
 1.  Predict the output of the following:
 
-    ```{r, eval=FALSE}
+    ```{r}
+    #| eval: false
     c(1, FALSE)
     c("a", 1)
     c(TRUE, 1L)
@@ -455,14 +458,16 @@ structure(now_ct, tzone = "Australia/Lord_Howe")
 
 8. What happens to a factor when you modify its levels?
 
-   ```{r, results = FALSE}
+   ```{r}
+   #| results: false
    f1 <- factor(letters)
    levels(f1) <- rev(levels(f1))
    ```
 
 9. What does this code do? How do `f2` and `f3` differ from `f1`?
 
-   ```{r, results = FALSE}
+   ```{r}
+   #| results: false
    f2 <- rev(factor(letters))
    f3 <- factor(letters, levels = rev(letters))
    ```
@@ -578,7 +583,8 @@ names(tibble(`1` = 1))
 
 \fontsize{10}{10}\sf
 
-```{r, error = TRUE}
+```{r}
+#| error: true
 data.frame(x = 1:4, y = 1:2)
 tibble(x = 1:4, y = 1:2)
 ```
@@ -679,7 +685,8 @@ str(dfm)
 
 ## `NULL`
 
-```{r, error = TRUE}
+```{r}
+#| error: true
 length(NULL)
 ```
 
