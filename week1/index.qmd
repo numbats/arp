@@ -31,5 +31,11 @@ source(here::here("course_info.R"))
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+[Solutions to class exercises](/week1/exercises1.R)
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```
