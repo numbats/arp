@@ -20,7 +20,6 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-
 # Subsetting
 
 ## Exercises

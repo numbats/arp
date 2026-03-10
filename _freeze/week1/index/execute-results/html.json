@@ -1,9 +1,11 @@
 {
-  "hash": "cb21c8f066f6598a85edb235e98f4942",
+  "hash": "85a2ffa4fbe4d7e4c15a541c427574e9",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 1: R tools and data structures\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n * [1-3, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)\n\n## What you will learn this week\n\n* What makes R different from other programming languages\n* Differences between RStudio and Positron\n* Integration of GitHub and version control in R IDEs\n* Integration of AI tools in R IDEs\n* Sources of R packages: CRAN, Bioconductor, GitHub\n* Scalars and vectors\n* Lists and data frames\n\n## Pre-class activities\n\n  * Install [Positron](https://positron.posit.co/download.html)\n  * Work through the [quick tour](https://posit.co/blog/a-quick-tour-of-positron/)\n  * Watch \"From RStudio to Positron\": [video](https://www.youtube.com/watch?v=tvm4bJf1xzI)\n  * Watch \"Exploratory data analysis with R in Positron\": [video](https://www.youtube.com/watch?v=ndq2Mm3Dju8)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week1/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week1/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 1: R tools and data structures\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n * [1-3, *Advanced R*](https://adv-r.hadley.nz/foundations-intro.html)\n\n## What you will learn this week\n\n* What makes R different from other programming languages\n* Differences between RStudio and Positron\n* Integration of GitHub and version control in R IDEs\n* Integration of AI tools in R IDEs\n* Sources of R packages: CRAN, Bioconductor, GitHub\n* Scalars and vectors\n* Lists and data frames\n\n## Pre-class activities\n\n  * Install [Positron](https://positron.posit.co/download.html)\n  * Work through the [quick tour](https://posit.co/blog/a-quick-tour-of-positron/)\n  * Watch \"From RStudio to Positron\": [video](https://www.youtube.com/watch?v=tvm4bJf1xzI)\n  * Watch \"Exploratory data analysis with R in Positron\": [video](https://www.youtube.com/watch?v=ndq2Mm3Dju8)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week1/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week1/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n[Solutions to class exercises](/week1/exercises1.R)\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
