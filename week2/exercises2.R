@@ -1,6 +1,6 @@
 # Exercise 1
 
-x <- 1:10
+x <- sample(10)
 x[3:5]
 x[-(3:5)]
 x[x > 5]
@@ -14,19 +14,26 @@ L <- list(a = 1, b = 2, c = 3)
 L[1]
 L[[1]]
 L$a
+L[["a"]]
 
 # Exercise 3
 
 x <- matrix(1:9, nrow = 3)
 x[1, ]
+x[, 2]
+x[2, 3]
 x[1, , drop = FALSE]
+x[2]
+
 
 # Exercise 4
 
-mtcars[mtcars$cyl = 4, ]
+mtcars[mtcars$cyl == 4, ]
+mtcars |> filter(cyl == 4)
+
 mtcars[-1:4, ]
 mtcars[mtcars$cyl <= 5]
-mtcars[mtcars$cyl == 4 | 6, ]
+mtcars[mtcars$cyl %in% c(4, 6), ]
 
 # Exercise 5
 
@@ -42,7 +49,7 @@ tmp$r.squared
 
 # Exercise 7
 
-mtcars[, sample(NROW(mtcars))]
+mtcars[, sample(NCOL(mtcars))]
 
 # Exercise 8
 m <- 10
@@ -88,14 +95,15 @@ fizz_buzz <- function(x) {
     stop("x must be an integer")
   }
   if (x %% 5 == 0 && x %% 7 == 0) {
-    "fizzbuzz"
+    output <- "fizzbuzz"
   } else if (x %% 5 == 0) {
-    "fizz"
+    output <- "fizz"
   } else if (x %% 7 == 0) {
-    "buzz"
+    output <- "buzz"
   } else {
-    as.character(x)
+    output <- as.character(x)
   }
+  output
 }
 
 # Vectorised
