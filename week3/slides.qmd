@@ -5,6 +5,7 @@ format:
   presentation-beamer:
     fontsize: "14pt,t"
     section-titles: false
+    toc: true
     knitr:
       opts_chunk:
         dev: "cairo_pdf"
@@ -27,7 +28,7 @@ source(here::here("course_info.R"))
 ## System setup
 
 ```r
-install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
+install.packages(c("devtools", "usethis", "roxygen2", "testthat", "knitr"))
 ```
 
 \pause
@@ -86,22 +87,15 @@ We will create a package that doubles numbers.
 
 2.  Create package skeleton
 
-    ```{r}
-    #| eval: false
+    ```r
     create_package()
     ```
 
-## Workflow
+3. Start git repository
 
-\placefig{1}{1.1}{height=7.9cm}{../diagrams/workflow.png}
-
-## Workflow shortcuts
-
-* `install()` : Ctrl-Shift-B
-* `load_all()` : Ctrl-Shift-L
-* `document()` : Ctrl-Shift-D
-* `check()` : Ctrl-Shift-E
-* `test()` : Ctrl-Shift-T
+    ```r
+    use_git()
+    ```
 
 # Package metadata
 
@@ -169,11 +163,8 @@ use_package_doc()
 
 ## Documenting functions
 
-* Add roxygen2 comments to your `.R` files
-  * RStudio menu: `Code > Insert roxygen skeleton` (while cursor is within function)
-  * Or use Github Copilot (in RStudio or VS-Code)
-  * Or write them by hand
-* Then use `document()` to generate the `Rd` files and the `NAMESPACE` file. (Or press `Ctrl+Shift+D` in RStudio.)
+* Add roxygen2 comments to your `.R` files. Start, and Github Copilot will complete them
+* Then use `document()` to generate the `Rd` files and the `NAMESPACE` file. (Or press `Ctrl+Shift+D` in Positron.)
 * Preview documentation with `?function`
 
 ## Documenting functions
@@ -229,50 +220,6 @@ use_package_doc()
 * Displayed on the Github repository and the front page of the pkgdown site.
 * Create with `usethis::use_readme_rmd()`
 * Build with `devtools::build_readme()`
-
-## Vignettes
-
-* A long-form guide to your package, or an extended example.
-
-  * `usethis::use_vignette("my-vignette")`
-  * Creates a `vignettes/` directory.
-  * Adds the necessary dependencies to `DESCRIPTION`
-  * Drafts a vignette, `vignettes/my-vignette.Rmd`.
-  * Adds some patterns to `.gitignore`
-
-## Vignettes YAML
-
-```yaml
----
-title: "Vignette Title"
-author: Your name
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-```
-
-## Vignettes initial code chunks
-
-````{verbatim}
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-````
-
-````{verbatim}
-```{r setup}
-library(yourpackage)
-```
-````
-
-* Any package used in a vignette must be included in Suggests if not already in Imports.
-
 
 
 
@@ -331,7 +278,21 @@ library(yourpackage)
 * The test-first philosophy: always start by writing the tests, and then write the code that makes them pass.
 * Use `devtools::test_coverage()` to see which parts of your package are tested.
 
-# Website
+# Workflow
+
+## Workflow
+
+\placefig{1}{1.1}{height=7.9cm}{../diagrams/workflow.png}
+
+## Workflow shortcuts
+
+* `install()` : Ctrl-Shift-B
+* `load_all()` : Ctrl-Shift-L
+* `document()` : Ctrl-Shift-D
+* `check()` : Ctrl-Shift-E
+* `test()` : Ctrl-Shift-T
+
+# Extras
 
 ## pkgdown websites
 
@@ -344,7 +305,48 @@ library(yourpackage)
 * Make a hex sticker with the `hexSticker` package.
 * Add it using `usethis::use_logo()`.
 
-# Continuous integration
+## Vignettes
+
+* A long-form guide to your package, or an extended example.
+
+  * `usethis::use_vignette("my-vignette")`
+  * Creates a `vignettes/` directory.
+  * Adds the necessary dependencies to `DESCRIPTION`
+  * Drafts a vignette, `vignettes/my-vignette.Rmd`.
+  * Adds some patterns to `.gitignore`
+
+## Vignettes YAML
+
+```yaml
+---
+title: "Vignette Title"
+author: Your name
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```
+
+## Vignettes initial code chunks
+
+````{verbatim}
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+````
+
+````{verbatim}
+```{r setup}
+library(yourpackage)
+```
+````
+
+* Any package used in a vignette must be included in Suggests if not already in Imports.
 
 ## Github Actions
 \vspace*{-0.4cm}
@@ -356,15 +358,19 @@ library(yourpackage)
 * The `.github/workflows/` directory contains action \rlap{files.}
 * See [`https://github.com/r-lib/actions/`](https://github.com/r-lib/actions/) for more examples.
 
-# Exercise
+# Assignment 1
 
-## Exercise
+## Assignment 1
+\fontsize{13}{15}\sf\vspace*{-0.2cm}
 
-* Create a package `fizzbuz` that implements the `fizzbuzz` function that you wrote last week.
+Sit in your assignment 1 groups and work on your package.
+
+* Have you seen your group animal in the wild? Where would you find it?
+* Decide who is going to work on what parts of the package
+* Set a timeline for when you will complete each part of the package
+* What default arguments will you use for your main function?
+* Is the function vectorised?
 * Add unit tests
 * Add examples in the documentation
 * Add a readme
-* Add a vignette
-* Add a pkgdown website
 * Add a hex sticker
-* Put it on GitHub and set up GitHub Actions to check the package and build the pkgdown site.
