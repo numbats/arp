@@ -13,7 +13,7 @@ Write a package to play Rock, Paper, Scissors against the user. Your package sho
 
 There is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be `play_rps()`. All other functions should be internal to the package, and not exported.
 
-You may use `usethis` functions (e.g., `create_package()`, `use_testthat()`, `use_roxygen_md()`, etc.) to help set up your package structure.
+You may use `usethis` functions (e.g., `create_package()`, `use_testthat()`, etc.) to help set up your package structure.
 
 Your code should demonstrate:
 
