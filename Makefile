@@ -6,9 +6,6 @@ preview:
 build:
 	quarto render
 
-deploy:
-	quarto publish gh-pages --no-prompt --no-browser
-
 clean:
 	rm -Rf _site
 	rm -Rf _freeze
