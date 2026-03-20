@@ -11,21 +11,21 @@
     "href": "week4/index.html",
     "title": "Week 4: R programming with LLMs",
     "section": "",
-    "text": "Hadley Wickham guest lecture 2025\nHadley’s code from 2025\nCh 5 Control Flow from Advanced R. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3.\nellmer"
+    "text": "Using LLMs to assist with R programming"
   },
   {
     "objectID": "week4/index.html#main-reference",
     "href": "week4/index.html#main-reference",
     "title": "Week 4: R programming with LLMs",
     "section": "",
-    "text": "Hadley Wickham guest lecture 2025\nHadley’s code from 2025\nCh 5 Control Flow from Advanced R. See Sec 5.3 on Loops.\nCh 9 Functionals from Advanced R, especially sections 9.2 and 9.3.\nellmer"
+    "text": "The ellmer R package\nHadley Wickham on ellmer\nAI-powered data science using Positron Assistant"
   },
   {
     "objectID": "week4/index.html#what-you-will-learn-this-week",
     "href": "week4/index.html#what-you-will-learn-this-week",
     "title": "Week 4: R programming with LLMs",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nUsing LLMs to assist with R programming"
+    "section": "",
+    "text": "Using LLMs to assist with R programming"
   },
   {
     "objectID": "week4/index.html#online-resources",
@@ -593,5 +593,12 @@
     "title": "Assignment 1 Marking Rubric",
     "section": "",
     "text": "Full marks (5) - Clear, honest explanation of AI use, including prompts/examples. - No evidence of unacknowledged use.\nPartial (2–4) - Statement present but incomplete or unclear.\nZero (0) - No statement OR unacknowledged AI use detected."
+  },
+  {
+    "objectID": "week4/index.html#pre-class-activities",
+    "href": "week4/index.html#pre-class-activities",
+    "title": "Week 4: R programming with LLMs",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nThe ellmer R package\nHadley Wickham on ellmer\nAI-powered data science using Positron Assistant"
   }
 ]
