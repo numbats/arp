@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 4: Debugging and profiing"
+author: "Week 5: Debugging and profiing"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -70,12 +70,15 @@ Why not a mistake? A glitch? An oopsie-daisy?
 
 ## Traceback
 
-```{r, error = TRUE}
+```{r}
+#| error: true
 f <- function(a) g(a)
 g <- function(b) h(b)
 h <- function(c) i(c)
 i <- function(d) {
-  if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
+  if (!is.numeric(d)) {
+    stop("`d` must be numeric", call. = FALSE)
+  }
   d + 10
 }
 ```
@@ -84,7 +87,8 @@ i <- function(d) {
 \only<2>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-traceback.png}}
 \pause\pause
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 f("a")
 #> Error: `d` must be numeric
 traceback()
@@ -154,19 +158,20 @@ distributional::dist_normal() * 2
 
 1.  What's wrong with this code?\fontsize{10}{10}\sf
 
-    ```{r, error = TRUE}
-    # Multivariate scaling function
-    mvscale <- function(object) {
-      # Remove centers
-      mat <- sweep(object, 2L, colMeans(object))
-      # Scale and rotate
-      S <- var(mat)
-      U <- chol(solve(S))
-      z <- mat %*% t(U)
-      # Return orthogonalized data
-      return(z)
-    }
-    mvscale(mtcars)
+    ```{r}
+#| error: true
+# Multivariate scaling function
+mvscale <- function(object) {
+  # Remove centers
+  mat <- sweep(object, 2L, colMeans(object))
+  # Scale and rotate
+  S <- var(mat)
+  U <- chol(solve(S))
+  z <- mat %*% t(U)
+  # Return orthogonalized data
+  return(z)
+}
+mvscale(mtcars)
     ```
 
 ## Example
@@ -220,7 +225,7 @@ data %>% filter(y == "A") %>% ggplot(aes(y = y, x = temperature)) + geom_line()
 ::: {.callout-tip}
 ## Error with dplyr `filter()`: "object not found"
 
-I'm trying to filter a dataset in `dplyr`, but I'm getting an error that I don't understand. Here's my code and error message:  
+I'm trying to filter a dataset in `dplyr`, but I'm getting an error that I don't understand. Here's my code and error message:
 
 ```r
 survey <- data.frame(x = c(1, 2, 3), y = c("A", "B", "C"))
@@ -234,7 +239,7 @@ I expected it to return rows where `y` is `"A"`. How should I fix this?
 
 ## Minimal reproducible examples
 
-A minimal reproducible example (MRE) is essential for effectively communicating problems with code. 
+A minimal reproducible example (MRE) is essential for effectively communicating problems with code.
 
 The process of creating a MRE might also help you resolve the problem yourself!
 
@@ -245,13 +250,13 @@ The process of creating a MRE might also help you resolve the problem yourself!
 Minimising code and data makes it easier to find the problem.
 
 - **Remove unnecessary code**
-  
+
   Include as little code as possible to show the problem.
 - **Use small datasets**
-  
+
   Prefer built-in datasets or small example datasets.
 - **Avoid external dependencies**
-  
+
   Remove unused packages or files irrelevant to the problem.
 
 
@@ -260,14 +265,14 @@ Minimising code and data makes it easier to find the problem.
 **Reproducible**
 
 - **Required packages**
-  
+
   If external packages are needed, include loading the packages in your MRE.
 - **Used datasets**
-  
+
   If you can't use built-in datasets, provide a minimal dataset with `data.frame()` or `dput()`.
-  
+
 - **Set random seeds**
-  
+
   If your problem includes randomisation, include `set.seed()` with appropriate seed.
 
 
@@ -276,10 +281,10 @@ Minimising code and data makes it easier to find the problem.
 **Examples**
 
 - **Clearly state the issue**
-  
+
   Explain what you expect versus what happens.
 - **Ensure clarity**
-  
+
   Add code comments to highlight your intention and the problem.
 
 ## reprex
@@ -408,7 +413,7 @@ These can be configured to automatically style your code when you save.
 
 You can also check your code for common problems with [lintr](https://lintr.r-lib.org/).
 
-# Profiling 
+# Profiling
 
 ## Profiling functions
 
@@ -440,7 +445,8 @@ h <- function() {
 ## Profiling
 \fontsize{10}{10}\sf
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 tmp <- tempfile()
 Rprof(tmp, interval = 0.1)
 f()
@@ -455,7 +461,8 @@ writeLines(readLines(tmp))
 ## Profiling
 \fontsize{10}{10}\sf
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 source(here::here("week4/profiling-example.R"))
 profvis(f())
 ```
