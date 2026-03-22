@@ -1,6 +1,6 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 5: Debugging and profiing"
+author: "Week 5: Debugging and profiling"
 format:
   presentation-beamer:
     fontsize: "14pt,t"
@@ -83,8 +83,8 @@ i <- function(d) {
 }
 ```
 
-\only<1>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-error.png}}
-\only<2>{\includegraphics[width = 12cm]{../screenshots/debugging/rstudio-traceback.png}}
+\only<1>{\includegraphics[width=12cm]{../screenshots/debugging/rstudio-error.png}}
+\only<2>{\includegraphics[width=12cm]{../screenshots/debugging/rstudio-traceback.png}}
 \pause\pause
 
 ```{r}
@@ -343,7 +343,8 @@ survey_data |>
 
 * `dump.frame()` saves state of R session to file.
 
-  ```r
+  ```{r}
+  #| eval: false
   # In batch R process ----
   dump_and_quit <- function() {
     # Save debugging info to file last.dump.rda
@@ -468,7 +469,7 @@ profvis(f())
 ```
 
 \vspace*{-0.5cm}
-\centerline{\includegraphics[width = 7cm]{../screenshots/performance/flamegraph.png}}
+\centerline{\includegraphics[width=7cm]{../screenshots/performance/flamegraph.png}}
 
 ## Microbenchmarking
 \fontsize{10}{10}\sf
