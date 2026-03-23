@@ -25,14 +25,15 @@ source(here::here("course_info.R"))
 # Set up Positron
 
 ### GitHub Copilot
-Make sure you are logged into your GitHub account.
 
-* GitHub Copilot settings: https://github.com/settings/copilot/features
+* Make sure you are logged into your GitHub account.
+* GitHub Copilot settings: <https://github.com/settings/copilot/features>
 
 ### Anthropic Claude
-`Ctrl-Shift-P`: "Positron Assistant: Configure Language Model Providers"
 
-* Set up Claude as a model provider using an Anthropic API key: https://platform.claude.com/
+  * Set up Claude as a model provider using an Anthropic API key: <https://platform.claude.com/>
+* `Ctrl-Shift-P`: "Positron Assistant: Configure Language Model Providers"
+
 
 # Code completion
 
@@ -46,18 +47,30 @@ Try typing a function name or a comment describing what you want to do, and see 
 
 # Default chat agents
 
-* Ask: Provides answers and code suggestions without automatic execution
-* Edit: Suggests code changes for you to apply to files
-* Agent: Autonomously executes work including running code and modifying files
-* Plan: Creates detailed step-by-step plans before execution
+* **Ask**: Provides answers and code suggestions without automatic execution
+* **Edit**: Suggests code changes for you to apply to files
+* **Agent**: Autonomously executes work including running code and modifying files
+* **Plan**: Creates detailed step-by-step plans before execution
 
-You will need a model provider, or use GPT-5 mini by default
+You will need a model provider, or use GPT-5 mini by default (slower and less capable than a paid model).
+
+# Pick model
+
+* GitHub Copilot: Code completion and chat agents
+
+* Claude: Chat agents with more detailed reasoning and planning capabilities
 
 # Chat agent: Ask
 
 * How do I plot a histogram of the `value` variable in my dataset `my_data`?
 * Why am I getting a syntax error in my R script?
 * Can you explain what this function does?
+
+# Attach context
+
+* Default context: active editor file, and active interpreter session.
+* Add any other context you think will help.
+* Interpreter session context includes code inputs and outputs in that session, in-memory objects in the Variables pane, the active plot in the Plots pane.
 
 # Chat agent: Edit
 
@@ -77,19 +90,14 @@ You will need a model provider, or use GPT-5 mini by default
 * Plan how to add tests for this R script
 * Create a step-by-step plan to optimize this data processing pipeline.
 
-
-# Pick model
-
-* GitHub Copilot: Code completion and chat agents
-
-* Claude: Chat agents with more detailed reasoning and planning capabilities
-
-# Attach context
-
-* Default context: active editor file, and active interpreter session.
-* Add any other context you think will help.
-* Interpreter session context includes code inputs and outputs in that session, in-memory objects in the Variables pane, the active plot in the Plots pane.
-
-# Git commits
+# Git help
 
 * You can ask the agent to generate commit messages for you, or even create commits and push them to GitHub.
+
+* You can ask the agent to review your code and suggest improvements, or even automatically apply those improvements.
+
+# Slash commands
+
+* `/fix` - Fixes code
+* `/explain` - Explains code
+* `/exportQuarto` - Generates a Quarto document from the current chat conversation
