@@ -13,10 +13,10 @@ source(here::here("course_info.R"))
 
 ## Pre-class activities
 
+* [AI-powered data science using Positron Assistant](https://www.youtube.com/watch?v=TrN-FMcOsOA)
+* [How to set up and use AI features in Positron](https://www.youtube.com/watch?v=VfTxRxZDA4o)
 * [The ellmer R package](https://ellmer.tidyverse.org/)
 * [Hadley Wickham on ellmer](https://www.youtube.com/watch?v=ctc2kx3LxG8)
-* [AI-powered data science using Positron Assistant](https://www.youtube.com/watch?v=TrN-FMcOsOA)
-
 
 
 ```{r}
