@@ -21,3 +21,75 @@ format:
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
+
+# Set up Positron
+
+### GitHub Copilot
+Make sure you are logged into your GitHub account.
+
+* GitHub Copilot settings: https://github.com/settings/copilot/features
+
+### Anthropic Claude
+`Ctrl-Shift-P`: "Positron Assistant: Configure Language Model Providers"
+
+* Set up Claude as a model provider using an Anthropic API key: https://platform.claude.com/
+
+# Code completion
+
+GitHub Copilot provides code completion suggestions as you type.
+
+You can accept suggestions by pressing `Tab` or `Enter`
+
+Snooze it by clicking the icon at bottom right of the editor, or by pressing `Ctrl+Shift+P` and selecting "GitHub Copilot: Toggle"
+
+Try typing a function name or a comment describing what you want to do, and see what suggestions Copilot gives you.
+
+# Default chat agents
+
+* Ask: Provides answers and code suggestions without automatic execution
+* Edit: Suggests code changes for you to apply to files
+* Agent: Autonomously executes work including running code and modifying files
+* Plan: Creates detailed step-by-step plans before execution
+
+You will need a model provider, or use GPT-5 mini by default
+
+# Chat agent: Ask
+
+* How do I plot a histogram of the `value` variable in my dataset `my_data`?
+* Why am I getting a syntax error in my R script?
+* Can you explain what this function does?
+
+# Chat agent: Edit
+
+* Refactor this function to be more efficient.
+* Add error handling to this code block.
+* Update this script to use the latest version of the `dplyr` package.
+
+# Chat agent: Agent
+
+* Create a new R script that loads my dataset, performs some basic data cleaning, and generates a summary report.
+* Install the required packages and run this analysis script for me.
+* Update all my ggplot graphics to use a color-blind friendly palette.
+
+# Chat agent: Plan
+
+* Outline the steps needed to turn this script into an R package.
+* Plan how to add tests for this R script
+* Create a step-by-step plan to optimize this data processing pipeline.
+
+
+# Pick model
+
+* GitHub Copilot: Code completion and chat agents
+
+* Claude: Chat agents with more detailed reasoning and planning capabilities
+
+# Attach context
+
+* Default context: active editor file, and active interpreter session.
+* Add any other context you think will help.
+* Interpreter session context includes code inputs and outputs in that session, in-memory objects in the Variables pane, the active plot in the Plots pane.
+
+# Git commits
+
+* You can ask the agent to generate commit messages for you, or even create commits and push them to GitHub.
