@@ -1,9 +1,11 @@
 {
-  "hash": "0a68ab20bc934e4cac5d210044c93d94",
+  "hash": "d8f7c42553a361f71f35cc8e79223a24",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 4: R programming with LLMs\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## What you will learn this week\n\n* Using LLMs to assist with R programming\n\n## Pre-class activities\n\n* [The ellmer R package](https://ellmer.tidyverse.org/)\n* [Hadley Wickham on ellmer](https://www.youtube.com/watch?v=ctc2kx3LxG8)\n* [AI-powered data science using Positron Assistant](https://www.youtube.com/watch?v=TrN-FMcOsOA)\n\n\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 4: R programming with LLMs\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## What you will learn this week\n\n* Using LLMs to assist with R programming\n\n## Pre-class activities\n\n* [AI-powered data science using Positron Assistant](https://www.youtube.com/watch?v=TrN-FMcOsOA)\n* [How to set up and use AI features in Positron](https://www.youtube.com/watch?v=VfTxRxZDA4o)\n* [The ellmer R package](https://ellmer.tidyverse.org/)\n* [Hadley Wickham on ellmer](https://www.youtube.com/watch?v=ctc2kx3LxG8)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week4/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week4/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
