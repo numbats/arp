@@ -51,7 +51,6 @@ source(here::here("course_info.R"))
   * Set up Claude as a model provider using an Anthropic API key: <https://platform.claude.com/>
 * `Ctrl-Shift-P`: "Positron Assistant: Configure Language Model Providers"
 
-
 ## Code completion
 
 GitHub Copilot provides code completion suggestions as you type.
@@ -128,23 +127,57 @@ You will need a model. Default is GPT-5 mini (slower and less capable than a pai
 
 ## Exercise
 
+Download the `fizzbuzz.R` script from <https://arp.numbat.space/week4/fizzbuzz.R>.
+
 * Ask the `Edit` agent to update the `fizzbuzz()` function to allow numbers other than 5 and 7 to be used.
-* Use the `Edit` agent to produce a roxygen header and unit tests for the `fizzbuzz()` function we wrote in week 2 (<http://arp.numbat.space/week4/fizzbuzz.R>).
+* Use the `Edit` agent to produce roxygen2 documentation for the `fizzbuzz()` function.
 * Ask the `Plan` agent to outline the steps needed to turn the `fizzbuzz()` function into an R package, including adding documentation and tests.
+
+## Access Positron Assistant outside panel
+
+* Right-click (or Ctrl-I) in the editor or terminal.
+* Highlight code in any editor and click the icon (or Ctrl-.)
+* Click "Fix" or "Explain" in the console after an error occurs.
+
+## Exercise
+\fontsize{14}{15}\sf
+
+Download the `wrangle.R` script from <https://arp.numbat.space/week4/wrangle.R>.
+
+* Select the entire `wrangle()` function and ask: "Explain what this function does, step by step."
+* Select the body of the `wrangle()` function and ask: "What does the `flag` column in `result` represent? What statistical method is being used?"
+* Switch to the `Edit` agent and ask: "Add a roxygen2 documentation block to this function"
+* Switch to the `Agent` agent and ask "Write a testthat test that checks `wrangle()` correctly flags outliers in a known dataset."
 
 # Other tools
 
 ## Other tools
 
-* Databot: a Positron extension that provides data analysis capabilities using LLMs, based on the same set up as Positron Assistant.
-* ellmer package: A package to interact with LLMs from R, including prompt templates and agent frameworks.
-* shinychat: Build your own custom chat interface using Shiny, and connect it to an LLM using the ellmer package.
+* **Databot**: a Positron extension that provides data analysis capabilities using LLMs, based on the same set up as Positron Assistant.
+* **ellmer**: An R package to interact with LLMs from R, including prompt templates and agent frameworks.
+* **shinychat** : Build your own custom chat interface using Shiny, and connect it to an LLM using the ellmer package.
+* **Claude code**: Terminal-based interface for interacting with Claude, including tools and agent capabilities.
 
 ## Databot
 
 * Interactive data analysis tool that allows you to ask questions about your data and get answers in the form of code, visualizations, and explanations.
 * Uses LLMs to generate code and explanations based on your questions.
 * Can write Quarto reports based on your data and analysis.
+
+## Exercise
+
+1. Install the Databot extension from the Positron Assistant marketplace.
+
+2. Use the following code to load the `gapminder` dataset into your workspace.
+
+   ```r
+   library(gapminder)
+   data(gapminder)
+   ```
+
+3. Use Databot to look at the relationship between life expectancy and GDP per capita over time. Which countries are outliers?
+
+4. Turn the analysis into a Quarto report using `/report`.
 
 ## ellmer package
 

@@ -2,7 +2,7 @@ fizz_buzz <- function(x) {
   if (!is.numeric(x)) {
     stop("x must be a numeric vector")
   }
-  if (any(abs(x - round(x)) >= .Machine$double.eps)) {
+  if (any(abs(x - round(x)) > .Machine$double.eps)) {
     stop("x must be a vector of integers")
   }
   output <- as.character(x)
