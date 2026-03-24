@@ -340,7 +340,7 @@
     "href": "week4/index.html#slides-for-week",
     "title": "Week 4: R programming with LLMs",
     "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
+    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in class\n\n01_code_completion.R\n02_ask.R\n03_edit.R\n04_agent.R\n05_plan.R\n06_git.R\nellmer1.R\nellmer2.R\nfizzbuzz.R\nwrangle.R"
   },
   {
     "objectID": "week4/index.html#assignments",

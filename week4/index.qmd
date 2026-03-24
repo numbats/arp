@@ -18,9 +18,25 @@ source(here::here("course_info.R"))
 * [The ellmer R package](https://ellmer.tidyverse.org/)
 * [Hadley Wickham on ellmer](https://www.youtube.com/watch?v=ctc2kx3LxG8)
 
-
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+### Code used in class
+
+* [01_code_completion.R](week4/01_code_completion.R)
+* [02_ask.R](week4/02_ask.R)
+* [03_edit.R](week4/03_edit.R)
+* [04_agent.R](week4/04_agent.R)
+* [05_plan.R](week4/05_plan.R)
+* [06_git.R](week4/06_git.R)
+* [ellmer1.R](week4/ellmer1.R)
+* [ellmer2.R](week4/ellmer2.R)
+* [fizzbuzz.R](week4/fizzbuzz.R)
+* [wrangle.R](week4/wrangle.R)
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```

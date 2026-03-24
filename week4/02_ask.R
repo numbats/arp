@@ -13,20 +13,14 @@ my_data <- data.frame(
 )
 
 # ── Example 1: Plotting question ──────────────────────────────────────────────
-# Ask: "How do I plot a histogram of the `value` variable in my dataset
-#       `my_data`?"
-# Expected: Copilot suggests ggplot2 code using geom_histogram().
-
-# Paste / run the suggested code here:
+# How do I plot a histogram of the `value` variable in my dataset `my_data`?
 
 # ── Example 2: Syntax error explanation ───────────────────────────────────────
-# This function has a bug. Highlight it and ask:
 # "Why is this function returning the wrong result?"
 
 my_sum <- function(x) {
   total <- 0
   for (i in length(x)) {
-    # BUG: should be seq_along(x)
     total <- total + x[i]
   }
   return(total)
@@ -35,8 +29,7 @@ my_sum(1:5) # Returns 5 instead of 15
 
 
 # ── Example 3: Explain a function ─────────────────────────────────────────────
-# "Review this code and suggest improvements for readability, correctness,
-#  and R best practices."
+# Review this code and suggest improvements for readability, correctness, and R best practices.
 
 compute_stats <- function(data, col) {
   x = data[[col]]
