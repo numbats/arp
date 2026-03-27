@@ -1,19 +1,10 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 7: Reactive programming with targets and renv"
+author: "Week 7: Measuring and improving performance"
 format:
-  presentation-beamer:
-    fontsize: "14pt,t"
-    section-titles: false
-    knitr:
-      opts_chunk:
-        dev: "cairo_pdf"
+  presentation-typst:
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: ../header.tex
-    colorlinks: true
-    urlcolor: MonashBlue
-    linkcolor: burntorange
 ---
 
 ```{r}
@@ -24,148 +15,127 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-# Reactive programming
+# Profiling
 
-## Regular (imperative) programming
+## Profiling functions
 
-Consider how code is usually evaluated...
+* `Rprof()` : records every function call.
+* `summaryRprof()` : summarises the results.
+* `profvis()` : visualises the results.
 
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-x <- a + b
-x
-```
+## Profiling
 
-What is `x`?
-
-```{r, eval = FALSE}
-a <- -1
-x
-```
-
-What is `x` now?
-
-## Regular (imperative) programming
-
-::: {.callout-tip title="Predictable programming"}
-All programming we've seen so far evaluates code in sequential order, line by line.
-
-\hspace{1em}
-
-Since `x` was not re-evaluated, its value stays the same even when its inputs have changed.
-:::
-
-<!-- . . . -->
-
-<!-- *Note: this is why it's especially important to ensure code works when ran from top to bottom, since when doing a data analysis we often write and run code more freely!* -->
-
-## Reactive programming
-
-Within a reactive programming paradigm, objects *react* to changes in their inputs and automatically update their value!
-
-. . .
-
-::: {.callout-warning title="Disclaimer"}
-Reactive programming is a broad and diverse paradigm, we'll focus only on the basic concepts and how they apply in shiny applications.
-:::
-
-## Reactive programming
-
-We can implement *reactivity* with functions & environments.
+Where are the bottlenecks in your code?
 
 ```{r}
-library(rlang)
-react <- function(e) new_function(alist(), expr(eval(!!enexpr(e))))
+library(profvis)
+library(bench)
+f <- function() {
+  pause(0.1)
+  g()
+  h()
+}
+g <- function() {
+  pause(0.1)
+  h()
+}
+h <- function() {
+  pause(0.1)
+}
 ```
 
-We'll learn how this function works later (metaprogramming).
+## Profiling
 
-Reactive programming is also smarter about *'invalidation'*, results are **cached and reused** if the inputs aren't changed.
-
-## Reactive programming
-
-How does reactive programming differ?
-
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-y <- react(a + b)
-y()
+```{r}
+#| eval: false
+tmp <- tempfile()
+Rprof(tmp, interval = 0.1)
+f()
+Rprof(NULL)
+writeLines(readLines(tmp))
+#> sample.interval=100000
+#> "pause" "g" "f"
+#> "pause" "h" "g" "f"
+#> "pause" "h" "f"
 ```
 
-What is `y`?
+## Profiling
 
-```{r, eval = FALSE}
-a <- -1
-y()
+```{r}
+#| eval: false
+source(here::here("week4/profiling-example.R"))
+profvis(f())
 ```
 
-What is `y` now?
+![](../screenshots/performance/flamegraph.png){width=45% fig-align="center"}
 
-## Reactive programming
+## Microbenchmarking
 
-::: {.callout-tip title="(Un)predictable programming?"}
-Reactive programming can be disorienting!
+### `system.time()`
 
-\hspace{1em}
-
-Reactive objects *invalidate* whenever their inputs change, and so its value will be recalculated and stay up-to-date.
-:::
-
-## Reactive programming
-
-::: {.callout-caution title="Your turn!"}
-<!-- Experiment with using `react()` in R. -->
-
-<!-- ```{r} -->
-<!-- library(rlang) -->
-<!-- react <- function(e) new_function(alist(), expr(eval(!!enexpr(e)))) -->
-<!-- ``` -->
-
-```{r, eval = FALSE}
-a <- 1
-b <- 2
-y <- react(a + b)
-y()
+```{r}
+x <- rnorm(1e6)
+system.time(min(x))
+system.time(sort(x)[1])
+system.time(x[order(x)[1]])
 ```
 
-When was `a + b` evaluated?
+## Microbenchmarking
 
-\vspace{1em}
+### `bench::mark()`
 
-How does this differ from ordinary (imperative) code?
-:::
+```{r}
+bench::mark(
+  min(x),
+  sort(x)[1],
+  x[order(x)[1]]
+)
+```
 
-## Imperative and declarative programming
+## Microbenchmarking
 
-\fontsize{13}{13}\sf
-::: {.callout-note icon=false title="Imperative programming"}
-* Specific commands are carried out immediately.
-* Usually direct and exact instructions.
-* e.g. read in data from this file.
-:::
+* `mem_alloc` tells you the memory allocated in the first run.
+* `n_gc` tells you the total number of garbage collections over all runs.
+* `n_itr` tells you how many times the expression was evaluated.
+* Pay attention to the units!
 
-::: {.callout-note icon=false title="Declarative programming"}
-* Specific commands are carried out when needed.
-* Expresses higher order goals / constraints.
-* e.g. make sure this dataset is up to date every time I see it.
-:::
+## Exercises
 
-## Use cases for reactive programming
+2.  What's the fastest way to compute a square root? Compare:
 
-\fontsize{13}{13}\sf
-::: {.callout-important title="Use-less cases"}
-This paradigm is rarely needed or used in R for data analysis.
-:::
+    - `sqrt(x)`
+    - `x^0.5`
+    - `exp(log(x) / 2)`
 
-::: {.callout-tip title="Useful cases"}
-Reactive programming is useful for developing user applications (including web apps!).
+    Use `system.time()` find the time for each operation.
 
-\vspace{1em}
+    Repeat using `bench::mark()`. Why are they different?
 
-In R, the shiny package uses reactive programming for writing app interactivity.
-:::
+# Efficiency
+
+## Vectorization
+
+* Vectorization is the process of converting a repeated operation into a vector operation.
+* The loops in a vectorized function are implemented in C instead of R.
+* Using `map()` or `apply()` is **not** vectorization.
+* Matrix operations are vectorized, and usually very fast.
+
+## Exercises
+
+Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
+
+### Monte Carlo Integration
+   a. Initialise: `hits = 0`
+   b. for i in 1:N
+      * Generate two random numbers,  $U_1, U_2$, between 0 and 1
+      * If $U_2 < U_1^2$, then `hits = hits + 1`
+   c. end for
+   d. Area estimate = hits/N
+
+
+## Exercises
+
+4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
 
 # Caching
 

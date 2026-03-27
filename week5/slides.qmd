@@ -1,17 +1,11 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 5: Debugging and profiling"
+author: "Week 5: Debugging"
 format:
-  presentation-beamer:
-    fontsize: "14pt,t"
+  presentation-typst:
     section-titles: false
-    knitr:
-      opts_chunk:
-        dev: "cairo_pdf"
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: ../header.tex
-    keep-tex: true
 ---
 
 ```{r}
@@ -57,8 +51,6 @@ Why not a mistake? A glitch? An oopsie-daisy?
 * Fix and test it
 
 ## Debugging tools in R
-\vspace*{-0.2cm}
-\fontsize{14}{15}\sf
 
 * `traceback`: prints out the function call stack after an error occurs; does nothing if there's no error.
 * `debug`: flags a function for "debug" mode which allows you to step through execution of a function one line at a time.
@@ -83,9 +75,9 @@ i <- function(d) {
 }
 ```
 
-\only<1>{\includegraphics[width=12cm]{../screenshots/debugging/rstudio-error.png}}
-\only<2>{\includegraphics[width=12cm]{../screenshots/debugging/rstudio-traceback.png}}
-\pause\pause
+![](../screenshots/debugging/rstudio-error.png){width=80%}
+
+![](../screenshots/debugging/rstudio-traceback.png){width=80%}
 
 ```{r}
 #| eval: false
@@ -100,7 +92,6 @@ traceback()
 ```
 
 ## Interactive debugging
-\fontsize{13}{14}\sf
 
 * Using `browser()`
 
@@ -156,7 +147,7 @@ distributional::dist_normal() * 2
 
 ## Exercises
 
-1.  What's wrong with this code?\fontsize{10}{10}\sf
+1.  What's wrong with this code?
 
     ```{r}
 #| error: true
@@ -175,11 +166,10 @@ mvscale(mtcars)
     ```
 
 ## Example
-\vspace*{-0.15cm}
-\centerline{\href{https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/}{\includegraphics[width=16cm]{../screenshots/Amanda_Gadrow.png}}}
+
+[![](../screenshots/Amanda_Gadrow.png){width=95% fig-align="center"}](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
 
 ## Common error messages
-\fontsize{12}{13}\sf
 
 * could not find function `"xxxx"`
 * object `xxxx` not found
@@ -196,7 +186,6 @@ mvscale(mtcars)
 * non-numeric argument to binary operator
 
 ## Common warning messages
-\fontsize{12}{13}\sf
 
 * NAs introduced by coercion
 * replacement has `xx` rows to replace `yy` rows
@@ -413,130 +402,3 @@ Use a consistent naming convention:
 These can be configured to automatically style your code when you save.
 
 You can also check your code for common problems with [lintr](https://lintr.r-lib.org/).
-
-# Profiling
-
-## Profiling functions
-
-* `Rprof()` : records every function call.
-* `summaryRprof()` : summarises the results.
-* `profvis()` : visualises the results.
-
-## Profiling
-
-Where are the bottlenecks in your code?
-
-```{r}
-library(profvis)
-library(bench)
-f <- function() {
-  pause(0.1)
-  g()
-  h()
-}
-g <- function() {
-  pause(0.1)
-  h()
-}
-h <- function() {
-  pause(0.1)
-}
-```
-
-## Profiling
-\fontsize{10}{10}\sf
-
-```{r}
-#| eval: false
-tmp <- tempfile()
-Rprof(tmp, interval = 0.1)
-f()
-Rprof(NULL)
-writeLines(readLines(tmp))
-#> sample.interval=100000
-#> "pause" "g" "f"
-#> "pause" "h" "g" "f"
-#> "pause" "h" "f"
-```
-
-## Profiling
-\fontsize{10}{10}\sf
-
-```{r}
-#| eval: false
-source(here::here("week4/profiling-example.R"))
-profvis(f())
-```
-
-\vspace*{-0.5cm}
-\centerline{\includegraphics[width=7cm]{../screenshots/performance/flamegraph.png}}
-
-## Microbenchmarking
-\fontsize{10}{10}\sf
-
-### `system.time()`
-
-```{r}
-x <- rnorm(1e6)
-system.time(min(x))
-system.time(sort(x)[1])
-system.time(x[order(x)[1]])
-```
-
-## Microbenchmarking
-\fontsize{10}{10}\sf
-
-### `bench::mark()`
-
-```{r}
-bench::mark(
-  min(x),
-  sort(x)[1],
-  x[order(x)[1]]
-)
-```
-
-## Microbenchmarking
-
-* `mem_alloc` tells you the memory allocated in the first run.
-* `n_gc` tells you the total number of garbage collections over all runs.
-* `n_itr` tells you how many times the expression was evaluated.
-* Pay attention to the units!
-
-## Exercises
-
-2.  What's the fastest way to compute a square root? Compare:
-
-    - `sqrt(x)`
-    - `x^0.5`
-    - `exp(log(x) / 2)`
-
-    Use `system.time()` find the time for each operation.
-
-    Repeat using `bench::mark()`. Why are they different?
-
-# Efficiency
-
-## Vectorization
-
-* Vectorization is the process of converting a repeated operation into a vector operation.
-* The loops in a vectorized function are implemented in C instead of R.
-* Using `map()` or `apply()` is **not** vectorization.
-* Matrix operations are vectorized, and usually very fast.
-
-## Exercises
-
-Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
-
-### Monte Carlo Integration
-   a. Initialise: `hits = 0`
-   b. for i in 1:N
-      * Generate two random numbers,  $U_1, U_2$, between 0 and 1
-      * If $U_2 < U_1^2$, then `hits = hits + 1`
-   c. end for
-   d. Area estimate = hits/N
-
-
-## Exercises
-
-4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
