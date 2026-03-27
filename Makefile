@@ -1,10 +1,10 @@
-default: preview
+default: build
 
 preview:
 	quarto preview
 
 build:
-	quarto render
+	quarto render --profile noslides --no-clean
 
 clean:
 	rm -Rf _site
