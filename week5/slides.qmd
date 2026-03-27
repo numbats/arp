@@ -38,7 +38,7 @@ Why not a mistake? A glitch? An oopsie-daisy?
 
 > On September 9, 1947, a real moth was found causing a malfunction in the Harvard Mark II computer. This incident was recorded in the logbook with the note "First actual case of bug being found."
 
-![](harvard_mark_ii.jpg){fig-height=1 fig-align="center"}
+![](harvard_mark_ii.jpg){width=40% fig-align="center"}
 
 ## Overall debugging strategy
 
