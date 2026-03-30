@@ -140,6 +140,7 @@
   bg-path:       "../_extensions/quarto-monash/presentation/_images/background/",
   doc,
 ) = {
+  let bg-path = bg-path.replace("\\_", "_")
   let img-path = if titlegraphic == none { bg-path + "bg-02.png" }
                  else if titlegraphic.contains("/") { titlegraphic }
                  else { bg-path + titlegraphic }
