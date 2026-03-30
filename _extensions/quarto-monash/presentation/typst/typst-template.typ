@@ -137,7 +137,7 @@
   toc:           false,
   toc-title:     "Outline",
   fontsize:      22pt,
-  bg-path:       "_extensions/presentation/_images/background/",
+  bg-path:       "../_extensions/quarto-monash/presentation/_images/background/",
   doc,
 ) = {
   let img-path = if titlegraphic == none { bg-path + "bg-02.png" }
