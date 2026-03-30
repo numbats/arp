@@ -194,6 +194,11 @@
           indent: 1.2em, body-indent: 0.8em,
         )
         show strong: it => text(fill: monash-orange, weight: "bold", it.body)
+        show link: it => {
+          if type(it.dest) == str {
+            text(font: ("DejaVu Sans Mono", "Noto Sans Mono", "Liberation Mono"), size: 0.85em, it)
+          } else { it }
+        }
         set table(inset: (x: 6pt, y: 8pt), stroke: none)
         set table.hline(stroke: 1pt + dark-grey)
         show table: it => context {
