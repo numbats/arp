@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -d /home/hyndman/git/Teaching/arp/week*/)",
+      "Bash(for week:*)",
+      "Bash(do echo:*)",
+      "Read(//home/hyndman/git/Teaching/arp/**)",
+      "Bash(done)"
+    ]
+  }
+}
