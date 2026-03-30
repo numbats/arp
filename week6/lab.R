@@ -2,7 +2,7 @@ library(tibble)
 class(tibble())
 
 square <- function(x) {
-  if(!is.numeric(x)) {
+  if (!is.numeric(x)) {
     stop("`x` needs to be numeric")
   }
   return(x^2)
@@ -68,9 +68,9 @@ breakpoints(mtcars$mpg, 10)
 
 make_breakpoints <- function(n.breaks) {
   force(n.breaks)
-  
+
   # return a function!
-  function (x) {
+  function(x) {
     seq(min(x), max(x), length.out = n.breaks)
   }
 }
@@ -79,12 +79,12 @@ make_breakpoints(5)(mtcars$mpg)
 
 make_breakpoints_x <- function(x) {
   force(x)
-  
+
   minx <- min(x)
   maxx <- max(x)
   rm(x)
-  
-  function (n.breaks) {
+
+  function(n.breaks) {
     seq(minx, maxx, length.out = n.breaks)
   }
 }
@@ -98,7 +98,7 @@ mpg_breakpoints(5)
 library(purrr)
 map
 
-split(mtcars$mpg, mtcars$cyl) |> 
+split(mtcars$mpg, mtcars$cyl) |>
   map(mean)
 
 mpg_by_cyl <- split(mtcars$mpg, mtcars$cyl)
@@ -108,10 +108,10 @@ map_vec(mpg_by_cyl, mean)
 mtcars_by_cyl <- split(mtcars, mtcars$cyl)
 mtcars_by_cyl
 
-lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4,])
+lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4, ])
 
 map(mtcars_by_cyl, lm, mpg ~ disp + hp + drat + wt)
-lm(mtcars[mtcars$cyl == 4,], mpg ~ disp + hp + drat + wt)
+lm(mtcars[mtcars$cyl == 4, ], mpg ~ disp + hp + drat + wt)
 
 map(mtcars_by_cyl, ~ lm(mpg ~ disp + hp + drat + wt, data = .))
 

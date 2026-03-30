@@ -3,7 +3,7 @@ title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 5: Debugging"
 format:
   presentation-typst:
-    section-titles: false
+    toc: true
     fig-width: 7.5
     fig-height: 3.5
 ---
@@ -16,7 +16,7 @@ source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
 
-# Debugging
+# Debugging strategy
 
 ## What's a bug?
 
@@ -30,9 +30,15 @@ Why not a mistake? A glitch? An oopsie-daisy?
 
 ## What's a bug?
 
-> On September 9, 1947, a real moth was found causing a malfunction in the Harvard Mark II computer. This incident was recorded in the logbook with the note "First actual case of bug being found."
+```{=typst}
+#columns(2)[
+  On September 9, 1947, a real moth was found causing a malfunction in the Harvard Mark II computer. This incident was recorded in the logbook with the note "First actual case of bug being found."
 
-![](harvard_mark_ii.jpg){width=40% fig-align="center"}
+  #colbreak()
+
+  #figure(image("harvard_mark_ii.jpg"))
+]
+```
 
 ## Overall debugging strategy
 
@@ -49,150 +55,6 @@ Why not a mistake? A glitch? An oopsie-daisy?
 * Explore code to find where the error is
 * Create a unit tests with expected behaviour
 * Fix and test it
-
-## Debugging tools in R
-
-* `traceback`: prints out the function call stack after an error occurs; does nothing if there's no error.
-* `debug`: flags a function for "debug" mode which allows you to step through execution of a function one line at a time.
-* `undebug`: removes the "debug" flag from a function.
-* `browser`: pauses execution of a function and puts the function in debug mode.
-* `trace`: allows you to insert code into a function at a specific line number.
-* `untrace`: removes the code inserted by `trace`.
-* `recover`: allows you to modify the error behaviour so that you can browse the function call stack after an error occurs.
-
-## Traceback
-
-```{r}
-#| error: true
-f <- function(a) g(a)
-g <- function(b) h(b)
-h <- function(c) i(c)
-i <- function(d) {
-  if (!is.numeric(d)) {
-    stop("`d` must be numeric", call. = FALSE)
-  }
-  d + 10
-}
-```
-
-![](../screenshots/debugging/rstudio-error.png){width=80%}
-
-![](../screenshots/debugging/rstudio-traceback.png){width=80%}
-
-```{r}
-#| eval: false
-f("a")
-#> Error: `d` must be numeric
-traceback()
-#> 5: stop("`d` must be numeric", call. = FALSE) at debugging.R#6
-#> 4: i(c) at debugging.R#3
-#> 3: h(b) at debugging.R#2
-#> 2: g(a) at debugging.R#1
-#> 1: f("a")
-```
-
-## Interactive debugging
-
-* Using `browser()`
-
-  ```r
-  i <- function(d) {
-    browser()
-    if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
-    d + 10
-  }
-  ```
-
-* Setting breakpoints
-  * Similar to `browser()` but no change to source code.
-  * Set in RStudio by clicking to left of line number, or pressing `Shift+F9`.
-* `options(error = browser)`
-
-## Interactive debugging
-
-Debugging commands:
-
-1. **`n`**: Next line (step over).
-2. **`s`**: Step into function.
-3. **`c`**: Continue to next breakpoint.
-4. **`f`**: Finish the current function.
-5. **`Q`**: Quit debugging.
-6. **`where`**: Show the call stack.
-7. **`help`**: Help with these debugging commands.
-
-## Interactive debugging
-
-* `debug()` : inserts a `browser()` statement at start of function.
-* `undebug()` : removes `browser()` statement.
-* `debugonce()` : same as `debug()`, but removes `browser()` after first run.
-
-## Demo
-
-Let's fix a real, unsolved bug.
-
-[#mitchelloharawild/distributional/issues/133](https://github.com/mitchelloharawild/distributional/issues/133)
-
-``` r
-distributional::dist_normal() * 2
-#> Error in .mapply(get(op), list(x = vec_data(x), y = y)): argument "MoreArgs" is missing, with no default
-```
-
-## The debugging workflow
-
-1. Create a reprex that demonstrates the problem as a comment in the issue.
-2. Fix the problem in the package code.
-3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
-4. Add unit test(s) to the package that confirms the problem is fixed.
-5. Close the issue.
-
-## Exercises
-
-1.  What's wrong with this code?
-
-    ```{r}
-#| error: true
-# Multivariate scaling function
-mvscale <- function(object) {
-  # Remove centers
-  mat <- sweep(object, 2L, colMeans(object))
-  # Scale and rotate
-  S <- var(mat)
-  U <- chol(solve(S))
-  z <- mat %*% t(U)
-  # Return orthogonalized data
-  return(z)
-}
-mvscale(mtcars)
-    ```
-
-## Example
-
-[![](../screenshots/Amanda_Gadrow.png){width=95% fig-align="center"}](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
-
-## Common error messages
-
-* could not find function `"xxxx"`
-* object `xxxx` not found
-* cannot open the connection / No such file or directory
-* missing value where `TRUE` / `FALSE` needed
-* unexpected `=` in `"xxxx"`
-* attempt to apply non-function
-* undefined columns selected
-* subscript out of bounds
-* object of type 'closure' is not subsettable
-* `$` operator is invalid for atomic vectors
-* list object cannot be coerced to type 'double'
-* arguments imply differing number of rows
-* non-numeric argument to binary operator
-
-## Common warning messages
-
-* NAs introduced by coercion
-* replacement has `xx` rows to replace `yy` rows
-* number of items to replace is not a multiple of replacement length
-* the condition has length > 1 and only the first element will be used
-* longer object length is not a multiple of shorter object length
-* package is not available for R version `xx`
 
 ## Asking for help
 
@@ -225,6 +87,7 @@ Error: `Error in filter(y == "A") : object 'y' not found`
 I expected it to return rows where `y` is `"A"`. How should I fix this?
 :::
 
+# Minimal reproducible examples
 
 ## Minimal reproducible examples
 
@@ -234,47 +97,33 @@ The process of creating a MRE might also help you resolve the problem yourself!
 
 ## Minimal reproducible examples
 
-**Minimal**
+**Minimal**: Minimising code and data makes it easier to find the problem.
 
-Minimising code and data makes it easier to find the problem.
+- Remove unnecessary code
 
-- **Remove unnecessary code**
+- Prefer built-in datasets or small example datasets.
 
-  Include as little code as possible to show the problem.
-- **Use small datasets**
-
-  Prefer built-in datasets or small example datasets.
-- **Avoid external dependencies**
-
-  Remove unused packages or files irrelevant to the problem.
+- Remove unused packages or files irrelevant to the problem.
 
 
 ## Minimal reproducible examples
 
-**Reproducible**
+**Reproducible**: Ensure that others can run your code and see the same problem.
 
-- **Required packages**
+- If external packages are needed, include loading the packages in your MRE.
 
-  If external packages are needed, include loading the packages in your MRE.
-- **Used datasets**
+- If you can't use built-in datasets, provide a minimal dataset with `data.frame()` or `dput()`.
 
-  If you can't use built-in datasets, provide a minimal dataset with `data.frame()` or `dput()`.
-
-- **Set random seeds**
-
-  If your problem includes randomisation, include `set.seed()` with appropriate seed.
+- If your problem includes randomisation, include `set.seed()` with appropriate seed.
 
 
 ## Minimal reproducible examples
 
-**Examples**
+**Examples**: Provide a clear example of the problem.
 
-- **Clearly state the issue**
+- Explain what you expect versus what happens.
 
-  Explain what you expect versus what happens.
-- **Ensure clarity**
-
-  Add code comments to highlight your intention and the problem.
+- Add code comments to highlight your intention and the problem.
 
 ## reprex
 
@@ -283,26 +132,8 @@ The **reprex** package helps create *minimal reproducible examples*.
 * Results are saved to clipboard in form that can be pasted into a GitHub issue, Stack Overflow question, or email.
 * `reprex::reprex()`: takes R code and outputs it in a markdown format.
 * Append session info with `reprex(..., session_info = TRUE)`.
-* Use the RStudio addin.
 
-## reprex as a debugging tool
-
-Creating increasingly minimal reproducible examples can be a useful debugging tool.
-
-Let's look at this bug:
-
-[#tidyverts/fabletools/issues/350](https://github.com/tidyverts/fabletools/issues/350)
-
-``` r
-library(fpp3)
-us_change %>%
-  pivot_longer(c(Consumption, Income), names_to = "Time Series") %>%
-  autoplot(value)
-#> Error in `not_tsibble()`:
-#> ! x is not a tsibble.
-```
-
-## Exercises
+## Exercise: MRE
 
 Create a Minimal Reproducible Example (MRE) for this code:
 
@@ -320,6 +151,168 @@ survey_data |>
 <https://arp.numbat.space/week4/survey_dplyr_bug.R>
 
 
+# Debugging tools
+
+## The debugging workflow
+
+1. Create a reprex that demonstrates the problem as a comment in the issue.
+2. Fix the problem in the package code.
+3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
+4. Add unit test(s) to the package that confirms the problem is fixed.
+5. Close the issue.
+
+## Debugging tools in R
+
+* `traceback`: prints out function call stack after error occurs; does nothing if no error.
+* `debug`: flags function for "debug" mode which allows you to step through execution of function one line at a time.
+* `undebug`: removes the "debug" flag from a function.
+* `browser`: pauses execution of a function and puts the function in debug mode.
+* `trace`: insert code into a function at a specific line number.
+* `untrace`: removes the code inserted by `trace`.
+* `recover`: allows you to modify the error behaviour so that you can browse the function call stack after an error occurs.
+
+## Traceback
+
+```{r}
+#| error: true
+f <- function(a) g(a)
+g <- function(b) h(b)
+h <- function(c) i(c)
+i <- function(d) {
+  if (!is.numeric(d)) {
+    stop("`d` must be numeric", call. = FALSE)
+  }
+  d + 10
+}
+```
+
+![](../screenshots/debugging/positron-error.png){width=80%}
+
+![](../screenshots/debugging/positron-traceback.png){width=80%}
+
+## Exercise
+
+:::{.callout-tip}
+# Exercise: traceback
+<https://arp.numbat.space/week5/01-traceback.R>
+:::
+
+## Interactive debugging
+
+* Using `browser()`
+
+  ```r
+  i <- function(d) {
+    browser()
+    if (!is.numeric(d)) stop("`d` must be numeric", call. = FALSE)
+    d + 10
+  }
+  ```
+
+* Set breakpoints in Positron or RStudio by clicking to left of line number, or pressing `Shift+F9`.
+
+* `options(error = browser)`
+
+
+## Exercise
+
+:::{.callout-tip}
+# Exercise: browser
+<https://arp.numbat.space/week5/02-browser.R>
+:::
+
+## Interactive debugging
+
+Debugging commands:
+
+1. **`n`**: Next line (step over).
+2. **`s`**: Step into function.
+3. **`c`**: Continue to next breakpoint.
+4. **`f`**: Finish the current function.
+5. **`Q`**: Quit debugging.
+6. **`where`**: Show the call stack.
+7. **`help`**: Help with these debugging commands.
+
+## Interactive debugging
+
+* `debug()` : inserts a `browser()` statement at start of function.
+* `undebug()` : removes `browser()` statement.
+* `debugonce()` : same as `debug()`, but removes `browser()` after first run.
+
+
+## Exercise
+
+:::{.callout-tip}
+# Exercise: debug
+
+<https://arp.numbat.space/week5/03-debug.R>
+
+:::
+
+## Common error messages
+
+* could not find function `"xxxx"`
+* object `xxxx` not found
+* missing value where `TRUE` / `FALSE` needed
+* attempt to apply non-function
+* undefined columns selected
+* subscript out of bounds
+* object of type 'closure' is not subsettable
+* `$` operator is invalid for atomic vectors
+* list object cannot be coerced to type 'double'
+* arguments imply differing number of rows
+* non-numeric argument to binary operator
+
+
+## Exercise
+
+:::{.callout-tip}
+# Exercise: errors
+
+<https://arp.numbat.space/week5/04-errors.R>
+
+:::
+
+## Common warning messages
+
+* NAs introduced by coercion
+* replacement has `xx` rows to replace `yy` rows
+* number of items to replace is not a multiple of replacement length
+* the condition has length > 1 and only the first element will be used
+* longer object length is not a multiple of shorter object length
+* package is not available for R version `xx`
+
+`#pause`{=typst}
+
+Tip: turn warnings into errors with `options(warn = 2)` to use `traceback()`
+
+## Exercises
+
+:::{.callout-tip}
+# Exercise: warnings
+
+<https://arp.numbat.space/week5/05-warnings.R>
+
+:::
+
+`#pause`{=typst}
+
+:::{.callout-tip}
+# Exercise: debug
+
+<https://arp.numbat.space/week5/06-debug.R>
+
+:::
+
+`#pause`{=typst}
+
+:::{.callout-tip}
+# Exercise: debug
+
+<https://arp.numbat.space/week5/07-debug.R>
+
+:::
+
 ## Non-interactive debugging
 
 * Necessary for debugging code that runs in a non-interactive environment.
@@ -334,7 +327,6 @@ survey_data |>
 
   ```{r}
   #| eval: false
-  # In batch R process ----
   dump_and_quit <- function() {
     # Save debugging info to file last.dump.rda
     dump.frames(to.file = TRUE)
@@ -342,7 +334,6 @@ survey_data |>
     q(status = 1)
   }
   options(error = dump_and_quit)
-
   # In a later interactive session ----
   load("last.dump.rda")
   debugger()
@@ -353,7 +344,6 @@ survey_data |>
 ## Other tricks
 
 * `sink()` : capture output to file.
-* `options(warn = 2)` : turn warnings into errors.
 * `rlang::with_abort()` : turn messages into errors.
 * If R or RStudio crashes, it is probably a bug in compiled code.
 * Post minimal reproducible example to Posit Community or Stack Overflow.
@@ -393,7 +383,6 @@ Use a consistent naming convention:
 - **Flexibility**: Allow adaptability to different use cases and user preferences.
 - **Feedback**: Provide clear and timely feedback to inform users of actions, errors, and system states.
 
-
 ## Automatic styling
 
 * styler: <https://styler.r-lib.org/>
@@ -401,4 +390,7 @@ Use a consistent naming convention:
 
 These can be configured to automatically style your code when you save.
 
-You can also check your code for common problems with [lintr](https://lintr.r-lib.org/).
+You can also check your code for common problems with:
+
+* [lintr](https://lintr.r-lib.org/)
+* [jarl](https://jarl.etiennebacher.com)

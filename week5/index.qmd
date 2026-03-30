@@ -19,20 +19,32 @@ source(here::here("course_info.R"))
 ## Online resources
 
 * [Creating a reprex](https://www.tidyverse.org/help/#reprex)
-* [Amanda Gadrow - Debugging in R](https://posit.co/resources/videos/debugging-techniques-in-rstudio-2/)
-* [Jenny Bryan - Object of type 'closure' is not subsettable](https://youtu.be/vgYS-F8opgE?si=BiXwdCR-Vghb572r)
 * [Posit Community](https://community.rstudio.com)
 * [Stack Overflow](https://stackoverflow.com/)
 
+## Pre-class activities
 
-## Workshop resources
+* Watch [Object of type 'closure' is not subsettable](https://www.youtube.com/watch?v=vgYS-F8opgE) with Jenny Bryan
+* Watch [Debugging in R](https://www.youtube.com/watch?v=3YX-KyZ5Osw) with Jon Harmon
 
-* [Survey data](survey_data.csv)
-* [Survey analysis](survey_dplyr_bug.R)
 
 
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+* [Survey data](survey_data.csv)
+* [Exercise: MRE](survey_dplyr_bug.R)
+* [Exercise: traceback](01-traceback.R)
+* [Exercise: browser](02-browser.R)
+* [Exercise: warnings](03-warnings.R)
+* [Exercise: errors](04-errors.R)
+* [Exercise: debug](05-debug.R)
+* [Exercise: debug](06-debug.R)
+
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```
