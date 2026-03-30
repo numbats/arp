@@ -27,8 +27,6 @@ source(here::here("course_info.R"))
 * Watch [Object of type 'closure' is not subsettable](https://www.youtube.com/watch?v=vgYS-F8opgE) with Jenny Bryan
 * Watch [Debugging in R](https://www.youtube.com/watch?v=3YX-KyZ5Osw) with Jon Harmon
 
-
-
 ```{r}
 #| output: asis
 show_slides(week)

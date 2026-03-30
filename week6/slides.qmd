@@ -1,17 +1,11 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
-author: "Week 5: Functional programming"
+author: "Week 6: Functional programming"
 format:
-  presentation-beamer:
-    fontsize: "14pt,t"
-    section-titles: false
-    knitr:
-      opts_chunk:
-        dev: "cairo_pdf"
+  presentation-typst:
+    toc: true
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: ../header.tex
-    keep-tex: true
 ---
 
 ```{r}
@@ -21,8 +15,6 @@ format:
 source(here::here("setup.R"))
 source(here::here("course_info.R"))
 ```
-
-
 
 
 # Programming paradigms
