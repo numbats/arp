@@ -1,0 +1,143 @@
+
+---
+title: "OTexts.com views by country"
+date: "2026-03-26"
+format: html
+---
+
+::: {.callout-note}
+This report was generated using AI under general human direction. At the time of generation, the contents have not been comprehensively reviewed by a human analyst.
+
+<!--
+To indicate human review: Delete the line above about contents not being reviewed, and replace this comment with:
+The contents have been reviewed and validated by [Your Name], [Your Role] on [Date].
+-->
+:::
+
+```{r}
+#| label: load-packages
+library(tidyverse)
+```
+
+```{r}
+#| label: load-data
+views <- read_csv(
+  here::here("week4/views_by_country.csv"),
+  comment = "#"
+)
+```
+
+## Introduction
+
+This report summarises website traffic to OTexts.com by country, based on Google Analytics 4 (GA4) data spanning January 2021 to January 2026. The dataset covers `{r} nrow(views)` countries and includes metrics such as views, active users, views per active user, average engagement time, and event count.
+
+
+## Overview
+
+Across all countries, OTexts.com recorded a total of **`{r} scales::comma(sum(views$Views))`** views from **`{r} scales::comma(sum(views$"Active users"))`** active users over the period.
+
+```{r}
+#| label: overview-stats
+tibble(
+  Metric = c("Countries", "Total views", "Total active users"),
+  Value = c(
+    scales::comma(nrow(views)),
+    scales::comma(sum(views$Views)),
+    scales::comma(sum(views$`Active users`))
+  )
+)
+```
+
+## Top 20 countries by views
+
+The table below shows the 20 countries with the highest number of views, along with their active user counts and views per active user.
+
+```{r}
+#| label: top20-table
+views |>
+  arrange(desc(Views)) |>
+  head(20) |>
+  select(Country, Views, `Active users`, `Views per active user`) |>
+  mutate(
+    Views = scales::comma(Views),
+    `Active users` = scales::comma(`Active users`),
+    `Views per active user` = round(`Views per active user`, 1)
+  )
+```
+
+## Bar chart: top 20 countries by views
+
+The chart below shows the top 20 countries by total views, with bars coloured by continent.
+
+```{r}
+#| label: top20-bar-chart
+#| fig-alt: "Horizontal bar chart of the top 20 countries by views on OTexts.com, with bars coloured by continent."
+continent_map <- c(
+  "United States" = "Americas",
+  "India" = "Asia",
+  "Australia" = "Oceania",
+  "United Kingdom" = "Europe",
+  "China" = "Asia",
+  "South Korea" = "Asia",
+  "Canada" = "Americas",
+  "Germany" = "Europe",
+  "Brazil" = "Americas",
+  "Italy" = "Europe",
+  "Malaysia" = "Asia",
+  "Netherlands" = "Europe",
+  "Vietnam" = "Asia",
+  "Spain" = "Europe",
+  "Japan" = "Asia",
+  "Mexico" = "Americas",
+  "Indonesia" = "Asia",
+  "Singapore" = "Asia",
+  "France" = "Europe",
+  "Hong Kong" = "Asia"
+)
+
+top20 <- views |>
+  arrange(desc(Views)) |>
+  head(20) |>
+  mutate(
+    Continent = continent_map[Country],
+    Country = fct_reorder(Country, Views)
+  )
+
+ggplot(top20, aes(x = Views, y = Country, fill = Continent)) +
+  geom_col() +
+  scale_x_continuous(labels = scales::label_comma()) +
+  scale_fill_brewer(palette = "Set1") +
+  labs(
+    title = "Top 20 countries by views",
+    subtitle = "OTexts.com — Jan 2021 to Jan 2026",
+    x = "Views",
+    y = NULL,
+    fill = "Continent"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+```
+
+The United States dominates with approximately `{r} scales::comma(top20$Views[top20$Country == "United States"])` views — around three times that of the next country, India. Asian and European countries are well represented across the rest of the top 20, while Australia stands out as a high-traffic country relative to its population.
+
+## Engagement
+
+Views per active user provides a measure of how deeply visitors engage with the site. Among large countries (at least 1,000 views), Australia has notably high engagement.
+
+```{r}
+#| label: high-engagement
+views |>
+  filter(Views >= 1000) |>
+  arrange(desc(`Views per active user`)) |>
+  select(Country, Views, `Active users`, `Views per active user`) |>
+  mutate(
+    Views = scales::comma(Views),
+    `Active users` = scales::comma(`Active users`),
+    `Views per active user` = round(`Views per active user`, 1)
+  ) |>
+  head(10)
+```
