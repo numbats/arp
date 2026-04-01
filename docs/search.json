@@ -109,7 +109,7 @@
     "href": "week5/index.html#slides-for-week",
     "title": "Week 5: Debugging",
     "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: warnings\nExercise: errors\nExercise: debug\nExercise: debug"
+    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: debug\nExercise: errors\nExercise: warnings\nExercise: debug"
   },
   {
     "objectID": "week5/index.html#assignments",
@@ -196,6 +196,97 @@
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
+    "objectID": "views_by_country_report.html",
+    "href": "views_by_country_report.html",
+    "title": "OTexts.com views by country",
+    "section": "",
+    "text": "Note\n\n\n\nThis report was generated using AI under general human direction. At the time of generation, the contents have not been comprehensively reviewed by a human analyst."
+  },
+  {
+    "objectID": "views_by_country_report.html#introduction",
+    "href": "views_by_country_report.html#introduction",
+    "title": "OTexts.com views by country",
+    "section": "Introduction",
+    "text": "Introduction\nThis report summarises website traffic to OTexts.com by country, based on Google Analytics 4 (GA4) data spanning January 2021 to January 2026. The dataset covers 236 countries and includes metrics such as views, active users, views per active user, average engagement time, and event count."
+  },
+  {
+    "objectID": "views_by_country_report.html#overview",
+    "href": "views_by_country_report.html#overview",
+    "title": "OTexts.com views by country",
+    "section": "Overview",
+    "text": "Overview\nAcross all countries, OTexts.com recorded a total of 26,437,986 views from 2,728,650 active users over the period.\n\n\n# A tibble: 3 × 2\n  Metric             Value     \n  &lt;chr&gt;              &lt;chr&gt;     \n1 Countries          236       \n2 Total views        26,437,986\n3 Total active users 2,728,650"
+  },
+  {
+    "objectID": "views_by_country_report.html#top-20-countries-by-views",
+    "href": "views_by_country_report.html#top-20-countries-by-views",
+    "title": "OTexts.com views by country",
+    "section": "Top 20 countries by views",
+    "text": "Top 20 countries by views\nThe table below shows the 20 countries with the highest number of views, along with their active user counts and views per active user.\n\n\n# A tibble: 20 × 4\n   Country        Views     `Active users` `Views per active user`\n   &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 United States  5,837,205 566,943                           10.3\n 2 India          1,843,071 275,698                            6.7\n 3 Australia      1,479,159 75,747                            19.5\n 4 United Kingdom 1,268,273 130,039                            9.8\n 5 China          1,240,278 165,279                            7.5\n 6 South Korea    1,055,188 180,136                            5.9\n 7 Canada         887,967   86,043                            10.3\n 8 Germany        884,535   79,647                            11.1\n 9 Brazil         875,740   66,282                            13.2\n10 Italy          619,896   42,107                            14.7\n11 Malaysia       555,033   36,207                            15.3\n12 Netherlands    484,593   42,620                            11.4\n13 Vietnam        468,425   32,035                            14.6\n14 Spain          434,650   37,474                            11.6\n15 Japan          432,820   66,269                             6.5\n16 Mexico         420,834   33,336                            12.6\n17 Indonesia      408,198   55,217                             7.4\n18 Singapore      407,121   48,962                             8.3\n19 France         371,968   38,584                             9.6\n20 Hong Kong      353,911   36,908                             9.6"
+  },
+  {
+    "objectID": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
+    "href": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
+    "title": "OTexts.com views by country",
+    "section": "Bar chart: top 20 countries by views",
+    "text": "Bar chart: top 20 countries by views\nThe chart below shows the top 20 countries by total views, with bars coloured by continent.\n\n\n\n\n\n\n\n\n\nThe United States dominates with approximately 5,837,205 views — around three times that of the next country, India. Asian and European countries are well represented across the rest of the top 20, while Australia stands out as a high-traffic country relative to its population."
+  },
+  {
+    "objectID": "views_by_country_report.html#engagement",
+    "href": "views_by_country_report.html#engagement",
+    "title": "OTexts.com views by country",
+    "section": "Engagement",
+    "text": "Engagement\nViews per active user provides a measure of how deeply visitors engage with the site. Among large countries (at least 1,000 views), Australia has notably high engagement.\n\n\n# A tibble: 10 × 4\n   Country           Views     `Active users` `Views per active user`\n   &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 San Marino        1,007     23                                43.8\n 2 Faroe Islands     2,622     60                                43.7\n 3 Greenland         1,038     32                                32.4\n 4 Cape Verde        2,290     109                               21  \n 5 Australia         1,479,159 75,747                            19.5\n 6 Guatemala         47,057    2,453                             19.2\n 7 St. Kitts & Nevis 1,071     60                                17.9\n 8 Réunion           2,048     116                               17.7\n 9 Nicaragua         9,928     588                               16.9\n10 Portugal          236,865   14,152                            16.7"
+  },
+  {
+    "objectID": "assignments/discussion.html",
+    "href": "assignments/discussion.html",
+    "title": "Discussion (10%)",
+    "section": "",
+    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
+  },
+  {
+    "objectID": "assignments/A2.html",
+    "href": "assignments/A2.html",
+    "title": "Assignment 2 (30%)",
+    "section": "",
+    "text": "The ?? package is designed to ??\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each person will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nNo commit should address more than one bug. Each bug may be addressed in multiple commits. The GitHub issue should be used to link the commits that address the bug, and to explain the bug and the fix.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A1.html",
+    "href": "assignments/A1.html",
+    "title": "Assignment 1 (30%)",
+    "section": "",
+    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
+  },
+  {
+    "objectID": "assignments/A1.html#task",
+    "href": "assignments/A1.html#task",
+    "title": "Assignment 1 (30%)",
+    "section": "Task",
+    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
+  },
+  {
+    "objectID": "assignments/A1.html#notes",
+    "href": "assignments/A1.html#notes",
+    "title": "Assignment 1 (30%)",
+    "section": "Notes",
+    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
+  },
+  {
+    "objectID": "assignments/A1.html#marking-rubric",
+    "href": "assignments/A1.html#marking-rubric",
+    "title": "Assignment 1 (30%)",
+    "section": "Marking rubric",
+    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A3.html",
+    "href": "assignments/A3.html",
+    "title": "Assignment 3 (30%)",
+    "section": "",
+    "text": "You need to extend the ??? package to include:\n\nS3 methods (e.g., print and plot methods) for an appropriate class in the package.\nA custom vctrs class for an appropriate data structure in the package.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector\nCreate methods for your custom generic function(s), including suitable defaults.\n\nIntegration of C++ code via Rcpp for an appropriate function in your package.\n\nYou can also consider adding some element of metaprogramming if you think it is appropriate.\nThere should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "ETC4500/5450 Advanced R Programming",
@@ -243,55 +334,6 @@
     "title": "ETC4500/5450 Advanced R Programming",
     "section": "Assessments",
     "text": "Assessments\n\nAssignment 1: 30%\nAssignment 2: 30%\nAssignment 3: 30%\nDiscussion: 10%"
-  },
-  {
-    "objectID": "assignments/A3.html",
-    "href": "assignments/A3.html",
-    "title": "Assignment 3 (30%)",
-    "section": "",
-    "text": "You need to extend the ??? package to include:\n\nS3 methods (e.g., print and plot methods) for an appropriate class in the package.\nA custom vctrs class for an appropriate data structure in the package.\n\nCreate and document a function for creating your vector.\nDefine appropriate methods for using your vector, including format(), vec_ptype2(), and vec_cast().\nCreate generic function(s) for identifying/extracting useful things from your vector\nCreate methods for your custom generic function(s), including suitable defaults.\n\nIntegration of C++ code via Rcpp for an appropriate function in your package.\n\nYou can also consider adding some element of metaprogramming if you think it is appropriate.\nThere should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nEach team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A1.html",
-    "href": "assignments/A1.html",
-    "title": "Assignment 1 (30%)",
-    "section": "",
-    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
-  },
-  {
-    "objectID": "assignments/A1.html#task",
-    "href": "assignments/A1.html#task",
-    "title": "Assignment 1 (30%)",
-    "section": "Task",
-    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
-  },
-  {
-    "objectID": "assignments/A1.html#notes",
-    "href": "assignments/A1.html#notes",
-    "title": "Assignment 1 (30%)",
-    "section": "Notes",
-    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
-  },
-  {
-    "objectID": "assignments/A1.html#marking-rubric",
-    "href": "assignments/A1.html#marking-rubric",
-    "title": "Assignment 1 (30%)",
-    "section": "Marking rubric",
-    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A2.html",
-    "href": "assignments/A2.html",
-    "title": "Assignment 2 (30%)",
-    "section": "",
-    "text": "The ?? package is designed to ??\nIn this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:\n\nCreate a reprex that demonstrates the problem as a comment in the issue.\nFix the problem in the package code.\nAdd a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.\nAdd unit test(s) to the package that confirms the problem is fixed.\nClose the issue.\n\nThe bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn’t a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each person will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nNo commit should address more than one bug. Each bug may be addressed in multiple commits. The GitHub issue should be used to link the commits that address the bug, and to explain the bug and the fix.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/discussion.html",
-    "href": "assignments/discussion.html",
-    "title": "Discussion (10%)",
-    "section": "",
-    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
   },
   {
     "objectID": "week1/index.html",
