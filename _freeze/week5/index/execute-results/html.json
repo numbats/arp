@@ -3,9 +3,7 @@
   "result": {
     "engine": "knitr",
     "markdown": "---\ntitle: \"Week 5: Debugging\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n## Main reference\n\n* [22 *Advanced R*](https://adv-r.hadley.nz/debugging.html)\n\n## What you will learn this week\n\n* Debugging\n\n## Online resources\n\n* [Creating a reprex](https://www.tidyverse.org/help/#reprex)\n* [Posit Community](https://community.rstudio.com)\n* [Stack Overflow](https://stackoverflow.com/)\n\n## Pre-class activities\n\n* Watch [Object of type 'closure' is not subsettable](https://www.youtube.com/watch?v=vgYS-F8opgE) with Jenny Bryan\n* Watch [Debugging in R](https://www.youtube.com/watch?v=3YX-KyZ5Osw) with Jon Harmon\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week5/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week5/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n* [Survey data](survey_data.csv)\n* [Exercise: MRE](survey_dplyr_bug.R)\n* [Exercise: traceback](01-traceback.R)\n* [Exercise: browser](02-browser.R)\n* [Exercise: debug](03-debug.R)\n* [Exercise: errors](04-errors.R)\n* [Exercise: warnings](05-warnings.R)\n* [Exercise: debug](06-debug.R)\n\n\n\n## Assignments\n\n* [Assignment 1](../assignments/A1.qmd) is due on Tuesday 31 March.\n",
-    "supporting": [
-      "index_files"
-    ],
+    "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
