@@ -141,14 +141,14 @@ Create a Minimal Reproducible Example (MRE) for this code:
 library(tidyverse)
 library(rainbow)
 
-survey_data <- read.csv("https://arp.numbat.space/week4/survey_data.csv")
+survey_data <- read.csv("https://arp.numbat.space/week5/survey_data.csv")
 
 survey_data |>
   select(-RespondentID) |>
   group_by(Gender) |>
   count(Satisfaction)
 ```
-<https://arp.numbat.space/week4/survey_dplyr_bug.R>
+<https://arp.numbat.space/week5/survey_dplyr_bug.R>
 
 
 # Debugging tools
