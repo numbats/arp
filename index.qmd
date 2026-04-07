@@ -14,13 +14,13 @@ R is widely used as a tool for data analysis and one of the most popular program
 3. utilise R’s functional and object-oriented programming systems
 4. integrate the concept of metaprogramming to evaluate and construct new functions
 
-## Teachers
+## Teaching team
 
 * [**Rob J Hyndman**](https://robjhyndman.com). Chief Examiner. Email: [Rob.Hyndman@monash.edu](mailto:Rob.Hyndman@monash.edu)
 * [**Krisanat Anukarnsakulchularp**](https://krisanata.github.io/personal-website/), Tutor
 * [**Tomasz Wozniak**](https://github.com/donotdespair), Week 11
 
-## References
+## Core references
 
 * [*Advanced R*, 2e](https://adv-r.hadley.nz/) by Hadley Wickham.
 * [*Advanced R Solutions*](https://advanced-r-solutions.rbind.io/) by Malte Grosser, Henning Bumann & Hadley Wickham.
@@ -36,12 +36,11 @@ R is widely used as a tool for data analysis and one of the most popular program
 library(tidyverse)
 options(knitr.kable.NA = '')
 source(here::here("course_info.R"))
-week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
+week <- as.integer(1 +
+  (Sys.Date() - as_date(start_semester))/7 -
+  (Sys.Date() > as_date(mid_semester_break))
+)
 ```
-
-## Recordings
-
-* [Recordings](https://learning.monash.edu/mod/lti/view.php?id=5219874)
 
 ## Weekly schedule
 
@@ -65,10 +64,3 @@ schedule |>
   select(-Show) |>
   knitr::kable(format = "markdown")
 ```
-
-## Assessments
-
-* [Assignment 1](assignments/A1.qmd): 30%
-* [Assignment 2](assignments/A2.qmd): 30%
-* [Assignment 3](assignments/A3.qmd): 30%
-* [Discussion](assignments/discussion.qmd): 10%
