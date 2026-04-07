@@ -7,6 +7,195 @@
     "text": "Weekly plan\n\nWeek 1: Foundations (Rob Hyndman)\nWeek 2: LLM (Hadley Wickham)\nWeek 3: R package development (Rob Hyndman)\nWeek 4: Debugging (Mitchell O’Hara-Wild)\nWeek 5: Functional programming (Mitchell O’Hara-Wild)\nWeek 6: Literate programming: Quarto (Rob Hyndman)\nWeek 7: Reactive programming: targets, renv (Rob Hyndman)\nWeek 8: OO S3 and others (Mitchell O’Hara-Wild)\nWeek 9: OO vctrs (Mitchell O’Hara-Wild)\nWeek 10: Meta programming (Mitchell O’Hara-Wild)\nWeek 11: C++ (Tomasz Wozniak)\nWeek 12: Package hackathon"
   },
   {
+    "objectID": "week9/index.html",
+    "href": "week9/index.html",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#main-references",
+    "href": "week9/index.html#main-references",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#what-you-will-learn-this-week",
+    "href": "week9/index.html#what-you-will-learn-this-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week"
+  },
+  {
+    "objectID": "week9/index.html#slides-for-week",
+    "href": "week9/index.html#slides-for-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week9/index.html#assignments",
+    "href": "week9/index.html#assignments",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week7/index.html",
+    "href": "week7/index.html",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "",
+    "text": "Efficient R Programming"
+  },
+  {
+    "objectID": "week7/index.html#what-you-will-learn-this-week",
+    "href": "week7/index.html#what-you-will-learn-this-week",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "",
+    "text": "Efficient R Programming"
+  },
+  {
+    "objectID": "week7/index.html#slides-for-week",
+    "href": "week7/index.html#slides-for-week",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week7/index.html#assignments",
+    "href": "week7/index.html#assignments",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week5/index.html",
+    "href": "week5/index.html",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#main-reference",
+    "href": "week5/index.html#main-reference",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#what-you-will-learn-this-week",
+    "href": "week5/index.html#what-you-will-learn-this-week",
+    "title": "Week 5: Debugging",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDebugging"
+  },
+  {
+    "objectID": "week5/index.html#online-resources",
+    "href": "week5/index.html#online-resources",
+    "title": "Week 5: Debugging",
+    "section": "Online resources",
+    "text": "Online resources\n\nCreating a reprex\nPosit Community\nStack Overflow"
+  },
+  {
+    "objectID": "week5/index.html#pre-class-activities",
+    "href": "week5/index.html#pre-class-activities",
+    "title": "Week 5: Debugging",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Object of type ‘closure’ is not subsettable with Jenny Bryan\nWatch Debugging in R with Jon Harmon"
+  },
+  {
+    "objectID": "week5/index.html#slides-for-week",
+    "href": "week5/index.html#slides-for-week",
+    "title": "Week 5: Debugging",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: debug\nExercise: errors\nExercise: warnings\nExercise: debug"
+  },
+  {
+    "objectID": "week5/index.html#assignments",
+    "href": "week5/index.html#assignments",
+    "title": "Week 5: Debugging",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week3/index.html",
+    "href": "week3/index.html",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#main-reference",
+    "href": "week3/index.html#main-reference",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#what-you-will-learn-this-week",
+    "href": "week3/index.html#what-you-will-learn-this-week",
+    "title": "Week 3: R package development",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
+  },
+  {
+    "objectID": "week3/index.html#pre-class-activities",
+    "href": "week3/index.html#pre-class-activities",
+    "title": "Week 3: R package development",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Building R packages with devtools and usethis"
+  },
+  {
+    "objectID": "week3/index.html#slides-for-week",
+    "href": "week3/index.html#slides-for-week",
+    "title": "Week 3: R package development",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week3/index.html#assignments",
+    "href": "week3/index.html#assignments",
+    "title": "Week 3: R package development",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week12/index.html",
+    "href": "week12/index.html",
+    "title": "Week 12: Package hackathon",
+    "section": "",
+    "text": "This will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation."
+  },
+  {
+    "objectID": "week10/index.html",
+    "href": "week10/index.html",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R"
+  },
+  {
+    "objectID": "week10/index.html#main-reference",
+    "href": "week10/index.html#main-reference",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R"
+  },
+  {
+    "objectID": "week10/index.html#what-you-will-learn-this-week",
+    "href": "week10/index.html#what-you-will-learn-this-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
+  },
+  {
+    "objectID": "week10/index.html#slides-for-week",
+    "href": "week10/index.html#slides-for-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
     "objectID": "views_by_country_report.html",
     "href": "views_by_country_report.html",
     "title": "OTexts.com views by country",
@@ -175,34 +364,6 @@
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "week10/index.html",
-    "href": "week10/index.html",
-    "title": "Week 10: Metaprogramming",
-    "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#main-reference",
-    "href": "week10/index.html#main-reference",
-    "title": "Week 10: Metaprogramming",
-    "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#what-you-will-learn-this-week",
-    "href": "week10/index.html#what-you-will-learn-this-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
-  },
-  {
-    "objectID": "week10/index.html#slides-for-week",
-    "href": "week10/index.html#slides-for-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
     "objectID": "week11/index.html",
     "href": "week11/index.html",
     "title": "Week 11: Rewriting R code in C++",
@@ -252,13 +413,6 @@
     "text": "Slides for week\n\n\nDownload pdf"
   },
   {
-    "objectID": "week12/index.html",
-    "href": "week12/index.html",
-    "title": "Week 12: Package hackathon",
-    "section": "",
-    "text": "This will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation."
-  },
-  {
     "objectID": "week2/index.html",
     "href": "week2/index.html",
     "title": "Week 2: Foundations of R Programming",
@@ -301,48 +455,6 @@
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "week3/index.html",
-    "href": "week3/index.html",
-    "title": "Week 3: R package development",
-    "section": "",
-    "text": "R Packages (2e)"
-  },
-  {
-    "objectID": "week3/index.html#main-reference",
-    "href": "week3/index.html#main-reference",
-    "title": "Week 3: R package development",
-    "section": "",
-    "text": "R Packages (2e)"
-  },
-  {
-    "objectID": "week3/index.html#what-you-will-learn-this-week",
-    "href": "week3/index.html#what-you-will-learn-this-week",
-    "title": "Week 3: R package development",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
-  },
-  {
-    "objectID": "week3/index.html#pre-class-activities",
-    "href": "week3/index.html#pre-class-activities",
-    "title": "Week 3: R package development",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Building R packages with devtools and usethis"
-  },
-  {
-    "objectID": "week3/index.html#slides-for-week",
-    "href": "week3/index.html#slides-for-week",
-    "title": "Week 3: R package development",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week3/index.html#assignments",
-    "href": "week3/index.html#assignments",
-    "title": "Week 3: R package development",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
     "objectID": "week4/index.html",
     "href": "week4/index.html",
     "title": "Week 4: R programming with LLMs",
@@ -378,55 +490,6 @@
     "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
   },
   {
-    "objectID": "week5/index.html",
-    "href": "week5/index.html",
-    "title": "Week 5: Debugging",
-    "section": "",
-    "text": "22 Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#main-reference",
-    "href": "week5/index.html#main-reference",
-    "title": "Week 5: Debugging",
-    "section": "",
-    "text": "22 Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#what-you-will-learn-this-week",
-    "href": "week5/index.html#what-you-will-learn-this-week",
-    "title": "Week 5: Debugging",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDebugging"
-  },
-  {
-    "objectID": "week5/index.html#online-resources",
-    "href": "week5/index.html#online-resources",
-    "title": "Week 5: Debugging",
-    "section": "Online resources",
-    "text": "Online resources\n\nCreating a reprex\nPosit Community\nStack Overflow"
-  },
-  {
-    "objectID": "week5/index.html#pre-class-activities",
-    "href": "week5/index.html#pre-class-activities",
-    "title": "Week 5: Debugging",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Object of type ‘closure’ is not subsettable with Jenny Bryan\nWatch Debugging in R with Jon Harmon"
-  },
-  {
-    "objectID": "week5/index.html#slides-for-week",
-    "href": "week5/index.html#slides-for-week",
-    "title": "Week 5: Debugging",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: debug\nExercise: errors\nExercise: warnings\nExercise: debug"
-  },
-  {
-    "objectID": "week5/index.html#assignments",
-    "href": "week5/index.html#assignments",
-    "title": "Week 5: Debugging",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
     "objectID": "week6/index.html",
     "href": "week6/index.html",
     "title": "Week 6: Functional programming",
@@ -445,7 +508,14 @@
     "href": "week6/index.html#what-you-will-learn-this-week",
     "title": "Week 6: Functional programming",
     "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nFunctions\nFunction arguments\nFunction factories"
+    "text": "What you will learn this week\n\nWriting functions\nManipulating functions\nFunction factories\nFunctional mapping\nFunctional adverbs"
+  },
+  {
+    "objectID": "week6/index.html#pre-class-activities",
+    "href": "week6/index.html#pre-class-activities",
+    "title": "Week 6: Functional programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Intro to Functional Programming with R"
   },
   {
     "objectID": "week6/index.html#slides-for-week",
@@ -458,34 +528,6 @@
     "objectID": "week6/index.html#assignments",
     "href": "week6/index.html#assignments",
     "title": "Week 6: Functional programming",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
-  },
-  {
-    "objectID": "week7/index.html",
-    "href": "week7/index.html",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "",
-    "text": "Efficient R Programming"
-  },
-  {
-    "objectID": "week7/index.html#what-you-will-learn-this-week",
-    "href": "week7/index.html#what-you-will-learn-this-week",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "",
-    "text": "Efficient R Programming"
-  },
-  {
-    "objectID": "week7/index.html#slides-for-week",
-    "href": "week7/index.html#slides-for-week",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week7/index.html#assignments",
-    "href": "week7/index.html#assignments",
-    "title": "Week 7: Measuring and improving performance",
     "section": "Assignments",
     "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
   },
@@ -530,41 +572,6 @@
     "title": "Week 8: Object-oriented programming",
     "section": "Online resources",
     "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4\nR6\nS7"
-  },
-  {
-    "objectID": "week9/index.html",
-    "href": "week9/index.html",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "",
-    "text": "13 Advanced R\nvctrs"
-  },
-  {
-    "objectID": "week9/index.html#main-references",
-    "href": "week9/index.html#main-references",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "",
-    "text": "13 Advanced R\nvctrs"
-  },
-  {
-    "objectID": "week9/index.html#what-you-will-learn-this-week",
-    "href": "week9/index.html#what-you-will-learn-this-week",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week"
-  },
-  {
-    "objectID": "week9/index.html#slides-for-week",
-    "href": "week9/index.html#slides-for-week",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week9/index.html#assignments",
-    "href": "week9/index.html#assignments",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
   },
   {
     "objectID": "assignments/A1_rubric_detailed.html",

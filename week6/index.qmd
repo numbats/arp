@@ -13,9 +13,15 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
-* Functions
-* Function arguments
+* Writing functions
+* Manipulating functions
 * Function factories
+* Functional mapping
+* Functional adverbs
+
+## Pre-class activities
+
+* Watch [Intro to Functional Programming with R](https://www.youtube.com/watch?v=MuOxlUN9q4E)
 
 ```{r}
 #| output: asis

@@ -1,9 +1,11 @@
 {
-  "hash": "c2c5b66d88e3d1e42ba257fa93cc8d9d",
+  "hash": "cb65ebb4f0ca1525d7a5a91ffb5678ea",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 6: Functional programming\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n* [9-11. *Advanced R*](https://adv-r.hadley.nz/fp.html)\n\n## What you will learn this week\n\n* Functions\n* Function arguments\n* Function factories\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Tuesday 05 May.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 6: Functional programming\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n* [9-11. *Advanced R*](https://adv-r.hadley.nz/fp.html)\n\n## What you will learn this week\n\n* Writing functions\n* Manipulating functions\n* Function factories\n* Functional mapping\n* Functional adverbs\n\n## Pre-class activities\n\n* Watch [Intro to Functional Programming with R](https://www.youtube.com/watch?v=MuOxlUN9q4E)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week6/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week6/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Tuesday 05 May.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
