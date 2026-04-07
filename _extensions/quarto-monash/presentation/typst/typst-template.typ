@@ -177,6 +177,7 @@
       init: (self: none, body) => {
         set text(font: ("Fira Sans", "Liberation Sans"), size: fontsize)
         set par(justify: false, leading: 0.65em)
+        set block(above: 0.7em, below: 0.7em)
         set figure(placement: none)
         show raw: it => { set text(font: ("DejaVu Sans Mono", "Noto Sans Mono", "Liberation Mono")); it }
         show block.where(fill: rgb("#f1f3f5")): it => { set text(size: fontsize * 0.85); it }
