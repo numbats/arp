@@ -3,7 +3,7 @@ title: "Week 6: Functional programming"
 ---
 
 ```{r}
-week <- 5
+week <- 6
 source(here::here("course_info.R"))
 ```
 
