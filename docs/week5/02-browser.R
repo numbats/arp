@@ -9,5 +9,5 @@ normalise <- function(x) {
 scores <- c(55, 72, 28, 43, 91, 67)
 normalise(scores) # values should lie between 0 and 100
 
-#  The function seems to return incorrect values. I expect min to map to 0 and max to map to 1.
+#  The function seems to return incorrect values. I expect min to map to 0 and max to map to 100.
 # Insert browser() and step through the calculation to locate the bug.
