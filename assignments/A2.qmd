@@ -2,19 +2,27 @@
 title: Assignment 2 (30%)
 ---
 
-The **??** package is designed to ??
+The **randomifyR** package is designed to provide a set of functions for generating random samples of data.
 
-In this assignment, you will act as a maintainer of the package, fixing problems that have been reported by users.
+In this assignment, you will act as a maintainer of the package, fixing five problems that have been reported by users.
 
-You will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. For each issue:
+You will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem.
 
-1. Create a reprex that demonstrates the problem as a comment in the issue.
-2. Fix the problem in the package code.
-3. Add a comment to the issue explaining the bug and the fix, including a link to the commit containing the fix.
-4. Add unit test(s) to the package that confirms the problem is fixed.
-5. Close the issue.
+If you believe the problem is a bug, then follow the steps below to fix it.
 
-The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem. If you believe the problem isn't a bug, you should instead explain the intended behaviour and update the documentation to better explain what the function does.
+1. Add a comment in the issue that includes a reprex that demonstrates the problem, or explains why this is not possible.
+2. If possible, add a unit test that fails because of the problem, and commit it to the repository with a message that references the issue.
+3. Fix the problem in the package code, and commit the fix with a message that references the issue.
+4. Add a comment to the issue explaining the bug and the fix.
+5. Check that the unit test(s) you added now pass, and that the package checks without errors or warnings.
+6. Close the issue.
+
+If you believe the problem is not a bug, then follow the steps below.
+
+1. Add a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.
+2. If possible, provide a reprex that demonstrates the intended behaviour.
+3. If the documentation of the function is unclear, then update the documentation to better explain the intended behaviour of the function, and commit the update with a message that references the issue.
+4. Close the issue.
 
 In some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.
 
@@ -32,6 +40,20 @@ In some cases, the problem reported may highlight a weakness in the package beyo
 
    Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence) for more information.
 
+4. Each bug is worth 6 marks, and the total is 30 marks. For genuine bugs, the marks will be awarded based on the following criteria:
+
+  * Understanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is a problem.
+  * Reprex (1 mark): This includes providing a clear and reproducible example that demonstrates the problem, or explaining why this is not possible.
+  * Unit test (1 mark): This includes adding a unit test that fails because of the problem, and committing it to the repository with a message that references the issue.
+  * Fix (2 marks): This includes fixing the problem in the package code, and committing the fix with a message that references the issue.
+  * Explanation (1 mark): This includes adding a comment to the issue explaining the bug and the fix.
+
+For non-bugs, the marks will be awarded based on the following criteria:
+
+  * Understanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is not a bug.
+  * Explanation (2 marks): This includes adding a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.
+  * Reprex (1 mark): This includes providing a clear and reproducible example that demonstrates the intended behaviour, or explaining why this is not possible.
+  * Documentation (2 marks): This includes updating the documentation to better explain the intended behaviour of the function, and committing the update with a message that references the issue.
 
 ```{r}
 #| output: asis

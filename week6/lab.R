@@ -143,8 +143,8 @@ for (i in seq_along(x)) {
 x2
 
 # map approach
-map(x, square)       # lapply(x, square)
-map_vec(x, square)   # vapply(x, square, numeric(1L))
+map(x, square) # lapply(x, square)
+map_vec(x, square) # vapply(x, square, numeric(1L))
 
 # Split-apply-combine with dplyr
 library(dplyr)
@@ -211,7 +211,7 @@ map2_vec(xs, ws, weighted.mean, na.rm = TRUE)
 n <- 1:3
 min <- c(0, 10, 100)
 max <- c(1, 100, 1000)
-pmap(list(n, min, max), runif)   # .mapply(runif, list(n, min, max), list())
+pmap(list(n, min, max), runif) # .mapply(runif, list(n, min, max), list())
 
 # Parallel mapping with furrr --------------------------------------------------
 
@@ -225,7 +225,7 @@ future_map2_dbl(xs, ws, weighted.mean, na.rm = TRUE)
 x <- sample(1:100, 10)
 x
 sum(x)
-reduce(x, `+`)   # Reduce(`+`, x)
+reduce(x, `+`) # Reduce(`+`, x)
 
 alphabet_soup <- map(c(10, 24, 13), sample, x = letters, replace = TRUE)
 alphabet_soup
