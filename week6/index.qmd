@@ -26,5 +26,11 @@ source(here::here("course_info.R"))
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+* [Code used in workshop](week6/lab.R)
+`
+```{r}
+#| output: asis
 show_assignments(week)
 ```

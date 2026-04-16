@@ -15,18 +15,13 @@ square(10)
 # Functions can be printed
 print(square)
 
+# But they can't be subsetted
+square$x
+
 # Functions can be inspected
 formals(square)
 body(square)
 environment(square)
-
-# Functions can be put in a list
-my_functions <- list(square, sum, min, max)
-my_functions
-my_functions[[1]](8)
-
-# But they can't be subsetted
-square$x
 
 # Modifying function components
 square()
@@ -36,10 +31,13 @@ environment(square) <- emptyenv()
 square
 square(10)
 
-# Function inputs --------------------------------------------------------------
+# Functions can be put in a list
+my_functions <- list(square, sum, min, max)
+my_functions
+my_functions[[1]](8)
 
-MAE <- function(e, ...) mean(abs(e), ...)
-RMSE <- function(e, ...) sqrt(mean(e^2, ...))
+
+# Function inputs --------------------------------------------------------------
 
 # The "bad" accuracy: limited to specific measures
 accuracy_bad <- function(e, measure, ...) {
@@ -58,7 +56,10 @@ RMSE <- function(e, ...) sqrt(mean(e^2, ...))
 accuracy <- function(e, measure, ...) {
   measure(e, ...)
 }
-accuracy(rnorm(100), MAE)
+x <- rnorm(100)
+accuracy(x, MAE)
+accuracy_bad(x, "mae")
+accuracy(x, mean)
 
 residuals <- rnorm(100)
 residuals[runif(100) > 0.5] <- NA
@@ -72,6 +73,7 @@ redgreen_ramp <- colorRamp(c("red", "green"))
 redgreen_ramp(0)
 redgreen_ramp(1)
 redgreen_ramp(0.3421348)
+redgreen_ramp(runif(10))
 
 colorRamp(c("red", "green"))(0.312381247)
 
@@ -154,7 +156,7 @@ mtcars |>
 
 # Using split() and map_vec() to achieve the same
 split(mtcars$mpg, mtcars$cyl) |>
-  map(mean)
+  map_vec(mean)
 
 mpg_by_cyl <- split(mtcars$mpg, mtcars$cyl)
 map(mpg_by_cyl, mean)
@@ -165,11 +167,11 @@ map_vec(mpg_by_cyl, mean)
 mtcars_by_cyl <- split(mtcars, mtcars$cyl)
 mtcars_by_cyl
 
-lm(mpg ~ disp + hp + drat + wt, mtcars[mtcars$cyl == 4, ])
+lm(mpg ~ disp + hp + drat + wt, 
+  mtcars_by_cyl[[1]])
 
 # This won't work — mapped vector goes to first argument (formula position)
 map(mtcars_by_cyl, lm, mpg ~ disp + hp + drat + wt)
-lm(mtcars[mtcars$cyl == 4, ], mpg ~ disp + hp + drat + wt)
 
 # Named function approach
 mtcars_lm <- function(.) lm(mpg ~ disp + hp + drat + wt, data = .)
@@ -178,18 +180,15 @@ map(mtcars_by_cyl, mtcars_lm)
 # Anonymous function approach
 map(mtcars_by_cyl, ~ lm(mpg ~ disp + hp + drat + wt, data = .))
 
-purrr::as_mapper(~ lm(mpg ~ disp + hp + drat + wt, data = .))
-
-\(.) lm(mpg ~ disp + hp + drat + wt, data = .)
-
-function(.) {
-  lm(mpg ~ disp + hp + drat + wt, data = .)
-}
 
 # Chain maps to get coefficients from all 3 models
 mtcars_by_cyl |>
   map(~ lm(mpg ~ disp + hp + drat + wt, data = .)) |>
   map(coef)
+
+mtcars_by_cyl |>
+  map(~ coef(lm(mpg ~ disp + hp + drat + wt, data = .))) 
+
 
 # Mapping with extra arguments -------------------------------------------------
 
@@ -202,10 +201,10 @@ map_dbl(x, mean, na.rm = TRUE)
 
 # map2 and pmap ----------------------------------------------------------------
 
-xs <- map(1:8, ~ ifelse(runif(10) > 0.8, NA, runif(10)))
-map_vec(xs, mean, na.rm = TRUE)
+ws <- map(1:8, ~ ifelse(runif(10) > 0.8, NA, runif(10)))
+map_vec(ws, mean, na.rm = TRUE)
 
-ws <- map(1:8, ~ rpois(10, 5) + 1)
+xs <- map(1:8, ~ rpois(10, 5) + 1)
 map2_vec(xs, ws, weighted.mean, na.rm = TRUE)
 
 n <- 1:3
