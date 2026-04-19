@@ -7,9 +7,21 @@ week <- 7
 source(here::here("course_info.R"))
 ```
 
+## Main references
+
+* [23-24. *Advanced R*](https://adv-r.hadley.nz/perf-measure.html)
+* [Efficient R Programming](https://csgillespie.github.io/efficientR/)
+
 ## What you will learn this week
 
-* [Efficient R Programming](https://csgillespie.github.io/efficientR/)
+* Profiling code
+* Measuring code performance
+* Vectorisation
+* Caching results
+
+## Pre-class activities
+
+* Watch [Advanced R Book Club: Measuring and Improving Performance](https://www.youtube.com/watch?v=pOaiDK7J7EE)
 
 
 ```{r}

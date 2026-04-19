@@ -1,9 +1,11 @@
 {
-  "hash": "60af95837d0a57485e5dfdcade3b0d13",
+  "hash": "ffdb93472c0f8ac7b8dfa080b6200bbe",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 7: Measuring and improving performance\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## What you will learn this week\n\n* [Efficient R Programming](https://csgillespie.github.io/efficientR/)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week7/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week7/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Tuesday 05 May.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 7: Measuring and improving performance\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main references\n\n* [23-24. *Advanced R*](https://adv-r.hadley.nz/perf-measure.html)\n* [Efficient R Programming](https://csgillespie.github.io/efficientR/)\n\n## What you will learn this week\n\n* Profiling code\n* Measuring code performance\n* Vectorisation\n* Caching results\n\n## Pre-class activities\n\n* Watch [Advanced R Book Club: Measuring and Improving Performance](https://www.youtube.com/watch?v=pOaiDK7J7EE)\n\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week7/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week7/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n## Assignments\n\n* [Assignment 2](../assignments/A2.qmd) is due on Tuesday 05 May.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
