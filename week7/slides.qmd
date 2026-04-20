@@ -1,6 +1,7 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 7: Measuring and improving performance"
+toc: true
 format:
   presentation-typst:
     fig-width: 7.5
@@ -28,19 +29,17 @@ source(here::here("course_info.R"))
 Where are the bottlenecks in your code?
 
 ```{r}
-library(profvis)
-library(bench)
 f <- function() {
-  pause(0.1)
+  mean(rnorm(1e7))
   g()
   h()
 }
 g <- function() {
-  pause(0.1)
+  mean(rnorm(1e7))
   h()
 }
 h <- function() {
-  pause(0.1)
+  mean(rnorm(1e7))
 }
 ```
 
@@ -52,22 +51,67 @@ tmp <- tempfile()
 Rprof(tmp, interval = 0.1)
 f()
 Rprof(NULL)
-writeLines(readLines(tmp))
-#> sample.interval=100000
-#> "pause" "g" "f"
-#> "pause" "h" "g" "f"
-#> "pause" "h" "f"
+```
+
+```
+sample.interval=100000
+"rnorm" "mean" "f"
+"rnorm" "mean" "f"
+"rnorm" "mean" "f"
+"rnorm" "mean" "g" "f"
+"rnorm" "mean" "g" "f"
+"rnorm" "mean" "h" "g" "f"
+"rnorm" "mean" "h" "g" "f"
+"rnorm" "mean" "h" "f"
+"mean.default" "mean" "h" "f"
 ```
 
 ## Profiling
 
 ```{r}
 #| eval: false
-source(here::here("week4/profiling-example.R"))
-profvis(f())
+summaryRprof(tmp)
+```
+
+```
+$by.self
+               self.time self.pct total.time total.pct
+"rnorm"              0.8    88.89        0.8     88.89
+"mean.default"       0.1    11.11        0.1     11.11
+
+$by.total
+               total.time total.pct self.time self.pct
+"f"                   0.9    100.00       0.0     0.00
+"mean"                0.9    100.00       0.0     0.00
+"rnorm"               0.8     88.89       0.8    88.89
+"g"                   0.4     44.44       0.0     0.00
+"h"                   0.4     44.44       0.0     0.00
+"mean.default"        0.1     11.11       0.1    11.11
+
+$sample.interval
+[1] 0.1
+
+$sampling.time
+[1] 0.9
+```
+
+## Profiling
+
+```{r}
+#| eval: false
+profvis::profvis(f())
 ```
 
 ![](../screenshots/performance/flamegraph.png){width=45% fig-align="center"}
+
+## Profiling
+
+* Garbage collection: if it takes a long time, you're creating many short-lived objects.
+* Can't see inside C/C++ code
+* Anonymous functions make it harder to identify bottlenecks.
+* Lazy evaluation means arguments are sometimes evaluated in a different function than where they are called.
+
+# Benchmarking
 
 ## Microbenchmarking
 
@@ -111,18 +155,18 @@ bench::mark(
 
     Repeat using `bench::mark()`. Why are they different?
 
-# Efficiency
+# Vectorisation
 
-## Vectorization
+## Vectorisation
 
-* Vectorization is the process of converting a repeated operation into a vector operation.
-* The loops in a vectorized function are implemented in C instead of R.
-* Using `map()` or `apply()` is **not** vectorization.
-* Matrix operations are vectorized, and usually very fast.
+* Vectorisation is the process of converting a repeated operation into a vector operation.
+* The loops in a vectorised function are implemented in C instead of R.
+* Using `map()` or `apply()` is **not** vectorisation.
+* Matrix operations are vectorised, and usually very fast.
 
-## Exercises
+## Exercise
 
-Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorized code
+Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using vectorised code
 
 ### Monte Carlo Integration
    a. Initialise: `hits = 0`
@@ -132,10 +176,118 @@ Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using v
    c. end for
    d. Area estimate = hits/N
 
+## Exercise
 
-## Exercises
+Compare the speed of `apply(x, 1, sum)` and `rowSums(x)` for a large matrix `x`.
 
-4. Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
+# Efficient coding
+
+## Other efficiency improvements
+
+* Never calculate something more than once.
+* Avoid growing objects in a loop. Allocate space first.
+* Do as little as possible.
+* Move code out of loops if possible.
+* Parallelise if you can't vectorise.
+* Use `data.table()` instead of `data.frame()` for large datasets.
+* Use `matrix()` instead of `data.frame()` or `data.table()` if all data are the same type.
+* Find a built in function that does what you want instead of writing your own.
+
+## Never calculate something more than once
+
+```{r}
+x <- rnorm(1e4)
+bench::mark(
+  bad = c(mean = mean(x), var = var(x), sd = sqrt(var(x))),
+  good = {
+    v <- var(x)
+    c(mean = mean(x), var = v, sd = sqrt(v))
+  }
+)
+```
+
+## Avoid growing objects in a loop
+
+```{r}
+n <- 1e4
+bench::mark(
+  growing = {
+    result <- c()
+    for (i in seq_len(n)) result <- c(result, i^2)
+  },
+  preallocated = {
+    result <- numeric(n)
+    for (i in seq_len(n)) result[i] <- i^2
+  }
+)
+```
+
+## Do as little as possible
+
+```{r}
+x <- rnorm(1e6)
+bench::mark(
+  slow = which(x == min(x))[1],
+  fast = which.min(x)
+)
+```
+
+## Move code out of loops
+
+```{r}
+n <- 1e4
+x <- rnorm(n)
+bench::mark(
+  inside = {
+    result <- numeric(n)
+    for (i in seq_len(n)) result[i] <- x[i] * mean(x)
+  },
+  outside = {
+    mx <- mean(x)
+    result <- numeric(n)
+    for (i in seq_len(n)) result[i] <- x[i] * mx
+  }
+)
+```
+
+## Parallelise if you can't vectorise
+
+```{r}
+#| eval: false
+# Sequential
+purrr::map(1:8, slow_fn)
+
+# Parallel
+future::plan(multisession, workers = 4)
+furrr::future_map(1:8, slow_fn)
+```
+
+## Use `data.table` for large datasets
+
+```{r}
+library(data.table)
+library(dplyr)
+n <- 1e6
+df <- data.frame(g = sample(letters, n, replace = TRUE), x = rnorm(n))
+dt <- as.data.table(df)
+bench::mark(
+  data.frame = summarise(df, mean(x), .by = g),
+  data.table = dt[, .(mean = mean(x)), by = g],
+  check = FALSE
+)
+```
+
+## Use `matrix` for homogeneous data
+
+```{r}
+n <- 500
+df <- as.data.frame(matrix(rnorm(n^2), nrow = n))
+mat <- as.matrix(df)
+bench::mark(
+  data.frame = t(df) %*% as.matrix(df),
+  matrix = t(mat) %*% mat
+)
+```
 
 # Caching
 
@@ -194,7 +346,7 @@ compute()
 
 ## Caching downloads
 
-You often want to prevent downloads of the same data multiple times.
+Prevent downloads of the same data multiple times.
 
 ```{r}
 #| eval: false
@@ -205,12 +357,14 @@ download_data <- function(url) {
   if (file.exists(dest_file)) {
     data <- readRDS(dest_file)
   } else {
-    data <- read_tsv(url, show_col_types = FALSE)
+    data <- readr::read_tsv(url, show_col_types = FALSE)
     saveRDS(data, dest_file)
   }
   data
 }
-bulldozers <- download_data("https://robjhyndman.com/data/Bulldozers.csv")
+bulldozers <- download_data(
+  "https://robjhyndman.com/data/Bulldozers.csv"
+)
 ```
 
 ## Caching: memoise
@@ -222,30 +376,17 @@ Caching stores results of computations so they can be reused.
 ```{r}
 library(memoise)
 sq <- function(x) {
-  print("Computing square of 'x'")
-  x**2
+  cat("Computing square of 'x'")
+  x^2
 }
 memo_sq <- memoise(sq)
 memo_sq(2)
 memo_sq(2)
 ```
 
-## Caching: Rmarkdown
+## Exercises
 
-````{verbatim}
-```{r import-data, cache=TRUE}
-d <- read.csv('my-precious.csv')
-```
-
-```{r analysis, dependson='import-data', cache=TRUE}
-summary(d)
-```
-````
-
-* Requires explicit dependencies or changes not detected.
-* Changes to functions or packages not detected.
-* Good practice to frequently clear cache to avoid problems.
-* targets is a better solution
+Use `bench::mark()` to compare the speed of `sq()` and `memo_sq()`.
 
 ## Caching: Quarto
 
@@ -264,5 +405,9 @@ summary(d)
 ```
 ````
 
-* Same problems as Rmarkdown
+## Caching: Quarto
+
+* Requires explicit dependencies or changes not detected.
+* Changes to functions or packages not detected.
+* Good practice to frequently clear cache to avoid problems.
 * targets is a better solution
