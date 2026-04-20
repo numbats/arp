@@ -98,13 +98,13 @@ You will need a model. Default is GPT-5 mini (slower and less capable than a pai
 
 * Create a new R script that loads my dataset, performs some basic data cleaning, and generates a summary report.
 * Install the required packages and run this analysis script for me.
-* Update all my ggplot graphics to use a color-blind friendly palette.
+* Update all my ggplot graphics to use a colour-blind friendly palette.
 
 ## Chat agent: Plan
 
 * Outline the steps needed to turn this script into an R package.
 * Plan how to add tests for this R script
-* Create a step-by-step plan to optimize this data processing pipeline.
+* Create a step-by-step plan to optimise this data processing pipeline.
 
 ## Git help
 
