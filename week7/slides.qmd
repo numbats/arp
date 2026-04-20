@@ -180,6 +180,62 @@ Write the following algorithm to estimate $\displaystyle\int_0^1 x^2 dx$ using v
 
 Compare the speed of `apply(x, 1, sum)` and `rowSums(x)` for a large matrix `x`.
 
+# Copy-on-modify
+
+## Copy-on-modify semantics
+
+* R copies objects when modified — but only when necessary.
+* Names bind to the same object until one is modified.
+* Understanding this explains why many inefficiencies arise.
+
+```{r}
+x <- c(1, 2, 3)
+y <- x                     # no copy yet — x and y share memory
+lobstr::obj_addr(x) == lobstr::obj_addr(y)
+y[1] <- 10                 # copy happens now
+lobstr::obj_addr(x) == lobstr::obj_addr(y)
+```
+
+## Why growing objects is slow
+
+Each `c(result, i)` copies the entire vector:
+
+```{r}
+result <- c()
+for (i in 1:5) result <- c(result, i^2)
+```
+
+Pre-allocation avoids repeated copying:
+
+```{r}
+result <- numeric(5)
+for (i in 1:5) result[i] <- i^2
+```
+
+## Reference semantics
+
+* Environments use **reference semantics** — modifications don't copy.
+* `data.table` exploits this: `:=` modifies in place, no copy made.
+
+```{r}
+library(data.table)
+dt <- data.table(x = rnorm(1e6))
+lobstr::obj_addr(dt)
+dt[, y := x^2]             # modifies dt directly
+lobstr::obj_addr(dt)       # same address — no copy
+```
+
+## Reference semantics
+
+Compare `data.frame`:
+
+```{r}
+df <- data.frame(x = rnorm(1e6))
+lobstr::obj_addr(df)
+df$y <- df$x^2                    # modifies df, but creates a copy
+lobstr::obj_addr(df)              # different address — copy made
+```
+
 # Efficient coding
 
 ## Other efficiency improvements

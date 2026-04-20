@@ -89,7 +89,37 @@ bench::mark(
 )
 
 
-# Other efficiency improvements
+# Copy-on-modify
+
+# Two names share memory until one is modified
+x <- c(1, 2, 3)
+y <- x
+lobstr::obj_addr(x) == lobstr::obj_addr(y)   # TRUE — same object
+y[1] <- 10
+lobstr::obj_addr(x) == lobstr::obj_addr(y)   # FALSE — copy was made
+
+# Growing objects copies the vector every iteration
+result <- c()
+for (i in 1:5) result <- c(result, i^2)
+
+# Pre-allocation avoids repeated copying
+result <- numeric(5)
+for (i in 1:5) result[i] <- i^2
+
+# data.table modifies in place — no copy made
+library(data.table)
+dt <- data.table(x = rnorm(1e6))
+lobstr::obj_addr(dt)
+dt[, y := x^2]
+lobstr::obj_addr(dt)   # same address — no copy
+
+# data.frame makes a copy
+df <- data.frame(x = rnorm(1e6))
+lobstr::obj_addr(df)
+df$y <- df$x^2
+lobstr::obj_addr(df)   # different address — copy made
+
+# Efficient coding
 
 n <- 1e4
 x <- rnorm(n)
