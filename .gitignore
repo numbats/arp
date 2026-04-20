@@ -10,3 +10,4 @@ slides.tex
 /site_libs/
 
 **/*.quarto_ipynb
+.claude
