@@ -74,7 +74,7 @@
     "href": "week7/index.html#slides-for-week",
     "title": "Week 7: Measuring and improving performance",
     "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
+    "text": "Slides for week\n\n\nDownload pdf\nCode used in workshop"
   },
   {
     "objectID": "week7/index.html#assignments",
@@ -565,6 +565,13 @@
     "title": "Week 8: Object-oriented programming",
     "section": "What you will learn this week",
     "text": "What you will learn this week\nOverview of object-oriented programming in R, focusing on S3."
+  },
+  {
+    "objectID": "week8/index.html#pre-class-activities",
+    "href": "week8/index.html#pre-class-activities",
+    "title": "Week 8: Object-oriented programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Advanced R Book Club: S3 methods (part 1)\nWatch Advanced R Book Club: S3 methods (part 2)\nWatch S3 objects and functions in R"
   },
   {
     "objectID": "week8/index.html#slides-for-week",
