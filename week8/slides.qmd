@@ -2,16 +2,9 @@
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 8: Object-oriented Programming"
 format:
-  presentation-beamer:
-    fontsize: "14pt,t"
-    section-titles: false
-    knitr:
-      opts_chunk:
-        dev: "cairo_pdf"
+  presentation-typst:
     fig-width: 7.5
     fig-height: 3.5
-    include-in-header: ../header.tex
-    keep-tex: false
 ---
 
 ```{r}
@@ -28,14 +21,14 @@ source(here::here("course_info.R"))
 
 ## Programming paradigms
 
-::: {.callout-note icon=false title="Functional programming (W5)"}
+::: {.callout-note icon=false title="Functional programming (W6)"}
 * Functions are created and used like any other object.
 * Output should only depend on the function's inputs.
 :::
 
-. . .
+`#pause`{=typst}
 
-::: {.callout-note icon=false title="Literate programming (W6)"}
+::: {.callout-note icon=false title="Literate programming"}
 * Natural language is interspersed with code.
 * Aimed at prioritising documentation/comments.
 * Now used to create reproducible reports/documents.
@@ -43,12 +36,12 @@ source(here::here("course_info.R"))
 
 ## Programming paradigms
 
-::: {.callout-note icon=false title="Reactive programming (W7)"}
+::: {.callout-note icon=false title="Reactive programming"}
 * Objects are expressed using code based on inputs.
 * When inputs change, the object's value updates.
 :::
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-note icon=false title="Object-oriented programming (W8-W9)"}
 * Functions are associated with object types.
@@ -91,9 +84,8 @@ plot(trees)
 ## Generic functions and methods
 
 ```{r}
-m<-lm(log(Volume)~log(Girth)+log(Height),
-       data=trees)
-par(mfrow=c(2,2),mar=c(3,1,1,1))
+m <- lm(log(Volume) ~ log(Girth) + log(Height), data = trees)
+par(mfrow = c(2, 2), mar = c(3, 1, 1, 1))
 plot(m)
 ```
 
@@ -118,7 +110,7 @@ plot(nhtemp)
 * How does the behaviour update when you load packages?
 * ???
 
-. . .
+`#pause`{=typst}
 
 S3 generic functions and methods!
 
@@ -142,7 +134,7 @@ R has **a lot** of object systems
 * Very simple (and 'limited') compared to other systems.
 :::
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-note icon=false title="vctrs"}
 * Builds upon S3 to make creating vectors easier.
@@ -156,7 +148,7 @@ R has **a lot** of object systems
 * Supports multiple inheritance and method dispatch.
 :::
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-note icon=false title="S7"}
 * Planned to be the successor of S3 and S4.
@@ -171,7 +163,7 @@ R has **a lot** of object systems
 * Simple and efficient compared to reference classes.
 :::
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-note icon=false title="ggproto"}
 * Used in ggplot2 for extensibility.
@@ -299,13 +291,19 @@ x
 ## S3: Creating a method
 
 ```{r}
-print.grade <- function(x, ...){
-  letter <- if (x < 50) "N"
-  else if (x < 60) "P"
-  else if (x < 70) "C"
-  else if (x < 80) "D"
-  else "HD"
-  cat(x," [", letter, "]", sep = "")
+print.grade <- function(x, ...) {
+  letter <- if (x < 50) {
+    "N"
+  } else if (x < 60) {
+    "P"
+  } else if (x < 70) {
+    "C"
+  } else if (x < 80) {
+    "D"
+  } else {
+    "HD"
+  }
+  cat(x, " [", letter, "]", sep = "")
   invisible(x)
 }
 x
@@ -371,7 +369,7 @@ Some examples include:
 
 What if we tried to reverse the current date; `reverse(Sys.Date())`?
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-caution title="Your turn!"}
 
@@ -379,7 +377,7 @@ Question: what should the default behaviour be?
 
 :::
 
-. . .
+`#pause`{=typst}
 
 * Raise an error?
 * Return a reversed string?
@@ -466,7 +464,7 @@ The `structure()` function is usually used within packages.
 * `lm()` returns a list with class `"lm"`, and
 * `tibble()` returns a list classed `"tbl_df"`, `"tbl"`, and `"data.frame"`.
 
-. . .
+`#pause`{=typst}
 
 ::: {.callout-caution title="Your turn!"}
 
@@ -487,7 +485,7 @@ fraction <- function(numerator, denominator) {
   if (denominator == 0) {
     stop("Denominator cannot be zero.")
   }
-  
+
   structure(
     list(numerator = numerator, denominator = denominator),
     class = "fraction"
@@ -528,7 +526,7 @@ Create a `reverse()` method for the `fraction` object class, which inverts the n
 Write a method for converting a `fraction` into a number.
 :::
 
-```{r, include = FALSE}
+```{r, include=FALSE}
 as.double.fraction <- function(x, ...) {
   x$numerator / x$denominator
 }
@@ -696,7 +694,7 @@ studentGrades <- function(name, grades) {
   if (!is.numeric(grades)) {
     stop("Grades must be numeric.")
   }
-  
+
   new("StudentGrades", name = name, grades = grades)
 }
 ```
