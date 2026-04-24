@@ -104,12 +104,12 @@ S3 generic functions and methods!
 R has **a lot** of object systems
 
 - S3
-- [S3 `vctrs`]
+- S3 `vctrs`
 - S4
 - R6
-- R.oo, proto, ggproto,
-- R7
-- S7
+- R.oo
+- proto, ggproto,
+- R7, S7
 
 
 ## Object oriented programming
@@ -117,6 +117,7 @@ R has **a lot** of object systems
 ::: {.callout-note icon=false title="S3"}
 * The OO system used by most of CRAN.
 * Very simple (and 'limited') compared to other systems.
+* Informal: no enforcement of types, structure, etc.
 :::
 
 `#pause`{=typst}
@@ -124,6 +125,7 @@ R has **a lot** of object systems
 ::: {.callout-note icon=false title="vctrs"}
 * Builds upon S3 to make creating vectors easier.
 * Good practices inherited by default.
+* Ensures correct coercion and recycling behaviour across tidyverse operations
 :::
 
 ## Object oriented programming
@@ -131,6 +133,7 @@ R has **a lot** of object systems
 ::: {.callout-note icon=false title="S4"}
 * Formal class definitions with validation.
 * Supports multiple inheritance and method dispatch.
+* Used extensively in Bioconductor
 :::
 
 `#pause`{=typst}
@@ -138,6 +141,7 @@ R has **a lot** of object systems
 ::: {.callout-note icon=false title="S7"}
 * Planned to be the successor of S3 and S4.
 * More general than S3, but still easy to use.
+* Combines S4-style formal properties with S3-style simplicity and compatibility
 :::
 
 
@@ -146,6 +150,7 @@ R has **a lot** of object systems
 ::: {.callout-note icon=false title="R6"}
 * Provides reference semantics for mutable objects.
 * Simple and efficient compared to reference classes.
+* Commonly used for stateful objects such as database connections and loggers
 :::
 
 `#pause`{=typst}
@@ -197,17 +202,24 @@ When you call the generic function R calls the appropriate  method
 
 ## S3: Classes
 
+:::{.cols width="4fr,5fr"}
+
+:::{}
 * S3 classes are attributes that specify which method to use
 * The `class()` function can access (and modify) an object's class
 * Classed S3 objects are typically produced with `structure()`
+:::
 
-For example,
-
+:::{}
 ```{r}
 x <- structure(83, class = "grade")
 class(x)
+typeof(x)
 x
 ```
+:::
+
+:::
 
 ## S3: Classed objects
 
@@ -217,7 +229,7 @@ You can class any object, including:
 - lists plus attributes (`lm`, `data.frame`)
 - environments plus attributes
 
-::: {.callout-caution title="Your turn!"}
+## S3: Your turn!
 Use `unclass()` and `str()` to explore classed objects, e.g.:
 
 ```r
@@ -227,7 +239,7 @@ unclass(trees)
 m <- lm(log(Volume) ~ log(Girth) + log(Height), data = trees)
 str(m)
 ```
-:::
+
 
 ## S3: Your turn!
 
@@ -270,18 +282,13 @@ This looks like:
 
 ```{r}
 print.grade <- function(x, ...) {
-  letter <- if (x < 50) {
-    "N"
-  } else if (x < 60) {
-    "P"
-  } else if (x < 70) {
-    "C"
-  } else if (x < 80) {
-    "D"
-  } else {
-    "HD"
-  }
-  cat(x, " [", letter, "]", sep = "")
+  letter <- cut(x,
+    breaks = c(-Inf, 50, 60, 70, 80, Inf),
+    labels = c("N", "P", "C", "D", "HD"),
+    right = FALSE
+  )
+  output <- paste(x, "[", as.character(letter), "]", sep = "")
+  cat(output)
   invisible(x)
 }
 x
