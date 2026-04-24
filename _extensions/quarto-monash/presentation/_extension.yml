@@ -39,6 +39,8 @@ contributes:
       toc-title: Outline
       titlegraphic: bg-02.png
       titlecolor: black
+      filters:
+        - cols.lua
       template-partials:
         - typst/typst-template.typ
         - typst/typst-show.typ

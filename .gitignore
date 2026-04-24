@@ -11,3 +11,5 @@ slides.tex
 
 **/*.quarto_ipynb
 .claude
+
+/.luarc.json

@@ -9,6 +9,14 @@
 #let dark-grey     = rgb("#646464")
 #let light-grey    = rgb("#e7e7e7")
 
+// Two-column layout helper.
+// Usage: #cols()[left content][right content]
+// Optional: #cols(ratio: (2fr, 1fr))[...][...]
+#let cols(ratio: (1fr, 1fr), gutter: 1em, ..bodies) = {
+  let cols = bodies.pos()
+  grid(columns: ratio, gutter: gutter, ..cols)
+}
+
 // Slide geometry (16:9)
 #let slide-width   = 25.4cm
 #let slide-height  = 14.29cm
