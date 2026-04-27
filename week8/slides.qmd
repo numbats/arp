@@ -249,7 +249,6 @@ Investigate these functions.
 print
 methods("print")
 stats:::print.acf
-tools:::print.CRAN_package_reverse_dependencies_and_views
 plot
 methods("plot")
 plot.ts
@@ -442,10 +441,9 @@ This function should check that the inputs are suitable.
 
 ```{r}
 fraction <- function(numerator, denominator) {
-  if (!is.numeric(numerator) || !is.numeric(denominator)) {
-    stop("Both numerator and denominator must be numeric.")
-  }
-  if (denominator == 0) {
+  stopifnot(is.numeric(numerator) && is.numeric(denominator))
+  stopifnot(length(numerator) == length(denominator))
+  if (any(denominator == 0)) {
     stop("Denominator cannot be zero.")
   }
 
@@ -472,7 +470,7 @@ Usually we would create a method for printing S3 objects.
 
 ```{r}
 print.fraction <- function(x, ...) {
-  paste(x$numerator, x$denominator, sep = "/")
+  cat(paste0(x$numerator, "/", x$denominator), sep = " ")
 }
 print(e)
 ```

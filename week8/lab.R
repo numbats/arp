@@ -1,51 +1,66 @@
 library(dplyr)
 
-dplyr:::mutate.data.frame
-dplyr:::dplyr_col_modify.data.frame
+# Generic functions and methods
+trees
+plot(trees)
+
+m <- lm(log(Volume) ~ log(Girth) + log(Height), data = trees)
+plot(m)
 
 .leap.seconds
+plot(.leap.seconds)
 
+nhtemp
+plot(nhtemp)
 
+unclass(.leap.seconds)
+str(.leap.seconds)
+unclass(nhtemp)
+str(nhtemp)
+unclass(trees)
+str(trees)
+unclass(m)
+str(m)
+
+print
+methods("print")
+stats:::print.acf
 plot
-mutate
-
-class(nhtemp)
+methods("plot")
 plot.ts
+stats:::plot.lm
 
 
+# S3: Classes
+# grade class
 x <- structure(83, class = "grade")
 class(x)
-
-# tools:::CRAN_package_reverse_dependencies_and_views("fable")
-
+typeof(x)
 x
 
-# print.default
-
-y <- print(1:10)
-y
-
-print.grade <- function(x, ...) {
-  letter <- if (x < 50) {
-    "N"
-  } else if (x < 60) {
-    "P"
-  } else if (x < 70) {
-    "C"
-  } else if (x < 80) {
-    "D"
-  } else {
-    "HD"
-  }
-  cat(x, " [", letter, "]", sep = "")
-  invisible(x)
-}
+# S3: Classed objects
 unclass(x)
 class(x) <- "students"
 x
 class(x) <- "grade"
-
 x
+
+# S3: Creating a method
+print.grade <- function(x, ...) {
+  letter <- cut(
+    x,
+    breaks = c(-Inf, 50, 60, 70, 80, Inf),
+    labels = c("N", "P", "C", "D", "HD"),
+    right = FALSE
+  )
+  output <- paste(x, "[", as.character(letter), "]", sep = "")
+  cat(output)
+  invisible(x)
+}
+x
+
+print
+
 
 today <- Sys.Date()
 today
@@ -53,12 +68,12 @@ class(today)
 class(today) <- "grade"
 today
 
-plot
-
+# Reversing strings and numbers with S3 methods
 reverse <- function(x) {
   UseMethod("reverse")
 }
 
+# Writing S3 methods for reverse
 reverse.character <- function(x, ...) {
   stringi::stri_reverse(x)
 }
@@ -66,41 +81,30 @@ reverse.character <- function(x, ...) {
 reverse.integer <- function(x, ...) {
   as.integer(reverse(as.character(x)))
 }
+
 reverse.double <- function(x, ...) {
   as.double(reverse(as.character(x)))
 }
 
 reverse(9197)
-
 reverse("desserts")
-
 reverse(1.9599)
-
 reverse(2345678L)
 
-reverse.double <- function(x) {
-  as.double(NextMethod())
-}
-
+# S3: .default methods
 reverse.default <- function(x) {
   stringi::stri_reverse(as.character(x))
 }
+
 class(5678.213)
-
 reverse(5678.213)
-
 reverse(Sys.Date())
 reverse(palmerpenguins::penguins)
 
-
-m <- lm(log(Volume) ~ log(Girth) + log(Height), data = trees)
-str(m)
-
-
+# Creating your own S3 objects: fraction
 fraction <- function(numerator, denominator) {
   # Validate inputs
-  stopifnot(is.numeric(numerator))
-  stopifnot(is.numeric(denominator))
+  stopifnot(is.numeric(numerator) && is.numeric(denominator))
   stopifnot(length(numerator) == length(denominator))
   if (any(denominator == 0)) {
     stop("I won't let you divide by 0.")
@@ -121,13 +125,11 @@ simplify_fraction <- function(x) {
 }
 
 fraction(2, 4)
-
-
 fraction(sample(1:100, 10), sample(1:100, 10))
 
 print
 print.fraction <- function(x, ...) {
-  cat(paste0(x$numerator, "/", x$denominator), sep = "\n")
+  cat(paste0(x$numerator, "/", x$denominator), sep = " ")
 }
 fraction(sample(1:100, 5), sample(1:100, 5))
 
@@ -152,6 +154,12 @@ as.double.fraction <- function(x, ...) {
 as.numeric(fraction(2, 7))
 as.double(fraction(2, 7))
 
+# S3: Inheritance / NextMethod
+reverse.double <- function(x) {
+  as.double(NextMethod())
+}
+
+# Extra: custom fraction addition operator
 fraction(2, 7) + 3
 
 `%add%` <- function(e1, e2) {
@@ -171,6 +179,7 @@ fraction(2, 7) + 3
 }
 fraction(2, 7) %add% fraction(3, 5)
 fraction(1, 8) %add% fraction(1, 4)
+fraction(2, 8) %add% fraction(1, 4)
 
 fraction(2, 7) %add% 3
 3 %add% fraction(2, 7)
