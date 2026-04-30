@@ -29,7 +29,7 @@ source(here::here("course_info.R"))
 show_slides(week)
 ```
 
-[Code used in workshop](week7/lab.R)
+[Code used in workshop](lab.R)
 
 ```{r}
 #| output: asis

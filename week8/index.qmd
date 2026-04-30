@@ -24,6 +24,12 @@ Overview of object-oriented programming in R, focusing on S3.
 ```{r}
 #| output: asis
 show_slides(week)
+```
+
+* [Code used in workshop](lab.R)
+
+```{r}
+#| output: asis
 show_assignments(week)
 ```
 
