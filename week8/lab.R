@@ -13,12 +13,16 @@ plot(.leap.seconds)
 nhtemp
 plot(nhtemp)
 
+class(.leap.seconds)
 unclass(.leap.seconds)
 str(.leap.seconds)
+class(nhtemp)
 unclass(nhtemp)
 str(nhtemp)
+class(trees)
 unclass(trees)
 str(trees)
+class(m)
 unclass(m)
 str(m)
 
@@ -31,42 +35,56 @@ plot.ts
 stats:::plot.lm
 
 
-# S3: Classes
-# grade class
-x <- structure(83, class = "grade")
-class(x)
-typeof(x)
-x
-
-# S3: Classed objects
-unclass(x)
-class(x) <- "students"
-x
-class(x) <- "grade"
-x
-
-# S3: Creating a method
-print.grade <- function(x, ...) {
-  letter <- cut(
+# S3: Classes. Make our own grade class with print, plot and summary methods
+make_grade <- function(x) {
+  stopifnot(is.numeric(x))
+  stopifnot(all(x >= 0 & x <= 100))
+  grades <- letter_grades(x)
+  structure(list(x = x, grades = grades), class = "grade")
+}
+letter_grades <- function(x) {
+  cut(
     x,
-    breaks = c(-Inf, 50, 60, 70, 80, Inf),
-    labels = c("N", "P", "C", "D", "HD"),
-    right = FALSE
+   breaks = c(-Inf, 50, 60, 70, 80, Inf),
+   labels = c("N", "P", "C", "D", "HD"),
+   right = FALSE
   )
-  output <- paste(x, "[", as.character(letter), "]", sep = "")
+}
+print.grade <- function(x, ...) {
+  output <- paste(x$x, "[", as.character(x$grades), "]", sep = "")
   cat(output)
   invisible(x)
 }
 x
+plot.grade <- function(x, ...) {
+  x$grades |>
+    table() |>
+    barplot(main = "Grade Distribution", xlab = "Letter Grade", ylab = "Frequency")
+}
+summary.grade <- function(x, ...) {
+  x$grades |>
+  table()
+}
 
-print
+`[.grade` <- function(x, i, ...) {
+  make_grade(x$x[i])
+}
+
+x <- make_grade(sample(50:100, 10))
+class(x)
+typeof(x)
+x
+x[2:3]
+plot(x)
+summary(x)
 
 
-today <- Sys.Date()
-today
-class(today)
-class(today) <- "grade"
-today
+
+
+
+
+
+
 
 # Reversing strings and numbers with S3 methods
 reverse <- function(x) {
@@ -96,10 +114,8 @@ reverse.default <- function(x) {
   stringi::stri_reverse(as.character(x))
 }
 
-class(5678.213)
-reverse(5678.213)
 reverse(Sys.Date())
-reverse(palmerpenguins::penguins)
+reverse(mtcars)
 
 # Creating your own S3 objects: fraction
 fraction <- function(numerator, denominator) {
@@ -114,9 +130,13 @@ fraction <- function(numerator, denominator) {
   x <- list(numerator = numerator, denominator = denominator)
 
   # Return a classed S3 object
-  structure(x, class = "fraction") |>
+  structure(x, class = "fraction") |> 
     simplify_fraction()
 }
+print.fraction <- function(x, ...) {
+  cat(paste0(x$numerator, "/", x$denominator), sep = " ")
+}
+
 simplify_fraction <- function(x) {
   gcd <- DescTools::GCD(x$numerator, x$denominator)
   x$numerator <- x$numerator / gcd
@@ -127,18 +147,9 @@ simplify_fraction <- function(x) {
 fraction(2, 4)
 fraction(sample(1:100, 10), sample(1:100, 10))
 
-print
-print.fraction <- function(x, ...) {
-  cat(paste0(x$numerator, "/", x$denominator), sep = " ")
-}
-fraction(sample(1:100, 5), sample(1:100, 5))
 
 reverse
 reverse.fraction <- function(x) {
-  # tmp <- x$numerator
-  # x$numerator <- x$denominator
-  # x$denominator <- tmp
-
   fraction(numerator = x$denominator, denominator = x$numerator)
 }
 reverse(
@@ -146,7 +157,6 @@ reverse(
 )
 reverse(fraction(1, 7))
 
-identical(as.numeric, as.double)
 
 as.double.fraction <- function(x, ...) {
   x$numerator / x$denominator
@@ -183,3 +193,4 @@ fraction(2, 8) %add% fraction(1, 4)
 
 fraction(2, 7) %add% 3
 3 %add% fraction(2, 7)
+  
