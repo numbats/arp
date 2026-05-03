@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-3fc2c5eccc74671acb6979dc86e97e9b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-be69ddbd446a803770722a93c4c8d27f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-65413e3c2300b282ef3f8759f5d69f58.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -228,27 +228,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You need to extend the ??? package to include:</p>
-<ol type="1">
-<li><p>S3 methods (e.g., print and plot methods) for an appropriate class in the package.</p></li>
-<li><p>A custom vctrs class for an appropriate data structure in the package.</p>
+<p>This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.</p>
+<p>You need to write a new R package to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.</p>
+<p>The package should implement a custom vctrs record class for <code>card</code> objects. The package should also include S3 classes for <code>deck</code>, <code>hand</code>, and <code>deal</code> objects.</p>
+<p>The package must export the following user-facing functions.</p>
 <ul>
-<li>Create and document a function for creating your vector.</li>
-<li>Define appropriate methods for using your vector, including <code>format()</code>, <code>vec_ptype2()</code>, and <code>vec_cast()</code>.</li>
-<li>Create generic function(s) for identifying/extracting useful things from your vector</li>
-<li>Create methods for your custom generic function(s), including suitable defaults.</li>
-</ul></li>
-<li><p>Integration of C++ code via Rcpp for an appropriate function in your package.</p></li>
-</ol>
-<p>You can also consider adding some element of metaprogramming if you think it is appropriate.</p>
-<p>There should be at least two vignettes: one describing how to use the package; and one explaining the design choices you have made such as function names, arguments, user workflow, use of internal modular functions, use of non-standard evaluation if appropriate, etc.</p>
+<li><code>card(rank, suit)</code>: A function to create a <code>card</code> vector with specified ranks and suits. The function should validate the inputs to ensure that they represent valid ranks and suits. Valid ranks are “A”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, and “K”. Valid suits are “Spades”, “Diamonds”, “Clubs”, and “Hearts”, or their first letters. Inputs should not be case-sensitive. The function should return a <code>card</code> object that contains the specified cards.</li>
+<li><code>is_card(x)</code>: A function to check if an object is a card vector.</li>
+<li><code>card_rank(card)</code>: A function to extract the rank from a card vector.</li>
+<li><code>card_suit(card)</code>: A function to extract the suit from a card vector.</li>
+<li><code>format.card(x, ...)</code>: A method to format a card vector for printing.</li>
+<li><code>deck(cards)</code>: A function to create a <code>deck</code> object from a vector of cards.</li>
+<li><code>standard_deck(n_decks = 1L)</code>: A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a <code>deck</code> object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The <code>n</code> argument should allow for creating multiple decks (e.g., <code>standard_deck(2)</code> would create a deck with 104 cards).</li>
+<li><code>hand(cards, player)</code>: A function to create a <code>hand</code> object from a vector of cards.</li>
+<li><code>cards(x)</code>: A function to extract the cards from a <code>hand</code> or <code>deck</code> object.</li>
+<li><code>shuffle_deck(deck)</code>: A function to return the shuffled deck.</li>
+<li><code>cut_deck(deck, n)</code>: A function to cut the deck at a specified position <code>n</code>, moving the first <code>n</code> cards to the bottom.</li>
+<li><code>deal(deck, n, players, by = c("round", "batch"))</code>: A function to deal <code>n</code> cards to each player. e.g., <code>deal(deck, 5, c("Muhammad", "Fan"))</code> would deal two hands, each of five cards. The <code>by</code> argument determines whether to deal cards round-robin (one card at a time to each player) or in batches (<code>n</code> cards to player 1, then <code>n</code> cards to player 2, etc.). The function should return a <code>deal</code> object containing a list of the hands and the remaining deck, along with any metadata (e.g., the players’ names, the number of cards dealt, dealing style, etc.). <code>deal()</code> is a deterministic function where cards are dealt from the top of the deck.</li>
+<li><code>hands(deal)</code>: A function to extract the hands from a <code>deal</code> object.</li>
+<li><code>remaining_deck(deal)</code>: A function to extract the remaining deck from a <code>deal</code> object.</li>
+<li><code>filter_cards()</code> methods for <code>card</code> vectors, <code>hand</code>, and <code>deal</code> objects. These functions should allow users to filter cards based on rank, suit, or both. For example, <code>filter_cards(hand, suit == "Hearts")</code> would return a new <code>hand</code> object containing only the cards of the specified suit, while <code>filter_cards(deck, rank %in% c("A","J","Q","K"), suit %in% c("Spades","Clubs"))</code> would return a <code>deck</code> containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.</li>
+</ul>
+<p>You may add additional internal functions as needed to support the implementation of the user-facing functions.</p>
+<p>Notes:</p>
+<ul>
+<li><code>card</code> vectors must support subsetting, concatenation, equality testing, and sorting. When comparing cards for equality, both rank and suit must match. When sorting cards, order first by suit (Clubs &lt; Diamonds &lt; Hearts &lt; Spades), then by rank (A &lt; 2 &lt; 3 &lt; … &lt; 10 &lt; J &lt; Q &lt; K).</li>
+<li><code>as.data.frame()</code> methods should be implemented to convert <code>card</code>, <code>hand</code>, and <code>deck</code> objects to data frames with appropriate columns.</li>
+<li><code>print()</code> methods should be implemented for <code>card</code>, <code>hand</code>, <code>deck</code> and <code>deal</code> objects to display them in a user-friendly way.</li>
+<li><code>cards()</code> should be implemented as an S3 generic function with methods for <code>hand</code> and <code>deck</code> objects.</li>
+<li><code>filter_cards()</code> should be implemented using tidy evaluation to allow for flexible filtering criteria. The function should validate the filtering criteria and handle cases where no cards match the criteria appropriately (e.g., by returning an empty <code>hand</code> object if the input is a <code>hand</code>). You may use <code>rlang</code> functions, but you should not use <code>dplyr</code> in the implementation of <code>filter_cards()</code>. Unit tests should cover various filtering scenarios, including edge cases where no cards match the criteria.</li>
+<li>The order of cards must always be preserved unless explicitly modified (e.g., by <code>shuffle_deck()</code> or <code>cut_deck()</code>)</li>
+<li>All user-facing functions should be fully documented using roxygen2, with examples that can be run in the documentation. The package should also include unit tests for all exported functions using <code>testthat</code>. The unit tests should cover a variety of cases, including edge cases and invalid inputs.</li>
+<li>There should be a vignette describing how to use the package.</li>
+<li>The package should <em>not</em> implement game-specific logic such as poker-hand ranking, blackjack scoring, trick-taking rules, or winner determination.</li>
+<li>The package should <em>not</em> involve any user interactivity; all functions should operate on their inputs and return outputs without requiring user input during execution.</li>
+<li>The package should <em>not</em> include any plotting or graphical functions; it should focus solely on the data structures and operations for card decks.</li>
+</ul>
+<p>Units tests must include at least:</p>
+<ul>
+<li>invalid ranks and suits error;</li>
+<li><code>standard_deck(n_decks = 2L)</code> has 104 cards;</li>
+<li><code>shuffle_deck()</code> preserves the set of cards and the number of cards;</li>
+<li><code>cut_deck()</code> preserves all cards and changes the order as documented;</li>
+<li><code>deal()</code> does not modify the input deck;</li>
+<li><code>deal()</code> returns the correct number of hands;</li>
+<li>each hand has the requested number of cards;</li>
+<li>the remaining deck has the correct number of cards;</li>
+<li>round and batch dealing produce the documented positions;</li>
+<li>dealing too many cards produces an informative error;</li>
+<li><code>filter_cards()</code> works with unquoted expressions and preserves the input type</li>
+</ul>
 <p>Marks will be awarded for clean and efficient code, and for good design.</p>
 <section id="notes" class="level3">
 <h3 class="anchored" data-anchor-id="notes">Notes</h3>
 <ol type="1">
 <li><p>The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.</p></li>
-<li><p>Each team member must contribute at least four substantive commits across multiple days. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.</p></li>
-<li><p>Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:</p>
+<li><p>Marks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).</p></li>
+<li><p>Each team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.</p></li>
+<li><p>Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement named ‘AI_statement.md’ with a section for each student in the team. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:</p>
 <ol type="a">
 <li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;</li>
 <li>adhere to the guidelines for AI use set for the assessment task;</li>
