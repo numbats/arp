@@ -1,229 +1,155 @@
-sum
-mean
-base:::mean.default
+library(vctrs)
 
-rnorm(14, mean = 1:10)
-rnorm(14, mean = c(1:10, 1:4))
+# S3 Recap ------------------------------------------------------------------
 
-# pillar
+e <- structure(list(numerator = 2721, denominator = 1001), class = "fraction")
 
-library(fpp3)
-fabletools:::pillar_shaft.agg_vec
+fraction <- function(numerator, denominator) {
+  stopifnot(is.numeric(numerator), is.numeric(denominator))
+  if (any(denominator == 0)) {
+    stop("I won't let you divide by 0.")
+  }
+  structure(
+    list(numerator = numerator, denominator = denominator),
+    class = "fraction"
+  )
+}
+print.fraction <- function(x, ...) {
+  print(paste0(x$numerator, "/", x$denominator))
+}
 
-tourism |>
-  aggregate_key(State, Trips = sum(Trips))
+# vctrs concepts ------------------------------------------------------------
 
-library(distributional)
-generate(dist_normal(1:10), 14)
+# vec_size() treats data frames as records, not lists
+length(mtcars)
+vctrs::vec_size(mtcars)
 
-library(ggdist)
-tibble(mu = 1:10, dist = dist_normal(mu)) |>
-  mutate(generate(dist, 14)) |>
-  ggplot(aes(xdist = dist, y = y)) +
-  stat_slab()
+# list_of: elements must all be the same type
+vctrs::as_list_of(list(80, 70, 75, 50), .ptype = numeric())
 
-tourism |>
-  summarise(Trips = sum(Trips)) |>
-  model(ETS(Trips)) |>
-  forecast() |>
-  ggplot(aes(xdist = Trips, y = Quarter)) +
-  stat_slab()
+# Prototypes: size-0 vectors that carry type information
+vctrs::vec_ptype(1:10)
+vctrs::vec_ptype(rnorm(10))
+vctrs::vec_ptype(factor(letters))
 
+# base c() can't always use double-dispatch; use vec_c() instead
+vctrs::vec_c(1, Sys.Date()) # error: no common type defined
 
-attendance <- vctrs::new_vctr(c(80, 70, 75, 50), class = "percent")
-
-tibble(attendance)
-
+# percent class -------------------------------------------------------------
 
 percent <- function(x = numeric()) {
   vctrs::vec_assert(x, numeric())
   vctrs::new_vctr(x, class = "percent")
 }
-
-percent("80%")
-
-
-numeric(10L)
-character(1L)
-
-
-
-library(vctrs)
-vec_init(percent(), 10)
-
-percent(c(80, 40, 88, 29))
-
-paste0(
-  vec_data(percent(c(80, 40, 88, 29))),
-  "%"
-)
-
 format.percent <- function(x, ...) {
   paste0(vctrs::vec_data(x), "%")
 }
-tibble(attendance)
 
+marks <- percent(c(80, 70, 75, 50))
+marks
+percent() # length-0 prototype
+percent("80%") # error: input validation
+vctrs::vec_ptype(marks)
 
-attendance[2]
-attendance[1:3]
-head(attendance, 2)
+# Common type: percent + double -> percent (both dispatch directions required)
+vec_ptype2.percent.double <- function(x, y, ...) percent()
+vec_ptype2.double.percent <- function(x, y, ...) percent()
 
-tourism[2]
-tourism[2,]
+# Cast: converting between percent and double
+vec_cast.double.percent <- function(x, to, ...) vec_data(x) / 100
+vec_cast.percent.double <- function(x, to, ...) percent(x * 100)
 
-typeof(tourism)
-unclass(tourism)
+# c() ignores ptype2 when the class isn't first; vec_c() always uses double-dispatch
+c(marks, 0.8)
+c(0.8, marks) # class lost
+vctrs::vec_c(0.8, marks) # correct
+marks > 0.7
 
+# Math: default restores the percent class after applying base math
+vec_math.percent <- function(.fn, .x, ...) {
+  vec_restore(vec_math_base(.fn, .x, ...), .x)
+}
+mean(marks)
 
-list(letters, LETTERS)[2]
+# Arith: implement secondary dispatch manually
+vec_arith.percent <- function(op, x, y, ...) {
+  UseMethod("vec_arith.percent", y)
+}
+vec_arith.percent.default <- function(op, x, y, ...) {
+  stop_incompatible_op(op, x, y)
+}
+vec_arith.percent.percent <- function(op, x, y, ...) {
+  vec_restore(vec_arith_base(op, x, y), to = percent())
+}
+vec_arith.percent.numeric <- function(op, x, y, ...) {
+  vec_restore(vec_arith_base(op, x, vec_cast(y, percent())), to = percent())
+}
+vec_arith.numeric.percent <- function(op, x, y, ...) {
+  vec_restore(vec_arith_base(op, vec_cast(x, percent()), y), to = percent())
+}
 
+percent(40) + percent(20)
+percent(40) + 0.3
+0.3 + percent(40)
 
-vec_slice(tourism, 2)
-
+# currency class (rcrd example) ---------------------------------------------
 
 wallet <- vctrs::new_rcrd(
-  data.frame(amt = c(10, 38), unit = c("AU$", "¥")), class = "currency"
+  list(amt = c(10, 38), unit = c("AU$", "¥")),
+  class = "currency"
 )
 format.currency <- function(x, ...) {
   paste0(vctrs::field(x, "unit"), vctrs::field(x, "amt"))
 }
-tibble(wallet)
+wallet
 
-vec_data(wallet)$unit
-field(wallet, "unit")
+# fraction class ------------------------------------------------------------
+# Exercise: rewrite fraction from week8/fraction.R using new_rcrd()
 
-norm_sample <- rnorm(10)
-c(norm_sample, 3)
-
-your_wallet <- vctrs::new_rcrd(
-  data.frame(amt = c(3, 1), unit = c("AU$", "¥")), class = "currency"
-)
-c(wallet, your_wallet)
-
-
-bind_rows(
-  tibble(money = wallet),
-  tibble(money = your_wallet),
-)
-
-vec_cast(1L, double())
-vec_cast("one", double())
-vec_cast("1", double())
-
-# Create a `fraction` record class (`new_rcrd()`)
-# 1. Use new_rcrd()
-# 2. Validate inputs with vec_assert()
-# 3. Write format method
-# 4. Experiment with tibble/tidyverse
-
-fraction <- function(numerator = numeric(), denominator = numeric()) {
-  # Validate inputs
-  # vec_assert(numerator, numeric())
-  numerator <- vec_cast(numerator, numeric())
-  # vec_assert(denominator, numeric())
-  denominator <- vec_cast(denominator, numeric())
-
-  if (any(denominator == 0)) stop("I won't let you divide by 0.")
-
-  # Create the data structure (list)
-  x <- vec_recycle_common(
-    numerator = numerator, denominator = denominator
+fraction <- function(numerator = integer(), denominator = integer()) {
+  lst <- vctrs::vec_recycle_common(
+    numerator = vctrs::vec_cast(numerator, integer()),
+    denominator = vctrs::vec_cast(denominator, integer())
   )
-
-  # Return a classed S3 object
-  vctrs::new_rcrd(x, class = "fraction")
+  if (any(lst$denominator == 0L)) {
+    stop("I won't let you divide by 0.")
+  }
+  vctrs::new_rcrd(lst, class = "fraction")
 }
-fraction(rnorm(10), rnorm(10))
-
-
+rm(print.fraction)
 format.fraction <- function(x, ...) {
-  paste(field(x, "numerator"), "/", field(x, "denominator"))
+  paste0(vctrs::field(x, "numerator"), "/", vctrs::field(x, "denominator"))
 }
 
-tibble(fraction(1:10, 4:13))
+fraction(1:3, 4:6)
+fraction(1L, 1:5) # recycling
+vctrs::vec_ptype(fraction())
 
+# Exercise: write ptype2 methods so the common type of fraction and double is double
+vec_ptype2.fraction.double <- function(x, y, ...) double()
+vec_ptype2.double.fraction <- function(x, y, ...) double()
+# Common type: fraction + integer -> fraction
+vec_ptype2.fraction.integer <- function(x, y, ...) fraction()
+vec_ptype2.integer.fraction <- function(x, y, ...) fraction()
 
-tibble(fraction(1:10, 4))
-
-
-vec_recycle(1:10, 4)
-vec_recycle(1:10, 100)
-vec_recycle(3, 100)
-
-vec_recycle_common(letters, 3, 1:10)
-
-vec_cast(attendance, fraction())
-
-# prototypes
-letters[0]
-vec_ptype(letters)
-attendance[0]
-vec_ptype(attendance)
-
-c(1, Sys.Date())
-c(Sys.Date(), 1)
-
-
-vctrs::vec_c(1, Sys.Date())
-vctrs::vec_c(Sys.Date(), 1)
-
-
-ratios <- fraction(1:10, 4)
-tibble(ratios)
-
-vec_c(ratios, 1.3)
-#' @export
-vec_ptype2.fraction.double <- function(x, y, ...) {
-  double() # Prototype since this produces size-0
-}
-#' @export
-vec_ptype2.double.fraction <- function(x, y, ...) {
-  double() # Prototype since this produces size-0
-}
-
-vec_c(ratios, 1.3)
-vec_c(1.3, ratios)
-
-
-vctrs::vec_ptype2(attendance, 0.8)
-
+# Exercise: write vec_cast methods so as.numeric() works on fractions
 vec_cast.double.fraction <- function(x, to, ...) {
-  field(x, "numerator") / field(x, "denominator")
-}
-vec_cast.fraction.double <- function(x, to, ...) {
-  fraction(x, 1)
-}
-vec_c(ratios, 1.3)
-vec_c(1.3, ratios)
-
-vec_cast(1.3, fraction())
-
-as.fraction <- function(x) {
-  vec_cast(x, fraction())
-}
-
-as.fraction(1.3)
-
-
-fraction(3, 7) < 1L
-
-#' @export
-vec_ptype2.fraction.integer <- function(x, y, ...) {
-  fraction() # Prototype since this produces size-0
-}
-#' @export
-vec_ptype2.integer.fraction <- function(x, y, ...) {
-  fraction() # Prototype since this produces size-0
+  vctrs::field(x, "numerator") / vctrs::field(x, "denominator")
 }
 vec_cast.fraction.integer <- function(x, to, ...) {
-  fraction(x, 1)
+  fraction(x, 1L)
 }
 
-vec_c(fraction(3, 7), 2L)
+as.numeric(fraction(1:3, 4:6))
+vctrs::vec_c(fraction(1L, 2L), 0.5)
+fraction(3L, 7L) < 1L
 
-
-fraction(3/7) + fraction(9/2)
-2L + fraction(9/2)
+# Exercise: add vec_math and vec_arith for fraction
+# Hint: cast to double and use base math/arith; returning double is fine.
+# Extension: retain the fraction class for +, -, *, /
+vec_math.fraction <- function(.fn, .x, ...) {
+  vec_math_base(.fn, vec_cast(.x, double()), ...)
+}
 
 vec_arith.fraction <- function(op, x, y, ...) {
   UseMethod("vec_arith.fraction", y)
@@ -231,32 +157,29 @@ vec_arith.fraction <- function(op, x, y, ...) {
 vec_arith.fraction.default <- function(op, x, y, ...) {
   stop_incompatible_op(op, x, y)
 }
-fraction(3,7) + fraction(9,2)
-
 vec_arith.fraction.fraction <- function(op, x, y, ...) {
-  xd <- field(x, "denominator")
-  yd <- field(y, "denominator")
-  xn <- field(x, "numerator")
-  yn <- field(y, "numerator")
-  if(op == "+") {
-
-    fraction(
-      numerator = xn * yd + yn * xd,
-      denominator = xd * yd
-    )
-
-  } else if (op == "*") {
-    fraction(
-      numerator = xn * yn,
-      denominator = xd * yd
-    )
-  }
-  else {
-    stop("Can't do that operation yet")
-  }
+  xn <- vctrs::field(x, "numerator")
+  xd <- vctrs::field(x, "denominator")
+  yn <- vctrs::field(y, "numerator")
+  yd <- vctrs::field(y, "denominator")
+  switch(
+    op,
+    "+" = fraction(xn * yd + yn * xd, xd * yd),
+    "-" = fraction(xn * yd - yn * xd, xd * yd),
+    "*" = fraction(xn * yn, xd * yd),
+    "/" = fraction(xn * yd, xd * yn),
+    stop_incompatible_op(op, x, y)
+  )
+}
+vec_arith.fraction.double <- function(op, x, y, ...) {
+  vec_arith_base(op, vec_cast(x, double()), y)
+}
+vec_arith.double.fraction <- function(op, x, y, ...) {
+  vec_arith_base(op, x, vec_cast(y, double()))
 }
 
-fraction(3,7) + fraction(9,2)
-fraction(3,7) * fraction(9,2)
-
-(dist_normal(3, 2) + 3) * 2
+mean(fraction(1:4, 5L))
+sum(fraction(1:4, 5L))
+fraction(3L, 7L) + fraction(9L, 2L)
+fraction(3L, 7L) * fraction(9L, 2L)
+fraction(3L, 7L) * 2
