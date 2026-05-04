@@ -28,7 +28,7 @@ website:
           - week6/index.qmd
           - week7/index.qmd
           - week8/index.qmd
-          #- week9/index.qmd
+          - week9/index.qmd
           #- week10/index.qmd
           #- week11/index.qmd
           #- week12/index.qmd
