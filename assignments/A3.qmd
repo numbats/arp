@@ -4,7 +4,9 @@ title: Assignment 3 (30%)
 
 This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.
 
-You need to write a new R package to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.
+## Task
+
+You need to write a new R package `dealr` to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.
 
 The package should implement a custom vctrs record class for `card` objects. The package should also include S3 classes for `deck`, `hand`, and `deal` objects.
 
@@ -16,7 +18,7 @@ The package must export the following user-facing functions.
   * `card_suit(card)`: A function to extract the suit from a card vector.
   * `format.card(x, ...)`: A method to format a card vector for printing.
   * `deck(cards)`: A function to create a `deck` object from a vector of cards.
-  * `standard_deck(n_decks = 1L)`: A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a `deck` object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The `n` argument should allow for creating multiple decks (e.g., `standard_deck(2)` would create a deck with 104 cards).
+  * `standard_deck(n_decks = 1L)`: A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a `deck` object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The `n_decks` argument should allow for creating multiple decks (e.g., `standard_deck(2)` would create a deck with 104 cards).
   * `hand(cards, player)`: A function to create a `hand` object from a vector of cards.
   * `cards(x)`: A function to extract the cards from a `hand` or `deck` object.
   * `shuffle_deck(deck)`: A function to return the shuffled deck.
@@ -24,11 +26,11 @@ The package must export the following user-facing functions.
   * `deal(deck, n, players, by = c("round", "batch"))`: A function to deal `n` cards to each player. e.g., `deal(deck, 5, c("Muhammad", "Fan"))` would deal two hands, each of five cards. The `by` argument determines whether to deal cards round-robin (one card at a time to each player) or in batches (`n` cards to player 1, then `n` cards to player 2, etc.). The function should return a `deal` object containing a list of the hands and the remaining deck, along with any metadata (e.g., the players' names, the number of cards dealt, dealing style, etc.). `deal()` is a deterministic function where cards are dealt from the top of the deck.
   * `hands(deal)`: A function to extract the hands from a `deal` object.
   * `remaining_deck(deal)`: A function to extract the remaining deck from a `deal` object.
-  * `filter_cards()` methods for `card` vectors, `hand`, and `deal` objects. These functions should allow users to filter cards based on rank, suit, or both. For example, `filter_cards(hand, suit == "Hearts")` would return a new `hand` object containing only the cards of the specified suit, while `filter_cards(deck, rank %in% c("A","J","Q","K"), suit %in% c("Spades","Clubs"))` would return a `deck` containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.
+  * `filter_cards()` methods for `card`, `hand`, and `deck` objects. These functions should allow users to filter cards based on rank, suit, or both. For example, `filter_cards(hand, suit == "Hearts")` would return a new `hand` object containing only the cards of the specified suit, while `filter_cards(deck, rank %in% c("A","J","Q","K"), suit %in% c("Spades","Clubs"))` would return a `deck` containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.
 
 You may add additional internal functions as needed to support the implementation of the user-facing functions.
 
-Notes:
+Additional requirements:
 
   * `card` vectors must support subsetting, concatenation, equality testing, and sorting. When comparing cards for equality, both rank and suit must match. When sorting cards, order first by suit (Clubs < Diamonds < Hearts < Spades), then by rank (A < 2 < 3 < … < 10 < J < Q < K).
   * `as.data.frame()` methods should be implemented to convert `card`, `hand`, and `deck` objects to data frames with appropriate columns.
@@ -58,13 +60,13 @@ Units tests must include at least:
 
 Marks will be awarded for clean and efficient code, and for good design.
 
-### Notes
+## Notes
 
 1. The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.
 
 2. Marks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).
 
-3. Each team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.
+3. Each team member must contribute at least six substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If a team member has not contributed adequately, that team member will receive a mark deduction of up to 75% of the total mark awarded.
 
 4. Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement named 'AI_statement.md' with a section for each student in the team. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:
 
@@ -73,6 +75,73 @@ Marks will be awarded for clean and efficient code, and for good design.
     c. reflect the University’s commitment to academic integrity and ethical behaviour.
 
    Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See [Learn HQ](https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence) for more information.
+
+
+## Marking rubric
+
+**Total: 100 marks (scaled to 30%)**
+
+#### 1. Is your package well-structured and cleanly built? (10 marks)
+
+- package installs and passes `R CMD check` without errors or warnings
+- correct package structure (`DESCRIPTION`, `NAMESPACE`, R source files, tests, vignette)
+- all required functions exported with dependencies declared correctly
+- clear, general-purpose design with no global state, interactivity, plotting, or game-specific logic
+
+#### 2. Does your `card` class work correctly? (15 marks)
+
+- `card` implemented as a genuine vctrs record class with rank and suit fields
+- constructor validates ranks and suits, handles case-insensitive input and one-letter suit abbreviations, supports vectorisation and recycling
+- accessors (`is_card()`, `card_rank()`, `card_suit()`) and `format.card()` work correctly
+- card vectors support subsetting, concatenation, equality testing, and sorting in the required order
+
+#### 3. Do your `deck`, `hand`, and `deal` classes work correctly? (10 marks)
+
+- `deck()` and `hand()` construct valid S3 objects with appropriate validation and metadata
+- `deal()` returns a well-structured object with hands, remaining deck, and metadata
+- accessors `cards()`, `hands()`, and `remaining_deck()` work correctly
+- card order is preserved throughout
+
+#### 4. Do your deck manipulation and dealing functions work correctly? (10 marks)
+
+- `standard_deck()` produces the correct cards in the required order, including multiple decks
+- `shuffle_deck()` and `cut_deck()` work correctly and do not mutate inputs
+- `deal()` supports both round and batch dealing, does not modify the input deck, and errors informatively on invalid inputs or insufficient cards
+
+#### 5. Does your `filter_cards()` function work correctly? (15 marks)
+
+- uses tidy evaluation (e.g., `rlang`) without delegating to `dplyr`
+- supports unquoted expressions on `rank` and `suit`, with multiple expressions combined using AND
+- preserves the input type and original card order
+- handles empty results and invalid expressions correctly
+
+#### 6. Do your print and data frame methods work correctly? (10 marks)
+
+- `print()` methods for `card`, `deck`, `hand`, and `deal` are user-friendly and do not expose internals
+- `as.data.frame()` methods for `card`, `deck`, and `hand` return correctly structured data frames
+- methods handle empty objects and edge cases without error
+
+#### 7. Do you have good unit tests? (10 marks)
+
+- tests cover all required cases listed in the assignment instructions
+- tests for class behaviour (subsetting, concatenation, equality, sorting, accessors)
+- tests for edge cases and invalid inputs
+
+#### 8. Is your documentation helpful? (10 marks)
+
+- all exported functions documented with roxygen2, including runnable examples
+- vignette explaining the full package workflow
+
+#### 9. Did the group use GitHub and AI properly? (10 marks)
+
+- regular, meaningful commits from all group members throughout the assignment
+- good commit messages
+- `AI_statement.md` with a section for each student
+
+---
+
+Marks may be adjusted for serious package failures, academic integrity issues, or inadequate individual contribution as described in the assignment instructions.
+
 
 ```{r}
 #| output: asis

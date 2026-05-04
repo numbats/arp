@@ -7,601 +7,6 @@
     "text": "Weekly plan\n\nWeek 1: Foundations (Rob Hyndman)\nWeek 2: LLM (Hadley Wickham)\nWeek 3: R package development (Rob Hyndman)\nWeek 4: Debugging (Mitchell O’Hara-Wild)\nWeek 5: Functional programming (Mitchell O’Hara-Wild)\nWeek 6: Literate programming: Quarto (Rob Hyndman)\nWeek 7: Reactive programming: targets, renv (Rob Hyndman)\nWeek 8: OO S3 and others (Mitchell O’Hara-Wild)\nWeek 9: OO vctrs (Mitchell O’Hara-Wild)\nWeek 10: Meta programming (Mitchell O’Hara-Wild)\nWeek 11: C++ (Tomasz Wozniak)\nWeek 12: Package hackathon"
   },
   {
-    "objectID": "views_by_country_report.html",
-    "href": "views_by_country_report.html",
-    "title": "OTexts.com views by country",
-    "section": "",
-    "text": "Note\n\n\n\nThis report was generated using AI under general human direction. At the time of generation, the contents have not been comprehensively reviewed by a human analyst."
-  },
-  {
-    "objectID": "views_by_country_report.html#introduction",
-    "href": "views_by_country_report.html#introduction",
-    "title": "OTexts.com views by country",
-    "section": "Introduction",
-    "text": "Introduction\nThis report summarises website traffic to OTexts.com by country, based on Google Analytics 4 (GA4) data spanning January 2021 to January 2026. The dataset covers 236 countries and includes metrics such as views, active users, views per active user, average engagement time, and event count."
-  },
-  {
-    "objectID": "views_by_country_report.html#overview",
-    "href": "views_by_country_report.html#overview",
-    "title": "OTexts.com views by country",
-    "section": "Overview",
-    "text": "Overview\nAcross all countries, OTexts.com recorded a total of 26,437,986 views from 2,728,650 active users over the period.\n\n\n# A tibble: 3 × 2\n  Metric             Value     \n  &lt;chr&gt;              &lt;chr&gt;     \n1 Countries          236       \n2 Total views        26,437,986\n3 Total active users 2,728,650"
-  },
-  {
-    "objectID": "views_by_country_report.html#top-20-countries-by-views",
-    "href": "views_by_country_report.html#top-20-countries-by-views",
-    "title": "OTexts.com views by country",
-    "section": "Top 20 countries by views",
-    "text": "Top 20 countries by views\nThe table below shows the 20 countries with the highest number of views, along with their active user counts and views per active user.\n\n\n# A tibble: 20 × 4\n   Country        Views     `Active users` `Views per active user`\n   &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 United States  5,837,205 566,943                           10.3\n 2 India          1,843,071 275,698                            6.7\n 3 Australia      1,479,159 75,747                            19.5\n 4 United Kingdom 1,268,273 130,039                            9.8\n 5 China          1,240,278 165,279                            7.5\n 6 South Korea    1,055,188 180,136                            5.9\n 7 Canada         887,967   86,043                            10.3\n 8 Germany        884,535   79,647                            11.1\n 9 Brazil         875,740   66,282                            13.2\n10 Italy          619,896   42,107                            14.7\n11 Malaysia       555,033   36,207                            15.3\n12 Netherlands    484,593   42,620                            11.4\n13 Vietnam        468,425   32,035                            14.6\n14 Spain          434,650   37,474                            11.6\n15 Japan          432,820   66,269                             6.5\n16 Mexico         420,834   33,336                            12.6\n17 Indonesia      408,198   55,217                             7.4\n18 Singapore      407,121   48,962                             8.3\n19 France         371,968   38,584                             9.6\n20 Hong Kong      353,911   36,908                             9.6"
-  },
-  {
-    "objectID": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
-    "href": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
-    "title": "OTexts.com views by country",
-    "section": "Bar chart: top 20 countries by views",
-    "text": "Bar chart: top 20 countries by views\nThe chart below shows the top 20 countries by total views, with bars coloured by continent.\n\n\n\n\n\n\n\n\n\nThe United States dominates with approximately 5,837,205 views — around three times that of the next country, India. Asian and European countries are well represented across the rest of the top 20, while Australia stands out as a high-traffic country relative to its population."
-  },
-  {
-    "objectID": "views_by_country_report.html#engagement",
-    "href": "views_by_country_report.html#engagement",
-    "title": "OTexts.com views by country",
-    "section": "Engagement",
-    "text": "Engagement\nViews per active user provides a measure of how deeply visitors engage with the site. Among large countries (at least 1,000 views), Australia has notably high engagement.\n\n\n# A tibble: 10 × 4\n   Country           Views     `Active users` `Views per active user`\n   &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 San Marino        1,007     23                                43.8\n 2 Faroe Islands     2,622     60                                43.7\n 3 Greenland         1,038     32                                32.4\n 4 Cape Verde        2,290     109                               21  \n 5 Australia         1,479,159 75,747                            19.5\n 6 Guatemala         47,057    2,453                             19.2\n 7 St. Kitts & Nevis 1,071     60                                17.9\n 8 Réunion           2,048     116                               17.7\n 9 Nicaragua         9,928     588                               16.9\n10 Portugal          236,865   14,152                            16.7"
-  },
-  {
-    "objectID": "assignments/discussion.html",
-    "href": "assignments/discussion.html",
-    "title": "Discussion (10%)",
-    "section": "",
-    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
-  },
-  {
-    "objectID": "assignments/A2.html",
-    "href": "assignments/A2.html",
-    "title": "Assignment 2 (30%)",
-    "section": "",
-    "text": "The randomifyR package is designed to provide a set of functions for generating random samples of data.\nIn this assignment, you will act as a maintainer of the package, fixing five problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem.\nIf you believe the problem is a bug, then follow the steps below to fix it.\n\nAdd a comment in the issue that includes a reprex that demonstrates the problem, or explains why this is not possible.\nIf possible, add a unit test that fails because of the problem, and commit it to the repository with a message that references the issue.\nFix the problem in the package code, and commit the fix with a message that references the issue.\nAdd a comment to the issue explaining the bug and the fix.\nCheck that the unit test(s) you added now pass, and that the package checks without errors or warnings.\nClose the issue.\n\nIf you believe the problem is not a bug, then follow the steps below.\n\nAdd a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.\nIf possible, provide a reprex that demonstrates the intended behaviour.\nIf the documentation of the function is unclear, then update the documentation to better explain the intended behaviour of the function, and commit the update with a message that references the issue.\nClose the issue.\n\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each person will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nNo commit should address more than one bug. Each bug may be addressed in multiple commits. The GitHub issue should be used to link the commits that address the bug, and to explain the bug and the fix.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\nEach bug is worth 6 marks, and the total is 30 marks. For genuine bugs, the marks will be awarded based on the following criteria:\n\nUnderstanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is a problem.\nReprex (1 mark): This includes providing a clear and reproducible example that demonstrates the problem, or explaining why this is not possible.\nUnit test (1 mark): This includes adding a unit test that fails because of the problem, and committing it to the repository with a message that references the issue.\nFix (2 marks): This includes fixing the problem in the package code, and committing the fix with a message that references the issue.\nExplanation (1 mark): This includes adding a comment to the issue explaining the bug and the fix.\n\nFor non-bugs, the marks will be awarded based on the following criteria:\n\nUnderstanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is not a bug.\nExplanation (2 marks): This includes adding a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.\nReprex (1 mark): This includes providing a clear and reproducible example that demonstrates the intended behaviour, or explaining why this is not possible.\nDocumentation (2 marks): This includes updating the documentation to better explain the intended behaviour of the function, and committing the update with a message that references the issue.\n\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A1.html",
-    "href": "assignments/A1.html",
-    "title": "Assignment 1 (30%)",
-    "section": "",
-    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
-  },
-  {
-    "objectID": "assignments/A1.html#task",
-    "href": "assignments/A1.html#task",
-    "title": "Assignment 1 (30%)",
-    "section": "Task",
-    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
-  },
-  {
-    "objectID": "assignments/A1.html#notes",
-    "href": "assignments/A1.html#notes",
-    "title": "Assignment 1 (30%)",
-    "section": "Notes",
-    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
-  },
-  {
-    "objectID": "assignments/A1.html#marking-rubric",
-    "href": "assignments/A1.html#marking-rubric",
-    "title": "Assignment 1 (30%)",
-    "section": "Marking rubric",
-    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "assignments/A3.html",
-    "href": "assignments/A3.html",
-    "title": "Assignment 3 (30%)",
-    "section": "",
-    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.\nYou need to write a new R package to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.\nThe package should implement a custom vctrs record class for card objects. The package should also include S3 classes for deck, hand, and deal objects.\nThe package must export the following user-facing functions.\n\ncard(rank, suit): A function to create a card vector with specified ranks and suits. The function should validate the inputs to ensure that they represent valid ranks and suits. Valid ranks are “A”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, and “K”. Valid suits are “Spades”, “Diamonds”, “Clubs”, and “Hearts”, or their first letters. Inputs should not be case-sensitive. The function should return a card object that contains the specified cards.\nis_card(x): A function to check if an object is a card vector.\ncard_rank(card): A function to extract the rank from a card vector.\ncard_suit(card): A function to extract the suit from a card vector.\nformat.card(x, ...): A method to format a card vector for printing.\ndeck(cards): A function to create a deck object from a vector of cards.\nstandard_deck(n_decks = 1L): A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a deck object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The n argument should allow for creating multiple decks (e.g., standard_deck(2) would create a deck with 104 cards).\nhand(cards, player): A function to create a hand object from a vector of cards.\ncards(x): A function to extract the cards from a hand or deck object.\nshuffle_deck(deck): A function to return the shuffled deck.\ncut_deck(deck, n): A function to cut the deck at a specified position n, moving the first n cards to the bottom.\ndeal(deck, n, players, by = c(\"round\", \"batch\")): A function to deal n cards to each player. e.g., deal(deck, 5, c(\"Muhammad\", \"Fan\")) would deal two hands, each of five cards. The by argument determines whether to deal cards round-robin (one card at a time to each player) or in batches (n cards to player 1, then n cards to player 2, etc.). The function should return a deal object containing a list of the hands and the remaining deck, along with any metadata (e.g., the players’ names, the number of cards dealt, dealing style, etc.). deal() is a deterministic function where cards are dealt from the top of the deck.\nhands(deal): A function to extract the hands from a deal object.\nremaining_deck(deal): A function to extract the remaining deck from a deal object.\nfilter_cards() methods for card vectors, hand, and deal objects. These functions should allow users to filter cards based on rank, suit, or both. For example, filter_cards(hand, suit == \"Hearts\") would return a new hand object containing only the cards of the specified suit, while filter_cards(deck, rank %in% c(\"A\",\"J\",\"Q\",\"K\"), suit %in% c(\"Spades\",\"Clubs\")) would return a deck containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.\n\nYou may add additional internal functions as needed to support the implementation of the user-facing functions.\nNotes:\n\ncard vectors must support subsetting, concatenation, equality testing, and sorting. When comparing cards for equality, both rank and suit must match. When sorting cards, order first by suit (Clubs &lt; Diamonds &lt; Hearts &lt; Spades), then by rank (A &lt; 2 &lt; 3 &lt; … &lt; 10 &lt; J &lt; Q &lt; K).\nas.data.frame() methods should be implemented to convert card, hand, and deck objects to data frames with appropriate columns.\nprint() methods should be implemented for card, hand, deck and deal objects to display them in a user-friendly way.\ncards() should be implemented as an S3 generic function with methods for hand and deck objects.\nfilter_cards() should be implemented using tidy evaluation to allow for flexible filtering criteria. The function should validate the filtering criteria and handle cases where no cards match the criteria appropriately (e.g., by returning an empty hand object if the input is a hand). You may use rlang functions, but you should not use dplyr in the implementation of filter_cards(). Unit tests should cover various filtering scenarios, including edge cases where no cards match the criteria.\nThe order of cards must always be preserved unless explicitly modified (e.g., by shuffle_deck() or cut_deck())\nAll user-facing functions should be fully documented using roxygen2, with examples that can be run in the documentation. The package should also include unit tests for all exported functions using testthat. The unit tests should cover a variety of cases, including edge cases and invalid inputs.\nThere should be a vignette describing how to use the package.\nThe package should not implement game-specific logic such as poker-hand ranking, blackjack scoring, trick-taking rules, or winner determination.\nThe package should not involve any user interactivity; all functions should operate on their inputs and return outputs without requiring user input during execution.\nThe package should not include any plotting or graphical functions; it should focus solely on the data structures and operations for card decks.\n\nUnits tests must include at least:\n\ninvalid ranks and suits error;\nstandard_deck(n_decks = 2L) has 104 cards;\nshuffle_deck() preserves the set of cards and the number of cards;\ncut_deck() preserves all cards and changes the order as documented;\ndeal() does not modify the input deck;\ndeal() returns the correct number of hands;\neach hand has the requested number of cards;\nthe remaining deck has the correct number of cards;\nround and batch dealing produce the documented positions;\ndealing too many cards produces an informative error;\nfilter_cards() works with unquoted expressions and preserves the input type\n\nMarks will be awarded for clean and efficient code, and for good design.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement named ‘AI_statement.md’ with a section for each student in the team. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\n\n\n\nDue: 2 June 2026  Join GitHub Classroom"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "",
-    "text": "R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language."
-  },
-  {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nbe familiar with the foundations of R programming\nunderstand a variety of programming paradigms, including functional programming and object-oriented programming\nutilise R’s functional and object-oriented programming systems\nintegrate the concept of metaprogramming to evaluate and construct new functions"
-  },
-  {
-    "objectID": "index.html#teaching-team",
-    "href": "index.html#teaching-team",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Teaching team",
-    "text": "Teaching team\n\nRob J Hyndman. Chief Examiner. Email: Rob.Hyndman@monash.edu\nKrisanat Anukarnsakulchularp, Tutor\nTomasz Wozniak, Week 11"
-  },
-  {
-    "objectID": "index.html#core-references",
-    "href": "index.html#core-references",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Core references",
-    "text": "Core references\n\nAdvanced R, 2e by Hadley Wickham.\nAdvanced R Solutions by Malte Grosser, Henning Bumann & Hadley Wickham.\nR packages, 2e by Hadley Wickham & Jenny Bryan."
-  },
-  {
-    "objectID": "index.html#weekly-schedule",
-    "href": "index.html#weekly-schedule",
-    "title": "ETC4500/5450 Advanced R Programming",
-    "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR tools and data structures\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
-  },
-  {
-    "objectID": "week1/index.html",
-    "href": "week1/index.html",
-    "title": "Week 1: R tools and data structures",
-    "section": "",
-    "text": "1-3, Advanced R"
-  },
-  {
-    "objectID": "week1/index.html#main-reference",
-    "href": "week1/index.html#main-reference",
-    "title": "Week 1: R tools and data structures",
-    "section": "",
-    "text": "1-3, Advanced R"
-  },
-  {
-    "objectID": "week1/index.html#what-you-will-learn-this-week",
-    "href": "week1/index.html#what-you-will-learn-this-week",
-    "title": "Week 1: R tools and data structures",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
-  },
-  {
-    "objectID": "week1/index.html#pre-class-activities",
-    "href": "week1/index.html#pre-class-activities",
-    "title": "Week 1: R tools and data structures",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nInstall Positron\nWork through the quick tour\nWatch “From RStudio to Positron”: video\nWatch “Exploratory data analysis with R in Positron”: video"
-  },
-  {
-    "objectID": "week1/index.html#slides-for-week",
-    "href": "week1/index.html#slides-for-week",
-    "title": "Week 1: R tools and data structures",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\nSolutions to class exercises"
-  },
-  {
-    "objectID": "week1/index.html#assignments",
-    "href": "week1/index.html#assignments",
-    "title": "Week 1: R tools and data structures",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
-    "objectID": "week10/index.html",
-    "href": "week10/index.html",
-    "title": "Week 10: Metaprogramming",
-    "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#main-reference",
-    "href": "week10/index.html#main-reference",
-    "title": "Week 10: Metaprogramming",
-    "section": "",
-    "text": "17-20 Advanced R"
-  },
-  {
-    "objectID": "week10/index.html#what-you-will-learn-this-week",
-    "href": "week10/index.html#what-you-will-learn-this-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
-  },
-  {
-    "objectID": "week10/index.html#slides-for-week",
-    "href": "week10/index.html#slides-for-week",
-    "title": "Week 10: Metaprogramming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week11/index.html",
-    "href": "week11/index.html",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "",
-    "text": "Guest Lecturer: Tomasz Wozniak"
-  },
-  {
-    "objectID": "week11/index.html#main-reference",
-    "href": "week11/index.html#main-reference",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Main reference",
-    "text": "Main reference\n\n25. Advanced R"
-  },
-  {
-    "objectID": "week11/index.html#what-you-will-learn-this-week",
-    "href": "week11/index.html#what-you-will-learn-this-week",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nC++ for applications in R with Tomasz Woźniak\nThe first steps with Rcpp\nSome stats with RcppArmadillo\nHands-on coding with four exercises\nAn R package with compiled code"
-  },
-  {
-    "objectID": "week11/index.html#preparation-to-the-session",
-    "href": "week11/index.html#preparation-to-the-session",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Preparation to the session",
-    "text": "Preparation to the session\nYou must have a cpp compiler installed on your computer. Follow the instructions from Section 1.3. by Eddelbuettel & François (2023). In short:\n\nWindows: install RTools\nmacOS: install Xcode Command Line Tools\nLinux: install the standard development packages"
-  },
-  {
-    "objectID": "week11/index.html#other-references-used-during-the-session",
-    "href": "week11/index.html#other-references-used-during-the-session",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Other references used during the session",
-    "text": "Other references used during the session\n\nArmadillo library documentation\nTsuda, M., Rcpp for everyone"
-  },
-  {
-    "objectID": "week11/index.html#scripts-used-during-the-session",
-    "href": "week11/index.html#scripts-used-during-the-session",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Scripts used during the session",
-    "text": "Scripts used during the session\n\nSimple list creation nicetry.cpp\nSimple linear regression example nicelr.cpp\nSimple loop application nicelist.cpp\nSampling from inverted gamma 2 distribution nicerig2.cpp\nStep-by-step package creation nicepackage.R"
-  },
-  {
-    "objectID": "week11/index.html#slides-for-week",
-    "href": "week11/index.html#slides-for-week",
-    "title": "Week 11: Rewriting R code in C++",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week12/index.html",
-    "href": "week12/index.html",
-    "title": "Week 12: Package hackathon",
-    "section": "",
-    "text": "This will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation."
-  },
-  {
-    "objectID": "week2/index.html",
-    "href": "week2/index.html",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "",
-    "text": "4-8, Advanced R"
-  },
-  {
-    "objectID": "week2/index.html#main-reference",
-    "href": "week2/index.html#main-reference",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "",
-    "text": "4-8, Advanced R"
-  },
-  {
-    "objectID": "week2/index.html#what-you-will-learn-this-week",
-    "href": "week2/index.html#what-you-will-learn-this-week",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
-  },
-  {
-    "objectID": "week2/index.html#pre-class-activities",
-    "href": "week2/index.html#pre-class-activities",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch the following series of short videos on subsetting in R:\n\nSubsetting R objects: Basics\nSubsetting R objects: Lists\nSubsetting R objects: Matrices\nSubsetting R objects: Partial matching\nSubsetting R objects: Removing missing values\n\nWrite a function linear, that takes arguments x, a and b, and returns a + b * x. Give default values a=0 and b=1, and make sure your function has sensible error messages when the inputs are not as expected. Your function should work when x is a numerical scalar, vector, or matrix."
-  },
-  {
-    "objectID": "week2/index.html#slides-for-week",
-    "href": "week2/index.html#slides-for-week",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\nSolutions to class exercises"
-  },
-  {
-    "objectID": "week2/index.html#assignments",
-    "href": "week2/index.html#assignments",
-    "title": "Week 2: Foundations of R Programming",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
-    "objectID": "week3/index.html",
-    "href": "week3/index.html",
-    "title": "Week 3: R package development",
-    "section": "",
-    "text": "R Packages (2e)"
-  },
-  {
-    "objectID": "week3/index.html#main-reference",
-    "href": "week3/index.html#main-reference",
-    "title": "Week 3: R package development",
-    "section": "",
-    "text": "R Packages (2e)"
-  },
-  {
-    "objectID": "week3/index.html#what-you-will-learn-this-week",
-    "href": "week3/index.html#what-you-will-learn-this-week",
-    "title": "Week 3: R package development",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
-  },
-  {
-    "objectID": "week3/index.html#pre-class-activities",
-    "href": "week3/index.html#pre-class-activities",
-    "title": "Week 3: R package development",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Building R packages with devtools and usethis"
-  },
-  {
-    "objectID": "week3/index.html#slides-for-week",
-    "href": "week3/index.html#slides-for-week",
-    "title": "Week 3: R package development",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week3/index.html#assignments",
-    "href": "week3/index.html#assignments",
-    "title": "Week 3: R package development",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
-    "objectID": "week4/index.html",
-    "href": "week4/index.html",
-    "title": "Week 4: R programming with LLMs",
-    "section": "",
-    "text": "Using LLMs to assist with R programming"
-  },
-  {
-    "objectID": "week4/index.html#what-you-will-learn-this-week",
-    "href": "week4/index.html#what-you-will-learn-this-week",
-    "title": "Week 4: R programming with LLMs",
-    "section": "",
-    "text": "Using LLMs to assist with R programming"
-  },
-  {
-    "objectID": "week4/index.html#pre-class-activities",
-    "href": "week4/index.html#pre-class-activities",
-    "title": "Week 4: R programming with LLMs",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nAI-powered data science using Positron Assistant\nHow to set up and use AI features in Positron\nThe ellmer R package\nHadley Wickham on ellmer"
-  },
-  {
-    "objectID": "week4/index.html#slides-for-week",
-    "href": "week4/index.html#slides-for-week",
-    "title": "Week 4: R programming with LLMs",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in class\n\n01_code_completion.R\n02_ask.R\n03_edit.R\n04_agent.R\n05_plan.R\n06_git.R\nellmer1.R\nellmer2.R\nfizzbuzz.R\nwrangle.R"
-  },
-  {
-    "objectID": "week4/index.html#assignments",
-    "href": "week4/index.html#assignments",
-    "title": "Week 4: R programming with LLMs",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
-    "objectID": "week5/index.html",
-    "href": "week5/index.html",
-    "title": "Week 5: Debugging",
-    "section": "",
-    "text": "22 Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#main-reference",
-    "href": "week5/index.html#main-reference",
-    "title": "Week 5: Debugging",
-    "section": "",
-    "text": "22 Advanced R"
-  },
-  {
-    "objectID": "week5/index.html#what-you-will-learn-this-week",
-    "href": "week5/index.html#what-you-will-learn-this-week",
-    "title": "Week 5: Debugging",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nDebugging"
-  },
-  {
-    "objectID": "week5/index.html#online-resources",
-    "href": "week5/index.html#online-resources",
-    "title": "Week 5: Debugging",
-    "section": "Online resources",
-    "text": "Online resources\n\nCreating a reprex\nPosit Community\nStack Overflow"
-  },
-  {
-    "objectID": "week5/index.html#pre-class-activities",
-    "href": "week5/index.html#pre-class-activities",
-    "title": "Week 5: Debugging",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Object of type ‘closure’ is not subsettable with Jenny Bryan\nWatch Debugging in R with Jon Harmon"
-  },
-  {
-    "objectID": "week5/index.html#slides-for-week",
-    "href": "week5/index.html#slides-for-week",
-    "title": "Week 5: Debugging",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: debug\nExercise: errors\nExercise: warnings\nExercise: debug"
-  },
-  {
-    "objectID": "week5/index.html#assignments",
-    "href": "week5/index.html#assignments",
-    "title": "Week 5: Debugging",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
-  },
-  {
-    "objectID": "week6/index.html",
-    "href": "week6/index.html",
-    "title": "Week 6: Functional programming",
-    "section": "",
-    "text": "9-11. Advanced R"
-  },
-  {
-    "objectID": "week6/index.html#main-reference",
-    "href": "week6/index.html#main-reference",
-    "title": "Week 6: Functional programming",
-    "section": "",
-    "text": "9-11. Advanced R"
-  },
-  {
-    "objectID": "week6/index.html#what-you-will-learn-this-week",
-    "href": "week6/index.html#what-you-will-learn-this-week",
-    "title": "Week 6: Functional programming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nWriting functions\nManipulating functions\nFunction factories\nFunctional mapping\nFunctional adverbs"
-  },
-  {
-    "objectID": "week6/index.html#pre-class-activities",
-    "href": "week6/index.html#pre-class-activities",
-    "title": "Week 6: Functional programming",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Intro to Functional Programming with R"
-  },
-  {
-    "objectID": "week6/index.html#slides-for-week",
-    "href": "week6/index.html#slides-for-week",
-    "title": "Week 6: Functional programming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in workshop"
-  },
-  {
-    "objectID": "week6/index.html#assignments",
-    "href": "week6/index.html#assignments",
-    "title": "Week 6: Functional programming",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
-  },
-  {
-    "objectID": "week7/index.html",
-    "href": "week7/index.html",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "",
-    "text": "23-24. Advanced R\nEfficient R Programming"
-  },
-  {
-    "objectID": "week7/index.html#main-references",
-    "href": "week7/index.html#main-references",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "",
-    "text": "23-24. Advanced R\nEfficient R Programming"
-  },
-  {
-    "objectID": "week7/index.html#what-you-will-learn-this-week",
-    "href": "week7/index.html#what-you-will-learn-this-week",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nProfiling code\nMeasuring code performance\nVectorisation\nCaching results"
-  },
-  {
-    "objectID": "week7/index.html#pre-class-activities",
-    "href": "week7/index.html#pre-class-activities",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Advanced R Book Club: Measuring and Improving Performance"
-  },
-  {
-    "objectID": "week7/index.html#slides-for-week",
-    "href": "week7/index.html#slides-for-week",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\nCode used in workshop"
-  },
-  {
-    "objectID": "week7/index.html#assignments",
-    "href": "week7/index.html#assignments",
-    "title": "Week 7: Measuring and improving performance",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
-  },
-  {
-    "objectID": "week8/index.html",
-    "href": "week8/index.html",
-    "title": "Week 8: Object-oriented programming",
-    "section": "",
-    "text": "13 Advanced R"
-  },
-  {
-    "objectID": "week8/index.html#main-reference",
-    "href": "week8/index.html#main-reference",
-    "title": "Week 8: Object-oriented programming",
-    "section": "",
-    "text": "13 Advanced R"
-  },
-  {
-    "objectID": "week8/index.html#what-you-will-learn-this-week",
-    "href": "week8/index.html#what-you-will-learn-this-week",
-    "title": "Week 8: Object-oriented programming",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\nOverview of object-oriented programming in R, focusing on S3."
-  },
-  {
-    "objectID": "week8/index.html#pre-class-activities",
-    "href": "week8/index.html#pre-class-activities",
-    "title": "Week 8: Object-oriented programming",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch Advanced R Book Club: S3 methods (part 1)\nWatch Advanced R Book Club: S3 methods (part 2)\nWatch S3 objects and functions in R"
-  },
-  {
-    "objectID": "week8/index.html#slides-for-week",
-    "href": "week8/index.html#slides-for-week",
-    "title": "Week 8: Object-oriented programming",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in workshop"
-  },
-  {
-    "objectID": "week8/index.html#assignments",
-    "href": "week8/index.html#assignments",
-    "title": "Week 8: Object-oriented programming",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
-  },
-  {
-    "objectID": "week8/index.html#online-resources",
-    "href": "week8/index.html#online-resources",
-    "title": "Week 8: Object-oriented programming",
-    "section": "Online resources",
-    "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4\nR6\nS7"
-  },
-  {
-    "objectID": "week9/index.html",
-    "href": "week9/index.html",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "",
-    "text": "13 Advanced R\nvctrs"
-  },
-  {
-    "objectID": "week9/index.html#main-references",
-    "href": "week9/index.html#main-references",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "",
-    "text": "13 Advanced R\nvctrs"
-  },
-  {
-    "objectID": "week9/index.html#what-you-will-learn-this-week",
-    "href": "week9/index.html#what-you-will-learn-this-week",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "What you will learn this week",
-    "text": "What you will learn this week\n\nOverview of vctrs, a modern approach to creating new S3 vector classes in R."
-  },
-  {
-    "objectID": "week9/index.html#pre-class-activities",
-    "href": "week9/index.html#pre-class-activities",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "Pre-class activities",
-    "text": "Pre-class activities\n\nWatch vctrs: Tools for making size and type consistent functions\nWatch vctrs: Creating custom vector classes with the vctrs package"
-  },
-  {
-    "objectID": "week9/index.html#slides-for-week",
-    "href": "week9/index.html#slides-for-week",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "Slides for week",
-    "text": "Slides for week\n\n\nDownload pdf"
-  },
-  {
-    "objectID": "week9/index.html#assignments",
-    "href": "week9/index.html#assignments",
-    "title": "Week 9: Object-oriented programming (vctrs)",
-    "section": "Assignments",
-    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
-  },
-  {
     "objectID": "assignments/A1_rubric_detailed.html",
     "href": "assignments/A1_rubric_detailed.html",
     "title": "Assignment 1 Marking Rubric",
@@ -656,5 +61,719 @@
     "title": "Assignment 1 Marking Rubric",
     "section": "",
     "text": "Full marks (5) - Clear, honest explanation of AI use, including prompts/examples. - No evidence of unacknowledged use.\nPartial (2–4) - Statement present but incomplete or unclear.\nZero (0) - No statement OR unacknowledged AI use detected."
+  },
+  {
+    "objectID": "week8/index.html",
+    "href": "week8/index.html",
+    "title": "Week 8: Object-oriented programming",
+    "section": "",
+    "text": "13 Advanced R"
+  },
+  {
+    "objectID": "week8/index.html#main-reference",
+    "href": "week8/index.html#main-reference",
+    "title": "Week 8: Object-oriented programming",
+    "section": "",
+    "text": "13 Advanced R"
+  },
+  {
+    "objectID": "week8/index.html#what-you-will-learn-this-week",
+    "href": "week8/index.html#what-you-will-learn-this-week",
+    "title": "Week 8: Object-oriented programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\nOverview of object-oriented programming in R, focusing on S3."
+  },
+  {
+    "objectID": "week8/index.html#pre-class-activities",
+    "href": "week8/index.html#pre-class-activities",
+    "title": "Week 8: Object-oriented programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Advanced R Book Club: S3 methods (part 1)\nWatch Advanced R Book Club: S3 methods (part 2)\nWatch S3 objects and functions in R"
+  },
+  {
+    "objectID": "week8/index.html#slides-for-week",
+    "href": "week8/index.html#slides-for-week",
+    "title": "Week 8: Object-oriented programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in workshop"
+  },
+  {
+    "objectID": "week8/index.html#assignments",
+    "href": "week8/index.html#assignments",
+    "title": "Week 8: Object-oriented programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week8/index.html#online-resources",
+    "href": "week8/index.html#online-resources",
+    "title": "Week 8: Object-oriented programming",
+    "section": "Online resources",
+    "text": "Online resources\n\nA simple guide to S3 methods\nS4: a short guide for the perplexed\nComparing S3 and S4 on an example\nS4\nR6\nS7"
+  },
+  {
+    "objectID": "week6/index.html",
+    "href": "week6/index.html",
+    "title": "Week 6: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week6/index.html#main-reference",
+    "href": "week6/index.html#main-reference",
+    "title": "Week 6: Functional programming",
+    "section": "",
+    "text": "9-11. Advanced R"
+  },
+  {
+    "objectID": "week6/index.html#what-you-will-learn-this-week",
+    "href": "week6/index.html#what-you-will-learn-this-week",
+    "title": "Week 6: Functional programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nWriting functions\nManipulating functions\nFunction factories\nFunctional mapping\nFunctional adverbs"
+  },
+  {
+    "objectID": "week6/index.html#pre-class-activities",
+    "href": "week6/index.html#pre-class-activities",
+    "title": "Week 6: Functional programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Intro to Functional Programming with R"
+  },
+  {
+    "objectID": "week6/index.html#slides-for-week",
+    "href": "week6/index.html#slides-for-week",
+    "title": "Week 6: Functional programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in workshop"
+  },
+  {
+    "objectID": "week6/index.html#assignments",
+    "href": "week6/index.html#assignments",
+    "title": "Week 6: Functional programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week4/index.html",
+    "href": "week4/index.html",
+    "title": "Week 4: R programming with LLMs",
+    "section": "",
+    "text": "Using LLMs to assist with R programming"
+  },
+  {
+    "objectID": "week4/index.html#what-you-will-learn-this-week",
+    "href": "week4/index.html#what-you-will-learn-this-week",
+    "title": "Week 4: R programming with LLMs",
+    "section": "",
+    "text": "Using LLMs to assist with R programming"
+  },
+  {
+    "objectID": "week4/index.html#pre-class-activities",
+    "href": "week4/index.html#pre-class-activities",
+    "title": "Week 4: R programming with LLMs",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nAI-powered data science using Positron Assistant\nHow to set up and use AI features in Positron\nThe ellmer R package\nHadley Wickham on ellmer"
+  },
+  {
+    "objectID": "week4/index.html#slides-for-week",
+    "href": "week4/index.html#slides-for-week",
+    "title": "Week 4: R programming with LLMs",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\n\nCode used in class\n\n01_code_completion.R\n02_ask.R\n03_edit.R\n04_agent.R\n05_plan.R\n06_git.R\nellmer1.R\nellmer2.R\nfizzbuzz.R\nwrangle.R"
+  },
+  {
+    "objectID": "week4/index.html#assignments",
+    "href": "week4/index.html#assignments",
+    "title": "Week 4: R programming with LLMs",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week2/index.html",
+    "href": "week2/index.html",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "",
+    "text": "4-8, Advanced R"
+  },
+  {
+    "objectID": "week2/index.html#main-reference",
+    "href": "week2/index.html#main-reference",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "",
+    "text": "4-8, Advanced R"
+  },
+  {
+    "objectID": "week2/index.html#what-you-will-learn-this-week",
+    "href": "week2/index.html#what-you-will-learn-this-week",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nSubsetting\nControl flow\nFunctions\nEnvironments\nConditions"
+  },
+  {
+    "objectID": "week2/index.html#pre-class-activities",
+    "href": "week2/index.html#pre-class-activities",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch the following series of short videos on subsetting in R:\n\nSubsetting R objects: Basics\nSubsetting R objects: Lists\nSubsetting R objects: Matrices\nSubsetting R objects: Partial matching\nSubsetting R objects: Removing missing values\n\nWrite a function linear, that takes arguments x, a and b, and returns a + b * x. Give default values a=0 and b=1, and make sure your function has sensible error messages when the inputs are not as expected. Your function should work when x is a numerical scalar, vector, or matrix."
+  },
+  {
+    "objectID": "week2/index.html#slides-for-week",
+    "href": "week2/index.html#slides-for-week",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\nSolutions to class exercises"
+  },
+  {
+    "objectID": "week2/index.html#assignments",
+    "href": "week2/index.html#assignments",
+    "title": "Week 2: Foundations of R Programming",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week11/index.html",
+    "href": "week11/index.html",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "",
+    "text": "Guest Lecturer: Tomasz Wozniak"
+  },
+  {
+    "objectID": "week11/index.html#main-reference",
+    "href": "week11/index.html#main-reference",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Main reference",
+    "text": "Main reference\n\n25. Advanced R"
+  },
+  {
+    "objectID": "week11/index.html#what-you-will-learn-this-week",
+    "href": "week11/index.html#what-you-will-learn-this-week",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nC++ for applications in R with Tomasz Woźniak\nThe first steps with Rcpp\nSome stats with RcppArmadillo\nHands-on coding with four exercises\nAn R package with compiled code"
+  },
+  {
+    "objectID": "week11/index.html#preparation-to-the-session",
+    "href": "week11/index.html#preparation-to-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Preparation to the session",
+    "text": "Preparation to the session\nYou must have a cpp compiler installed on your computer. Follow the instructions from Section 1.3. by Eddelbuettel & François (2023). In short:\n\nWindows: install RTools\nmacOS: install Xcode Command Line Tools\nLinux: install the standard development packages"
+  },
+  {
+    "objectID": "week11/index.html#other-references-used-during-the-session",
+    "href": "week11/index.html#other-references-used-during-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Other references used during the session",
+    "text": "Other references used during the session\n\nArmadillo library documentation\nTsuda, M., Rcpp for everyone"
+  },
+  {
+    "objectID": "week11/index.html#scripts-used-during-the-session",
+    "href": "week11/index.html#scripts-used-during-the-session",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Scripts used during the session",
+    "text": "Scripts used during the session\n\nSimple list creation nicetry.cpp\nSimple linear regression example nicelr.cpp\nSimple loop application nicelist.cpp\nSampling from inverted gamma 2 distribution nicerig2.cpp\nStep-by-step package creation nicepackage.R"
+  },
+  {
+    "objectID": "week11/index.html#slides-for-week",
+    "href": "week11/index.html#slides-for-week",
+    "title": "Week 11: Rewriting R code in C++",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week1/index.html",
+    "href": "week1/index.html",
+    "title": "Week 1: R tools and data structures",
+    "section": "",
+    "text": "1-3, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#main-reference",
+    "href": "week1/index.html#main-reference",
+    "title": "Week 1: R tools and data structures",
+    "section": "",
+    "text": "1-3, Advanced R"
+  },
+  {
+    "objectID": "week1/index.html#what-you-will-learn-this-week",
+    "href": "week1/index.html#what-you-will-learn-this-week",
+    "title": "Week 1: R tools and data structures",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nWhat makes R different from other programming languages\nDifferences between RStudio and Positron\nIntegration of GitHub and version control in R IDEs\nIntegration of AI tools in R IDEs\nSources of R packages: CRAN, Bioconductor, GitHub\nScalars and vectors\nLists and data frames"
+  },
+  {
+    "objectID": "week1/index.html#pre-class-activities",
+    "href": "week1/index.html#pre-class-activities",
+    "title": "Week 1: R tools and data structures",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nInstall Positron\nWork through the quick tour\nWatch “From RStudio to Positron”: video\nWatch “Exploratory data analysis with R in Positron”: video"
+  },
+  {
+    "objectID": "week1/index.html#slides-for-week",
+    "href": "week1/index.html#slides-for-week",
+    "title": "Week 1: R tools and data structures",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\nSolutions to class exercises"
+  },
+  {
+    "objectID": "week1/index.html#assignments",
+    "href": "week1/index.html#assignments",
+    "title": "Week 1: R tools and data structures",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "",
+    "text": "R is widely used as a tool for data analysis and one of the most popular programming languages. This unit delves into R from the programming aspect instead of using it as a data analysis tool. You will learn a variety of programming paradigms and delve into the foundations of R as a programming language."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nbe familiar with the foundations of R programming\nunderstand a variety of programming paradigms, including functional programming and object-oriented programming\nutilise R’s functional and object-oriented programming systems\nintegrate the concept of metaprogramming to evaluate and construct new functions"
+  },
+  {
+    "objectID": "index.html#teaching-team",
+    "href": "index.html#teaching-team",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Teaching team",
+    "text": "Teaching team\n\nRob J Hyndman. Chief Examiner. Email: Rob.Hyndman@monash.edu\nKrisanat Anukarnsakulchularp, Tutor\nTomasz Wozniak, Week 11"
+  },
+  {
+    "objectID": "index.html#core-references",
+    "href": "index.html#core-references",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Core references",
+    "text": "Core references\n\nAdvanced R, 2e by Hadley Wickham.\nAdvanced R Solutions by Malte Grosser, Henning Bumann & Hadley Wickham.\nR packages, 2e by Hadley Wickham & Jenny Bryan."
+  },
+  {
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC4500/5450 Advanced R Programming",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\n1 hour pre-recorded material, to be viewed before each workshop.\n2 hour workshop, Thursdays 9am-11am each week, in LTB Rm 121.\n\n\n\n\nDate\nTopic\nAssessments\n\n\n\n\n05 Mar\nR tools and data structures\n\n\n\n12 Mar\nFoundations of R programming\n\n\n\n19 Mar\nR package development\n\n\n\n26 Mar\nR programming with LLMs\n\n\n\n02 Apr\nDebugging\nAssignment 1\n\n\n09 Apr\nMid-semester break\n\n\n\n16 Apr\nFunctional programming\n\n\n\n23 Apr\nMeasuring and improving performance\n\n\n\n30 Apr\nObject-oriented programming with S3\n\n\n\n07 May\nObject-oriented programming with vctrs\nAssignment 2\n\n\n14 May\nMetaprogramming\n\n\n\n21 May\nRewriting R code in C++\n\n\n\n28 May\nPackage hackathon\n\n\n\n04 Jun\n\nAssignment 3"
+  },
+  {
+    "objectID": "assignments/A3.html",
+    "href": "assignments/A3.html",
+    "title": "Assignment 3 (30%)",
+    "section": "",
+    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
+  },
+  {
+    "objectID": "assignments/A3.html#task",
+    "href": "assignments/A3.html#task",
+    "title": "Assignment 3 (30%)",
+    "section": "Task",
+    "text": "Task\nYou need to write a new R package dealr to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.\nThe package should implement a custom vctrs record class for card objects. The package should also include S3 classes for deck, hand, and deal objects.\nThe package must export the following user-facing functions.\n\ncard(rank, suit): A function to create a card vector with specified ranks and suits. The function should validate the inputs to ensure that they represent valid ranks and suits. Valid ranks are “A”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, and “K”. Valid suits are “Spades”, “Diamonds”, “Clubs”, and “Hearts”, or their first letters. Inputs should not be case-sensitive. The function should return a card object that contains the specified cards.\nis_card(x): A function to check if an object is a card vector.\ncard_rank(card): A function to extract the rank from a card vector.\ncard_suit(card): A function to extract the suit from a card vector.\nformat.card(x, ...): A method to format a card vector for printing.\ndeck(cards): A function to create a deck object from a vector of cards.\nstandard_deck(n_decks = 1L): A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a deck object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The n_decks argument should allow for creating multiple decks (e.g., standard_deck(2) would create a deck with 104 cards).\nhand(cards, player): A function to create a hand object from a vector of cards.\ncards(x): A function to extract the cards from a hand or deck object.\nshuffle_deck(deck): A function to return the shuffled deck.\ncut_deck(deck, n): A function to cut the deck at a specified position n, moving the first n cards to the bottom.\ndeal(deck, n, players, by = c(\"round\", \"batch\")): A function to deal n cards to each player. e.g., deal(deck, 5, c(\"Muhammad\", \"Fan\")) would deal two hands, each of five cards. The by argument determines whether to deal cards round-robin (one card at a time to each player) or in batches (n cards to player 1, then n cards to player 2, etc.). The function should return a deal object containing a list of the hands and the remaining deck, along with any metadata (e.g., the players’ names, the number of cards dealt, dealing style, etc.). deal() is a deterministic function where cards are dealt from the top of the deck.\nhands(deal): A function to extract the hands from a deal object.\nremaining_deck(deal): A function to extract the remaining deck from a deal object.\nfilter_cards() methods for card, hand, and deck objects. These functions should allow users to filter cards based on rank, suit, or both. For example, filter_cards(hand, suit == \"Hearts\") would return a new hand object containing only the cards of the specified suit, while filter_cards(deck, rank %in% c(\"A\",\"J\",\"Q\",\"K\"), suit %in% c(\"Spades\",\"Clubs\")) would return a deck containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.\n\nYou may add additional internal functions as needed to support the implementation of the user-facing functions.\nAdditional requirements:\n\ncard vectors must support subsetting, concatenation, equality testing, and sorting. When comparing cards for equality, both rank and suit must match. When sorting cards, order first by suit (Clubs &lt; Diamonds &lt; Hearts &lt; Spades), then by rank (A &lt; 2 &lt; 3 &lt; … &lt; 10 &lt; J &lt; Q &lt; K).\nas.data.frame() methods should be implemented to convert card, hand, and deck objects to data frames with appropriate columns.\nprint() methods should be implemented for card, hand, deck and deal objects to display them in a user-friendly way.\ncards() should be implemented as an S3 generic function with methods for hand and deck objects.\nfilter_cards() should be implemented using tidy evaluation to allow for flexible filtering criteria. The function should validate the filtering criteria and handle cases where no cards match the criteria appropriately (e.g., by returning an empty hand object if the input is a hand). You may use rlang functions, but you should not use dplyr in the implementation of filter_cards(). Unit tests should cover various filtering scenarios, including edge cases where no cards match the criteria.\nThe order of cards must always be preserved unless explicitly modified (e.g., by shuffle_deck() or cut_deck())\nAll user-facing functions should be fully documented using roxygen2, with examples that can be run in the documentation. The package should also include unit tests for all exported functions using testthat. The unit tests should cover a variety of cases, including edge cases and invalid inputs.\nThere should be a vignette describing how to use the package.\nThe package should not implement game-specific logic such as poker-hand ranking, blackjack scoring, trick-taking rules, or winner determination.\nThe package should not involve any user interactivity; all functions should operate on their inputs and return outputs without requiring user input during execution.\nThe package should not include any plotting or graphical functions; it should focus solely on the data structures and operations for card decks.\n\nUnits tests must include at least:\n\ninvalid ranks and suits error;\nstandard_deck(n_decks = 2L) has 104 cards;\nshuffle_deck() preserves the set of cards and the number of cards;\ncut_deck() preserves all cards and changes the order as documented;\ndeal() does not modify the input deck;\ndeal() returns the correct number of hands;\neach hand has the requested number of cards;\nthe remaining deck has the correct number of cards;\nround and batch dealing produce the documented positions;\ndealing too many cards produces an informative error;\nfilter_cards() works with unquoted expressions and preserves the input type\n\nMarks will be awarded for clean and efficient code, and for good design."
+  },
+  {
+    "objectID": "assignments/A3.html#notes",
+    "href": "assignments/A3.html#notes",
+    "title": "Assignment 3 (30%)",
+    "section": "Notes",
+    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least six substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If a team member has not contributed adequately, that team member will receive a mark deduction of up to 75% of the total mark awarded.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement named ‘AI_statement.md’ with a section for each student in the team. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
+  },
+  {
+    "objectID": "assignments/A3.html#marking-rubric",
+    "href": "assignments/A3.html#marking-rubric",
+    "title": "Assignment 3 (30%)",
+    "section": "Marking rubric",
+    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Is your package well-structured and cleanly built? (10 marks)\n\npackage installs and passes R CMD check without errors or warnings\ncorrect package structure (DESCRIPTION, NAMESPACE, R source files, tests, vignette)\nall required functions exported with dependencies declared correctly\nclear, general-purpose design with no global state, interactivity, plotting, or game-specific logic\n\n\n\n2. Does your card class work correctly? (15 marks)\n\ncard implemented as a genuine vctrs record class with rank and suit fields\nconstructor validates ranks and suits, handles case-insensitive input and one-letter suit abbreviations, supports vectorisation and recycling\naccessors (is_card(), card_rank(), card_suit()) and format.card() work correctly\ncard vectors support subsetting, concatenation, equality testing, and sorting in the required order\n\n\n\n3. Do your deck, hand, and deal classes work correctly? (10 marks)\n\ndeck() and hand() construct valid S3 objects with appropriate validation and metadata\ndeal() returns a well-structured object with hands, remaining deck, and metadata\naccessors cards(), hands(), and remaining_deck() work correctly\ncard order is preserved throughout\n\n\n\n4. Do your deck manipulation and dealing functions work correctly? (10 marks)\n\nstandard_deck() produces the correct cards in the required order, including multiple decks\nshuffle_deck() and cut_deck() work correctly and do not mutate inputs\ndeal() supports both round and batch dealing, does not modify the input deck, and errors informatively on invalid inputs or insufficient cards\n\n\n\n5. Does your filter_cards() function work correctly? (15 marks)\n\nuses tidy evaluation (e.g., rlang) without delegating to dplyr\nsupports unquoted expressions on rank and suit, with multiple expressions combined using AND\npreserves the input type and original card order\nhandles empty results and invalid expressions correctly\n\n\n\n6. Do your print and data frame methods work correctly? (10 marks)\n\nprint() methods for card, deck, hand, and deal are user-friendly and do not expose internals\nas.data.frame() methods for card, deck, and hand return correctly structured data frames\nmethods handle empty objects and edge cases without error\n\n\n\n7. Do you have good unit tests? (10 marks)\n\ntests cover all required cases listed in the assignment instructions\ntests for class behaviour (subsetting, concatenation, equality, sorting, accessors)\ntests for edge cases and invalid inputs\n\n\n\n8. Is your documentation helpful? (10 marks)\n\nall exported functions documented with roxygen2, including runnable examples\nvignette explaining the full package workflow\n\n\n\n9. Did the group use GitHub and AI properly? (10 marks)\n\nregular, meaningful commits from all group members throughout the assignment\ngood commit messages\nAI_statement.md with a section for each student\n\n\nMarks may be adjusted for serious package failures, academic integrity issues, or inadequate individual contribution as described in the assignment instructions.\n\n\nDue: 2 June 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A1.html",
+    "href": "assignments/A1.html",
+    "title": "Assignment 1 (30%)",
+    "section": "",
+    "text": "This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group."
+  },
+  {
+    "objectID": "assignments/A1.html#task",
+    "href": "assignments/A1.html#task",
+    "title": "Assignment 1 (30%)",
+    "section": "Task",
+    "text": "Task\nWrite a package to play Rock, Paper, Scissors against the user. Your package should allow the user to:\n\nPlay several rounds of Rock, Paper, Scissors against the computer using a function play_rps(). The function should take the user’s sequence of choices as the first argument (e.g., c(\"rock\", \"scissors\", \"rock\", \"paper\")), and return the results of the games (a vector of \"win\", \"lose\", or \"draw\" values of the same length as the first argument).\nChoose to play against different computer strategies (e.g., random choice, always choose rock, last user choice, etc.) using an optional second argument. The default strategy should be random choice. At least one strategy should depend on the user’s previous choices.\n\nThere is no need for a graphical user interface; a console-based interaction is sufficient. The only user-facing function should be play_rps(). All other functions should be internal to the package, and not exported.\nYou may use usethis functions (e.g., create_package(), use_testthat(), etc.) to help set up your package structure.\nYour code should demonstrate:\n\nDefault argument handling\nInput validation\nUse of appropriate data structures\nEfficient vectorized operations where possible\nModular code design\nDocumentation using roxygen2 with examples\nUnit tests using testthat\nYour package should ensure that unit tests behave deterministically by setting seeds appropriately when testing random strategies. Do not set seeds in the main package code.\nA README file that explains how to install and use the package\nThere is no need to include a vignette."
+  },
+  {
+    "objectID": "assignments/A1.html#notes",
+    "href": "assignments/A1.html#notes",
+    "title": "Assignment 1 (30%)",
+    "section": "Notes",
+    "text": "Notes\n\nThe package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nMarks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).\nEach team member must contribute at least four substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If the team mark is x, but a team member has not contributed adequately, that team member will receive a mark of 0 (for 0 commits), 0.25x (for 1 commit), 0.5x (for 2 commits), 0.75x (for 3 commits). A maximum of 3 commits on any day will count in this calculation.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information."
+  },
+  {
+    "objectID": "assignments/A1.html#marking-rubric",
+    "href": "assignments/A1.html#marking-rubric",
+    "title": "Assignment 1 (30%)",
+    "section": "Marking rubric",
+    "text": "Marking rubric\nTotal: 100 marks (scaled to 30%)\n\n1. Does your play_rps() function work correctly? (20 marks)\n\nproduces correct win/lose/draw results\nhandles multiple rounds\nsupports all strategies (including random, and one that uses previous user choices)\nbehaves correctly in edge cases and invalid inputs\n\n\n\n2. Is your code clean, modular, and efficient? (20 marks)\n\ngood use of helper functions\nclear organisation\nvectorised operations where sensible\nappropriate data structures\nno seed-setting in the main code\n\n\n\n3. Is your documentation helpful? (15 marks)\n\nclear documentation for play_rps() with examples\ngood README explaining installation and usage\nexamples that run successfully\n\n\n\n4. Do you have good unit tests? (15 marks)\n\ntests that cover the main logic\ntests for strategies and edge cases\ntests using seeds so results are reproducible\n\n\n\n5. Does your package build cleanly? (10 marks)\n\nwhether the package installs\nwhether it passes R CMD check without warnings or errors\nwhether the structure follows normal R package conventions\n\n\n\n6. Did the group use GitHub properly? (10 marks)\n\nregular, meaningful commits\ngood commit messages\nevidence that all members participated\n\n\n\n7. Did you include a proper AI use statement? (5 marks)\n\nexplain how you used AI (if at all)\ninclude prompts/examples\nensure all AI‑generated content is acknowledged\n\n\n\nDue: 31 March 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/A2.html",
+    "href": "assignments/A2.html",
+    "title": "Assignment 2 (30%)",
+    "section": "",
+    "text": "The randomifyR package is designed to provide a set of functions for generating random samples of data.\nIn this assignment, you will act as a maintainer of the package, fixing five problems that have been reported by users.\nYou will be given a GitHub repository containing the package, and the problems that have been reported are provided as issues. The bug report may not fully describe the extent of the problem, and it may not really be a bug in the package. So you will need to understand what the functions are supposed to do, and then think about why the user has reported the problem.\nIf you believe the problem is a bug, then follow the steps below to fix it.\n\nAdd a comment in the issue that includes a reprex that demonstrates the problem, or explains why this is not possible.\nIf possible, add a unit test that fails because of the problem, and commit it to the repository with a message that references the issue.\nFix the problem in the package code, and commit the fix with a message that references the issue.\nAdd a comment to the issue explaining the bug and the fix.\nCheck that the unit test(s) you added now pass, and that the package checks without errors or warnings.\nClose the issue.\n\nIf you believe the problem is not a bug, then follow the steps below.\n\nAdd a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.\nIf possible, provide a reprex that demonstrates the intended behaviour.\nIf the documentation of the function is unclear, then update the documentation to better explain the intended behaviour of the function, and commit the update with a message that references the issue.\nClose the issue.\n\nIn some cases, the problem reported may highlight a weakness in the package beyond the immediate issue. In these cases, you should also address the underlying weakness, and explain what you have done in the issue.\n\nNotes\n\nThe package will be developed on GitHub Classroom. Each person will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.\nNo commit should address more than one bug. Each bug may be addressed in multiple commits. The GitHub issue should be used to link the commits that address the bug, and to explain the bug and the fix.\nGenerative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:\n\nrepresent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;\nadhere to the guidelines for AI use set for the assessment task;\nreflect the University’s commitment to academic integrity and ethical behaviour.\n\nInappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See Learn HQ for more information.\nEach bug is worth 6 marks, and the total is 30 marks. For genuine bugs, the marks will be awarded based on the following criteria:\n\nUnderstanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is a problem.\nReprex (1 mark): This includes providing a clear and reproducible example that demonstrates the problem, or explaining why this is not possible.\nUnit test (1 mark): This includes adding a unit test that fails because of the problem, and committing it to the repository with a message that references the issue.\nFix (2 marks): This includes fixing the problem in the package code, and committing the fix with a message that references the issue.\nExplanation (1 mark): This includes adding a comment to the issue explaining the bug and the fix.\n\nFor non-bugs, the marks will be awarded based on the following criteria:\n\nUnderstanding the problem (1 mark): This includes correctly identifying the problem, and understanding why it is not a bug.\nExplanation (2 marks): This includes adding a comment in the issue that explains the intended behaviour of the function, and why the problem reported is not a bug.\nReprex (1 mark): This includes providing a clear and reproducible example that demonstrates the intended behaviour, or explaining why this is not possible.\nDocumentation (2 marks): This includes updating the documentation to better explain the intended behaviour of the function, and committing the update with a message that references the issue.\n\n\n\n\nDue: 5 May 2026  Join GitHub Classroom"
+  },
+  {
+    "objectID": "assignments/discussion.html",
+    "href": "assignments/discussion.html",
+    "title": "Discussion (10%)",
+    "section": "",
+    "text": "All students are expected to participate in class discussion, and in the online discussion forum.\nParticipation may include:\n\nAsking questions during class\nAnswering questions during class\nPosting questions on the discussion forum\nAnswering questions on the discussion forum\n\nParticipation will be monitored throughout the semester, and marks awarded at the end of semester based on the quality and quantity of contributions."
+  },
+  {
+    "objectID": "views_by_country_report.html",
+    "href": "views_by_country_report.html",
+    "title": "OTexts.com views by country",
+    "section": "",
+    "text": "Note\n\n\n\nThis report was generated using AI under general human direction. At the time of generation, the contents have not been comprehensively reviewed by a human analyst."
+  },
+  {
+    "objectID": "views_by_country_report.html#introduction",
+    "href": "views_by_country_report.html#introduction",
+    "title": "OTexts.com views by country",
+    "section": "Introduction",
+    "text": "Introduction\nThis report summarises website traffic to OTexts.com by country, based on Google Analytics 4 (GA4) data spanning January 2021 to January 2026. The dataset covers 236 countries and includes metrics such as views, active users, views per active user, average engagement time, and event count."
+  },
+  {
+    "objectID": "views_by_country_report.html#overview",
+    "href": "views_by_country_report.html#overview",
+    "title": "OTexts.com views by country",
+    "section": "Overview",
+    "text": "Overview\nAcross all countries, OTexts.com recorded a total of 26,437,986 views from 2,728,650 active users over the period.\n\n\n# A tibble: 3 × 2\n  Metric             Value     \n  &lt;chr&gt;              &lt;chr&gt;     \n1 Countries          236       \n2 Total views        26,437,986\n3 Total active users 2,728,650"
+  },
+  {
+    "objectID": "views_by_country_report.html#top-20-countries-by-views",
+    "href": "views_by_country_report.html#top-20-countries-by-views",
+    "title": "OTexts.com views by country",
+    "section": "Top 20 countries by views",
+    "text": "Top 20 countries by views\nThe table below shows the 20 countries with the highest number of views, along with their active user counts and views per active user.\n\n\n# A tibble: 20 × 4\n   Country        Views     `Active users` `Views per active user`\n   &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 United States  5,837,205 566,943                           10.3\n 2 India          1,843,071 275,698                            6.7\n 3 Australia      1,479,159 75,747                            19.5\n 4 United Kingdom 1,268,273 130,039                            9.8\n 5 China          1,240,278 165,279                            7.5\n 6 South Korea    1,055,188 180,136                            5.9\n 7 Canada         887,967   86,043                            10.3\n 8 Germany        884,535   79,647                            11.1\n 9 Brazil         875,740   66,282                            13.2\n10 Italy          619,896   42,107                            14.7\n11 Malaysia       555,033   36,207                            15.3\n12 Netherlands    484,593   42,620                            11.4\n13 Vietnam        468,425   32,035                            14.6\n14 Spain          434,650   37,474                            11.6\n15 Japan          432,820   66,269                             6.5\n16 Mexico         420,834   33,336                            12.6\n17 Indonesia      408,198   55,217                             7.4\n18 Singapore      407,121   48,962                             8.3\n19 France         371,968   38,584                             9.6\n20 Hong Kong      353,911   36,908                             9.6"
+  },
+  {
+    "objectID": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
+    "href": "views_by_country_report.html#bar-chart-top-20-countries-by-views",
+    "title": "OTexts.com views by country",
+    "section": "Bar chart: top 20 countries by views",
+    "text": "Bar chart: top 20 countries by views\nThe chart below shows the top 20 countries by total views, with bars coloured by continent.\n\n\n\n\n\n\n\n\n\nThe United States dominates with approximately 5,837,205 views — around three times that of the next country, India. Asian and European countries are well represented across the rest of the top 20, while Australia stands out as a high-traffic country relative to its population."
+  },
+  {
+    "objectID": "views_by_country_report.html#engagement",
+    "href": "views_by_country_report.html#engagement",
+    "title": "OTexts.com views by country",
+    "section": "Engagement",
+    "text": "Engagement\nViews per active user provides a measure of how deeply visitors engage with the site. Among large countries (at least 1,000 views), Australia has notably high engagement.\n\n\n# A tibble: 10 × 4\n   Country           Views     `Active users` `Views per active user`\n   &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;\n 1 San Marino        1,007     23                                43.8\n 2 Faroe Islands     2,622     60                                43.7\n 3 Greenland         1,038     32                                32.4\n 4 Cape Verde        2,290     109                               21  \n 5 Australia         1,479,159 75,747                            19.5\n 6 Guatemala         47,057    2,453                             19.2\n 7 St. Kitts & Nevis 1,071     60                                17.9\n 8 Réunion           2,048     116                               17.7\n 9 Nicaragua         9,928     588                               16.9\n10 Portugal          236,865   14,152                            16.7"
+  },
+  {
+    "objectID": "week10/index.html",
+    "href": "week10/index.html",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R"
+  },
+  {
+    "objectID": "week10/index.html#main-reference",
+    "href": "week10/index.html#main-reference",
+    "title": "Week 10: Metaprogramming",
+    "section": "",
+    "text": "17-20 Advanced R"
+  },
+  {
+    "objectID": "week10/index.html#what-you-will-learn-this-week",
+    "href": "week10/index.html#what-you-will-learn-this-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDesign\nNon-standard evaluation (changing the expression or environment)\nAbstract syntax trees\ntidyselect\nSymbols, expressions, quosures (names, calls, calls+environments)\nParsing and evaluating code\nCode safety from injection attacks"
+  },
+  {
+    "objectID": "week10/index.html#slides-for-week",
+    "href": "week10/index.html#slides-for-week",
+    "title": "Week 10: Metaprogramming",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week12/index.html",
+    "href": "week12/index.html",
+    "title": "Week 12: Package hackathon",
+    "section": "",
+    "text": "This will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation."
+  },
+  {
+    "objectID": "week3/index.html",
+    "href": "week3/index.html",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#main-reference",
+    "href": "week3/index.html#main-reference",
+    "title": "Week 3: R package development",
+    "section": "",
+    "text": "R Packages (2e)"
+  },
+  {
+    "objectID": "week3/index.html#what-you-will-learn-this-week",
+    "href": "week3/index.html#what-you-will-learn-this-week",
+    "title": "Week 3: R package development",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nPackage metadata\nPackage documentation\nPackage checks and tests\nPackage website\nContinuous integration via GitHub Actions"
+  },
+  {
+    "objectID": "week3/index.html#pre-class-activities",
+    "href": "week3/index.html#pre-class-activities",
+    "title": "Week 3: R package development",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Building R packages with devtools and usethis"
+  },
+  {
+    "objectID": "week3/index.html#slides-for-week",
+    "href": "week3/index.html#slides-for-week",
+    "title": "Week 3: R package development",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week3/index.html#assignments",
+    "href": "week3/index.html#assignments",
+    "title": "Week 3: R package development",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week5/index.html",
+    "href": "week5/index.html",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#main-reference",
+    "href": "week5/index.html#main-reference",
+    "title": "Week 5: Debugging",
+    "section": "",
+    "text": "22 Advanced R"
+  },
+  {
+    "objectID": "week5/index.html#what-you-will-learn-this-week",
+    "href": "week5/index.html#what-you-will-learn-this-week",
+    "title": "Week 5: Debugging",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nDebugging"
+  },
+  {
+    "objectID": "week5/index.html#online-resources",
+    "href": "week5/index.html#online-resources",
+    "title": "Week 5: Debugging",
+    "section": "Online resources",
+    "text": "Online resources\n\nCreating a reprex\nPosit Community\nStack Overflow"
+  },
+  {
+    "objectID": "week5/index.html#pre-class-activities",
+    "href": "week5/index.html#pre-class-activities",
+    "title": "Week 5: Debugging",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Object of type ‘closure’ is not subsettable with Jenny Bryan\nWatch Debugging in R with Jon Harmon"
+  },
+  {
+    "objectID": "week5/index.html#slides-for-week",
+    "href": "week5/index.html#slides-for-week",
+    "title": "Week 5: Debugging",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\n\nSurvey data\nExercise: MRE\nExercise: traceback\nExercise: browser\nExercise: debug\nExercise: errors\nExercise: warnings\nExercise: debug"
+  },
+  {
+    "objectID": "week5/index.html#assignments",
+    "href": "week5/index.html#assignments",
+    "title": "Week 5: Debugging",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1 is due on Tuesday 31 March."
+  },
+  {
+    "objectID": "week7/index.html",
+    "href": "week7/index.html",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "",
+    "text": "23-24. Advanced R\nEfficient R Programming"
+  },
+  {
+    "objectID": "week7/index.html#main-references",
+    "href": "week7/index.html#main-references",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "",
+    "text": "23-24. Advanced R\nEfficient R Programming"
+  },
+  {
+    "objectID": "week7/index.html#what-you-will-learn-this-week",
+    "href": "week7/index.html#what-you-will-learn-this-week",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nProfiling code\nMeasuring code performance\nVectorisation\nCaching results"
+  },
+  {
+    "objectID": "week7/index.html#pre-class-activities",
+    "href": "week7/index.html#pre-class-activities",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch Advanced R Book Club: Measuring and Improving Performance"
+  },
+  {
+    "objectID": "week7/index.html#slides-for-week",
+    "href": "week7/index.html#slides-for-week",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf\nCode used in workshop"
+  },
+  {
+    "objectID": "week7/index.html#assignments",
+    "href": "week7/index.html#assignments",
+    "title": "Week 7: Measuring and improving performance",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "week9/index.html",
+    "href": "week9/index.html",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#main-references",
+    "href": "week9/index.html#main-references",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "",
+    "text": "13 Advanced R\nvctrs"
+  },
+  {
+    "objectID": "week9/index.html#what-you-will-learn-this-week",
+    "href": "week9/index.html#what-you-will-learn-this-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "What you will learn this week",
+    "text": "What you will learn this week\n\nOverview of vctrs, a modern approach to creating new S3 vector classes in R."
+  },
+  {
+    "objectID": "week9/index.html#pre-class-activities",
+    "href": "week9/index.html#pre-class-activities",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Pre-class activities",
+    "text": "Pre-class activities\n\nWatch vctrs: Tools for making size and type consistent functions\nWatch vctrs: Creating custom vector classes with the vctrs package"
+  },
+  {
+    "objectID": "week9/index.html#slides-for-week",
+    "href": "week9/index.html#slides-for-week",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Slides for week",
+    "text": "Slides for week\n\n\nDownload pdf"
+  },
+  {
+    "objectID": "week9/index.html#assignments",
+    "href": "week9/index.html#assignments",
+    "title": "Week 9: Object-oriented programming (vctrs)",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 2 is due on Tuesday 05 May."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html",
+    "href": "assignments/A3_rubric_detailed.html",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Total: 100 marks (scaled to 30% of unit grade) Group Project: R Package Development – dealr\n\n\n\nExcellent (9–10) - Valid R package structure with appropriate DESCRIPTION, NAMESPACE, R source files, tests, documentation, and vignette infrastructure. - Package installs and loads cleanly; R CMD check or devtools::check() has no errors, no warnings, and at most minor notes. - All required user-facing functions are exported; dependencies are declared correctly and used appropriately. - Clear, coherent package design; no inappropriate global state; no user interactivity; no plotting; no game-specific logic; functions are predictable and composable.\nGood (7–8) - Package mostly well-structured but with minor metadata, namespace, or organisation problems. - Package installs and loads; minor check warnings or notes that do not affect functionality. - One or two minor export/dependency omissions, but most functions are accessible. - Generally good design with minor inconsistencies or unnecessary extras.\nSatisfactory (5–6) - Package can be loaded only with workarounds, or has significant check warnings. - Noticeable structural issues; some missing exports or dependency problems. - Design is confusing, overly coupled, or inconsistent, but core requirements can still be used.\nPoor (1–4) - Package has substantial structural problems or cannot be loaded without significant intervention. - Major missing exports or undeclared dependencies prevent normal use. - Design substantially violates the assignment scope or relies heavily on inappropriate global state or interactivity.\nNot attempted (0) - No package structure submitted.\n\n\n\nExcellent (13–15) - card is implemented as a genuine vctrs record class using vctrs::new_rcrd() or equivalent, with appropriate rank and suit fields. - card(rank, suit) correctly validates all required ranks and suits; accepts full suit names and one-letter abbreviations; is case-insensitive; handles vector inputs and recycling; gives informative errors for invalid inputs. - Accessors is_card(), card_rank(), and card_suit() work for length-0, length-1, and longer card vectors; return documented, user-friendly ranks and suits. - format.card() is correct, vectorised, stable, and readable. - Card vectors preserve class and fields under subsetting and work correctly with concatenation, especially vctrs::vec_c(). - Equality requires both rank and suit to match and works correctly for vectors, including empty and vectorised cases. - Sorting follows Clubs &lt; Diamonds &lt; Hearts &lt; Spades, then A &lt; 2 &lt; … &lt; 10 &lt; J &lt; Q &lt; K, using an appropriate vctrs comparison proxy or equivalent.\nGood (10–12) - Uses vctrs substantially correctly but with minor implementation weaknesses. - Mostly correct validation and input handling, with minor edge-case issues. - Accessors mostly work but have inconsistencies in case, ordering, or exposed internal encodings. - Simple subsetting works, but concatenation or class preservation is unreliable in edge cases. - Equality works for simple cases but has edge-case or vectorisation issues. - Sorting mostly works but has ordering mistakes or limited-case behaviour.\nSatisfactory (7–9) - Uses vctrs only partially, or the object is not a well-designed record class. - Basic valid examples work, but several required input forms or validation cases fail. - Accessors missing or substantially incorrect for some cases. - Subsetting or concatenation have notable issues.\nPoor (1–6) - No meaningful vctrs class implementation, or implementation is substantially broken. - Constructor missing or does not return valid card objects. - Formatting or sorting missing or substantially incorrect.\nNot attempted (0) - No meaningful card class implementation.\n\n\n\nExcellent (9–10) - deck(cards) constructs a valid S3 object from a card vector; validates input; preserves order; has a sensible internal structure. - hand(cards, player) constructs a valid S3 object; validates card input; stores player metadata appropriately; preserves order. - deal() returns a well-structured S3 object containing a list of hand objects, a remaining deck, and useful metadata (players, number of cards, dealing style). - Accessors cards(), hands(), and remaining_deck() are implemented cleanly; cards() is an S3 generic with methods for hand and deck; unsupported classes produce informative errors. - Decks, hands, and deals consistently preserve valid internal card objects and card order across operations.\nGood (7–8) - Most S3 objects well-constructed; minor validation, metadata, or structure issues in one class. - Accessors work correctly for most cases but generic/method design has minor weaknesses. - Object invariants mostly preserved, with occasional edge-case violations.\nSatisfactory (5–6) - Basic deck and hand objects work, but deal structure is incomplete. - Accessors work for simple cases but are ad hoc or incomplete. - Object invariants not consistently preserved.\nPoor (1–4) - One or more required S3 classes missing or substantially incorrect. - Accessors missing or substantially incorrect.\nNot attempted (0) - No meaningful S3 class implementation.\n\n\n\nExcellent (9–10) - standard_deck(n_decks = 1L) correctly creates 52 cards per deck, no jokers, correct canonical order, supports multiple decks, validates n_decks, and returns a deck object. - shuffle_deck(deck) returns a shuffled deck preserving all cards and count, and does not mutate the input. - cut_deck(deck, n) correctly moves the first n cards to the bottom; preserves all cards and class; handles reasonable boundary cases. - deal(deck, n, players, by = c(\"round\", \"batch\")) correctly deals n cards to each player from the top of the deck; supports both round and batch dealing exactly as specified; returns correct hands and remaining deck; preserves card order within hands. - deal() does not modify the input deck; validates players and n; errors informatively when there are insufficient cards or invalid arguments.\nGood (7–8) - Mostly correct, with minor problems in one dealing mode, validation, or edge case. - standard_deck(), shuffle_deck(), or cut_deck() mostly correct with minor issues.\nSatisfactory (5–6) - Basic dealing works but one mode is wrong or output structure is incomplete. - Some validation present, but important invalid cases or error messages are missed.\nPoor (1–4) - Major dealing functions missing or substantially incorrect. - No meaningful validation; mutates input inappropriately.\nNot attempted (0) - No meaningful implementation.\n\n\n\nExcellent (13–15) - Correctly uses tidy evaluation (e.g., rlang::enquos() and rlang::eval_tidy() or equivalent); expressions are evaluated in a data mask containing at least rank and suit; does not use dplyr in the implementation. - Supports unquoted expressions such as suit == \"Hearts\", rank %in% c(\"A\", \"J\", \"Q\", \"K\"), and combined rank/suit filters; multiple expressions combined using logical AND; expression results validated as logical vectors of appropriate length. - Filtering works for card, hand, and deck inputs; preserves input type; preserves relevant metadata such as player name; preserves original card order. - Invalid filtering expressions produce informative errors; no-match cases return an empty object of the appropriate type. - Implementation avoids unnecessary duplication across methods and integrates cleanly with the card/deck/hand abstractions.\nGood (10–12) - Uses tidy evaluation mostly correctly but with minor limitations or unnecessary complexity. - Core expression filtering works, but some multi-expression or validation cases fail. - Mostly preserves type/order but has minor problems for one object type or metadata. - Empty results work, but validation or error messages have weaknesses.\nSatisfactory (7–9) - Attempts tidy evaluation but implementation is fragile or only partly non-standard-evaluation based. - Only simple filtering expressions work reliably. - Filtering works but returns the wrong type or loses important metadata.\nPoor (1–6) - No meaningful tidy evaluation, or simply delegates to dplyr contrary to instructions. - Filtering works only for very narrow hard-coded cases, or required methods are missing.\nNot attempted (0) - No meaningful filter_cards() implementation.\n\n\n\nExcellent (9–10) - as.data.frame() methods for card, deck, and hand all return data frames with appropriate columns, correct row counts, and stable behaviour for empty objects. - hand conversion preserves card order and includes useful player metadata. - All required print methods for card, deck, hand, and deal are present, readable, concise, and do not expose confusing internals. - Display and conversion methods handle empty objects, multiple decks, and simple edge cases without error.\nGood (7–8) - as.data.frame() methods mostly correct; minor column naming, ordering, or edge-case issues in one method. - Print methods mostly present and usable but uneven, verbose, or missing one minor feature.\nSatisfactory (5–6) - Some conversion methods work but lose order, metadata, or have inconsistent columns. - Some print methods present but incomplete or not user-friendly.\nPoor (1–4) - Most conversion or print methods missing or broken.\nNot attempted (0) - No meaningful data frame conversion or printing methods.\n\n\n\nExcellent (9–10) - Comprehensive test coverage including all required test cases: invalid ranks/suits error; standard_deck(n_decks = 2L) has 104 cards; shuffle_deck() preserves the set of cards and count; cut_deck() preserves all cards and changes order as documented; deal() does not modify the input deck; correct number of hands and cards per hand; remaining deck has the correct card count; round and batch dealing produce the documented positions; dealing too many cards produces an informative error; filter_cards() works with unquoted expressions and preserves input type. - Tests cover class preservation, subsetting, concatenation, equality, sorting, and accessors. - Good edge-case coverage (empty selections, invalid n_decks, invalid n, invalid players, invalid card inputs, unsupported object types). - Tests are clear, deterministic, well-organised, and integrated into normal package testing.\nGood (7–8) - Most required test cases covered; some class-behaviour tests present; some edge cases tested. - Tests mostly clear and runnable with minor organisation or coverage gaps.\nSatisfactory (5–6) - Some required tests present but substantial gaps; limited class-behaviour or edge-case testing. - Tests somewhat brittle or poorly organised.\nPoor (1–4) - Very limited testing; major logic untested; tests may not run reliably.\nNot attempted (0) - No meaningful tests.\n\n\n\nExcellent (9–10) - All user-facing functions documented with clear descriptions, parameters, return values, and runnable examples. - Examples are accurate, runnable, and demonstrate typical usage across the package. - Vignette clearly explains the package workflow: card creation, deck creation, shuffling/cutting, dealing, and filtering. - Documentation is consistent with implemented behaviour and assignment terminology, with clear prose and formatting.\nGood (7–8) - Most functions documented with minor omissions or weak examples. - Vignette present and useful but misses some important workflow elements. - Documentation mostly consistent with minor inaccuracies.\nSatisfactory (5–6) - Some documentation present but several exported functions are missing important details. - Vignette present but incomplete, superficial, or difficult to follow.\nPoor (1–4) - Minimal documentation only; examples absent, broken, or misleading. - No meaningful vignette.\nNot attempted (0) - Little or no documentation.\n\n\n\nExcellent (9–10) - Repository shows regular, meaningful commits throughout the assignment period, with informative messages and appropriately scoped changes. - All team members have at least six substantive commits across multiple days reflecting meaningful contributions to code, documentation, or tests. - AI_statement.md is present, has a section for each student, and appropriately describes AI use including prompts, or clearly states that no AI was used. - Repository is organised, avoids committing generated clutter or irrelevant files, and shows evidence of sensible collaboration practices.\nGood (7–8) - Good commit history with minor issues (vague messages, occasional large commits). - All or most team members contributed meaningfully, but one member’s contribution is slightly marginal or concentrated. - AI statement present but incomplete, vague, or missing one student’s section.\nSatisfactory (5–6) - Development is uneven, too concentrated near the deadline, or commit messages are often vague. - Contribution is substantially uneven, with limited evidence from one or more members. - AI statement does not adequately describe how AI was used.\nPoor (1–4) - Very sparse or mostly last-minute commits. - Little or no evidence of genuine group contribution. - AI statement missing or substantially incomplete.\nNot attempted (0) - No meaningful commit history or AI statement.\n(Individual commit-based penalties applied separately as per assignment instructions.)"
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#package-structure-installation-and-overall-design-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#package-structure-installation-and-overall-design-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - Valid R package structure with appropriate DESCRIPTION, NAMESPACE, R source files, tests, documentation, and vignette infrastructure. - Package installs and loads cleanly; R CMD check or devtools::check() has no errors, no warnings, and at most minor notes. - All required user-facing functions are exported; dependencies are declared correctly and used appropriately. - Clear, coherent package design; no inappropriate global state; no user interactivity; no plotting; no game-specific logic; functions are predictable and composable.\nGood (7–8) - Package mostly well-structured but with minor metadata, namespace, or organisation problems. - Package installs and loads; minor check warnings or notes that do not affect functionality. - One or two minor export/dependency omissions, but most functions are accessible. - Generally good design with minor inconsistencies or unnecessary extras.\nSatisfactory (5–6) - Package can be loaded only with workarounds, or has significant check warnings. - Noticeable structural issues; some missing exports or dependency problems. - Design is confusing, overly coupled, or inconsistent, but core requirements can still be used.\nPoor (1–4) - Package has substantial structural problems or cannot be loaded without significant intervention. - Major missing exports or undeclared dependencies prevent normal use. - Design substantially violates the assignment scope or relies heavily on inappropriate global state or interactivity.\nNot attempted (0) - No package structure submitted."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#card-vctrs-record-class-15-marks",
+    "href": "assignments/A3_rubric_detailed.html#card-vctrs-record-class-15-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (13–15) - card is implemented as a genuine vctrs record class using vctrs::new_rcrd() or equivalent, with appropriate rank and suit fields. - card(rank, suit) correctly validates all required ranks and suits; accepts full suit names and one-letter abbreviations; is case-insensitive; handles vector inputs and recycling; gives informative errors for invalid inputs. - Accessors is_card(), card_rank(), and card_suit() work for length-0, length-1, and longer card vectors; return documented, user-friendly ranks and suits. - format.card() is correct, vectorised, stable, and readable. - Card vectors preserve class and fields under subsetting and work correctly with concatenation, especially vctrs::vec_c(). - Equality requires both rank and suit to match and works correctly for vectors, including empty and vectorised cases. - Sorting follows Clubs &lt; Diamonds &lt; Hearts &lt; Spades, then A &lt; 2 &lt; … &lt; 10 &lt; J &lt; Q &lt; K, using an appropriate vctrs comparison proxy or equivalent.\nGood (10–12) - Uses vctrs substantially correctly but with minor implementation weaknesses. - Mostly correct validation and input handling, with minor edge-case issues. - Accessors mostly work but have inconsistencies in case, ordering, or exposed internal encodings. - Simple subsetting works, but concatenation or class preservation is unreliable in edge cases. - Equality works for simple cases but has edge-case or vectorisation issues. - Sorting mostly works but has ordering mistakes or limited-case behaviour.\nSatisfactory (7–9) - Uses vctrs only partially, or the object is not a well-designed record class. - Basic valid examples work, but several required input forms or validation cases fail. - Accessors missing or substantially incorrect for some cases. - Subsetting or concatenation have notable issues.\nPoor (1–6) - No meaningful vctrs class implementation, or implementation is substantially broken. - Constructor missing or does not return valid card objects. - Formatting or sorting missing or substantially incorrect.\nNot attempted (0) - No meaningful card class implementation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#s3-classes-for-deck-hand-and-deal-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#s3-classes-for-deck-hand-and-deal-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - deck(cards) constructs a valid S3 object from a card vector; validates input; preserves order; has a sensible internal structure. - hand(cards, player) constructs a valid S3 object; validates card input; stores player metadata appropriately; preserves order. - deal() returns a well-structured S3 object containing a list of hand objects, a remaining deck, and useful metadata (players, number of cards, dealing style). - Accessors cards(), hands(), and remaining_deck() are implemented cleanly; cards() is an S3 generic with methods for hand and deck; unsupported classes produce informative errors. - Decks, hands, and deals consistently preserve valid internal card objects and card order across operations.\nGood (7–8) - Most S3 objects well-constructed; minor validation, metadata, or structure issues in one class. - Accessors work correctly for most cases but generic/method design has minor weaknesses. - Object invariants mostly preserved, with occasional edge-case violations.\nSatisfactory (5–6) - Basic deck and hand objects work, but deal structure is incomplete. - Accessors work for simple cases but are ad hoc or incomplete. - Object invariants not consistently preserved.\nPoor (1–4) - One or more required S3 classes missing or substantially incorrect. - Accessors missing or substantially incorrect.\nNot attempted (0) - No meaningful S3 class implementation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#deck-manipulation-and-dealing-functions-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#deck-manipulation-and-dealing-functions-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - standard_deck(n_decks = 1L) correctly creates 52 cards per deck, no jokers, correct canonical order, supports multiple decks, validates n_decks, and returns a deck object. - shuffle_deck(deck) returns a shuffled deck preserving all cards and count, and does not mutate the input. - cut_deck(deck, n) correctly moves the first n cards to the bottom; preserves all cards and class; handles reasonable boundary cases. - deal(deck, n, players, by = c(\"round\", \"batch\")) correctly deals n cards to each player from the top of the deck; supports both round and batch dealing exactly as specified; returns correct hands and remaining deck; preserves card order within hands. - deal() does not modify the input deck; validates players and n; errors informatively when there are insufficient cards or invalid arguments.\nGood (7–8) - Mostly correct, with minor problems in one dealing mode, validation, or edge case. - standard_deck(), shuffle_deck(), or cut_deck() mostly correct with minor issues.\nSatisfactory (5–6) - Basic dealing works but one mode is wrong or output structure is incomplete. - Some validation present, but important invalid cases or error messages are missed.\nPoor (1–4) - Major dealing functions missing or substantially incorrect. - No meaningful validation; mutates input inappropriately.\nNot attempted (0) - No meaningful implementation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#filter_cards-and-tidy-evaluation-15-marks",
+    "href": "assignments/A3_rubric_detailed.html#filter_cards-and-tidy-evaluation-15-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (13–15) - Correctly uses tidy evaluation (e.g., rlang::enquos() and rlang::eval_tidy() or equivalent); expressions are evaluated in a data mask containing at least rank and suit; does not use dplyr in the implementation. - Supports unquoted expressions such as suit == \"Hearts\", rank %in% c(\"A\", \"J\", \"Q\", \"K\"), and combined rank/suit filters; multiple expressions combined using logical AND; expression results validated as logical vectors of appropriate length. - Filtering works for card, hand, and deck inputs; preserves input type; preserves relevant metadata such as player name; preserves original card order. - Invalid filtering expressions produce informative errors; no-match cases return an empty object of the appropriate type. - Implementation avoids unnecessary duplication across methods and integrates cleanly with the card/deck/hand abstractions.\nGood (10–12) - Uses tidy evaluation mostly correctly but with minor limitations or unnecessary complexity. - Core expression filtering works, but some multi-expression or validation cases fail. - Mostly preserves type/order but has minor problems for one object type or metadata. - Empty results work, but validation or error messages have weaknesses.\nSatisfactory (7–9) - Attempts tidy evaluation but implementation is fragile or only partly non-standard-evaluation based. - Only simple filtering expressions work reliably. - Filtering works but returns the wrong type or loses important metadata.\nPoor (1–6) - No meaningful tidy evaluation, or simply delegates to dplyr contrary to instructions. - Filtering works only for very narrow hard-coded cases, or required methods are missing.\nNot attempted (0) - No meaningful filter_cards() implementation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#data-frame-conversion-and-printing-methods-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#data-frame-conversion-and-printing-methods-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - as.data.frame() methods for card, deck, and hand all return data frames with appropriate columns, correct row counts, and stable behaviour for empty objects. - hand conversion preserves card order and includes useful player metadata. - All required print methods for card, deck, hand, and deal are present, readable, concise, and do not expose confusing internals. - Display and conversion methods handle empty objects, multiple decks, and simple edge cases without error.\nGood (7–8) - as.data.frame() methods mostly correct; minor column naming, ordering, or edge-case issues in one method. - Print methods mostly present and usable but uneven, verbose, or missing one minor feature.\nSatisfactory (5–6) - Some conversion methods work but lose order, metadata, or have inconsistent columns. - Some print methods present but incomplete or not user-friendly.\nPoor (1–4) - Most conversion or print methods missing or broken.\nNot attempted (0) - No meaningful data frame conversion or printing methods."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#unit-tests-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#unit-tests-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - Comprehensive test coverage including all required test cases: invalid ranks/suits error; standard_deck(n_decks = 2L) has 104 cards; shuffle_deck() preserves the set of cards and count; cut_deck() preserves all cards and changes order as documented; deal() does not modify the input deck; correct number of hands and cards per hand; remaining deck has the correct card count; round and batch dealing produce the documented positions; dealing too many cards produces an informative error; filter_cards() works with unquoted expressions and preserves input type. - Tests cover class preservation, subsetting, concatenation, equality, sorting, and accessors. - Good edge-case coverage (empty selections, invalid n_decks, invalid n, invalid players, invalid card inputs, unsupported object types). - Tests are clear, deterministic, well-organised, and integrated into normal package testing.\nGood (7–8) - Most required test cases covered; some class-behaviour tests present; some edge cases tested. - Tests mostly clear and runnable with minor organisation or coverage gaps.\nSatisfactory (5–6) - Some required tests present but substantial gaps; limited class-behaviour or edge-case testing. - Tests somewhat brittle or poorly organised.\nPoor (1–4) - Very limited testing; major logic untested; tests may not run reliably.\nNot attempted (0) - No meaningful tests."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#documentation-and-vignette-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#documentation-and-vignette-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - All user-facing functions documented with clear descriptions, parameters, return values, and runnable examples. - Examples are accurate, runnable, and demonstrate typical usage across the package. - Vignette clearly explains the package workflow: card creation, deck creation, shuffling/cutting, dealing, and filtering. - Documentation is consistent with implemented behaviour and assignment terminology, with clear prose and formatting.\nGood (7–8) - Most functions documented with minor omissions or weak examples. - Vignette present and useful but misses some important workflow elements. - Documentation mostly consistent with minor inaccuracies.\nSatisfactory (5–6) - Some documentation present but several exported functions are missing important details. - Vignette present but incomplete, superficial, or difficult to follow.\nPoor (1–4) - Minimal documentation only; examples absent, broken, or misleading. - No meaningful vignette.\nNot attempted (0) - Little or no documentation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#github-workflow-commits-and-ai-statement-10-marks",
+    "href": "assignments/A3_rubric_detailed.html#github-workflow-commits-and-ai-statement-10-marks",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "",
+    "text": "Excellent (9–10) - Repository shows regular, meaningful commits throughout the assignment period, with informative messages and appropriately scoped changes. - All team members have at least six substantive commits across multiple days reflecting meaningful contributions to code, documentation, or tests. - AI_statement.md is present, has a section for each student, and appropriately describes AI use including prompts, or clearly states that no AI was used. - Repository is organised, avoids committing generated clutter or irrelevant files, and shows evidence of sensible collaboration practices.\nGood (7–8) - Good commit history with minor issues (vague messages, occasional large commits). - All or most team members contributed meaningfully, but one member’s contribution is slightly marginal or concentrated. - AI statement present but incomplete, vague, or missing one student’s section.\nSatisfactory (5–6) - Development is uneven, too concentrated near the deadline, or commit messages are often vague. - Contribution is substantially uneven, with limited evidence from one or more members. - AI statement does not adequately describe how AI was used.\nPoor (1–4) - Very sparse or mostly last-minute commits. - Little or no evidence of genuine group contribution. - AI statement missing or substantially incomplete.\nNot attempted (0) - No meaningful commit history or AI statement.\n(Individual commit-based penalties applied separately as per assignment instructions.)"
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#suit-and-rank-case",
+    "href": "assignments/A3_rubric_detailed.html#suit-and-rank-case",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "Suit and rank case",
+    "text": "Suit and rank case\nThe constructor must be case-insensitive. Internally, students may store suits as lowercase, title case, or codes, provided user-facing accessors, formatting, sorting, and filtering behave consistently with the documentation."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#empty-card-vectors",
+    "href": "assignments/A3_rubric_detailed.html#empty-card-vectors",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "Empty card vectors",
+    "text": "Empty card vectors\nStrong solutions should handle empty card vectors gracefully, especially through filtering and data-frame conversion. Award robustness credit where appropriate, but do not over-penalise if all required examples work and only obscure empty cases fail."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#deal-and-mutation",
+    "href": "assignments/A3_rubric_detailed.html#deal-and-mutation",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "deal() and mutation",
+    "text": "deal() and mutation\nThe input deck should not be modified in place. Because ordinary R objects are copy-on-modify, most solutions will naturally satisfy this."
+  },
+  {
+    "objectID": "assignments/A3_rubric_detailed.html#individual-contribution-deductions",
+    "href": "assignments/A3_rubric_detailed.html#individual-contribution-deductions",
+    "title": "Assignment 3 Marking Rubric",
+    "section": "Individual contribution deductions",
+    "text": "Individual contribution deductions\nIf a team member has not contributed adequately, apply a deduction of up to 75% of that student’s total mark, as specified in the assignment instructions. Consider the number, timing, and substance of commits, not just the raw count. Minor typo/formatting commits should not count as substantive contributions."
   }
 ]

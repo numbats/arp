@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 3 (30%) – ETC4500/ETC5450 Advanced R Programming</title>
+<title>a3_rubric_detailed – ETC4500/ETC5450 Advanced R Programming</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -206,185 +206,130 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#task" id="toc-task" class="nav-link active" data-scroll-target="#task">Task</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#marking-rubric" id="toc-marking-rubric" class="nav-link" data-scroll-target="#marking-rubric">Marking rubric</a></li>
+  <li><a href="#assignment-3-marking-rubric" id="toc-assignment-3-marking-rubric" class="nav-link active" data-scroll-target="#assignment-3-marking-rubric">Assignment 3 Marking Rubric</a>
+  <ul class="collapse">
+  <li><a href="#package-structure-installation-and-overall-design-10-marks" id="toc-package-structure-installation-and-overall-design-10-marks" class="nav-link" data-scroll-target="#package-structure-installation-and-overall-design-10-marks">1. Package Structure, Installation, and Overall Design (10 marks)</a></li>
+  <li><a href="#card-vctrs-record-class-15-marks" id="toc-card-vctrs-record-class-15-marks" class="nav-link" data-scroll-target="#card-vctrs-record-class-15-marks">2. <code>card</code> vctrs Record Class (15 marks)</a></li>
+  <li><a href="#s3-classes-for-deck-hand-and-deal-10-marks" id="toc-s3-classes-for-deck-hand-and-deal-10-marks" class="nav-link" data-scroll-target="#s3-classes-for-deck-hand-and-deal-10-marks">3. S3 Classes for <code>deck</code>, <code>hand</code>, and <code>deal</code> (10 marks)</a></li>
+  <li><a href="#deck-manipulation-and-dealing-functions-10-marks" id="toc-deck-manipulation-and-dealing-functions-10-marks" class="nav-link" data-scroll-target="#deck-manipulation-and-dealing-functions-10-marks">4. Deck Manipulation and Dealing Functions (10 marks)</a></li>
+  <li><a href="#filter_cards-and-tidy-evaluation-15-marks" id="toc-filter_cards-and-tidy-evaluation-15-marks" class="nav-link" data-scroll-target="#filter_cards-and-tidy-evaluation-15-marks">5. <code>filter_cards()</code> and Tidy Evaluation (15 marks)</a></li>
+  <li><a href="#data-frame-conversion-and-printing-methods-10-marks" id="toc-data-frame-conversion-and-printing-methods-10-marks" class="nav-link" data-scroll-target="#data-frame-conversion-and-printing-methods-10-marks">6. Data Frame Conversion and Printing Methods (10 marks)</a></li>
+  <li><a href="#unit-tests-10-marks" id="toc-unit-tests-10-marks" class="nav-link" data-scroll-target="#unit-tests-10-marks">7. Unit Tests (10 marks)</a></li>
+  <li><a href="#documentation-and-vignette-10-marks" id="toc-documentation-and-vignette-10-marks" class="nav-link" data-scroll-target="#documentation-and-vignette-10-marks">8. Documentation and Vignette (10 marks)</a></li>
+  <li><a href="#github-workflow-commits-and-ai-statement-10-marks" id="toc-github-workflow-commits-and-ai-statement-10-marks" class="nav-link" data-scroll-target="#github-workflow-commits-and-ai-statement-10-marks">9. GitHub Workflow, Commits, and AI Statement (10 marks)</a></li>
+  </ul></li>
+  <li><a href="#additional-marker-notes" id="toc-additional-marker-notes" class="nav-link" data-scroll-target="#additional-marker-notes">Additional Marker Notes</a>
+  <ul class="collapse">
+  <li><a href="#suit-and-rank-case" id="toc-suit-and-rank-case" class="nav-link" data-scroll-target="#suit-and-rank-case">Suit and rank case</a></li>
+  <li><a href="#empty-card-vectors" id="toc-empty-card-vectors" class="nav-link" data-scroll-target="#empty-card-vectors">Empty card vectors</a></li>
+  <li><a href="#deal-and-mutation" id="toc-deal-and-mutation" class="nav-link" data-scroll-target="#deal-and-mutation"><code>deal()</code> and mutation</a></li>
+  <li><a href="#individual-contribution-deductions" id="toc-individual-contribution-deductions" class="nav-link" data-scroll-target="#individual-contribution-deductions">Individual contribution deductions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Assignment 3 (30%)</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>This is a group assignment. You will be assigned to a group of 3 students. You must work together to complete the assignment, and submit a single solution for the group.</p>
-<section id="task" class="level2">
-<h2 class="anchored" data-anchor-id="task">Task</h2>
-<p>You need to write a new R package <code>dealr</code> to implement card decks. The package should not implement any specific card game, but should provide the tools for creating and manipulating card decks that could be used in a variety of card games.</p>
-<p>The package should implement a custom vctrs record class for <code>card</code> objects. The package should also include S3 classes for <code>deck</code>, <code>hand</code>, and <code>deal</code> objects.</p>
-<p>The package must export the following user-facing functions.</p>
-<ul>
-<li><code>card(rank, suit)</code>: A function to create a <code>card</code> vector with specified ranks and suits. The function should validate the inputs to ensure that they represent valid ranks and suits. Valid ranks are “A”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “10”, “J”, “Q”, and “K”. Valid suits are “Spades”, “Diamonds”, “Clubs”, and “Hearts”, or their first letters. Inputs should not be case-sensitive. The function should return a <code>card</code> object that contains the specified cards.</li>
-<li><code>is_card(x)</code>: A function to check if an object is a card vector.</li>
-<li><code>card_rank(card)</code>: A function to extract the rank from a card vector.</li>
-<li><code>card_suit(card)</code>: A function to extract the suit from a card vector.</li>
-<li><code>format.card(x, ...)</code>: A method to format a card vector for printing.</li>
-<li><code>deck(cards)</code>: A function to create a <code>deck</code> object from a vector of cards.</li>
-<li><code>standard_deck(n_decks = 1L)</code>: A function to create one or more standard decks of 52 playing cards. There is no need to handle jokers or other special cards. The function should return a <code>deck</code> object containing all cards in the following order: Clubs (Ace to King), Diamonds (Ace to King), Hearts (Ace to King), Spades (Ace to King). (Yes, I know many card manufacturers use a different order.) The <code>n_decks</code> argument should allow for creating multiple decks (e.g., <code>standard_deck(2)</code> would create a deck with 104 cards).</li>
-<li><code>hand(cards, player)</code>: A function to create a <code>hand</code> object from a vector of cards.</li>
-<li><code>cards(x)</code>: A function to extract the cards from a <code>hand</code> or <code>deck</code> object.</li>
-<li><code>shuffle_deck(deck)</code>: A function to return the shuffled deck.</li>
-<li><code>cut_deck(deck, n)</code>: A function to cut the deck at a specified position <code>n</code>, moving the first <code>n</code> cards to the bottom.</li>
-<li><code>deal(deck, n, players, by = c("round", "batch"))</code>: A function to deal <code>n</code> cards to each player. e.g., <code>deal(deck, 5, c("Muhammad", "Fan"))</code> would deal two hands, each of five cards. The <code>by</code> argument determines whether to deal cards round-robin (one card at a time to each player) or in batches (<code>n</code> cards to player 1, then <code>n</code> cards to player 2, etc.). The function should return a <code>deal</code> object containing a list of the hands and the remaining deck, along with any metadata (e.g., the players’ names, the number of cards dealt, dealing style, etc.). <code>deal()</code> is a deterministic function where cards are dealt from the top of the deck.</li>
-<li><code>hands(deal)</code>: A function to extract the hands from a <code>deal</code> object.</li>
-<li><code>remaining_deck(deal)</code>: A function to extract the remaining deck from a <code>deal</code> object.</li>
-<li><code>filter_cards()</code> methods for <code>card</code>, <code>hand</code>, and <code>deck</code> objects. These functions should allow users to filter cards based on rank, suit, or both. For example, <code>filter_cards(hand, suit == "Hearts")</code> would return a new <code>hand</code> object containing only the cards of the specified suit, while <code>filter_cards(deck, rank %in% c("A","J","Q","K"), suit %in% c("Spades","Clubs"))</code> would return a <code>deck</code> containing all black court cards from the input deck. Original ordering of the input cards should be preserved in the output. Multiple expressions are combined using logical AND.</li>
-</ul>
-<p>You may add additional internal functions as needed to support the implementation of the user-facing functions.</p>
-<p>Additional requirements:</p>
-<ul>
-<li><code>card</code> vectors must support subsetting, concatenation, equality testing, and sorting. When comparing cards for equality, both rank and suit must match. When sorting cards, order first by suit (Clubs &lt; Diamonds &lt; Hearts &lt; Spades), then by rank (A &lt; 2 &lt; 3 &lt; … &lt; 10 &lt; J &lt; Q &lt; K).</li>
-<li><code>as.data.frame()</code> methods should be implemented to convert <code>card</code>, <code>hand</code>, and <code>deck</code> objects to data frames with appropriate columns.</li>
-<li><code>print()</code> methods should be implemented for <code>card</code>, <code>hand</code>, <code>deck</code> and <code>deal</code> objects to display them in a user-friendly way.</li>
-<li><code>cards()</code> should be implemented as an S3 generic function with methods for <code>hand</code> and <code>deck</code> objects.</li>
-<li><code>filter_cards()</code> should be implemented using tidy evaluation to allow for flexible filtering criteria. The function should validate the filtering criteria and handle cases where no cards match the criteria appropriately (e.g., by returning an empty <code>hand</code> object if the input is a <code>hand</code>). You may use <code>rlang</code> functions, but you should not use <code>dplyr</code> in the implementation of <code>filter_cards()</code>. Unit tests should cover various filtering scenarios, including edge cases where no cards match the criteria.</li>
-<li>The order of cards must always be preserved unless explicitly modified (e.g., by <code>shuffle_deck()</code> or <code>cut_deck()</code>)</li>
-<li>All user-facing functions should be fully documented using roxygen2, with examples that can be run in the documentation. The package should also include unit tests for all exported functions using <code>testthat</code>. The unit tests should cover a variety of cases, including edge cases and invalid inputs.</li>
-<li>There should be a vignette describing how to use the package.</li>
-<li>The package should <em>not</em> implement game-specific logic such as poker-hand ranking, blackjack scoring, trick-taking rules, or winner determination.</li>
-<li>The package should <em>not</em> involve any user interactivity; all functions should operate on their inputs and return outputs without requiring user input during execution.</li>
-<li>The package should <em>not</em> include any plotting or graphical functions; it should focus solely on the data structures and operations for card decks.</li>
-</ul>
-<p>Units tests must include at least:</p>
-<ul>
-<li>invalid ranks and suits error;</li>
-<li><code>standard_deck(n_decks = 2L)</code> has 104 cards;</li>
-<li><code>shuffle_deck()</code> preserves the set of cards and the number of cards;</li>
-<li><code>cut_deck()</code> preserves all cards and changes the order as documented;</li>
-<li><code>deal()</code> does not modify the input deck;</li>
-<li><code>deal()</code> returns the correct number of hands;</li>
-<li>each hand has the requested number of cards;</li>
-<li>the remaining deck has the correct number of cards;</li>
-<li>round and batch dealing produce the documented positions;</li>
-<li>dealing too many cards produces an informative error;</li>
-<li><code>filter_cards()</code> works with unquoted expressions and preserves the input type</li>
-</ul>
-<p>Marks will be awarded for clean and efficient code, and for good design.</p>
-</section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ol type="1">
-<li><p>The package will be developed on GitHub Classroom. Each team will be given a private repository for the assignment. The state of the repository at the time of the deadline will be counted as your submission. Commits after the deadline will be ignored.</p></li>
-<li><p>Marks will be allocated for regular commits throughout the assignment period. Commits should have meaningful messages that reflect the changes made. Do not combine multiple changes into a single commit. Marks will be deducted for poor commit practices (e.g., large infrequent commits with vague messages).</p></li>
-<li><p>Each team member must contribute at least six substantive commits across multiple days. A substantive commit is one that adds or modifies meaningful code, documentation, or tests. Minor commits (e.g., fixing typos, formatting) will not count towards this requirement. If a team member has not contributed adequately, that team member will receive a mark deduction of up to 75% of the total mark awarded.</p></li>
-<li><p>Generative AI tools may be used in guided ways in this assessment, but you must explain how it was used, including prompts where relevant. Each assignment must include an AI statement named ‘AI_statement.md’ with a section for each student in the team. Evidence of AI use that is not mentioned in the statement will result in penalties being applied. Any work submitted for a mark must:</p>
-<ol type="a">
-<li>represent a sincere demonstration of your human efforts, skills and subject knowledge that you will be accountable for;</li>
-<li>adhere to the guidelines for AI use set for the assessment task;</li>
-<li>reflect the University’s commitment to academic integrity and ethical behaviour.</li>
-</ol>
-<p>Inappropriate AI use and/or AI use without acknowledgement will be considered a breach of academic integrity. See <a href="https://www.monash.edu/student-academic-success/build-digital-capabilities/create-online/acknowledging-the-use-of-generative-artificial-intelligence">Learn HQ</a> for more information.</p></li>
-</ol>
-</section>
-<section id="marking-rubric" class="level2">
-<h2 class="anchored" data-anchor-id="marking-rubric">Marking rubric</h2>
-<p><strong>Total: 100 marks (scaled to 30%)</strong></p>
-<section id="is-your-package-well-structured-and-cleanly-built-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="is-your-package-well-structured-and-cleanly-built-10-marks">1. Is your package well-structured and cleanly built? (10 marks)</h4>
-<ul>
-<li>package installs and passes <code>R CMD check</code> without errors or warnings</li>
-<li>correct package structure (<code>DESCRIPTION</code>, <code>NAMESPACE</code>, R source files, tests, vignette)</li>
-<li>all required functions exported with dependencies declared correctly</li>
-<li>clear, general-purpose design with no global state, interactivity, plotting, or game-specific logic</li>
-</ul>
-</section>
-<section id="does-your-card-class-work-correctly-15-marks" class="level4">
-<h4 class="anchored" data-anchor-id="does-your-card-class-work-correctly-15-marks">2. Does your <code>card</code> class work correctly? (15 marks)</h4>
-<ul>
-<li><code>card</code> implemented as a genuine vctrs record class with rank and suit fields</li>
-<li>constructor validates ranks and suits, handles case-insensitive input and one-letter suit abbreviations, supports vectorisation and recycling</li>
-<li>accessors (<code>is_card()</code>, <code>card_rank()</code>, <code>card_suit()</code>) and <code>format.card()</code> work correctly</li>
-<li>card vectors support subsetting, concatenation, equality testing, and sorting in the required order</li>
-</ul>
-</section>
-<section id="do-your-deck-hand-and-deal-classes-work-correctly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="do-your-deck-hand-and-deal-classes-work-correctly-10-marks">3. Do your <code>deck</code>, <code>hand</code>, and <code>deal</code> classes work correctly? (10 marks)</h4>
-<ul>
-<li><code>deck()</code> and <code>hand()</code> construct valid S3 objects with appropriate validation and metadata</li>
-<li><code>deal()</code> returns a well-structured object with hands, remaining deck, and metadata</li>
-<li>accessors <code>cards()</code>, <code>hands()</code>, and <code>remaining_deck()</code> work correctly</li>
-<li>card order is preserved throughout</li>
-</ul>
-</section>
-<section id="do-your-deck-manipulation-and-dealing-functions-work-correctly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="do-your-deck-manipulation-and-dealing-functions-work-correctly-10-marks">4. Do your deck manipulation and dealing functions work correctly? (10 marks)</h4>
-<ul>
-<li><code>standard_deck()</code> produces the correct cards in the required order, including multiple decks</li>
-<li><code>shuffle_deck()</code> and <code>cut_deck()</code> work correctly and do not mutate inputs</li>
-<li><code>deal()</code> supports both round and batch dealing, does not modify the input deck, and errors informatively on invalid inputs or insufficient cards</li>
-</ul>
-</section>
-<section id="does-your-filter_cards-function-work-correctly-15-marks" class="level4">
-<h4 class="anchored" data-anchor-id="does-your-filter_cards-function-work-correctly-15-marks">5. Does your <code>filter_cards()</code> function work correctly? (15 marks)</h4>
-<ul>
-<li>uses tidy evaluation (e.g., <code>rlang</code>) without delegating to <code>dplyr</code></li>
-<li>supports unquoted expressions on <code>rank</code> and <code>suit</code>, with multiple expressions combined using AND</li>
-<li>preserves the input type and original card order</li>
-<li>handles empty results and invalid expressions correctly</li>
-</ul>
-</section>
-<section id="do-your-print-and-data-frame-methods-work-correctly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="do-your-print-and-data-frame-methods-work-correctly-10-marks">6. Do your print and data frame methods work correctly? (10 marks)</h4>
-<ul>
-<li><code>print()</code> methods for <code>card</code>, <code>deck</code>, <code>hand</code>, and <code>deal</code> are user-friendly and do not expose internals</li>
-<li><code>as.data.frame()</code> methods for <code>card</code>, <code>deck</code>, and <code>hand</code> return correctly structured data frames</li>
-<li>methods handle empty objects and edge cases without error</li>
-</ul>
-</section>
-<section id="do-you-have-good-unit-tests-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="do-you-have-good-unit-tests-10-marks">7. Do you have good unit tests? (10 marks)</h4>
-<ul>
-<li>tests cover all required cases listed in the assignment instructions</li>
-<li>tests for class behaviour (subsetting, concatenation, equality, sorting, accessors)</li>
-<li>tests for edge cases and invalid inputs</li>
-</ul>
-</section>
-<section id="is-your-documentation-helpful-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="is-your-documentation-helpful-10-marks">8. Is your documentation helpful? (10 marks)</h4>
-<ul>
-<li>all exported functions documented with roxygen2, including runnable examples</li>
-<li>vignette explaining the full package workflow</li>
-</ul>
-</section>
-<section id="did-the-group-use-github-and-ai-properly-10-marks" class="level4">
-<h4 class="anchored" data-anchor-id="did-the-group-use-github-and-ai-properly-10-marks">9. Did the group use GitHub and AI properly? (10 marks)</h4>
-<ul>
-<li>regular, meaningful commits from all group members throughout the assignment</li>
-<li>good commit messages</li>
-<li><code>AI_statement.md</code> with a section for each student</li>
-</ul>
+<section id="assignment-3-marking-rubric" class="level1">
+<h1>Assignment 3 Marking Rubric</h1>
+<p><strong>Total: 100 marks (scaled to 30% of unit grade)</strong> <strong>Group Project: R Package Development – dealr</strong></p>
 <hr>
-<p>Marks may be adjusted for serious package failures, academic integrity issues, or inadequate individual contribution as described in the assignment instructions.</p>
-<br><br>
+<section id="package-structure-installation-and-overall-design-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="package-structure-installation-and-overall-design-10-marks">1. Package Structure, Installation, and Overall Design (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - Valid R package structure with appropriate <code>DESCRIPTION</code>, <code>NAMESPACE</code>, R source files, tests, documentation, and vignette infrastructure. - Package installs and loads cleanly; <code>R CMD check</code> or <code>devtools::check()</code> has no errors, no warnings, and at most minor notes. - All required user-facing functions are exported; dependencies are declared correctly and used appropriately. - Clear, coherent package design; no inappropriate global state; no user interactivity; no plotting; no game-specific logic; functions are predictable and composable.</p>
+<p><strong>Good (7–8)</strong> - Package mostly well-structured but with minor metadata, namespace, or organisation problems. - Package installs and loads; minor check warnings or notes that do not affect functionality. - One or two minor export/dependency omissions, but most functions are accessible. - Generally good design with minor inconsistencies or unnecessary extras.</p>
+<p><strong>Satisfactory (5–6)</strong> - Package can be loaded only with workarounds, or has significant check warnings. - Noticeable structural issues; some missing exports or dependency problems. - Design is confusing, overly coupled, or inconsistent, but core requirements can still be used.</p>
+<p><strong>Poor (1–4)</strong> - Package has substantial structural problems or cannot be loaded without significant intervention. - Major missing exports or undeclared dependencies prevent normal use. - Design substantially violates the assignment scope or relies heavily on inappropriate global state or interactivity.</p>
+<p><strong>Not attempted (0)</strong> - No package structure submitted.</p>
+</section>
+<section id="card-vctrs-record-class-15-marks" class="level2">
+<h2 class="anchored" data-anchor-id="card-vctrs-record-class-15-marks">2. <code>card</code> vctrs Record Class (15 marks)</h2>
+<p><strong>Excellent (13–15)</strong> - <code>card</code> is implemented as a genuine vctrs record class using <code>vctrs::new_rcrd()</code> or equivalent, with appropriate rank and suit fields. - <code>card(rank, suit)</code> correctly validates all required ranks and suits; accepts full suit names and one-letter abbreviations; is case-insensitive; handles vector inputs and recycling; gives informative errors for invalid inputs. - Accessors <code>is_card()</code>, <code>card_rank()</code>, and <code>card_suit()</code> work for length-0, length-1, and longer card vectors; return documented, user-friendly ranks and suits. - <code>format.card()</code> is correct, vectorised, stable, and readable. - Card vectors preserve class and fields under subsetting and work correctly with concatenation, especially <code>vctrs::vec_c()</code>. - Equality requires both rank and suit to match and works correctly for vectors, including empty and vectorised cases. - Sorting follows Clubs &lt; Diamonds &lt; Hearts &lt; Spades, then A &lt; 2 &lt; … &lt; 10 &lt; J &lt; Q &lt; K, using an appropriate vctrs comparison proxy or equivalent.</p>
+<p><strong>Good (10–12)</strong> - Uses vctrs substantially correctly but with minor implementation weaknesses. - Mostly correct validation and input handling, with minor edge-case issues. - Accessors mostly work but have inconsistencies in case, ordering, or exposed internal encodings. - Simple subsetting works, but concatenation or class preservation is unreliable in edge cases. - Equality works for simple cases but has edge-case or vectorisation issues. - Sorting mostly works but has ordering mistakes or limited-case behaviour.</p>
+<p><strong>Satisfactory (7–9)</strong> - Uses vctrs only partially, or the object is not a well-designed record class. - Basic valid examples work, but several required input forms or validation cases fail. - Accessors missing or substantially incorrect for some cases. - Subsetting or concatenation have notable issues.</p>
+<p><strong>Poor (1–6)</strong> - No meaningful vctrs class implementation, or implementation is substantially broken. - Constructor missing or does not return valid <code>card</code> objects. - Formatting or sorting missing or substantially incorrect.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful <code>card</code> class implementation.</p>
+</section>
+<section id="s3-classes-for-deck-hand-and-deal-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="s3-classes-for-deck-hand-and-deal-10-marks">3. S3 Classes for <code>deck</code>, <code>hand</code>, and <code>deal</code> (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - <code>deck(cards)</code> constructs a valid S3 object from a card vector; validates input; preserves order; has a sensible internal structure. - <code>hand(cards, player)</code> constructs a valid S3 object; validates card input; stores player metadata appropriately; preserves order. - <code>deal()</code> returns a well-structured S3 object containing a list of <code>hand</code> objects, a remaining <code>deck</code>, and useful metadata (players, number of cards, dealing style). - Accessors <code>cards()</code>, <code>hands()</code>, and <code>remaining_deck()</code> are implemented cleanly; <code>cards()</code> is an S3 generic with methods for <code>hand</code> and <code>deck</code>; unsupported classes produce informative errors. - Decks, hands, and deals consistently preserve valid internal card objects and card order across operations.</p>
+<p><strong>Good (7–8)</strong> - Most S3 objects well-constructed; minor validation, metadata, or structure issues in one class. - Accessors work correctly for most cases but generic/method design has minor weaknesses. - Object invariants mostly preserved, with occasional edge-case violations.</p>
+<p><strong>Satisfactory (5–6)</strong> - Basic <code>deck</code> and <code>hand</code> objects work, but <code>deal</code> structure is incomplete. - Accessors work for simple cases but are ad hoc or incomplete. - Object invariants not consistently preserved.</p>
+<p><strong>Poor (1–4)</strong> - One or more required S3 classes missing or substantially incorrect. - Accessors missing or substantially incorrect.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful S3 class implementation.</p>
+</section>
+<section id="deck-manipulation-and-dealing-functions-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="deck-manipulation-and-dealing-functions-10-marks">4. Deck Manipulation and Dealing Functions (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - <code>standard_deck(n_decks = 1L)</code> correctly creates 52 cards per deck, no jokers, correct canonical order, supports multiple decks, validates <code>n_decks</code>, and returns a <code>deck</code> object. - <code>shuffle_deck(deck)</code> returns a shuffled deck preserving all cards and count, and does not mutate the input. - <code>cut_deck(deck, n)</code> correctly moves the first <code>n</code> cards to the bottom; preserves all cards and class; handles reasonable boundary cases. - <code>deal(deck, n, players, by = c("round", "batch"))</code> correctly deals <code>n</code> cards to each player from the top of the deck; supports both round and batch dealing exactly as specified; returns correct hands and remaining deck; preserves card order within hands. - <code>deal()</code> does not modify the input deck; validates players and <code>n</code>; errors informatively when there are insufficient cards or invalid arguments.</p>
+<p><strong>Good (7–8)</strong> - Mostly correct, with minor problems in one dealing mode, validation, or edge case. - <code>standard_deck()</code>, <code>shuffle_deck()</code>, or <code>cut_deck()</code> mostly correct with minor issues.</p>
+<p><strong>Satisfactory (5–6)</strong> - Basic dealing works but one mode is wrong or output structure is incomplete. - Some validation present, but important invalid cases or error messages are missed.</p>
+<p><strong>Poor (1–4)</strong> - Major dealing functions missing or substantially incorrect. - No meaningful validation; mutates input inappropriately.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful implementation.</p>
+</section>
+<section id="filter_cards-and-tidy-evaluation-15-marks" class="level2">
+<h2 class="anchored" data-anchor-id="filter_cards-and-tidy-evaluation-15-marks">5. <code>filter_cards()</code> and Tidy Evaluation (15 marks)</h2>
+<p><strong>Excellent (13–15)</strong> - Correctly uses tidy evaluation (e.g., <code>rlang::enquos()</code> and <code>rlang::eval_tidy()</code> or equivalent); expressions are evaluated in a data mask containing at least <code>rank</code> and <code>suit</code>; does not use <code>dplyr</code> in the implementation. - Supports unquoted expressions such as <code>suit == "Hearts"</code>, <code>rank %in% c("A", "J", "Q", "K")</code>, and combined rank/suit filters; multiple expressions combined using logical AND; expression results validated as logical vectors of appropriate length. - Filtering works for <code>card</code>, <code>hand</code>, and <code>deck</code> inputs; preserves input type; preserves relevant metadata such as player name; preserves original card order. - Invalid filtering expressions produce informative errors; no-match cases return an empty object of the appropriate type. - Implementation avoids unnecessary duplication across methods and integrates cleanly with the card/deck/hand abstractions.</p>
+<p><strong>Good (10–12)</strong> - Uses tidy evaluation mostly correctly but with minor limitations or unnecessary complexity. - Core expression filtering works, but some multi-expression or validation cases fail. - Mostly preserves type/order but has minor problems for one object type or metadata. - Empty results work, but validation or error messages have weaknesses.</p>
+<p><strong>Satisfactory (7–9)</strong> - Attempts tidy evaluation but implementation is fragile or only partly non-standard-evaluation based. - Only simple filtering expressions work reliably. - Filtering works but returns the wrong type or loses important metadata.</p>
+<p><strong>Poor (1–6)</strong> - No meaningful tidy evaluation, or simply delegates to <code>dplyr</code> contrary to instructions. - Filtering works only for very narrow hard-coded cases, or required methods are missing.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful <code>filter_cards()</code> implementation.</p>
+</section>
+<section id="data-frame-conversion-and-printing-methods-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame-conversion-and-printing-methods-10-marks">6. Data Frame Conversion and Printing Methods (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - <code>as.data.frame()</code> methods for <code>card</code>, <code>deck</code>, and <code>hand</code> all return data frames with appropriate columns, correct row counts, and stable behaviour for empty objects. - <code>hand</code> conversion preserves card order and includes useful player metadata. - All required print methods for <code>card</code>, <code>deck</code>, <code>hand</code>, and <code>deal</code> are present, readable, concise, and do not expose confusing internals. - Display and conversion methods handle empty objects, multiple decks, and simple edge cases without error.</p>
+<p><strong>Good (7–8)</strong> - <code>as.data.frame()</code> methods mostly correct; minor column naming, ordering, or edge-case issues in one method. - Print methods mostly present and usable but uneven, verbose, or missing one minor feature.</p>
+<p><strong>Satisfactory (5–6)</strong> - Some conversion methods work but lose order, metadata, or have inconsistent columns. - Some print methods present but incomplete or not user-friendly.</p>
+<p><strong>Poor (1–4)</strong> - Most conversion or print methods missing or broken.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful data frame conversion or printing methods.</p>
+</section>
+<section id="unit-tests-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="unit-tests-10-marks">7. Unit Tests (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - Comprehensive test coverage including all required test cases: invalid ranks/suits error; <code>standard_deck(n_decks = 2L)</code> has 104 cards; <code>shuffle_deck()</code> preserves the set of cards and count; <code>cut_deck()</code> preserves all cards and changes order as documented; <code>deal()</code> does not modify the input deck; correct number of hands and cards per hand; remaining deck has the correct card count; round and batch dealing produce the documented positions; dealing too many cards produces an informative error; <code>filter_cards()</code> works with unquoted expressions and preserves input type. - Tests cover class preservation, subsetting, concatenation, equality, sorting, and accessors. - Good edge-case coverage (empty selections, invalid <code>n_decks</code>, invalid <code>n</code>, invalid players, invalid card inputs, unsupported object types). - Tests are clear, deterministic, well-organised, and integrated into normal package testing.</p>
+<p><strong>Good (7–8)</strong> - Most required test cases covered; some class-behaviour tests present; some edge cases tested. - Tests mostly clear and runnable with minor organisation or coverage gaps.</p>
+<p><strong>Satisfactory (5–6)</strong> - Some required tests present but substantial gaps; limited class-behaviour or edge-case testing. - Tests somewhat brittle or poorly organised.</p>
+<p><strong>Poor (1–4)</strong> - Very limited testing; major logic untested; tests may not run reliably.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful tests.</p>
+</section>
+<section id="documentation-and-vignette-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-and-vignette-10-marks">8. Documentation and Vignette (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - All user-facing functions documented with clear descriptions, parameters, return values, and runnable examples. - Examples are accurate, runnable, and demonstrate typical usage across the package. - Vignette clearly explains the package workflow: card creation, deck creation, shuffling/cutting, dealing, and filtering. - Documentation is consistent with implemented behaviour and assignment terminology, with clear prose and formatting.</p>
+<p><strong>Good (7–8)</strong> - Most functions documented with minor omissions or weak examples. - Vignette present and useful but misses some important workflow elements. - Documentation mostly consistent with minor inaccuracies.</p>
+<p><strong>Satisfactory (5–6)</strong> - Some documentation present but several exported functions are missing important details. - Vignette present but incomplete, superficial, or difficult to follow.</p>
+<p><strong>Poor (1–4)</strong> - Minimal documentation only; examples absent, broken, or misleading. - No meaningful vignette.</p>
+<p><strong>Not attempted (0)</strong> - Little or no documentation.</p>
+</section>
+<section id="github-workflow-commits-and-ai-statement-10-marks" class="level2">
+<h2 class="anchored" data-anchor-id="github-workflow-commits-and-ai-statement-10-marks">9. GitHub Workflow, Commits, and AI Statement (10 marks)</h2>
+<p><strong>Excellent (9–10)</strong> - Repository shows regular, meaningful commits throughout the assignment period, with informative messages and appropriately scoped changes. - All team members have at least six substantive commits across multiple days reflecting meaningful contributions to code, documentation, or tests. - <code>AI_statement.md</code> is present, has a section for each student, and appropriately describes AI use including prompts, or clearly states that no AI was used. - Repository is organised, avoids committing generated clutter or irrelevant files, and shows evidence of sensible collaboration practices.</p>
+<p><strong>Good (7–8)</strong> - Good commit history with minor issues (vague messages, occasional large commits). - All or most team members contributed meaningfully, but one member’s contribution is slightly marginal or concentrated. - AI statement present but incomplete, vague, or missing one student’s section.</p>
+<p><strong>Satisfactory (5–6)</strong> - Development is uneven, too concentrated near the deadline, or commit messages are often vague. - Contribution is substantially uneven, with limited evidence from one or more members. - AI statement does not adequately describe how AI was used.</p>
+<p><strong>Poor (1–4)</strong> - Very sparse or mostly last-minute commits. - Little or no evidence of genuine group contribution. - AI statement missing or substantially incomplete.</p>
+<p><strong>Not attempted (0)</strong> - No meaningful commit history or AI statement.</p>
+<p><em>(Individual commit-based penalties applied separately as per assignment instructions.)</em></p>
 <hr>
-<p><b>Due: 2 June 2026</b><br><a href="https://learning.monash.edu/mod/assign/view.php?id=5219881" class="badge badge-large badge-blue"><font size="+2">&nbsp;&nbsp;<b>Join GitHub Classroom</b>&nbsp;&nbsp;</font><br></a></p>
+</section>
+</section>
+<section id="additional-marker-notes" class="level1">
+<h1>Additional Marker Notes</h1>
+<section id="suit-and-rank-case" class="level2">
+<h2 class="anchored" data-anchor-id="suit-and-rank-case">Suit and rank case</h2>
+<p>The constructor must be case-insensitive. Internally, students may store suits as lowercase, title case, or codes, provided user-facing accessors, formatting, sorting, and filtering behave consistently with the documentation.</p>
+</section>
+<section id="empty-card-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="empty-card-vectors">Empty card vectors</h2>
+<p>Strong solutions should handle empty card vectors gracefully, especially through filtering and data-frame conversion. Award robustness credit where appropriate, but do not over-penalise if all required examples work and only obscure empty cases fail.</p>
+</section>
+<section id="deal-and-mutation" class="level2">
+<h2 class="anchored" data-anchor-id="deal-and-mutation"><code>deal()</code> and mutation</h2>
+<p>The input deck should not be modified in place. Because ordinary R objects are copy-on-modify, most solutions will naturally satisfy this.</p>
+</section>
+<section id="individual-contribution-deductions" class="level2">
+<h2 class="anchored" data-anchor-id="individual-contribution-deductions">Individual contribution deductions</h2>
+<p>If a team member has not contributed adequately, apply a deduction of up to 75% of that student’s total mark, as specified in the assignment instructions. Consider the number, timing, and substance of commits, not just the raw count. Minor typo/formatting commits should not count as substantive contributions.</p>
 
 
 </section>
