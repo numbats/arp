@@ -26,6 +26,9 @@ source(here::here("course_info.R"))
 show_slides(week)
 ```
 
+* [Code used in workshop](week9/lab.R)
+* [New fraction code](week9/fraction.R)
+
 ```{r}
 #| output: asis
 show_assignments(week)

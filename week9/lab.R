@@ -39,6 +39,7 @@ vctrs::vec_c(1, Sys.Date()) # error: no common type defined
 
 percent <- function(x = numeric()) {
   vctrs::vec_assert(x, numeric())
+  stopifnot(all(x >= 0 & x <= 100))
   vctrs::new_vctr(x, class = "percent")
 }
 format.percent <- function(x, ...) {
