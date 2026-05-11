@@ -1,9 +1,11 @@
 {
-  "hash": "7370e5608b213fae0dcab7cdd0ed1ddd",
+  "hash": "8525db1964cb074c773d5685f53e52b5",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 10: Metaprogramming\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n* [17-20 *Advanced R*](https://adv-r.hadley.nz/metaprogramming.html)\n\n## What you will learn this week\n\n* Non-standard evaluation (changing the expression or environment)\n* Abstract syntax trees\n* tidyselect\n* Symbols, expressions, quosures (names, calls, calls+environments)\n* Parsing and evaluating code\n\n## Pre-class activities\n\n* Watch [Lazy evaluation](https://youtu.be/2BXPLnLMTYo) with Jenny Bryan\n* Watch [Data mask programming patterns](https://youtu.be/jGfuTuq44fE)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week10/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week10/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Tuesday 02 June.\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 10: Metaprogramming\"\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Main reference\n\n* [17-20 *Advanced R*](https://adv-r.hadley.nz/metaprogramming.html)\n\n## What you will learn this week\n\n* Non-standard evaluation (changing the expression or environment)\n* Symbols, expressions, and quosures\n* Capturing user expressions inside functions (`enexpr`, `enquos`)\n* Evaluating expressions against a data mask with `eval_tidy()`\n\n## Pre-class activities\n\n* Watch [Lazy evaluation](https://youtu.be/2BXPLnLMTYo) with Jenny Bryan\n* Watch [Data mask programming patterns](https://youtu.be/jGfuTuq44fE)\n\n## Slides for week\n\n<iframe src='https://docs.google.com/gview?url=https://arp.numbat.space/week10/slides.pdf&embedded=true' width='100%' height=465></iframe>\n<a href=https://arp.numbat.space/week10/slides.pdf class='badge badge-small badge-red'>Download pdf</a>\n\n\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Tuesday 02 June.\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

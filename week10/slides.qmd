@@ -1,6 +1,7 @@
 ---
 title: ETC4500/ETC5450 Advanced&nbsp;R&nbsp;programming
 author: "Week 10: Metaprogramming"
+toc: true
 format:
   presentation-typst:
     fig-width: 7.5
@@ -60,16 +61,6 @@ The parser reads unstructured text (your written code) and interprets it as an e
 parse_expr("seq(1, 10, by = 0.5)")
 ```
 
-## Deparsing code
-
-Deparsing takes an expression and converts it back to text.
-
-```{r}
-my_seq <- parse_expr("seq(1, 10, by = 0.5)")
-expr_text(my_seq)
-```
-
-This can be useful for providing informative error messages, or print output for objects which store expressions.
 
 ## Code is data
 
@@ -78,128 +69,20 @@ Expressions (code) can be used like any other data in R.
 ```{r}
 my_seq <- parse_expr("seq(1, 10, by = 0.5)")
 my_seq
-```
-
-<!-- Looks just like the code we wrote, as if nothing happened. -->
-
-```{r}
 class(my_seq)
 ```
 
-`#pause`{=typst}
+
+## Code is data
+
+Expressions (code) can be used like any other data in R.
 
 ```{r}
-eval(my_seq)
-```
-
-## Inspecting code
-
-R expressions behave exactly like lists
-
-```{r}
-as.list(my_seq)
-```
-
-## Inspecting code
-
-They can also be subsetted to inspect the functions and arguments.
-
-```{r}
-my_seq[[1]]
-my_seq[["by"]]
-```
-
-## Modifying code
-
-Expressions can be modified by replacing their elements.
-
-```{r}
-my_seq[["by"]] <- 1
+my_seq <- parse_expr("seq(1, 10, by = 0.5)")
 my_seq
 eval(my_seq)
 ```
 
-## Looking at code
-
-::: {.callout-caution title="Your turn!"}
-How do infix operators (like `+`, `*`, and `%in%`) get interpreted by the parser?
-
-\hspace{1em}
-
-Try to parse `5 + 3 * 7`, and see how the order of operations are represented in the parsed expression.
-
-\hspace{1em}
-
-Bonus: rewrite this expression without infix operators.
-:::
-
-## Abstract syntax trees
-
-The structure of expressions is commonly known as an abstract syntax tree (AST). We can use `lobstr::ast()` to explore it.
-
-```{r}
-#| eval: false
-lobstr::ast(f(x, "y", 1))
-```
-
-![](../diagrams/expressions/simple.png)
-
-## Abstract syntax trees
-
-More complicated (nested) code results in a larger/deeper AST.
-
-```{r}
-#| eval: false
-lobstr::ast(f(g(1, 2), h(3, 4, i())))
-```
-
-![](../diagrams/expressions/complicated.png)
-
-## Abstract syntax trees
-
-::: {.callout-caution title="Your turn!"}
-Inspect the AST for the following code:
-
-* `5 + 3 * 7`
-* `mtcars |> select(cyl)`
-* `mtcars |> mutate(wt/hp)`
-
-\hspace{0.5em}
-
-How does R structure these expressions?
-
-\hspace{0.5em}
-
-Bonus: does `-2^2` yield 4 or -4? Why?
-:::
-
-## Analysing code
-
-How would you programmatically analyse code from hundreds of packages?
-
-* Regular expressions on the source code? Maybe...
-* Traverse the parsed source code's AST? Yes!
-
-<!-- Consider a project which analyses the code in R packages. The code is now your dataset for this project! -->
-
-<!-- We could use regular expressions to explore the source code, however it is better to parse the code and explore the AST. -->
-
-This however can be tricky, requiring recursive algorithms that explore the AST using breadth/depth first search (BFS/DFS).
-
-## Coding code
-
-You can also write code that creates code. For this we use the `call2()` function
-
-```{r}
-# call("seq", 1, 10, by = 0.5)
-call2("seq", 1, 10, by = 0.5)
-```
-
-`#pause`{=typst}
-
-::: {.callout-important title="parse_expr() or call2()?"}
-You might be tempted to `parse()` code that you `paste()` together, but this is unsafe and unreliable! Why?
-:::
 
 # (Non-)standard evaluation
 
@@ -219,7 +102,7 @@ You might be tempted to `parse()` code that you `paste()` together, but this is 
 
 ## Standard or non-standard evaluation?
 
-::: {.callout-caution title="Your turn!"}
+::: {.callout-caution title="Question!"}
 Do the following functions use standard evaluation or NSE?
 
 ::: {.incremental}
@@ -240,8 +123,8 @@ Do the following functions use standard evaluation or NSE?
 There are four building blocks used in evaluating code.
 
 * **Constants**: A specific value like `1` or `"data/study.csv"`.
-* **Symbols**: A name of an object, like `pi`.
-* **Expressions**: Code structured as an AST.
+* **Symbols**: A name of an object, like `pi` or `mtcars`.
+* **Expressions**: Code structured as an "Abstract Syntax Tree" (AST) of calls and symbols.
 * **Environments**: The place where named objects are found.
 
 `#pause`{=typst}
@@ -260,15 +143,6 @@ In `rlang`, we have three main building block functions:
 * `expr(1/pi)`: an expression for `1/pi`
 * `quo(1/pi)`: a *quosure* (expression **and** environment)
 
-`#pause`{=typst}
-
-::: {.callout-caution title="Follow along!"}
-
-Use `call2()` and these building blocks to construct and evaluate `mtcars |> mutate(wt/hp)`.
-
-Hint: recall that `x |> f(y)` is parsed as `f(x, y)`.
-
-:::
 
 ## The building blocks of code evaluation
 
@@ -303,6 +177,34 @@ capture_expr <- function(x) {
 capture_expr(1/pi)
 ```
 
+## Capturing code
+
+::: {.callout-caution title="Your turn!"}
+
+What is the difference between these two functions?
+
+```r
+f <- function(x) x
+g <- function(x) enexpr(x)
+```
+
+Try calling `f(1 + 2)` and `g(1 + 2)`. What does each return?
+
+:::
+
+## Capturing code
+
+::: {.callout-caution title="Your turn!"}
+Write a function `assert_positive` that evaluates its argument and stops with an informative error if the result is not positive. The error message should include the original expression.
+
+```r
+assert_positive(sqrt(4))   # returns 2
+assert_positive(log(-1))   # error: "log(-1) must be positive"
+```
+
+*Hint*: use `enexpr()` to capture the expression and `deparse()` to turn it into a string.
+:::
+
 ## Unquoting (bang-bang!!)
 
 Why doesn't the following code work?
@@ -333,28 +235,6 @@ log_expr(1/pi)
 
 `expr(log(!!x))` will create an expression (`expr()`) that replaces `x` with its value (`1/pi`).
 
-<!-- ::: {.callout-caution title="Your turn!"} -->
-
-<!-- How did the `react()` function capture user expressions and unquote them to produce NSE? -->
-
-<!-- ```{r} -->
-<!-- react <- function(e) new_function(alist(), expr(eval(!!enexpr(e)))) -->
-<!-- ``` -->
-
-<!-- *Hint*: focus on the expression `expr(eval(!!enexpr(e)))`. -->
-<!-- ::: -->
-
-## Unquoting (bang-bang!!)
-
-::: {.callout-tip title="Unquoting in analysis"}
-
-Unquoting replaces the object's name with its value.
-
-This is also useful when using NSE functions.
-:::
-
-How can `!!` be useful with dplyr?
-
 ## Unquoting (bang-bang!!)
 
 Suppose we wanted to programmatically `filter()` `mtcars$cyl`:
@@ -366,19 +246,41 @@ mtcars |>
   filter(cyl == cyl)
 ```
 
+::: {.callout-caution title="Question"}
 What's the problem? How can unquoting help?
+:::
 
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- power <- 2 -->
-<!-- library(dplyr) -->
-<!-- tibble(power = c(3923, 4436, 4806, 4418), error = c(-477, 36, 406, 18)) |> -->
-<!--   summarise(rmse = mean(error^power)^(1/power)) -->
-<!-- ``` -->
+## Unquoting (bang-bang!!)
+
+Inside a function, the column name comes from the *caller* -- so we must capture it first with `enquo()`, then unquote it with `!!`.
+
+```{r}
+#| eval: false
+filter_col <- function(data, col, val) {
+  col <- enquo(col)
+  data |> filter(!!col == val)
+}
+filter_col(mtcars, cyl, 4)
+```
+
+`#pause`{=typst}
+
+The pattern `enquo()` then `!!` appears so often that it has a dedicated shorthand.
 
 ## Embracing inputs ({{curly-curly}})
 
-The pattern `!!enquo(x)` is so often in functions that it has a special shortcut known as 'embrace' or 'curly-curly'. The code `{{x}}` is identical to `!!enquo(x)`.
+A shorthand for `!!enquo(x)` is known as 'embrace' or 'curly-curly'. The code `{{{x}}}` is identical to `!!enquo(x)`.
+
+
+```{r}
+#| eval: false
+filter_col <- function(data, col, val) {
+  data |> filter({{ col }} == val)
+}
+filter_col(mtcars, cyl, 4)
+```
+
+## Embracing inputs ({{curly-curly}})
 
 Consider this function for summarising a value's range:
 
@@ -393,71 +295,30 @@ mtcars |>
   var_summary(mpg)
 ```
 
+::: {.callout-caution title="Question"}
 Why is `enquo()` important here?
+:::
 
-## Unquote-splicing (bang-bang-bang!!!)
+## Capturing multiple expressions
 
-It is sometimes useful to unquote multiple code elements across multiple arguments of a function.
-
-This is done with unquote-splicing using `!!!` on a list of symbols, expressions, or quosures.
-
-`#pause`{=typst}
-
-A list symbols, expressions, or quosures can be:
-
-* created with `syms()`, `exprs()`, `quos()`
-* captured with `ensyms()`, `enexprs()`, `enquos()`
-
-This is often used to capture, modify and pass on dots (`...`).
-
-## Unquote-splicing (bang-bang-bang!!!)
-
-For example, the `var_summary()` function can be extended to accept multiple variables (or expressions) via dots (`...`).
+To capture multiple expressions from `...`, use `enquos(...)`. This returns a named list of quosures.
 
 ```{r}
 #| eval: false
-var_summaries <- function(data, ...) {
-  vars <- enquos(...)
-  .min <- purrr::map(vars, ~ expr(min(!!.)))
-  .max <- purrr::map(vars, ~ expr(max(!!.)))
-  data |>
-    summarise(n = n(), !!!.min, !!!.max)
+print_conds <- function(...) {
+  conds <- enquos(...)
+  purrr::walk(conds, \(cond) cat(as_label(cond), "\n"))
 }
-mtcars |>
-  group_by(cyl) |>
-  var_summaries(mpg, wt)
+print_conds(cyl == 4, wt < 2.5, am == 1)
 ```
 
-## Tidy dots (:=)
+`#pause`{=typst}
 
-Tidy dots (`:=`) allow the argument names to be unquoted too.
-
-For example:
-
-```{r}
-my_df <- function(x) {
-  tibble(!!expr_text(enexpr(x)) := x * 2)
-}
-my_var <- 10
-my_df(my_var)
-```
-
-You can alternatively use `!!!` with a named list.
+::: {.callout-tip title="Tip"}
+`as_label()` turns a quosure or expression into a string, which is useful for printing error messages.
+:::
 
 # Tidy evaluation
-
-## Tidy evaluation
-
-Tidy evaluation refers to the use of NSE in the tidyverse to make data analysis easier.
-
-NSE is used widely across tidyverse packages, but at the same time it is used sparingly.
-
-::: {.callout-caution title="Your turn!"}
-
-**Question**
-
-Where have you seen NSE used in tidyverse packages?
-:::
 
 ## Tidy evaluation
 
@@ -487,6 +348,7 @@ Unlike `eval()`, this will:
 * Attach *pronouns* for `.data` and `.env`
 
 ## Tidy evaluation
+`#set text(size: 19.5pt); #set par(leading: 0.55em)`{=typst}
 
 We can use `eval_tidy()` to create a simple `dplyr::mutate()` function variant.
 
@@ -502,67 +364,92 @@ mtcars |>
   my_mutate(mpg/wt)
 ```
 
-**Question**: What features are missing in our function compared to `dplyr::mutate()`?
+`#v(0.3em);#pause`{=typst}
 
-## tidyselect
+::: {.callout-caution title="Question"}
+What features are missing in our function compared to `dplyr::mutate()`?
+:::
 
-The tidyselect package is useful for selecting variables from a dataset with NSE.
+`#set text(size: 22pt); #set par(leading: 0.65em)`{=typst}
 
-You almost certainly have used it in the tidyverse without knowing.
+## Data masks
 
-It powers column selection in:
-
-* `dplyr` for `select()`, `across()`, and more.
-* `tidyr` for almost everything.
-
-## tidyselect
-
-It enables variable selection with a domain specific language (DSL), which uses NSE to identify columns with:
-
-* `var1:var10`
-* `matches("x.\\d")`
-* `all_of(<chr>)`
-* `where(<fn>)`
-
-## tidyselect
-
-If you need tidy column selection, simply import and use `tidyselect::eval_select()`.
+`eval_tidy()` can use **any named list** as a data mask:
 
 ```{r}
-library(tidyselect)
-x <- expr(mpg:cyl)
-eval_select(x, mtcars)
+name  <- c("Alice", "Bob", "Carol")
+score <- c(82, 95, 71)
+mask  <- list(name = name, score = score)
+eval_tidy(quo(score > 80), data = mask)
 ```
 
-This function returns the column numbers that were selected.
+`#pause`{=typst}
 
-## tidyselect
+This means you can evaluate filter expressions against fields of any custom object, as long as you construct the mask yourself.
 
-Putting it all together, we can create our own `dplyr::select()` function variant.
+## Data masks
+
+Quosures also capture the *caller's environment*, so expressions can reference variables that aren't in the mask.
+
+```{r}
+threshold <- 80
+f <- function(cond) eval_tidy(enquo(cond), data = mask)
+f(score > threshold)   # threshold found in caller's env, not the mask
+```
+
+## Your turn!
+
+::: {.callout-caution title="Your turn!"}
+
+Build a mask from the first 6 rows of `airquality` and evaluate the expression `Temp > 70` against it.
+
+```r
+mask <- as.list(head(airquality))
+eval_tidy(quo(Temp > 70), data = mask)
+```
+
+Which rows match? What happens if you try `Temperature > 70` instead?
+:::
+
+## Filtering with multiple conditions
+
+Capture multiple filter expressions from `...`, evaluate each against the mask, then AND them together.
 
 ```{r}
 #| eval: false
-my_select <- function(.data, cols) {
-  cols <- eval_select(enexpr(cols), .data)
-  .data[cols]
+my_filter <- function(.data, ...) {
+  conds <- enquos(...)
+  mask  <- as.list(.data)
+  keep  <- purrr::map(conds, \(cond) eval_tidy(cond, data = mask))
+  keep  <- Reduce("&", keep)
+  .data[keep, ]
 }
-my_select(mtcars, c(mpg, wt, vs:carb))
+my_filter(mtcars, cyl == 4, wt < 2.5)
 ```
 
+## Your turn!
+
 ::: {.callout-caution title="Your turn!"}
-Modify this function to instead accept the selected columns via the dots (`...`), just like `dplyr::select()` does.
+
+Modify `my_filter` to accept an extra argument `.op = "all"` that controls how multiple conditions are combined.
+
+* `.op = "all"` (default): keep rows matching **every** condition
+* `.op = "any"`: keep rows matching **at least one** condition
+
+```r
+my_filter(airquality, Temp > 90, Month == 8, .op = "any")
+```
+
+*Hint*: look at what `Reduce("&", keep)` is doing, and think about what to change.
 :::
+
+# Software design
 
 ## Software design
 
 NSE is a powerful tool for software design.
 
-
-`#pause`{=typst}
-
 But once again, with great power...
-
-`#pause`{=typst}
 
 ... comes great responsibility!
 
@@ -601,6 +488,4 @@ If you must use NSE, you should:
 * Use it sparingly
 * Be consistent
 * Clearly document it
-* Get a lot of design benefit from it
-
-  (not just for slightly less typing!)
+* Get a lot of design benefit from it`#linebreak()`{=typst} (not just for slightly less typing!)
