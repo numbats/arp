@@ -1,194 +1,158 @@
 library(rlang)
-parse_expr("seq(1,10,       by = 0.5)")
-parse_expr("data |> mutate()")
-parse_expr("data %>% mutate()")
+library(dplyr)
 
-myseq <- parse_expr("seq(1,10,       by = 0.5)")
-class(myseq)
-new_function(list(), myseq)
-eval(myseq)
+# Parsing code ------------------------------------------------------------------
 
-mycalc <- parse_expr("5 + 3 * 7")
+# parse(text = "seq(1, 10, by = 0.5)")  # base R equivalent
+parse_expr("seq(1, 10, by = 0.5)")
 
-as.list(mycalc)
+# Code is data -----------------------------------------------------------------
 
-5 + (3 * 7)
+my_seq <- parse_expr("seq(1, 10, by = 0.5)")
+my_seq
+class(my_seq)
+eval(my_seq)
 
-as.list(mycalc[[3]])
+# Building blocks: sym, expr, quo ----------------------------------------------
 
-as.list(mycalc)
-mycalc[[2]] <- 10
-mycalc
+sym("pi") # a symbol (name)
+expr(1 / pi) # an expression (unevaluated)
+quo(1 / pi) # a quosure (expression + environment)
 
-parse_expr("`+`(5, 3*7)")
-parse_expr("`+`(5, `*`(3,7))")
+# Exercise: spot the difference
+sym("2 * pi") # treats "2 * pi" as a single name, not an expression — error-prone
+expr(2 * pi) # builds a call: `*`(2, pi); pi is resolved at eval time
+quo(2 * pi) # same AST, but also records the current environment
 
-mycalc
-lobstr::ast(mycalc)
-lobstr::ast(5 + 3 * 7)
-as.list(mycalc)
-
-lobstr::ast(
-  mtcars |>
-    group_by(cyl) |>
-    filter(mpg > 0.2) |>
-    mutate(mpg/wt) |>
-    ggplot()
-)
-
-parse_expr(
-"mtcars |>
-  group_by(cyl) |>
-  filter(mpg > 0.2) |>
-  mutate(mpg/wt) |>
-  ggplot()"
-)
-
-lobstr::ast((-2)^2)
-(-2)^2
-
-lobstr::ast(!countries %in% c("Australia", "China"))
-
-as.list(myseq)
-call2("seq", 1L, 10, by = 0.5)
-parse_expr(sprintf("seq(%i,%i, by = %f)", 1L, 10, 0.5))
-
-x / y
-x <- expr(3 + 6)
-y <- expr(1 + 2)
-
-call2("/", x, y)
-parse_expr(sprintf("%s / %s", "3 + 6", "1 + 2"))
-
-with(
-  list(
-    `+` = base::`-`,
-    `-` = base::`+`
-  ),
-  3 + 8
-)
-
-library(rlang)
-pkgs <- "rlang"
-library(pkgs)
-
-purrr::map(
-  c("ggplot2", "dplyr", "tidyr"),
-  library,
-  character.only = TRUE
-)
-
-purrr::map(
-  c("ggplot2", "dplyr", "tidyr"),
-  call2, .fn = "library"
-) |>
-  purrr::map(eval)
-
-library("ggplot2")
-
-mtcars |> select(cyl)
-cyl
-
-readr::read_csv("data/study.csv")
-
-ggplot(mtcars, aes(mpg, wt)) +
-  geom_point()
-
-ggplot2:::`+.gg`
-mpg
-wt
-
-mtcars |>
-  mutate(wt/hp)
-
-mtcars |>
-  left_join(mpg, by = c("model" = "car"))
-
-join_by
-
-1 + 1
-
-base::`+`
-
-eval(sym("pi"))
-sym("pi")
-sym("mpg")
-expr(1/pi)
-lobstr::ast(1/pi)
-quo(1/pi)
-eval_tidy(quo(1/pi))
-
-function(expr) {
-  expr <- enexpr(expr)
-}
-
-call2(sym("mutate"), sym("mtcars"),  expr(wt/sym("hp")))
-
-"mutate"()
-
-sym("2 * pi")
-
-mtcars |>
-  mutate(2 * mpg) |>
-  select("2 * mpg")
-
-expr(2 * pi)
-lobstr::ast(2*pi)
-
-quo(2 * pi)
+# Capturing code ---------------------------------------------------------------
 
 capture_expr <- function(x) {
-  x <- enquo(x)
-  pi <- 2.29
-  eval_tidy(x)
+  enexpr(x)
 }
+capture_expr(1 / pi)
 
-capture_expr(2*pi)
-# expr(2*pi)
+# Exercise: f vs g
+f <- function(x) x
+g <- function(x) enexpr(x)
 
-myseq
-lobstr::ast(myseq)
-lobstr::ast(!!myseq)
+f(1 + 2) # evaluates 1 + 2, returns 3
+g(1 + 2) # captures the expression `1 + 2` unevaluated
 
-expr(!!pi)
-expr(1/pi)
-expr(1/!!pi)
+# Exercise: assert_positive
+assert_positive <- function(x) {
+  expr <- enexpr(x)
+  result <- eval(expr)
+  if (!is.numeric(result) || result <= 0 || is.na(result)) {
+    stop(deparse(expr), " must be positive")
+  }
+  result
+}
+assert_positive(sqrt(4)) # returns 2
+assert_positive(log(-1)) # error: "log(-1) must be positive"
 
-wt <- rnorm(32)
-mtcars |>
-  summarise(weighted.mean(mpg, !!wt))
+# Unquoting (bang-bang !!) -----------------------------------------------------
 
+# Without !!: x is treated as a symbol, not replaced by its captured expression
+log_expr_broken <- function(x) {
+  x <- enexpr(x)
+  expr(log(x))
+}
+log_expr_broken(1 / pi)
+
+# With !!: x is unquoted, so 1/pi is substituted in
+log_expr <- function(x) {
+  x <- enexpr(x)
+  expr(log(!!x))
+}
+log_expr(1 / pi)
+
+# Exercise: the cyl == cyl problem
 cyl <- 4
-mtcars |>
-  filter(cyl == !!cyl)
+mtcars |> filter(cyl == cyl) # compares mtcars$cyl to itself — keeps all rows
 
-var_summary(mtcars, cyl)
+# Fix with !! to refer to the local variable
+mtcars |> filter(cyl == !!cyl)
 
-syms(c("a", "b"))
-exprs(a+b, a-b)
-quos(a+b, a-b)
+# filter_col using enquo + !!
+filter_col <- function(data, col, val) {
+  col <- enquo(col)
+  data |> filter(!!col == val)
+}
+filter_col(mtcars, cyl, 4)
 
-var_summaries <- function(data, ...) {
-  vars <- enquos(...)
-  .min <- purrr::map(vars, ~ expr(min(!!.)))
-  names(.min) <- c("a", "b")
-  .max <- purrr::map(vars, ~ expr(max(!!.)))
+# Embracing inputs ({{ curly-curly }}) -----------------------------------------
+
+# Shorthand for !!enquo(x)
+filter_col <- function(data, col, val) {
+  data |> filter({{ col }} == val)
+}
+filter_col(mtcars, cyl, 4)
+
+var_summary <- function(data, var) {
   data |>
-    summarise(n = n(), !!!.min, !!!.max)
-    # summarise(n = n(), a = min(mpg), b = min(wt), !!!.max)
+    summarise(n = n(), min = min({{ var }}), max = max({{ var }}))
 }
 mtcars |>
   group_by(cyl) |>
-  var_summaries(mpg, wt)
+  var_summary(mpg)
 
+# Capturing multiple expressions -----------------------------------------------
 
-cyl <- 4
-mtcars |>
-  filter(cyl == !!cyl)
-mtcars |>
-  filter(.data$pi == .env$cyl)
+print_conds <- function(...) {
+  conds <- enquos(...)
+  purrr::walk(conds, \(cond) cat(as_label(cond), "\n"))
+}
+print_conds(cyl == 4, wt < 2.5, am == 1)
 
-mtcars |>
-  filter(.data$pi == .env$cyl)
+# Tidy evaluation --------------------------------------------------------------
 
-pi
+mtcars |> mutate(mpg / wt)
+
+my_mutate <- function(.data, mutation) {
+  mutation <- enquo(mutation)
+  result <- eval_tidy(mutation, data = .data, env = caller_env())
+  .data[[as_label(mutation)]] <- result
+  .data
+}
+mtcars |> my_mutate(mpg / wt)
+
+# Data masks -------------------------------------------------------------------
+
+name <- c("Alice", "Bob", "Carol")
+score <- c(82, 95, 71)
+mask <- list(name = name, score = score)
+eval_tidy(quo(score > 80), data = mask)
+
+# Quosures capture the caller's environment, so threshold is found even though
+# it's not in the mask
+threshold <- 80
+f <- function(cond) eval_tidy(enquo(cond), data = mask)
+f(score > threshold)
+
+# Exercise: airquality mask
+mask <- as.list(head(airquality))
+eval_tidy(quo(Temp > 70), data = mask)
+# eval_tidy(quo(Temperature > 70), data = mask)  # error: object 'Temperature' not found
+
+# Filtering with multiple conditions -------------------------------------------
+
+my_filter <- function(.data, ...) {
+  conds <- enquos(...)
+  mask <- as.list(.data)
+  keep <- purrr::map(conds, \(cond) eval_tidy(cond, data = mask))
+  keep <- Reduce("&", keep)
+  .data[keep, ]
+}
+my_filter(mtcars, cyl == 4, wt < 2.5)
+
+# Exercise: add .op argument to combine conditions with & or |
+my_filter <- function(.data, ..., .op = "all") {
+  conds <- enquos(...)
+  mask <- as.list(.data)
+  keep <- purrr::map(conds, \(cond) eval_tidy(cond, data = mask))
+  reducer <- switch(.op, "all" = "&", "any" = "|", stop("Invalid .op: ", .op))
+  keep <- Reduce(reducer, keep)
+  .data[keep, ]
+}
+my_filter(mtcars, cyl == 4, wt < 2.5)
+my_filter(airquality, Temp > 90, Month == 8, .op = "any")
