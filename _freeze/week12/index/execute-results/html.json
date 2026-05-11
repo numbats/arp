@@ -2,7 +2,7 @@
   "hash": "5c80f4127617030b0d095eb1b68fcb91",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 12: Package hackathon\"\n---\n\n\n::: {.cell}\n\n:::\n\n\nThis will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation.\n\n\n",
+    "markdown": "---\ntitle: \"Week 12: Package hackathon\"\n---\n\n\n::: {.cell}\n\n:::\n\n\nThis will be a time to work together on your final packages in groups. Rob and Krisanat will be available for consultation.\n\n\n## Assignments\n\n* [Assignment 3](../assignments/A3.qmd) is due on Tuesday 02 June.\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

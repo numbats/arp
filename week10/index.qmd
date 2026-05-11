@@ -13,13 +13,16 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
-* Design
 * Non-standard evaluation (changing the expression or environment)
 * Abstract syntax trees
 * tidyselect
 * Symbols, expressions, quosures (names, calls, calls+environments)
 * Parsing and evaluating code
-* Code safety from injection attacks
+
+## Pre-class activities
+
+* Watch [Lazy evaluation](https://youtu.be/2BXPLnLMTYo) with Jenny Bryan
+* Watch [Data mask programming patterns](https://youtu.be/jGfuTuq44fE)
 
 ```{r}
 #| output: asis
