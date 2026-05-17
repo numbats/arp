@@ -48,6 +48,7 @@ assert_positive <- function(x) {
   result
 }
 assert_positive(sqrt(4)) # returns 2
+assert_positive(5-10) # error: "5 - 10 must be positive"
 assert_positive(log(-1)) # error: "log(-1) must be positive"
 
 # Unquoting (bang-bang !!) -----------------------------------------------------
@@ -73,6 +74,12 @@ mtcars |> filter(cyl == cyl) # compares mtcars$cyl to itself — keeps all rows
 # Fix with !! to refer to the local variable
 mtcars |> filter(cyl == !!cyl)
 
+filter_col <- function(data, col, val) {
+  data |> filter(col == val)
+}
+
+filter_col(mtcars, cyl, 4)
+
 # filter_col using enquo + !!
 filter_col <- function(data, col, val) {
   col <- enquo(col)
@@ -90,7 +97,7 @@ filter_col(mtcars, cyl, 4)
 
 var_summary <- function(data, var) {
   data |>
-    summarise(n = n(), min = min({{ var }}), max = max({{ var }}))
+    summarise(n = n(), min = min({{var}}), max = max({{ var }}))
 }
 mtcars |>
   group_by(cyl) |>
@@ -103,6 +110,12 @@ print_conds <- function(...) {
   purrr::walk(conds, \(cond) cat(as_label(cond), "\n"))
 }
 print_conds(cyl == 4, wt < 2.5, am == 1)
+
+
+
+
+
+
 
 # Tidy evaluation --------------------------------------------------------------
 

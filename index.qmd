@@ -55,9 +55,10 @@ week <- as.integer(1 +
 #| output: asis
 #| cache: false
 schedule |>
+  mutate(Topic = if_else(is.na(Topic), "", Topic)) |>
   transmute(
     Date = format(Date + 3, "%d %b"), # Thursday of each week
-    Show = !is.na(Week) & Week <= week , # Only link to past and current weeks
+    Show = TRUE, #!is.na(Week) & Week <= week , # Only link to past and current weeks
     Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
     Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
   ) |>
